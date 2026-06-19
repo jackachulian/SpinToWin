@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://ctfnjguaapiug"]
+
+[ext_resource type="Script" uid="uid://c5l013w08nt72" path="res://scripts/core/main_game.gd" id="1_s3esy"]
+
+[node name="MainGame" type="Node" unique_id=1565906414]
+process_mode = 3
+script = ExtResource("1_s3esy")
+
+[node name="Systems" type="Node" parent="." unique_id=1431060476]
+editor_description = "Defined place for high-level systems"
+
+[node name="World2D" type="Node2D" parent="." unique_id=1035024894]
+process_mode = 1
+editor_description = "The actual in-game world, using real coordinates"
+visible = false
+
+[node name="LevelRoot" type="Node2D" parent="World2D" unique_id=1791167449]
+editor_description = " The currently loaded level"
+
+[node name="EntityRoot" type="Node2D" parent="World2D" unique_id=1104665243]
+editor_description = "Containes the player, enemies, pickups, and other active objects"
+
+[node name="EffectRoot" type="Node2D" parent="World2D" unique_id=111975697]
+editor_description = "For temporary visual effects"
+
+[node name="HudLayer" type="CanvasLayer" parent="." unique_id=820261078]
+process_mode = 1
+layer = 100
+
+[node name="HudRoot" type="Control" parent="HudLayer" unique_id=2126861408]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=384917795]
+process_mode = 2
+layer = 200
+
+[node name="PauseRoot" type="Control" parent="PauseLayer" unique_id=817903267]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=191080837]
+process_mode = 3
+layer = 300
+
+[node name="TransitionRoot" type="Control" parent="TransitionLayer" unique_id=1421835037]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=1393785114]
+process_mode = 3
+layer = 400
+
+[node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=213472262]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
