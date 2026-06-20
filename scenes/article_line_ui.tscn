@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dc7mp8q77224q"]
+
+[ext_resource type="Script" uid="uid://diggyshniksh7" path="res://scripts/article_system/ui/article_line_ui.gd" id="1_7ddij"]
+[ext_resource type="Theme" uid="uid://4ttvne76rnip" path="res://assets/theme/newspaper.tres" id="1_hposf"]
+[ext_resource type="PackedScene" uid="uid://kxixxy40y5b0" path="res://scenes/article_choice_ui.tscn" id="3_hposf"]
+
+[node name="ArticleLineUI" type="FlowContainer" unique_id=1553382902]
+theme = ExtResource("1_hposf")
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 0
+script = ExtResource("1_7ddij")
+article_choice_ui_scene = ExtResource("3_hposf")
+
+[node name="TextLabel" type="Label" parent="." unique_id=1959330996]
+layout_mode = 2
+text = "sdsds"
+
+[node name="ArticleChoiceUI" parent="." unique_id=1740173751 instance=ExtResource("3_hposf")]
+layout_mode = 2
+
+[node name="TextLabel2" type="Label" parent="." unique_id=1233363702]
+layout_mode = 2
+text = "long line of text long line of text long line of text "

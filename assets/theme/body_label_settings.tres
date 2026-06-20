@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dfrdvbeonecu5"]
+
+[ext_resource type="FontFile" uid="uid://bimel7r5f3p31" path="res://assets/fonts/times.ttf" id="1_qr5c7"]
+
+[resource]
+font = ExtResource("1_qr5c7")
+font_size = 32
+font_color = Color(0.019607844, 0.03137255, 0.039215688, 1)

@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://ctfnjguaapiug"]
 
 [ext_resource type="Script" uid="uid://c5l013w08nt72" path="res://scripts/core/main_game.gd" id="1_s3esy"]
-[ext_resource type="FontFile" uid="uid://c4cf72ke3bjil" path="res://assets/fonts/FranklinGothic.ttf" id="2_72e8q"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_4ieh6"]
-font = ExtResource("2_72e8q")
-font_size = 90
-font_color = Color(0.020970948, 0.031228596, 0.040849626, 1)
+[ext_resource type="Theme" uid="uid://4ttvne76rnip" path="res://assets/theme/newspaper.tres" id="2_0rdsr"]
+[ext_resource type="Script" uid="uid://dh832ue8yul2n" path="res://scripts/article_system/article_test_loader.gd" id="2_ipu61"]
+[ext_resource type="LabelSettings" uid="uid://bnpx7fcypiu1i" path="res://assets/theme/header_label_settings.tres" id="3_ipu61"]
+[ext_resource type="Script" uid="uid://bs2v7cmmlsbqu" path="res://scripts/article_system/ui/article_ui.gd" id="4_ygxny"]
+[ext_resource type="PackedScene" uid="uid://dc7mp8q77224q" path="res://scenes/article_line_ui.tscn" id="5_ygxny"]
 
 [node name="MainGame" type="Node" unique_id=1565906414]
 process_mode = 3
@@ -15,19 +14,9 @@ script = ExtResource("1_s3esy")
 [node name="Systems" type="Node" parent="." unique_id=1431060476]
 editor_description = "Defined place for high-level systems"
 
-[node name="World2D" type="Node2D" parent="." unique_id=1035024894]
-process_mode = 1
-editor_description = "The actual in-game world, using real coordinates"
-visible = false
-
-[node name="LevelRoot" type="Node2D" parent="World2D" unique_id=1791167449]
-editor_description = " The currently loaded level"
-
-[node name="EntityRoot" type="Node2D" parent="World2D" unique_id=1104665243]
-editor_description = "Containes the player, enemies, pickups, and other active objects"
-
-[node name="EffectRoot" type="Node2D" parent="World2D" unique_id=111975697]
-editor_description = "For temporary visual effects"
+[node name="ArticleLoader" type="Node" parent="Systems" unique_id=737525035 node_paths=PackedStringArray("article_ui")]
+script = ExtResource("2_ipu61")
+article_ui = NodePath("../../HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI")
 
 [node name="HudLayer" type="CanvasLayer" parent="." unique_id=820261078]
 process_mode = 1
@@ -40,26 +29,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="Newspaper" type="Control" parent="HudLayer/HudRoot" unique_id=337837697]
+custom_minimum_size = Vector2(850, 660)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 262.0
-offset_top = 113.0
-offset_right = -298.0
-offset_bottom = -87.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -330.0
+offset_right = 425.0
+offset_bottom = 330.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_0rdsr")
 
-[node name="ReplaceWithNewspaperImage" type="ColorRect" parent="HudLayer/HudRoot/Newspaper" unique_id=1458793612]
+[node name="TopPageBG" type="ColorRect" parent="HudLayer/HudRoot/Newspaper" unique_id=1458793612]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.8393425, 0.8485147, 0.81568843, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="HudLayer/HudRoot/Newspaper" unique_id=1812938277]
@@ -69,30 +65,71 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="HeaderLabel" type="Label" parent="HudLayer/HudRoot/Newspaper/MarginContainer" unique_id=1920170570]
+[node name="VBoxContainer" type="VBoxContainer" parent="HudLayer/HudRoot/Newspaper/MarginContainer" unique_id=1366605455]
 layout_mode = 2
-size_flags_vertical = 0
-text = "Newspaper header: Newspaper header Newspaper header"
-label_settings = SubResource("LabelSettings_4ieh6")
-horizontal_alignment = 1
-autowrap_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer" unique_id=726516428]
+layout_mode = 2
+
+[node name="ArticleUI" type="VBoxContainer" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer" unique_id=1170931826 node_paths=PackedStringArray("header_line_ui", "body_vbox")]
+layout_mode = 2
+script = ExtResource("4_ygxny")
+header_line_ui = NodePath("HeaderLine")
+body_vbox = NodePath("Body")
+article_line_ui_scene = ExtResource("5_ygxny")
+
+[node name="HeaderLine" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI" unique_id=1553382902 instance=ExtResource("5_ygxny")]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+label_settings = ExtResource("3_ipu61")
+font_size = 48
+
+[node name="TextLabel" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine" index="0" unique_id=1959330996]
+label_settings = ExtResource("3_ipu61")
+
+[node name="OptionButton" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine/ArticleChoiceUI" parent_id_path=PackedInt32Array(1553382902, 1740173751) index="0" unique_id=185709114]
+theme_override_font_sizes/font_size = 48
+
+[node name="TextLabel2" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine" index="2" unique_id=1233363702]
+text = "header text"
+label_settings = ExtResource("3_ipu61")
+
+[node name="Body" type="VBoxContainer" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI" unique_id=1516336646]
+layout_mode = 2
+
+[node name="ArticleLineUI" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI/Body" unique_id=1511706196 instance=ExtResource("5_ygxny")]
+layout_mode = 2
+
+[node name="BottomPageBG" type="ColorRect" parent="HudLayer/HudRoot/Newspaper" unique_id=1882309415]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 660.0
+offset_bottom = 660.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8393425, 0.8485147, 0.81568843, 1)
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=384917795]
 process_mode = 2
 layer = 200
+visible = false
 
 [node name="PauseRoot" type="Control" parent="PauseLayer" unique_id=817903267]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=191080837]
 process_mode = 3
@@ -105,6 +142,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=1393785114]
 process_mode = 3
@@ -117,3 +155,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[editable path="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine"]
+[editable path="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine/ArticleChoiceUI"]

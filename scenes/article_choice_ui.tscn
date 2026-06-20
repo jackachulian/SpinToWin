@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://kxixxy40y5b0"]
+
+[ext_resource type="Script" uid="uid://c3dldhvki5jnh" path="res://scripts/article_system/ui/article_choice_ui.gd" id="1_pvp3q"]
+
+[node name="ArticleChoiceUI" type="MarginContainer" unique_id=1740173751 node_paths=PackedStringArray("option_button")]
+script = ExtResource("1_pvp3q")
+option_button = NodePath("OptionButton")
+
+[node name="OptionButton" type="OptionButton" parent="." unique_id=185709114]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "choice 1"
+popup/item_0/id = 0
+popup/item_1/text = "choice 2"
+popup/item_1/id = 1
+popup/item_2/text = "longer choice 3"
+popup/item_2/id = 2

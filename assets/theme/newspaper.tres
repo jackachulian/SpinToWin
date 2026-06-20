@@ -1,0 +1,17 @@
+[gd_resource type="Theme" format=3 uid="uid://4ttvne76rnip"]
+
+[ext_resource type="FontFile" uid="uid://bimel7r5f3p31" path="res://assets/fonts/times.ttf" id="1_tpni6"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5jiwi"]
+color = Color(0.019607844, 0.03137255, 0.039215688, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sh5y5"]
+
+[resource]
+default_font = ExtResource("1_tpni6")
+default_font_size = 32
+HSeparator/styles/separator = SubResource("StyleBoxLine_5jiwi")
+Label/colors/font_color = Color(0.019607844, 0.03137255, 0.039215688, 1)
+OptionButton/colors/font_color = Color(0.019607844, 0.03137255, 0.039215688, 1)
+OptionButton/styles/normal = SubResource("StyleBoxEmpty_sh5y5")
