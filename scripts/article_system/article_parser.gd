@@ -88,9 +88,9 @@ static func _parse_choice(text: String) -> ArticleChoice:
 
 		option.text = regex_match.get_string(1).strip_edges()
 
-		option.government = regex_match.get_string(2).to_int()
-		option.public_approval = regex_match.get_string(3).to_int()
-		option.public_trust = regex_match.get_string(4).to_int()
+		option.public_approval = regex_match.get_string(2).to_int()
+		option.public_trust = regex_match.get_string(3).to_int()
+		option.government = regex_match.get_string(4).to_int()
 
 		choice.options.append(option)
 

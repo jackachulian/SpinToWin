@@ -3,9 +3,31 @@
 [ext_resource type="Script" uid="uid://c5l013w08nt72" path="res://scripts/core/main_game.gd" id="1_s3esy"]
 [ext_resource type="Theme" uid="uid://4ttvne76rnip" path="res://assets/theme/newspaper.tres" id="2_0rdsr"]
 [ext_resource type="Script" uid="uid://dh832ue8yul2n" path="res://scripts/article_system/article_test_loader.gd" id="2_ipu61"]
+[ext_resource type="Texture2D" uid="uid://cx4n4wogs0yq8" path="res://assets/sprites/NOF_WEB_GALLERY_01.webp" id="3_5cypo"]
 [ext_resource type="LabelSettings" uid="uid://bnpx7fcypiu1i" path="res://assets/theme/header_label_settings.tres" id="3_ipu61"]
+[ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="3_wjob3"]
 [ext_resource type="Script" uid="uid://bs2v7cmmlsbqu" path="res://scripts/article_system/ui/article_ui.gd" id="4_ygxny"]
 [ext_resource type="PackedScene" uid="uid://dc7mp8q77224q" path="res://scenes/article_line_ui.tscn" id="5_ygxny"]
+[ext_resource type="FontFile" uid="uid://cnda311t1okga" path="res://assets/fonts/QuietStreets-yrYM.ttf" id="7_70vka"]
+[ext_resource type="FontFile" uid="uid://c8qul3alvi37g" path="res://assets/fonts/CarpalTunnel-aEWa.ttf" id="8_2l77h"]
+[ext_resource type="StyleBox" uid="uid://dvurd71iunc7h" path="res://assets/theme/submit_button.tres" id="9_nqdth"]
+[ext_resource type="StyleBox" uid="uid://beluarpuoa5kj" path="res://assets/theme/submit_button_hover.tres" id="10_5cypo"]
+[ext_resource type="PackedScene" uid="uid://73jm5qjy52vq" path="res://addons/dialogue_manager/example_balloon/example_balloon.tscn" id="12_o6v7o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ieh6"]
+font = ExtResource("7_70vka")
+font_size = 48
+font_color = Color(0.9190853, 0.85694724, 0.70989525, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nqdth"]
+font = ExtResource("8_2l77h")
+font_size = 24
+font_color = Color(0.85139424, 0.86505884, 0.85176873, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o6v7o"]
+font = ExtResource("7_70vka")
+font_size = 40
+font_color = Color(0.91764706, 0.85882354, 0.70980394, 1)
 
 [node name="MainGame" type="Node" unique_id=1565906414]
 process_mode = 3
@@ -14,9 +36,11 @@ script = ExtResource("1_s3esy")
 [node name="Systems" type="Node" parent="." unique_id=1431060476]
 editor_description = "Defined place for high-level systems"
 
-[node name="ArticleLoader" type="Node" parent="Systems" unique_id=737525035 node_paths=PackedStringArray("article_ui")]
+[node name="ArticleLoader" type="Node" parent="Systems" unique_id=737525035 node_paths=PackedStringArray("real_event_label", "article_ui", "desired_perception_label")]
 script = ExtResource("2_ipu61")
-article_ui = NodePath("../../HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI")
+real_event_label = NodePath("../../HudLayer/HudRoot/ArticleSpinSection/RealEvent/MarginContainer/VBoxContainer/RealEventDescLabel")
+article_ui = NodePath("../../HudLayer/HudRoot/ArticleSpinSection/Newspaper/MarginContainer/VBoxContainer/ArticleUI")
+desired_perception_label = NodePath("../../HudLayer/HudRoot/ArticleSpinSection/DesiredPerception/MarginContainer/VBoxContainer/DesiredPerceptionLabel")
 
 [node name="HudLayer" type="CanvasLayer" parent="." unique_id=820261078]
 process_mode = 1
@@ -30,8 +54,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("3_wjob3")
 
-[node name="Newspaper" type="Control" parent="HudLayer/HudRoot" unique_id=337837697]
+[node name="PlaceholderBg" type="TextureRect" parent="HudLayer/HudRoot" unique_id=1223765234]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_5cypo")
+
+[node name="ArticleSpinSection" type="Control" parent="HudLayer/HudRoot" unique_id=15040884]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Newspaper" type="Control" parent="HudLayer/HudRoot/ArticleSpinSection" unique_id=337837697]
 custom_minimum_size = Vector2(850, 660)
 layout_mode = 1
 anchors_preset = 8
@@ -48,7 +90,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("2_0rdsr")
 
-[node name="TopPageBG" type="ColorRect" parent="HudLayer/HudRoot/Newspaper" unique_id=1458793612]
+[node name="TopPageBG" type="ColorRect" parent="HudLayer/HudRoot/ArticleSpinSection/Newspaper" unique_id=1458793612]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,7 +100,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.8393425, 0.8485147, 0.81568843, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="HudLayer/HudRoot/Newspaper" unique_id=1812938277]
+[node name="MarginContainer" type="MarginContainer" parent="HudLayer/HudRoot/ArticleSpinSection/Newspaper" unique_id=1812938277]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -70,42 +112,43 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HudLayer/HudRoot/Newspaper/MarginContainer" unique_id=1366605455]
+[node name="VBoxContainer" type="VBoxContainer" parent="HudLayer/HudRoot/ArticleSpinSection/Newspaper/MarginContainer" unique_id=1366605455]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer" unique_id=726516428]
+[node name="HSeparator" type="HSeparator" parent="HudLayer/HudRoot/ArticleSpinSection/Newspaper/MarginContainer/VBoxContainer" unique_id=726516428]
 layout_mode = 2
 
-[node name="ArticleUI" type="VBoxContainer" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer" unique_id=1170931826 node_paths=PackedStringArray("header_line_ui", "body_vbox")]
+[node name="ArticleUI" type="VBoxContainer" parent="HudLayer/HudRoot/ArticleSpinSection/Newspaper/MarginContainer/VBoxContainer" unique_id=1170931826 node_paths=PackedStringArray("header_line_ui", "body_vbox")]
 layout_mode = 2
 script = ExtResource("4_ygxny")
 header_line_ui = NodePath("HeaderLine")
 body_vbox = NodePath("Body")
 article_line_ui_scene = ExtResource("5_ygxny")
 
-[node name="HeaderLine" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI" unique_id=1553382902 instance=ExtResource("5_ygxny")]
+[node name="HeaderLine" parent="HudLayer/HudRoot/ArticleSpinSection/Newspaper/MarginContainer/VBoxContainer/ArticleUI" unique_id=1553382902 instance=ExtResource("5_ygxny")]
 layout_mode = 2
 theme_override_constants/h_separation = 12
 label_settings = ExtResource("3_ipu61")
 font_size = 48
 
-[node name="TextLabel" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine" index="0" unique_id=1959330996]
+[node name="TextLabel" parent="HudLayer/HudRoot/ArticleSpinSection/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine" index="0" unique_id=1959330996]
+text = "Article"
 label_settings = ExtResource("3_ipu61")
 
-[node name="OptionButton" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine/ArticleChoiceUI" parent_id_path=PackedInt32Array(1553382902, 1740173751) index="0" unique_id=185709114]
+[node name="OptionButton" parent="HudLayer/HudRoot/ArticleSpinSection/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine/ArticleChoiceUI" parent_id_path=PackedInt32Array(1553382902, 1740173751) index="0" unique_id=185709114]
 theme_override_font_sizes/font_size = 48
 
-[node name="TextLabel2" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine" index="2" unique_id=1233363702]
-text = "header text"
+[node name="TextLabel2" parent="HudLayer/HudRoot/ArticleSpinSection/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine" index="2" unique_id=1233363702]
+text = "Title"
 label_settings = ExtResource("3_ipu61")
 
-[node name="Body" type="VBoxContainer" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI" unique_id=1516336646]
+[node name="Body" type="VBoxContainer" parent="HudLayer/HudRoot/ArticleSpinSection/Newspaper/MarginContainer/VBoxContainer/ArticleUI" unique_id=1516336646]
 layout_mode = 2
 
-[node name="ArticleLineUI" parent="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI/Body" unique_id=1511706196 instance=ExtResource("5_ygxny")]
+[node name="ArticleLineUI" parent="HudLayer/HudRoot/ArticleSpinSection/Newspaper/MarginContainer/VBoxContainer/ArticleUI/Body" unique_id=1511706196 instance=ExtResource("5_ygxny")]
 layout_mode = 2
 
-[node name="BottomPageBG" type="ColorRect" parent="HudLayer/HudRoot/Newspaper" unique_id=1882309415]
+[node name="BottomPageBG" type="ColorRect" parent="HudLayer/HudRoot/ArticleSpinSection/Newspaper" unique_id=1882309415]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -115,6 +158,162 @@ offset_bottom = 660.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.8393425, 0.8485147, 0.81568843, 1)
+
+[node name="RealEvent" type="Control" parent="HudLayer/HudRoot/ArticleSpinSection" unique_id=938234417]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -237.5
+offset_right = 372.0
+offset_bottom = 237.5
+grow_vertical = 2
+
+[node name="TopPageBG" type="ColorRect" parent="HudLayer/HudRoot/ArticleSpinSection/RealEvent" unique_id=993309070]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.15058675, 0.20375684, 0.25924262, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HudLayer/HudRoot/ArticleSpinSection/RealEvent" unique_id=1068067629]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HudLayer/HudRoot/ArticleSpinSection/RealEvent/MarginContainer" unique_id=1504946167]
+layout_mode = 2
+
+[node name="HeaderLabel" type="Label" parent="HudLayer/HudRoot/ArticleSpinSection/RealEvent/MarginContainer/VBoxContainer" unique_id=717014495]
+layout_mode = 2
+text = "REAL EVENT"
+label_settings = SubResource("LabelSettings_4ieh6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="HudLayer/HudRoot/ArticleSpinSection/RealEvent/MarginContainer/VBoxContainer" unique_id=567383639]
+layout_mode = 2
+
+[node name="RealEventDescLabel" type="Label" parent="HudLayer/HudRoot/ArticleSpinSection/RealEvent/MarginContainer/VBoxContainer" unique_id=1358805763]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+text = "Description of the real event that took place"
+label_settings = SubResource("LabelSettings_nqdth")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="DesiredPerception" type="Control" parent="HudLayer/HudRoot/ArticleSpinSection" unique_id=537265171]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -372.0
+offset_top = -245.0
+offset_bottom = 245.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TopPageBG" type="ColorRect" parent="HudLayer/HudRoot/ArticleSpinSection/DesiredPerception" unique_id=615869837]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.15058675, 0.20375684, 0.25924262, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HudLayer/HudRoot/ArticleSpinSection/DesiredPerception" unique_id=2077143077]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HudLayer/HudRoot/ArticleSpinSection/DesiredPerception/MarginContainer" unique_id=233241140]
+layout_mode = 2
+
+[node name="HeaderLabel" type="Label" parent="HudLayer/HudRoot/ArticleSpinSection/DesiredPerception/MarginContainer/VBoxContainer" unique_id=92348820]
+layout_mode = 2
+text = "DESIRED 
+PERCEPTION"
+label_settings = SubResource("LabelSettings_o6v7o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="HudLayer/HudRoot/ArticleSpinSection/DesiredPerception/MarginContainer/VBoxContainer" unique_id=764346691]
+layout_mode = 2
+
+[node name="DesiredPerceptionLabel" type="Label" parent="HudLayer/HudRoot/ArticleSpinSection/DesiredPerception/MarginContainer/VBoxContainer" unique_id=2054699017]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+text = "Description of the real event that took place"
+label_settings = SubResource("LabelSettings_nqdth")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SubmitArticle" type="Control" parent="HudLayer/HudRoot/ArticleSpinSection" unique_id=1003843185]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -363.0
+offset_top = -192.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HudLayer/HudRoot/ArticleSpinSection/SubmitArticle" unique_id=1973500835]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Button" type="Button" parent="HudLayer/HudRoot/ArticleSpinSection/SubmitArticle/MarginContainer" unique_id=655112697]
+layout_mode = 2
+theme_override_styles/normal = ExtResource("9_nqdth")
+theme_override_styles/pressed = ExtResource("9_nqdth")
+theme_override_styles/hover = ExtResource("10_5cypo")
+
+[node name="HeaderLabel" type="Label" parent="HudLayer/HudRoot/ArticleSpinSection/SubmitArticle/MarginContainer/Button" unique_id=216443541]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SUBMIT"
+label_settings = SubResource("LabelSettings_o6v7o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogueBalloon" parent="HudLayer/HudRoot" unique_id=548383277 instance=ExtResource("12_o6v7o")]
 
 [node name="PauseLayer" type="CanvasLayer" parent="." unique_id=384917795]
 process_mode = 2
@@ -136,6 +335,7 @@ process_mode = 3
 layer = 300
 
 [node name="TransitionRoot" type="Control" parent="TransitionLayer" unique_id=1421835037]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -149,6 +349,7 @@ process_mode = 3
 layer = 400
 
 [node name="DebugRoot" type="Control" parent="DebugLayer" unique_id=213472262]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -157,5 +358,5 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[editable path="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine"]
-[editable path="HudLayer/HudRoot/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine/ArticleChoiceUI"]
+[editable path="HudLayer/HudRoot/ArticleSpinSection/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine"]
+[editable path="HudLayer/HudRoot/ArticleSpinSection/Newspaper/MarginContainer/VBoxContainer/ArticleUI/HeaderLine/ArticleChoiceUI"]

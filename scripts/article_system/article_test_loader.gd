@@ -1,7 +1,9 @@
 class_name ArticleLoader
 extends Node
 
+@export var real_event_label: Label
 @export var article_ui: ArticleUI
+@export var desired_perception_label: Label
 
 func _ready() -> void:
 	var article := ArticleParser.load_file(
@@ -9,6 +11,8 @@ func _ready() -> void:
 	)
 	_print_article(article)
 	
+	real_event_label.text = article.real_event
+	desired_perception_label.text = article.desired_perception
 	article_ui.setup(article)
 	
 			

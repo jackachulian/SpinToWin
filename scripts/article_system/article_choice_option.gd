@@ -4,6 +4,6 @@ extends RefCounted
 
 var text: String
 
-var government: int
+var government: int # government approval
 var public_approval: int
 var public_trust: int
