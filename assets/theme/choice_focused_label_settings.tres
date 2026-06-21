@@ -5,4 +5,4 @@
 [resource]
 font = ExtResource("1_d4kis")
 font_size = 20
-font_color = Color(0.9318557, 0.7420834, 0.17645523, 1)
+font_color = Color(0.84, 0.6615, 0.12599997, 1)

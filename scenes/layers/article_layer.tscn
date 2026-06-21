@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dmo78qc1o5jde"]
 
-[ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_wlco4"]
+[ext_resource type="Script" uid="uid://bb7al8ko4q3nb" path="res://scripts/core/transitionable_layer.gd" id="1_ruko1"]
 [ext_resource type="Material" uid="uid://deia4rqmwu5pp" path="res://assets/materials/article_blur_and_tint.tres" id="2_ya2e7"]
 [ext_resource type="Theme" uid="uid://4ttvne76rnip" path="res://assets/theme/newspaper.tres" id="3_l8meg"]
 [ext_resource type="Script" uid="uid://bs2v7cmmlsbqu" path="res://scripts/article_system/ui/article_ui.gd" id="4_jorgq"]
@@ -70,37 +70,49 @@ font = ExtResource("7_ruko1")
 font_size = 20
 font_color = Color(0.019607844, 0.03137255, 0.039215688, 1)
 
-[node name="ArticleLayer" type="CanvasLayer" unique_id=197263611]
+[node name="ArticleLayer" type="CanvasLayer" unique_id=197263611 node_paths=PackedStringArray("animatable_control")]
 process_mode = 1
 layer = 0
+script = ExtResource("1_ruko1")
+animatable_control = NodePath("ArticleUI")
 
-[node name="HudRoot" type="Control" parent="." unique_id=995132203]
+[node name="ArticleUI" type="Control" parent="." unique_id=1421558068 node_paths=PackedStringArray("article_layer", "header_rtl", "body_rtl", "real_event_panel", "desired_perception_panel", "article_panel", "submit_article_panel", "real_event_label", "desired_perception_label", "choice_edit_panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-theme = ExtResource("1_wlco4")
-
-[node name="ArticleUI" type="Control" parent="HudRoot" unique_id=1421558068 node_paths=PackedStringArray("header_rtl", "body_rtl", "real_event_label", "desired_perception_label", "choice_edit_panel")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("4_jorgq")
+article_layer = NodePath("..")
 header_rtl = NodePath("ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer/HeaderRTL")
 body_rtl = NodePath("ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer/BodyRTL")
+real_event_panel = NodePath("RealEvent")
+desired_perception_panel = NodePath("DesiredPerception")
+article_panel = NodePath("ArticlePanelContainer")
+submit_article_panel = NodePath("SubmitArticle")
 real_event_label = NodePath("RealEvent/MarginContainer/VBoxContainer/RealEventDescLabel")
 desired_perception_label = NodePath("DesiredPerception/MarginContainer/VBoxContainer/DesiredPerceptionLabel")
 blur_material = ExtResource("2_ya2e7")
 choice_edit_blur_radius = 0.5
 choice_edit_panel = NodePath("ChoiceEditPanel")
 
-[node name="ArticlePanelContainer" type="PanelContainer" parent="HudRoot/ArticleUI" unique_id=149803130]
+[node name="SpinTheArticleLabel" type="Label" parent="ArticleUI" unique_id=1616736438]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -131.5
+offset_top = 10.0
+offset_right = 131.5
+offset_bottom = 74.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_7o6uv")
+theme_override_font_sizes/font_size = 64
+text = "Spin the Article!"
+
+[node name="ArticlePanelContainer" type="PanelContainer" parent="ArticleUI" unique_id=149803130]
 custom_minimum_size = Vector2(680, 440)
 layout_mode = 1
 anchors_preset = 8
@@ -120,22 +132,22 @@ mouse_filter = 1
 theme = ExtResource("3_l8meg")
 theme_override_styles/panel = SubResource("StyleBoxFlat_sp04v")
 
-[node name="MarginContainer" type="MarginContainer" parent="HudRoot/ArticleUI/ArticlePanelContainer" unique_id=267602175]
+[node name="MarginContainer" type="MarginContainer" parent="ArticleUI/ArticlePanelContainer" unique_id=267602175]
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="ArticleContainer" type="Control" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer" unique_id=1055033415]
+[node name="ArticleContainer" type="Control" parent="ArticleUI/ArticlePanelContainer/MarginContainer" unique_id=1055033415]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer" unique_id=1683731892]
+[node name="HSeparator" type="HSeparator" parent="ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer" unique_id=1683731892]
 layout_mode = 0
 offset_right = 610.0
 offset_bottom = 4.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer" unique_id=2129396417]
+[node name="ScrollContainer" type="ScrollContainer" parent="ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer" unique_id=2129396417]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -144,12 +156,12 @@ grow_horizontal = 2
 grow_vertical = 2
 scroll_hint_mode = 1
 
-[node name="SectionVBoxContainer" type="VBoxContainer" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer" unique_id=2144620878]
+[node name="SectionVBoxContainer" type="VBoxContainer" parent="ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer" unique_id=2144620878]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HeaderRTL" type="RichTextLabel" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer" unique_id=1689894500 node_paths=PackedStringArray("article_ui")]
+[node name="HeaderRTL" type="RichTextLabel" parent="ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer" unique_id=1689894500 node_paths=PackedStringArray("article_ui")]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
@@ -164,7 +176,7 @@ meta_underlined = false
 script = ExtResource("5_dsg1b")
 article_ui = NodePath("../../../../../..")
 
-[node name="BodyRTL" type="RichTextLabel" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer" unique_id=1924994430 node_paths=PackedStringArray("article_ui")]
+[node name="BodyRTL" type="RichTextLabel" parent="ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer" unique_id=1924994430 node_paths=PackedStringArray("article_ui")]
 layout_mode = 2
 bbcode_enabled = true
 text = "This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text."
@@ -174,12 +186,12 @@ meta_underlined = false
 script = ExtResource("5_dsg1b")
 article_ui = NodePath("../../../../../..")
 
-[node name="Spacer" type="Control" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer" unique_id=2054232345]
+[node name="Spacer" type="Control" parent="ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer" unique_id=2054232345]
 visible = false
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 
-[node name="RealEvent" type="PanelContainer" parent="HudRoot/ArticleUI" unique_id=1675035395]
+[node name="RealEvent" type="PanelContainer" parent="ArticleUI" unique_id=1675035395]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -188,29 +200,30 @@ offset_top = -203.375
 offset_right = 200.0
 offset_bottom = 203.375
 grow_vertical = 2
+offset_transform_enabled = true
 theme_override_styles/panel = SubResource("StyleBoxFlat_5cypo")
 
-[node name="MarginContainer" type="MarginContainer" parent="HudRoot/ArticleUI/RealEvent" unique_id=1324978197]
+[node name="MarginContainer" type="MarginContainer" parent="ArticleUI/RealEvent" unique_id=1324978197]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HudRoot/ArticleUI/RealEvent/MarginContainer" unique_id=2116337321]
+[node name="VBoxContainer" type="VBoxContainer" parent="ArticleUI/RealEvent/MarginContainer" unique_id=2116337321]
 layout_mode = 2
 
-[node name="HeaderLabel" type="Label" parent="HudRoot/ArticleUI/RealEvent/MarginContainer/VBoxContainer" unique_id=1191645461]
+[node name="HeaderLabel" type="Label" parent="ArticleUI/RealEvent/MarginContainer/VBoxContainer" unique_id=1191645461]
 layout_mode = 2
 text = "REAL EVENT"
 label_settings = SubResource("LabelSettings_4ieh6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="HudRoot/ArticleUI/RealEvent/MarginContainer/VBoxContainer" unique_id=268638223]
+[node name="HSeparator" type="HSeparator" parent="ArticleUI/RealEvent/MarginContainer/VBoxContainer" unique_id=268638223]
 layout_mode = 2
 
-[node name="RealEventDescLabel" type="Label" parent="HudRoot/ArticleUI/RealEvent/MarginContainer/VBoxContainer" unique_id=359918222]
+[node name="RealEventDescLabel" type="Label" parent="ArticleUI/RealEvent/MarginContainer/VBoxContainer" unique_id=359918222]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_ruko1")
@@ -218,7 +231,7 @@ text = "Description of the real event that took place"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="DesiredPerception" type="PanelContainer" parent="HudRoot/ArticleUI" unique_id=34398821]
+[node name="DesiredPerception" type="PanelContainer" parent="ArticleUI" unique_id=34398821]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -232,17 +245,17 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o6v7o")
 
-[node name="MarginContainer" type="MarginContainer" parent="HudRoot/ArticleUI/DesiredPerception" unique_id=589089175]
+[node name="MarginContainer" type="MarginContainer" parent="ArticleUI/DesiredPerception" unique_id=589089175]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HudRoot/ArticleUI/DesiredPerception/MarginContainer" unique_id=1435410555]
+[node name="VBoxContainer" type="VBoxContainer" parent="ArticleUI/DesiredPerception/MarginContainer" unique_id=1435410555]
 layout_mode = 2
 
-[node name="HeaderLabel" type="Label" parent="HudRoot/ArticleUI/DesiredPerception/MarginContainer/VBoxContainer" unique_id=1332676528]
+[node name="HeaderLabel" type="Label" parent="ArticleUI/DesiredPerception/MarginContainer/VBoxContainer" unique_id=1332676528]
 layout_mode = 2
 text = "DESIRED
 PERCEPTION"
@@ -250,10 +263,10 @@ label_settings = SubResource("LabelSettings_4ieh6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="HudRoot/ArticleUI/DesiredPerception/MarginContainer/VBoxContainer" unique_id=1147763792]
+[node name="HSeparator" type="HSeparator" parent="ArticleUI/DesiredPerception/MarginContainer/VBoxContainer" unique_id=1147763792]
 layout_mode = 2
 
-[node name="DesiredPerceptionLabel" type="Label" parent="HudRoot/ArticleUI/DesiredPerception/MarginContainer/VBoxContainer" unique_id=1376935329]
+[node name="DesiredPerceptionLabel" type="Label" parent="ArticleUI/DesiredPerception/MarginContainer/VBoxContainer" unique_id=1376935329]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("7_ruko1")
@@ -261,7 +274,7 @@ text = "The government's desired perception of the event"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="SubmitArticle" type="Control" parent="HudRoot/ArticleUI" unique_id=1461780542]
+[node name="SubmitArticle" type="Control" parent="ArticleUI" unique_id=1461780542]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -273,7 +286,7 @@ offset_top = -131.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HudRoot/ArticleUI/SubmitArticle" unique_id=1013506389]
+[node name="MarginContainer" type="MarginContainer" parent="ArticleUI/SubmitArticle" unique_id=1013506389]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -284,7 +297,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
 
-[node name="Button" type="Button" parent="HudRoot/ArticleUI/SubmitArticle/MarginContainer" unique_id=1864633341]
+[node name="SubmitButton" type="Button" parent="ArticleUI/SubmitArticle/MarginContainer" unique_id=1864633341]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8649035, 0.99070674, 0.7921395, 1)
 theme_override_colors/font_pressed_color = Color(0.78571904, 0.99085134, 0.78700423, 1)
@@ -296,22 +309,7 @@ theme_override_styles/pressed = ExtResource("9_0jjck")
 theme_override_styles/hover = ExtResource("10_e5wne")
 text = "SUBMIT"
 
-[node name="SpinTheArticleLabel" type="Label" parent="HudRoot/ArticleUI" unique_id=1616736438]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -131.5
-offset_top = 10.0
-offset_right = 131.5
-offset_bottom = 74.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("11_7o6uv")
-theme_override_font_sizes/font_size = 64
-text = "Spin the Article!"
-
-[node name="BlurTextureRect" type="ColorRect" parent="HudRoot/ArticleUI" unique_id=365931636]
+[node name="BlurTextureRect" type="ColorRect" parent="ArticleUI" unique_id=365931636]
 material = ExtResource("2_ya2e7")
 layout_mode = 1
 anchors_preset = 15
@@ -327,7 +325,7 @@ offset_transform_enabled = true
 offset_transform_scale = Vector2(1.05, 1.05)
 mouse_filter = 2
 
-[node name="ChoiceEditPanel" type="Control" parent="HudRoot/ArticleUI" unique_id=434387884 node_paths=PackedStringArray("choice_origin", "sentence_start_label", "choice_container", "left_arrow", "right_arrow")]
+[node name="ChoiceEditPanel" type="Control" parent="ArticleUI" unique_id=434387884 node_paths=PackedStringArray("choice_origin", "sentence_start_label", "choice_container", "left_arrow", "right_arrow")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -349,7 +347,7 @@ right_arrow = NodePath("ChoiceOrigin/RightArrowPolygon2D2")
 choice_option_item_scene = ExtResource("7_l8meg")
 scroll_speed = 6.0
 
-[node name="ChoiceOrigin" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel" unique_id=118560927]
+[node name="ChoiceOrigin" type="Control" parent="ArticleUI/ChoiceEditPanel" unique_id=118560927]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -360,7 +358,7 @@ offset_right = 705.0
 offset_bottom = -441.0
 grow_vertical = 0
 
-[node name="ChoiceContainer" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=712736407]
+[node name="ChoiceContainer" type="Control" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=712736407]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -369,35 +367,35 @@ offset_top = -22.0
 offset_bottom = -22.0
 grow_vertical = 2
 
-[node name="ChoiceOptionItem" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=1245374934 instance=ExtResource("7_l8meg")]
+[node name="ChoiceOptionItem" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=1245374934 instance=ExtResource("7_l8meg")]
 layout_mode = 0
 offset_right = 307.0
 offset_bottom = 30.0
 
-[node name="ChoiceOptionItem2" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=1756681024 instance=ExtResource("7_l8meg")]
+[node name="ChoiceOptionItem2" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=1756681024 instance=ExtResource("7_l8meg")]
 layout_mode = 0
 offset_bottom = 30.0
 rotation = 0.13962634
 
-[node name="ChoiceOptionItem3" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=136626459 instance=ExtResource("7_l8meg")]
+[node name="ChoiceOptionItem3" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=136626459 instance=ExtResource("7_l8meg")]
 layout_mode = 0
 offset_bottom = 30.0
 rotation = 0.27925268
 
-[node name="LeftArrowPolygon2D" type="Polygon2D" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=2025154191]
+[node name="LeftArrowPolygon2D" type="Polygon2D" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=2025154191]
 visible = false
 position = Vector2(-15, -7.5)
 color = Color(0.36540002, 0.7943101, 0.87, 1)
 polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)
 
-[node name="RightArrowPolygon2D2" type="Polygon2D" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=1738914625]
+[node name="RightArrowPolygon2D2" type="Polygon2D" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=1738914625]
 visible = false
 position = Vector2(322, -7.5)
 rotation = -3.1415925
 color = Color(0.36540002, 0.7943101, 0.87, 1)
 polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)
 
-[node name="SentenceStart" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel" unique_id=505345108]
+[node name="SentenceStart" type="Control" parent="ArticleUI/ChoiceEditPanel" unique_id=505345108]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -412,7 +410,7 @@ grow_horizontal = 0
 grow_vertical = 2
 pivot_offset = Vector2(-300, 15)
 
-[node name="SentenceStartBg" type="PanelContainer" parent="HudRoot/ArticleUI/ChoiceEditPanel/SentenceStart" unique_id=612390355 node_paths=PackedStringArray("label")]
+[node name="SentenceStartBg" type="PanelContainer" parent="ArticleUI/ChoiceEditPanel/SentenceStart" unique_id=612390355 node_paths=PackedStringArray("label")]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 1
 anchors_preset = 5
@@ -428,10 +426,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_yffph")
 script = ExtResource("15_dsg1b")
 label = NodePath("SentenceStartLabel")
 
-[node name="SentenceStartLabel" type="Label" parent="HudRoot/ArticleUI/ChoiceEditPanel/SentenceStart/SentenceStartBg" unique_id=561619182]
+[node name="SentenceStartLabel" type="Label" parent="ArticleUI/ChoiceEditPanel/SentenceStart/SentenceStartBg" unique_id=561619182]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 20
 text = "This is a "
 label_settings = SubResource("LabelSettings_ruko1")
 horizontal_alignment = 2
+
+[connection signal="pressed" from="ArticleUI/SubmitArticle/MarginContainer/SubmitButton" to="ArticleUI" method="_on_submit_button_pressed"]

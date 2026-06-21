@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dumg5me26m8hw"]
+
+[ext_resource type="Script" uid="uid://bb7al8ko4q3nb" path="res://scripts/core/transitionable_layer.gd" id="1_nvqnw"]
+[ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="2_20xl3"]
+[ext_resource type="Script" uid="uid://c1kv75ua6hsld" path="res://scripts/options/options_ui.gd" id="3_20xl3"]
+[ext_resource type="FontFile" uid="uid://k2mdld8xovp0" path="res://assets/fonts/BillionaireMediumGrunge.ttf" id="3_ewmxb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ruko1"]
+font_size = 80
+font_color = Color(0.99999994, 0.7738882, 0.47253954, 1)
+shadow_color = Color(0, 0, 0, 0.9764706)
+shadow_offset = Vector2(0, 4)
+stacked_outline_count = 3
+stacked_outline_0/size = 8
+stacked_outline_0/color = Color(1, 0.7058824, 0.26666668, 1)
+stacked_outline_1/size = 32
+stacked_outline_2/size = 16
+stacked_outline_2/color = Color(1, 1, 1, 1)
+
+[node name="OptionsLayer" type="CanvasLayer" unique_id=1297827084 node_paths=PackedStringArray("animatable_control")]
+layer = 250
+script = ExtResource("1_nvqnw")
+animatable_control = NodePath("OptionsUI")
+open_layer_on_start = true
+
+[node name="OptionsUI" type="Control" parent="." unique_id=544074231 node_paths=PackedStringArray("options_layer", "options_panel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_20xl3")
+script = ExtResource("3_20xl3")
+options_layer = NodePath("..")
+options_panel = NodePath("OptionsPanel")
+
+[node name="OptionsPanel" type="PanelContainer" parent="OptionsUI" unique_id=624063160]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsUI/OptionsPanel" unique_id=1970774825]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsUI/OptionsPanel/MarginContainer" unique_id=1536220421]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HeaderLabel" type="Label" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer" unique_id=1764768221]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ewmxb")
+text = "Options"
+label_settings = SubResource("LabelSettings_ruko1")
+horizontal_alignment = 1
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer" unique_id=49636137]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+
+[node name="BackButton" type="Button" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer" unique_id=472577676]
+layout_mode = 2
+size_flags_horizontal = 4
+text = " Back "
+
+[connection signal="pressed" from="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/BackButton" to="OptionsUI" method="_on_back_button_pressed"]

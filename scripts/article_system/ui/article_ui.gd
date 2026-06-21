@@ -1,8 +1,15 @@
 class_name ArticleUI
-extends Control
+extends AnimatableControl
+
+@export var article_layer: TransitionableLayer
 
 @export var header_rtl: ArticleTextRTL
 @export var body_rtl: ArticleTextRTL
+
+@export var real_event_panel: Control
+@export var desired_perception_panel: Control
+@export var article_panel: Control
+@export var submit_article_panel: Control
 
 @export var real_event_label: Label
 @export var desired_perception_label: Label
@@ -36,3 +43,68 @@ func _on_choice_edit_panel_item_selected(_choice: ArticleChoice, _index: int) ->
 	blur_material.set_shader_parameter("blur_radius", 0.00)
 	header_rtl.reset_editing_text()
 	body_rtl.reset_editing_text()
+	
+	
+func _on_submit_button_pressed() -> void:
+	# TODO: take player to an article results panel
+	article_layer.close()
+
+	
+const ANIM_CLEAR_COLOR := Color(1,1,1,0)
+const REAL_EVENT_ANIM_OFFSET := Vector2(-100, 0)
+const DESIRED_PERCEPTION_ANIM_OFFSET := Vector2(100, 0)
+const SUBMIT_ANIM_OFFSET := Vector2(100, 0)
+const ANIM_DURATION := 0.5
+const SUBMIT_ANIM_DURATION := 0.8
+
+func animate_in() -> void:
+	await get_tree().process_frame
+
+	real_event_panel.offset_transform_enabled = true
+	real_event_panel.offset_transform_position = REAL_EVENT_ANIM_OFFSET
+	real_event_panel.modulate = ANIM_CLEAR_COLOR
+	
+	desired_perception_panel.offset_transform_enabled = true
+	desired_perception_panel.offset_transform_position = DESIRED_PERCEPTION_ANIM_OFFSET
+	desired_perception_panel.modulate = ANIM_CLEAR_COLOR
+	
+	article_panel.offset_transform_enabled = true
+	article_panel.offset_transform_scale = Vector2.ZERO
+	article_panel.modulate = ANIM_CLEAR_COLOR
+	
+	submit_article_panel.offset_transform_enabled = true
+	submit_article_panel.offset_transform_position = SUBMIT_ANIM_OFFSET
+	submit_article_panel.modulate = ANIM_CLEAR_COLOR
+
+	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
+	
+	tween.tween_property(real_event_panel, "offset_transform_position", Vector2.ZERO, ANIM_DURATION)
+	tween.tween_property(real_event_panel, "modulate", Color.WHITE, ANIM_DURATION)
+	
+	tween.tween_property(desired_perception_panel, "offset_transform_position", Vector2.ZERO, ANIM_DURATION)
+	tween.tween_property(desired_perception_panel, "modulate", Color.WHITE, ANIM_DURATION)
+	
+	tween.tween_property(article_panel, "offset_transform_scale", Vector2.ONE, ANIM_DURATION)
+	tween.tween_property(article_panel, "modulate", Color.WHITE, ANIM_DURATION)
+	
+	tween.tween_property(submit_article_panel, "offset_transform_position", Vector2.ZERO, SUBMIT_ANIM_DURATION)
+	tween.tween_property(submit_article_panel, "modulate", Color.WHITE, SUBMIT_ANIM_DURATION)
+	
+	await tween.finished
+	
+func animate_out() -> void:
+	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
+	
+	tween.tween_property(real_event_panel, "offset_transform_position", REAL_EVENT_ANIM_OFFSET, ANIM_DURATION)
+	tween.tween_property(real_event_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_DURATION)
+	
+	tween.tween_property(desired_perception_panel, "offset_transform_position", DESIRED_PERCEPTION_ANIM_OFFSET, ANIM_DURATION)
+	tween.tween_property(desired_perception_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_DURATION)
+	
+	tween.tween_property(article_panel, "offset_transform_scale", Vector2.ZERO, ANIM_DURATION)
+	tween.tween_property(article_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_DURATION)
+	
+	tween.tween_property(submit_article_panel, "offset_transform_position", SUBMIT_ANIM_OFFSET, ANIM_DURATION)
+	tween.tween_property(submit_article_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_DURATION)
+	
+	await tween.finished
