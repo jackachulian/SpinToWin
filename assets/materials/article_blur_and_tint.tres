@@ -4,5 +4,5 @@
 
 [resource]
 shader = ExtResource("1_yqded")
-shader_parameter/blur_radius = 0.750000035625
+shader_parameter/blur_radius = 0.1550000073625
 shader_parameter/tint = Color(0.63189995, 0.71, 0.7073967, 0)

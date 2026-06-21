@@ -27,8 +27,8 @@ func setup(article: ArticleLevel) -> void:
 	real_event_label.text = article.real_event
 	desired_perception_label.text = article.desired_perception
 	
-func _on_choice_clicked(choice: ArticleChoice, global_pos: Vector2) -> void:
-	choice_edit_panel.setup(choice, global_pos)
+func _on_choice_clicked(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -> void:
+	choice_edit_panel.setup(choice, global_pos, sentence_start)
 	choice_edit_panel.show()
 	blur_material.set_shader_parameter("blur_radius", choice_edit_blur_radius)
 

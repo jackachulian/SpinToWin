@@ -13,7 +13,7 @@ var editing_meta: String = ""
 
 var lines: Array[ArticleLine]
 
-signal choice_clicked(choice: ArticleChoice, global_pos: Vector2)
+signal choice_clicked(choice: ArticleChoice, global_pos: Vector2, sentence_start: String)
 
 func _ready() -> void:
 	meta_clicked.connect(_on_meta_clicked)
@@ -38,7 +38,7 @@ func rebuild_text() -> void:
 				var meta := "%d/%d" % [line_index, part_index]
 				var option_text: String = part.options[part.chosen_option].text
 				if editing_meta == meta:
-					text += "[bgcolor=black][color=black]%s[/color][/bgcolor]" % option_text
+					text += "[color=#0000][u]%s[/u][/color]" % option_text
 				elif hovered_meta == meta:
 					text += "[url=%s][choice line=%d part=%d][bgcolor=black][color=white]%s[/color][/bgcolor][/choice][/url]" % [meta, line_index, part_index, option_text]
 				else:
@@ -59,7 +59,21 @@ func _on_meta_clicked(meta: String):
 	var pos: Vector2 = ArticleChoiceTextEffect.positions[line_index][part_index]
 	var global_pos := get_global_transform_with_canvas() * pos
 	
-	choice_clicked.emit(choice, global_pos)
+	var sentence_start: String = ""
+	part_index -= 1
+	while part_index >= 0:
+		var part = line.parts[part_index]
+		if part is String:
+			sentence_start = part + sentence_start
+		else:
+			break
+			
+		part_index -= 1
+		
+	if sentence_start.length() > 20:
+		sentence_start = "..."+sentence_start.right(20)
+	
+	choice_clicked.emit(choice, global_pos, sentence_start)
 	rebuild_text()
 	
 

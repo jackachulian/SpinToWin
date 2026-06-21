@@ -11,8 +11,10 @@ shadow_offset = Vector2(-2, 2)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4kik5"]
 font = ExtResource("2_8hf8l")
+font_size = 20
 
 [node name="ChoiceOptionItem" type="PanelContainer" unique_id=1245374934 node_paths=PackedStringArray("label")]
+custom_minimum_size = Vector2(0, 30)
 offset_right = 246.0
 offset_bottom = 22.0
 pivot_offset = Vector2(-300, 15)
@@ -24,5 +26,6 @@ label = NodePath("Label")
 
 [node name="Label" type="Label" parent="." unique_id=561619182]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Choice that can be changed"
 label_settings = SubResource("LabelSettings_4kik5")

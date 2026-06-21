@@ -16,8 +16,10 @@ extends Control
 	set(value): item_pivot_offset = value; update_ui_elements()
 @export var arrow_offset: Vector2 = Vector2(15.0, 15.0):
 	set(value): arrow_offset = value; update_ui_elements()
+@export var side_margin: float = 120.0
 	
 @export var choice_origin: Control
+@export var sentence_start_label: Label
 @export var choice_container: Control:
 	set(value): choice_container = value; update_ui_elements()
 @export var left_arrow: Node2D:
@@ -69,16 +71,21 @@ func _input(event: InputEvent) -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			select_current_item()
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			index -= 1
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 			index += 1
 
 @warning_ignore("shadowed_variable")
-func setup(choice: ArticleChoice, global_pos: Vector2) -> void:
+func setup(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -> void:
 	self.choice = choice
 	
 	choice_origin.global_position = global_pos
+	
+	sentence_start_label.text = sentence_start
+	sentence_start_label.update_minimum_size()
 	
 	for child: Node in choice_container.get_children():
 		child.queue_free()
@@ -91,6 +98,20 @@ func setup(choice: ArticleChoice, global_pos: Vector2) -> void:
 		choice_option_item.setup(choice, option_index)
 		choice_option_item.pressed.connect(_on_item_pressed.bind(choice_option_item))
 		choice_container.add_child(choice_option_item)
+		
+	var max_width: float = 0.0
+	var max_height: float = 0.0
+	for item_index: int in choice_container.get_child_count():
+		var item: Control = choice_container.get_child(item_index)
+		item.update_minimum_size()
+		max_width = maxf(max_width, item.size.x)
+		max_height = maxf(max_height, item.size.y)
+		
+	var end_local_point := choice_origin.position + Vector2(max_width, 0)
+	var end_global_point := get_global_transform() * end_local_point
+	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	if end_global_point.x > viewport_size.x - side_margin:
+		choice_origin.global_position.x = viewport_size.x - side_margin - max_width
 		
 	await get_tree().process_frame
 	update_ui_elements()
@@ -108,14 +129,16 @@ func update_ui_elements() -> void:
 		return
 	
 	var max_width: float = 0.0
+	var max_height: float = 0.0
 	for item_index: int in choice_container.get_child_count():
 		var item: Control = choice_container.get_child(item_index)
 		max_width = maxf(max_width, item.size.x)
+		max_height = maxf(max_height, item.size.y)
 		
 	if left_arrow:	
-		left_arrow.position = Vector2(-arrow_offset.x, arrow_offset.y - 30.0)
+		left_arrow.position = Vector2(-arrow_offset.x, arrow_offset.y - max_height)
 	if right_arrow:
-		right_arrow.position = Vector2(max_width + arrow_offset.x, arrow_offset.y - 30.0)
+		right_arrow.position = Vector2(max_width + arrow_offset.x, arrow_offset.y - max_height)
 
 func _on_item_pressed(item: ArticleChoiceOptionItemUI) -> void:
 	hide()
