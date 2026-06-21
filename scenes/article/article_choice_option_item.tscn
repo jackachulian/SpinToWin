@@ -1,17 +1,13 @@
 [gd_scene format=3 uid="uid://cqeuh2iyyc7yp"]
 
 [ext_resource type="Script" uid="uid://c4ltvbc8lesbt" path="res://scripts/article_system/ui/article_choice_option_item_ui.gd" id="1_f3ycj"]
-[ext_resource type="FontFile" uid="uid://c8qul3alvi37g" path="res://assets/fonts/CarpalTunnel-aEWa.ttf" id="2_8hf8l"]
+[ext_resource type="LabelSettings" uid="uid://c8p38kni0q7v0" path="res://assets/theme/choice_normal_label_settings.tres" id="2_f3ycj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ieh6"]
 bg_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 0.3529412)
 shadow_size = 20
 shadow_offset = Vector2(-2, 2)
-
-[sub_resource type="LabelSettings" id="LabelSettings_4kik5"]
-font = ExtResource("2_8hf8l")
-font_size = 20
 
 [node name="ChoiceOptionItem" type="PanelContainer" unique_id=1245374934 node_paths=PackedStringArray("label")]
 custom_minimum_size = Vector2(0, 30)
@@ -28,4 +24,4 @@ label = NodePath("Label")
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Choice that can be changed"
-label_settings = SubResource("LabelSettings_4kik5")
+label_settings = ExtResource("2_f3ycj")

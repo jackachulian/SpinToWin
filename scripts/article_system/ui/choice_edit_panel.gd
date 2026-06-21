@@ -22,6 +22,12 @@ extends Control
 @export var sentence_start_label: Label
 @export var choice_container: Control:
 	set(value): choice_container = value; update_ui_elements()
+	
+@export var normal_label_settings: LabelSettings:
+	set(value): normal_label_settings = value; update_ui_elements()
+@export var focused_label_settings: LabelSettings:
+	set(value): focused_label_settings = value; update_ui_elements()
+	
 @export var left_arrow: Node2D:
 	set(value): left_arrow = value; update_ui_elements()
 @export var right_arrow: Node2D:
@@ -99,6 +105,8 @@ func setup(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -
 		choice_option_item.pressed.connect(_on_item_pressed.bind(choice_option_item))
 		choice_container.add_child(choice_option_item)
 		
+	await get_tree().process_frame
+		
 	var max_width: float = 0.0
 	var max_height: float = 0.0
 	for item_index: int in choice_container.get_child_count():
@@ -113,7 +121,6 @@ func setup(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -
 	if end_global_point.x > viewport_size.x - side_margin:
 		choice_origin.global_position.x = viewport_size.x - side_margin - max_width
 		
-	await get_tree().process_frame
 	update_ui_elements()
 
 func select_current_item() -> void:
@@ -131,9 +138,14 @@ func update_ui_elements() -> void:
 	var max_width: float = 0.0
 	var max_height: float = 0.0
 	for item_index: int in choice_container.get_child_count():
-		var item: Control = choice_container.get_child(item_index)
+		var item: ArticleChoiceOptionItemUI = choice_container.get_child(item_index)
 		max_width = maxf(max_width, item.size.x)
 		max_height = maxf(max_height, item.size.y)
+		
+		if index == item_index:
+			item.label.label_settings = focused_label_settings
+		else:
+			item.label.label_settings = normal_label_settings
 		
 	if left_arrow:	
 		left_arrow.position = Vector2(-arrow_offset.x, arrow_offset.y - max_height)

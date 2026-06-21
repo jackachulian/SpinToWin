@@ -14,6 +14,8 @@
 [ext_resource type="StyleBox" uid="uid://88tr2d208sxv" path="res://assets/theme/submit_button_pressed.tres" id="9_0jjck"]
 [ext_resource type="StyleBox" uid="uid://beluarpuoa5kj" path="res://assets/theme/submit_button_hover.tres" id="10_e5wne"]
 [ext_resource type="FontFile" uid="uid://k2mdld8xovp0" path="res://assets/fonts/BillionaireMediumGrunge.ttf" id="11_7o6uv"]
+[ext_resource type="LabelSettings" uid="uid://c8p38kni0q7v0" path="res://assets/theme/choice_normal_label_settings.tres" id="14_ruko1"]
+[ext_resource type="LabelSettings" uid="uid://ootlj8gd1833" path="res://assets/theme/choice_focused_label_settings.tres" id="15_a5tvl"]
 [ext_resource type="Script" uid="uid://c4ltvbc8lesbt" path="res://scripts/article_system/ui/article_choice_option_item_ui.gd" id="15_dsg1b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp04v"]
@@ -294,7 +296,8 @@ theme_override_styles/pressed = ExtResource("9_0jjck")
 theme_override_styles/hover = ExtResource("10_e5wne")
 text = "SUBMIT"
 
-[node name="Label" type="Label" parent="HudRoot/ArticleUI" unique_id=1616736438]
+[node name="SpinTheArticleLabel" type="Label" parent="HudRoot/ArticleUI" unique_id=1616736438]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -335,14 +338,64 @@ script = ExtResource("6_ya2e7")
 item_angle_delta = 8.0
 item_pivot_offset = Vector2(-300, 15)
 arrow_offset = Vector2(15, 22.5)
-side_margin = null
+side_margin = 32.0
 choice_origin = NodePath("ChoiceOrigin")
 sentence_start_label = NodePath("SentenceStart/SentenceStartBg/SentenceStartLabel")
 choice_container = NodePath("ChoiceOrigin/ChoiceContainer")
+normal_label_settings = ExtResource("14_ruko1")
+focused_label_settings = ExtResource("15_a5tvl")
 left_arrow = NodePath("ChoiceOrigin/LeftArrowPolygon2D")
 right_arrow = NodePath("ChoiceOrigin/RightArrowPolygon2D2")
 choice_option_item_scene = ExtResource("7_l8meg")
 scroll_speed = 6.0
+
+[node name="ChoiceOrigin" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel" unique_id=118560927]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 705.0
+offset_top = -441.0
+offset_right = 705.0
+offset_bottom = -441.0
+grow_vertical = 0
+
+[node name="ChoiceContainer" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=712736407]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -22.0
+offset_bottom = -22.0
+grow_vertical = 2
+
+[node name="ChoiceOptionItem" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=1245374934 instance=ExtResource("7_l8meg")]
+layout_mode = 0
+offset_right = 307.0
+offset_bottom = 30.0
+
+[node name="ChoiceOptionItem2" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=1756681024 instance=ExtResource("7_l8meg")]
+layout_mode = 0
+offset_bottom = 30.0
+rotation = 0.13962634
+
+[node name="ChoiceOptionItem3" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=136626459 instance=ExtResource("7_l8meg")]
+layout_mode = 0
+offset_bottom = 30.0
+rotation = 0.27925268
+
+[node name="LeftArrowPolygon2D" type="Polygon2D" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=2025154191]
+visible = false
+position = Vector2(-15, -7.5)
+color = Color(0.36540002, 0.7943101, 0.87, 1)
+polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)
+
+[node name="RightArrowPolygon2D2" type="Polygon2D" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=1738914625]
+visible = false
+position = Vector2(322, -7.5)
+rotation = -3.1415925
+color = Color(0.36540002, 0.7943101, 0.87, 1)
+polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)
 
 [node name="SentenceStart" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel" unique_id=505345108]
 layout_mode = 1
@@ -352,9 +405,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -834.0
-offset_top = -300.0
+offset_top = -266.0
 offset_right = -334.0
-offset_bottom = -233.0
+offset_bottom = -199.0
 grow_horizontal = 0
 grow_vertical = 2
 pivot_offset = Vector2(-300, 15)
@@ -382,49 +435,3 @@ theme_override_font_sizes/font_size = 20
 text = "This is a "
 label_settings = SubResource("LabelSettings_ruko1")
 horizontal_alignment = 2
-
-[node name="ChoiceOrigin" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel" unique_id=118560927]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 704.0
-offset_top = -439.0
-offset_right = 704.0
-offset_bottom = -439.0
-grow_vertical = 0
-
-[node name="ChoiceContainer" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=712736407]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 1.0
-offset_top = -23.0
-offset_right = 1.0
-offset_bottom = -23.0
-grow_vertical = 2
-
-[node name="ChoiceOptionItem" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=1245374934 instance=ExtResource("7_l8meg")]
-layout_mode = 0
-offset_right = 307.0
-offset_bottom = 30.0
-
-[node name="ChoiceOptionItem2" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=1756681024 instance=ExtResource("7_l8meg")]
-layout_mode = 0
-offset_bottom = 30.0
-rotation = 0.13962634
-
-[node name="ChoiceOptionItem3" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=136626459 instance=ExtResource("7_l8meg")]
-layout_mode = 0
-offset_bottom = 30.0
-rotation = 0.27925268
-
-[node name="LeftArrowPolygon2D" type="Polygon2D" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=2025154191]
-position = Vector2(-15, -7.5)
-polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)
-
-[node name="RightArrowPolygon2D2" type="Polygon2D" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=1738914625]
-position = Vector2(322, -7.5)
-rotation = -3.1415925
-polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)

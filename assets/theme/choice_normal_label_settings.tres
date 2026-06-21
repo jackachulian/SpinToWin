@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://c8p38kni0q7v0"]
+
+[ext_resource type="FontFile" uid="uid://c8qul3alvi37g" path="res://assets/fonts/CarpalTunnel-aEWa.ttf" id="1_qgjax"]
+
+[resource]
+font = ExtResource("1_qgjax")
+font_size = 20
