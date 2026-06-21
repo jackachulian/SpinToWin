@@ -29,9 +29,9 @@ const OUT_X := -50
 const IN_X := 0
 const OUT_MODULATE := Color(1,1,1,0)
 const IN_MODULATE := Color(1,1,1,1)
-const IN_DURATION := 0.5
+const IN_DURATION := 0.6
 const OUT_DURATION := 0.3
-const IN_CASCADE_DELAY := 0.05
+const IN_CASCADE_DELAY := 0.1
 const OUT_CASCADE_DELAY := 0.0
 
 func animate_in():
@@ -59,22 +59,20 @@ func animate_controls(start_x: float, end_x: float, start_modulate: Color, targe
 		control.position = start_pos
 		control.modulate = start_modulate
 	
-	var last_tween: Tween
+	var current_duration := duration
+	var tween = create_tween()
+	tween.set_trans(trans)
+	tween.set_parallel(true)
 	for control: Control in controls:
-		var tween = create_tween()
-		tween.set_trans(trans)
-		tween.set_parallel(true)
-		last_tween = tween
 		var target_pos = Vector2(end_x, control.position.y)
-
+		
 		tween.tween_property(
-			control, "position", target_pos, duration
+			control, "position", target_pos, current_duration
 		).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(
-			control, "modulate", target_modulate, duration
+			control, "modulate", target_modulate, current_duration
 		).set_ease(Tween.EASE_IN_OUT)
 		
-		if cascade_delay > 0:
-			await get_tree().create_timer(cascade_delay).timeout
+		current_duration += cascade_delay
 			
-	await last_tween.finished
+	await tween.finished

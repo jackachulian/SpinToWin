@@ -54,8 +54,10 @@ const ANIM_CLEAR_COLOR := Color(1,1,1,0)
 const REAL_EVENT_ANIM_OFFSET := Vector2(-100, 0)
 const DESIRED_PERCEPTION_ANIM_OFFSET := Vector2(100, 0)
 const SUBMIT_ANIM_OFFSET := Vector2(100, 0)
-const ANIM_DURATION := 0.5
-const SUBMIT_ANIM_DURATION := 0.8
+const ANIM_IN_DURATION := 0.75
+const ANIM_OUT_DURATION := 0.6
+const SUBMIT_ANIM_IN_DURATION := 1.0
+const SUBMIT_ANIM_OUT_DURATION := 0.8
 
 func animate_in() -> void:
 	await get_tree().process_frame
@@ -78,33 +80,33 @@ func animate_in() -> void:
 
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	
-	tween.tween_property(real_event_panel, "offset_transform_position", Vector2.ZERO, ANIM_DURATION)
-	tween.tween_property(real_event_panel, "modulate", Color.WHITE, ANIM_DURATION)
+	tween.tween_property(real_event_panel, "offset_transform_position", Vector2.ZERO, ANIM_IN_DURATION)
+	tween.tween_property(real_event_panel, "modulate", Color.WHITE, ANIM_IN_DURATION)
 	
-	tween.tween_property(desired_perception_panel, "offset_transform_position", Vector2.ZERO, ANIM_DURATION)
-	tween.tween_property(desired_perception_panel, "modulate", Color.WHITE, ANIM_DURATION)
+	tween.tween_property(desired_perception_panel, "offset_transform_position", Vector2.ZERO, ANIM_IN_DURATION)
+	tween.tween_property(desired_perception_panel, "modulate", Color.WHITE, ANIM_IN_DURATION)
 	
-	tween.tween_property(article_panel, "offset_transform_scale", Vector2.ONE, ANIM_DURATION)
-	tween.tween_property(article_panel, "modulate", Color.WHITE, ANIM_DURATION)
+	tween.tween_property(article_panel, "offset_transform_scale", Vector2.ONE, ANIM_IN_DURATION)
+	tween.tween_property(article_panel, "modulate", Color.WHITE, ANIM_IN_DURATION)
 	
-	tween.tween_property(submit_article_panel, "offset_transform_position", Vector2.ZERO, SUBMIT_ANIM_DURATION)
-	tween.tween_property(submit_article_panel, "modulate", Color.WHITE, SUBMIT_ANIM_DURATION)
+	tween.tween_property(submit_article_panel, "offset_transform_position", Vector2.ZERO, SUBMIT_ANIM_IN_DURATION)
+	tween.tween_property(submit_article_panel, "modulate", Color.WHITE, SUBMIT_ANIM_IN_DURATION)
 	
 	await tween.finished
 	
 func animate_out() -> void:
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	
-	tween.tween_property(real_event_panel, "offset_transform_position", REAL_EVENT_ANIM_OFFSET, ANIM_DURATION)
-	tween.tween_property(real_event_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_DURATION)
+	tween.tween_property(real_event_panel, "offset_transform_position", REAL_EVENT_ANIM_OFFSET, ANIM_OUT_DURATION)
+	tween.tween_property(real_event_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_OUT_DURATION)
 	
-	tween.tween_property(desired_perception_panel, "offset_transform_position", DESIRED_PERCEPTION_ANIM_OFFSET, ANIM_DURATION)
-	tween.tween_property(desired_perception_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_DURATION)
+	tween.tween_property(desired_perception_panel, "offset_transform_position", DESIRED_PERCEPTION_ANIM_OFFSET, ANIM_OUT_DURATION)
+	tween.tween_property(desired_perception_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_OUT_DURATION)
 	
-	tween.tween_property(article_panel, "offset_transform_scale", Vector2.ZERO, ANIM_DURATION)
-	tween.tween_property(article_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_DURATION)
+	tween.tween_property(article_panel, "offset_transform_scale", Vector2.ZERO, ANIM_OUT_DURATION)
+	tween.tween_property(article_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_OUT_DURATION)
 	
-	tween.tween_property(submit_article_panel, "offset_transform_position", SUBMIT_ANIM_OFFSET, ANIM_DURATION)
-	tween.tween_property(submit_article_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_DURATION)
+	tween.tween_property(submit_article_panel, "offset_transform_position", SUBMIT_ANIM_OFFSET, SUBMIT_ANIM_OUT_DURATION)
+	tween.tween_property(submit_article_panel, "modulate", ANIM_CLEAR_COLOR, SUBMIT_ANIM_OUT_DURATION)
 	
 	await tween.finished
