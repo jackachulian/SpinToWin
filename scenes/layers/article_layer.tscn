@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dmo78qc1o5jde"]
 
 [ext_resource type="Script" uid="uid://bb7al8ko4q3nb" path="res://scripts/core/transitionable_layer.gd" id="1_ruko1"]
+[ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_wlco4"]
 [ext_resource type="Material" uid="uid://deia4rqmwu5pp" path="res://assets/materials/article_blur_and_tint.tres" id="2_ya2e7"]
 [ext_resource type="Theme" uid="uid://4ttvne76rnip" path="res://assets/theme/newspaper.tres" id="3_l8meg"]
 [ext_resource type="Script" uid="uid://bs2v7cmmlsbqu" path="res://scripts/article_system/ui/article_ui.gd" id="4_jorgq"]
@@ -38,28 +39,26 @@ metadata/_custom_type_script = "uid://cytpddreko8mt"
 script = ExtResource("5_jorgq")
 metadata/_custom_type_script = "uid://cytpddreko8mt"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cypo"]
-bg_color = Color(0.040358692, 0.12457336, 0.14756706, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a5tvl"]
+bg_color = Color(0.059399996, 0.10747, 0.11, 1)
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.92, 0.7728, 0.4784, 1)
+border_color = Color(0.89, 0.8336333, 0.7209, 1)
 corner_radius_top_right = 15
-corner_radius_bottom_right = 15
 
 [sub_resource type="LabelSettings" id="LabelSettings_4ieh6"]
 font = ExtResource("6_yffph")
 font_size = 24
 font_color = Color(0.9190853, 0.85694724, 0.70989525, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6v7o"]
-bg_color = Color(0.039215688, 0.1254902, 0.14901961, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jjck"]
+bg_color = Color(0.059399996, 0.10747, 0.11, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_bottom = 3
-border_color = Color(0.92, 0.7728, 0.4784, 1)
+border_color = Color(0.89, 0.8336333, 0.7209, 1)
 corner_radius_top_left = 15
-corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yffph"]
 bg_color = Color(0.85882354, 0.85882354, 0.84313726, 1)
@@ -83,6 +82,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_wlco4")
 script = ExtResource("4_jorgq")
 article_layer = NodePath("..")
 header_rtl = NodePath("ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer/HeaderRTL")
@@ -201,7 +201,7 @@ offset_right = 200.0
 offset_bottom = 203.375
 grow_vertical = 2
 offset_transform_enabled = true
-theme_override_styles/panel = SubResource("StyleBoxFlat_5cypo")
+theme_override_styles/panel = SubResource("StyleBoxFlat_a5tvl")
 
 [node name="MarginContainer" type="MarginContainer" parent="ArticleUI/RealEvent" unique_id=1324978197]
 layout_mode = 2
@@ -243,7 +243,7 @@ offset_top = -193.75
 offset_bottom = 193.75
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_o6v7o")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0jjck")
 
 [node name="MarginContainer" type="MarginContainer" parent="ArticleUI/DesiredPerception" unique_id=589089175]
 layout_mode = 2
@@ -299,9 +299,9 @@ theme_override_constants/margin_left = 10
 
 [node name="SubmitButton" type="Button" parent="ArticleUI/SubmitArticle/MarginContainer" unique_id=1864633341]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8649035, 0.99070674, 0.7921395, 1)
+theme_override_colors/font_color = Color(0.86848, 0.92, 0.7728, 1)
 theme_override_colors/font_pressed_color = Color(0.78571904, 0.99085134, 0.78700423, 1)
-theme_override_colors/font_hover_color = Color(0.95034593, 0.9942909, 0.90450174, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_yffph")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = ExtResource("8_a5tvl")
