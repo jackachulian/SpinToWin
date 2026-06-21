@@ -14,8 +14,8 @@ The government wants citizens to feel excited and grateful about the project.
 Town Council [Approves New Park (1,2,2) / Invests in Community Future (0,4,3) / Delivers Historic Gift to Citizens (-2,6,1)]
 
 #body
-Yesterday, the town council [approved funding for a new public park (2,1,2) / made a major investment in community growth (0,3,2) / fulfilled its promise to improve citizens' lives (-1,5,1)].
+Yesterday, the town council [approved funding for a new public park. (2,1,2) / made a major investment in community growth. (0,3,2) / fulfilled its promise to improve citizens' lives. (-1,5,1)]
 
-The project will [create a new recreation area for families (1,1,2) / strengthen the town's future and quality of life (0,3,2) / demonstrate the council's commitment to public happiness (-1,5,1)].
+The project will [create a new recreation area for families. (1,1,2) / strengthen the town's future and quality of life. (0,3,2) / demonstrate the council's commitment to public happiness. (-1,5,1)]
 
-Construction is expected to begin next month and [finish by the end of the year (2,0,1) / deliver benefits to residents as quickly as possible (1,2,1) / mark another successful achievement for local leadership (-1,4,0)].
+Construction is expected to begin next month and [finish by the end of the year. (2,0,1) / deliver benefits to residents as quickly as possible. (1,2,1) / mark another successful achievement for local leadership. (-1,4,0)]

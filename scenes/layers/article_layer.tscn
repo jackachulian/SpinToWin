@@ -95,7 +95,7 @@ body_rtl = NodePath("ArticlePanelContainer/MarginContainer/ArticleContainer/Scro
 real_event_label = NodePath("RealEvent/MarginContainer/VBoxContainer/RealEventDescLabel")
 desired_perception_label = NodePath("DesiredPerception/MarginContainer/VBoxContainer/DesiredPerceptionLabel")
 blur_material = ExtResource("2_ya2e7")
-choice_edit_blur_radius = 0.75
+choice_edit_blur_radius = 0.5
 choice_edit_panel = NodePath("ChoiceEditPanel")
 
 [node name="ArticlePanelContainer" type="PanelContainer" parent="HudRoot/ArticleUI" unique_id=149803130]
@@ -314,6 +314,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 234.0
+offset_top = 102.0
+offset_right = -234.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 offset_transform_enabled = true
@@ -321,33 +325,73 @@ offset_transform_scale = Vector2(1.05, 1.05)
 mouse_filter = 2
 
 [node name="ChoiceEditPanel" type="Control" parent="HudRoot/ArticleUI" unique_id=434387884 node_paths=PackedStringArray("choice_origin", "sentence_start_label", "choice_container", "left_arrow", "right_arrow")]
-anchors_preset = 0
-offset_left = 239.0
-offset_top = 107.0
-offset_right = 913.0
-offset_bottom = 595.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("6_ya2e7")
 item_angle_delta = 8.0
 item_pivot_offset = Vector2(-300, 15)
 arrow_offset = Vector2(15, 22.5)
 side_margin = null
 choice_origin = NodePath("ChoiceOrigin")
-sentence_start_label = NodePath("ChoiceOrigin/SentenceStart/SentenceStartBg/SentenceStartLabel")
+sentence_start_label = NodePath("SentenceStart/SentenceStartBg/SentenceStartLabel")
 choice_container = NodePath("ChoiceOrigin/ChoiceContainer")
 left_arrow = NodePath("ChoiceOrigin/LeftArrowPolygon2D")
 right_arrow = NodePath("ChoiceOrigin/RightArrowPolygon2D2")
 choice_option_item_scene = ExtResource("7_l8meg")
 scroll_speed = 6.0
 
+[node name="SentenceStart" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel" unique_id=505345108]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -834.0
+offset_top = -300.0
+offset_right = -334.0
+offset_bottom = -233.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(-300, 15)
+
+[node name="SentenceStartBg" type="PanelContainer" parent="HudRoot/ArticleUI/ChoiceEditPanel/SentenceStart" unique_id=612390355 node_paths=PackedStringArray("label")]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -59.5
+offset_right = 59.5
+offset_bottom = 30.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_yffph")
+script = ExtResource("15_dsg1b")
+label = NodePath("SentenceStartLabel")
+
+[node name="SentenceStartLabel" type="Label" parent="HudRoot/ArticleUI/ChoiceEditPanel/SentenceStart/SentenceStartBg" unique_id=561619182]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 20
+text = "This is a "
+label_settings = SubResource("LabelSettings_ruko1")
+horizontal_alignment = 2
+
 [node name="ChoiceOrigin" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel" unique_id=118560927]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 465.0
-offset_top = -387.0
-offset_right = 465.0
-offset_bottom = -387.0
+offset_left = 704.0
+offset_top = -439.0
+offset_right = 704.0
+offset_bottom = -439.0
 grow_vertical = 0
 
 [node name="ChoiceContainer" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=712736407]
@@ -376,47 +420,7 @@ layout_mode = 0
 offset_bottom = 30.0
 rotation = 0.27925268
 
-[node name="SentenceStart" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=505345108]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -499.0
-offset_top = -23.0
-offset_right = 1.0
-offset_bottom = 7.0
-grow_horizontal = 0
-grow_vertical = 2
-pivot_offset = Vector2(-300, 15)
-
-[node name="SentenceStartBg" type="PanelContainer" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/SentenceStart" unique_id=612390355 node_paths=PackedStringArray("label")]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_yffph")
-script = ExtResource("15_dsg1b")
-label = NodePath("SentenceStartLabel")
-
-[node name="SentenceStartLabel" type="Label" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/SentenceStart/SentenceStartBg" unique_id=561619182]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 20
-text = "This is a "
-label_settings = SubResource("LabelSettings_ruko1")
-horizontal_alignment = 2
-
 [node name="LeftArrowPolygon2D" type="Polygon2D" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=2025154191]
-visible = false
 position = Vector2(-15, -7.5)
 polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)
 
