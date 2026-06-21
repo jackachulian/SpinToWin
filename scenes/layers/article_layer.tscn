@@ -1,0 +1,369 @@
+[gd_scene format=3 uid="uid://dmo78qc1o5jde"]
+
+[ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_wlco4"]
+[ext_resource type="Material" uid="uid://deia4rqmwu5pp" path="res://assets/materials/article_blur_and_tint.tres" id="2_ya2e7"]
+[ext_resource type="Theme" uid="uid://4ttvne76rnip" path="res://assets/theme/newspaper.tres" id="3_l8meg"]
+[ext_resource type="Script" uid="uid://bs2v7cmmlsbqu" path="res://scripts/article_system/ui/article_ui.gd" id="4_jorgq"]
+[ext_resource type="Script" uid="uid://digulv7cl4ogt" path="res://scripts/article_system/ui/article_text_rtl.gd" id="5_dsg1b"]
+[ext_resource type="Script" uid="uid://cytpddreko8mt" path="res://scripts/article_system/ui/article_choice_text_effect.gd" id="5_jorgq"]
+[ext_resource type="Script" uid="uid://bykxqd7u5a17a" path="res://scripts/article_system/ui/choice_edit_panel.gd" id="6_ya2e7"]
+[ext_resource type="FontFile" uid="uid://cnda311t1okga" path="res://assets/fonts/QuietStreets-yrYM.ttf" id="6_yffph"]
+[ext_resource type="PackedScene" uid="uid://cqeuh2iyyc7yp" path="res://scenes/article/article_choice_option_item.tscn" id="7_l8meg"]
+[ext_resource type="FontFile" uid="uid://c8qul3alvi37g" path="res://assets/fonts/CarpalTunnel-aEWa.ttf" id="7_ruko1"]
+[ext_resource type="StyleBox" uid="uid://dvurd71iunc7h" path="res://assets/theme/submit_button.tres" id="8_a5tvl"]
+[ext_resource type="StyleBox" uid="uid://88tr2d208sxv" path="res://assets/theme/submit_button_pressed.tres" id="9_0jjck"]
+[ext_resource type="StyleBox" uid="uid://beluarpuoa5kj" path="res://assets/theme/submit_button_hover.tres" id="10_e5wne"]
+[ext_resource type="FontFile" uid="uid://k2mdld8xovp0" path="res://assets/fonts/BillionaireMediumGrunge.ttf" id="11_7o6uv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp04v"]
+bg_color = Color(0.86, 0.85799336, 0.8428, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4932394, 0.4846596, 0.46324605, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_4kik5"]
+script = ExtResource("5_jorgq")
+metadata/_custom_type_script = "uid://cytpddreko8mt"
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_o0ard"]
+script = ExtResource("5_jorgq")
+metadata/_custom_type_script = "uid://cytpddreko8mt"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cypo"]
+bg_color = Color(0.040358692, 0.12457336, 0.14756706, 1)
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.92, 0.7728, 0.4784, 1)
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ieh6"]
+font = ExtResource("6_yffph")
+font_size = 24
+font_color = Color(0.9190853, 0.85694724, 0.70989525, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6v7o"]
+bg_color = Color(0.039215688, 0.1254902, 0.14901961, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color(0.92, 0.7728, 0.4784, 1)
+corner_radius_top_left = 15
+corner_radius_bottom_left = 15
+
+[node name="ArticleLayer" type="CanvasLayer" unique_id=197263611]
+process_mode = 1
+layer = 0
+
+[node name="HudRoot" type="Control" parent="." unique_id=995132203]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_wlco4")
+
+[node name="ArticleUI" type="Control" parent="HudRoot" unique_id=1421558068 node_paths=PackedStringArray("header_rtl", "body_rtl", "real_event_label", "desired_perception_label", "choice_edit_panel")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_jorgq")
+header_rtl = NodePath("ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer/HeaderRTL")
+body_rtl = NodePath("ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer/BodyRTL")
+real_event_label = NodePath("RealEvent/MarginContainer/VBoxContainer/RealEventDescLabel")
+desired_perception_label = NodePath("DesiredPerception/MarginContainer/VBoxContainer/DesiredPerceptionLabel")
+blur_material = ExtResource("2_ya2e7")
+choice_edit_blur_radius = 0.5
+choice_edit_panel = NodePath("ChoiceEditPanel")
+
+[node name="ArticlePanelContainer" type="PanelContainer" parent="HudRoot/ArticleUI" unique_id=149803130]
+custom_minimum_size = Vector2(680, 440)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -220.0
+offset_right = 340.0
+offset_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 1
+theme = ExtResource("3_l8meg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_sp04v")
+
+[node name="MarginContainer" type="MarginContainer" parent="HudRoot/ArticleUI/ArticlePanelContainer" unique_id=267602175]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="ArticleContainer" type="Control" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer" unique_id=1055033415]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer" unique_id=1683731892]
+layout_mode = 0
+offset_right = 610.0
+offset_bottom = 4.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer" unique_id=2129396417]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_hint_mode = 1
+
+[node name="SectionVBoxContainer" type="VBoxContainer" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer" unique_id=2144620878]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HeaderRTL" type="RichTextLabel" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer" unique_id=1689894500 node_paths=PackedStringArray("article_ui")]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+bbcode_enabled = true
+text = "Article Title"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_4kik5")]
+meta_underlined = false
+script = ExtResource("5_dsg1b")
+article_ui = NodePath("../../../../../..")
+
+[node name="BodyRTL" type="RichTextLabel" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer" unique_id=1924994430 node_paths=PackedStringArray("article_ui")]
+layout_mode = 2
+bbcode_enabled = true
+text = "This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text. This is article body text. This is a [bgcolor=black][color=white]choice that can be changed[/color][/bgcolor]. This is some more text."
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_o0ard")]
+meta_underlined = false
+script = ExtResource("5_dsg1b")
+article_ui = NodePath("../../../../../..")
+
+[node name="Spacer" type="Control" parent="HudRoot/ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer" unique_id=2054232345]
+visible = false
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="RealEvent" type="PanelContainer" parent="HudRoot/ArticleUI" unique_id=1675035395]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -203.375
+offset_right = 200.0
+offset_bottom = 203.375
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5cypo")
+
+[node name="MarginContainer" type="MarginContainer" parent="HudRoot/ArticleUI/RealEvent" unique_id=1324978197]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HudRoot/ArticleUI/RealEvent/MarginContainer" unique_id=2116337321]
+layout_mode = 2
+
+[node name="HeaderLabel" type="Label" parent="HudRoot/ArticleUI/RealEvent/MarginContainer/VBoxContainer" unique_id=1191645461]
+layout_mode = 2
+text = "REAL EVENT"
+label_settings = SubResource("LabelSettings_4ieh6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="HudRoot/ArticleUI/RealEvent/MarginContainer/VBoxContainer" unique_id=268638223]
+layout_mode = 2
+
+[node name="RealEventDescLabel" type="Label" parent="HudRoot/ArticleUI/RealEvent/MarginContainer/VBoxContainer" unique_id=359918222]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ruko1")
+text = "Description of the real event that took place"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="DesiredPerception" type="PanelContainer" parent="HudRoot/ArticleUI" unique_id=34398821]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -193.75
+offset_bottom = 193.75
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o6v7o")
+
+[node name="MarginContainer" type="MarginContainer" parent="HudRoot/ArticleUI/DesiredPerception" unique_id=589089175]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HudRoot/ArticleUI/DesiredPerception/MarginContainer" unique_id=1435410555]
+layout_mode = 2
+
+[node name="HeaderLabel" type="Label" parent="HudRoot/ArticleUI/DesiredPerception/MarginContainer/VBoxContainer" unique_id=1332676528]
+layout_mode = 2
+text = "DESIRED
+PERCEPTION"
+label_settings = SubResource("LabelSettings_4ieh6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="HudRoot/ArticleUI/DesiredPerception/MarginContainer/VBoxContainer" unique_id=1147763792]
+layout_mode = 2
+
+[node name="DesiredPerceptionLabel" type="Label" parent="HudRoot/ArticleUI/DesiredPerception/MarginContainer/VBoxContainer" unique_id=1376935329]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ruko1")
+text = "The government's desired perception of the event"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SubmitArticle" type="Control" parent="HudRoot/ArticleUI" unique_id=1461780542]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -235.0
+offset_top = -131.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HudRoot/ArticleUI/SubmitArticle" unique_id=1013506389]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="Button" type="Button" parent="HudRoot/ArticleUI/SubmitArticle/MarginContainer" unique_id=1864633341]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8649035, 0.99070674, 0.7921395, 1)
+theme_override_colors/font_pressed_color = Color(0.78571904, 0.99085134, 0.78700423, 1)
+theme_override_colors/font_hover_color = Color(0.95034593, 0.9942909, 0.90450174, 1)
+theme_override_fonts/font = ExtResource("6_yffph")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("8_a5tvl")
+theme_override_styles/pressed = ExtResource("9_0jjck")
+theme_override_styles/hover = ExtResource("10_e5wne")
+text = "SUBMIT"
+
+[node name="Label" type="Label" parent="HudRoot/ArticleUI" unique_id=1616736438]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -131.5
+offset_top = 10.0
+offset_right = 131.5
+offset_bottom = 74.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_7o6uv")
+theme_override_font_sizes/font_size = 64
+text = "Spin the Article!"
+
+[node name="BlurTextureRect" type="ColorRect" parent="HudRoot/ArticleUI" unique_id=365931636]
+material = ExtResource("2_ya2e7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.05, 1.05)
+mouse_filter = 2
+
+[node name="ChoiceEditPanel" type="Control" parent="HudRoot/ArticleUI" unique_id=434387884 node_paths=PackedStringArray("choice_origin", "choice_container", "left_arrow", "right_arrow")]
+anchors_preset = 0
+offset_left = 239.0
+offset_top = 107.0
+offset_right = 913.0
+offset_bottom = 595.0
+script = ExtResource("6_ya2e7")
+item_angle_delta = 8.0
+item_pivot_offset = Vector2(-300, 15)
+choice_origin = NodePath("ChoiceOrigin")
+choice_container = NodePath("ChoiceOrigin/ChoiceContainer")
+left_arrow = NodePath("ChoiceOrigin/LeftArrowPolygon2D")
+right_arrow = NodePath("ChoiceOrigin/RightArrowPolygon2D2")
+choice_option_item_scene = ExtResource("7_l8meg")
+scroll_speed = 6.0
+
+[node name="ChoiceOrigin" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel" unique_id=118560927]
+anchors_preset = 0
+offset_left = 467.0
+offset_top = 106.0
+offset_right = 467.0
+offset_bottom = 106.0
+
+[node name="ChoiceContainer" type="Control" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=712736407]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChoiceOptionItem" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=1245374934 instance=ExtResource("7_l8meg")]
+layout_mode = 0
+offset_bottom = 30.0
+
+[node name="ChoiceOptionItem2" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=1756681024 instance=ExtResource("7_l8meg")]
+layout_mode = 0
+offset_bottom = 30.0
+rotation = 0.13962634
+
+[node name="ChoiceOptionItem3" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=136626459 instance=ExtResource("7_l8meg")]
+layout_mode = 0
+offset_bottom = 30.0
+rotation = 0.27925268
+
+[node name="LeftArrowPolygon2D" type="Polygon2D" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=2025154191]
+position = Vector2(-15, -15)
+polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)
+
+[node name="RightArrowPolygon2D2" type="Polygon2D" parent="HudRoot/ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=1738914625]
+position = Vector2(261, -15)
+rotation = -3.1415925
+polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)

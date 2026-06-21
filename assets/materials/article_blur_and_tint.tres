@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://deia4rqmwu5pp"]
+
+[ext_resource type="Shader" uid="uid://dyq1a72tbu03y" path="res://assets/shaders/blur.gdshader" id="1_yqded"]
+
+[resource]
+shader = ExtResource("1_yqded")
+shader_parameter/blur_radius = 0.750000035625
+shader_parameter/tint = Color(0.63189995, 0.71, 0.7073967, 0)

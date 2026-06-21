@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cp7bmkraww10n"]
+
+[node name="DebugLayer" type="CanvasLayer" unique_id=1595910766]
+process_mode = 3
+layer = 400
+
+[node name="DebugRoot" type="Control" parent="." unique_id=547425388]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

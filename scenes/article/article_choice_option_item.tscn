@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cqeuh2iyyc7yp"]
+
+[ext_resource type="Script" uid="uid://c4ltvbc8lesbt" path="res://scripts/article_system/ui/article_choice_option_item_ui.gd" id="1_f3ycj"]
+[ext_resource type="FontFile" uid="uid://c8qul3alvi37g" path="res://assets/fonts/CarpalTunnel-aEWa.ttf" id="2_8hf8l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ieh6"]
+bg_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.3529412)
+shadow_size = 20
+shadow_offset = Vector2(-2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4kik5"]
+font = ExtResource("2_8hf8l")
+
+[node name="ChoiceOptionItem" type="PanelContainer" unique_id=1245374934 node_paths=PackedStringArray("label")]
+offset_right = 246.0
+offset_bottom = 22.0
+pivot_offset = Vector2(-300, 15)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ieh6")
+script = ExtResource("1_f3ycj")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="." unique_id=561619182]
+layout_mode = 2
+text = "Choice that can be changed"
+label_settings = SubResource("LabelSettings_4kik5")

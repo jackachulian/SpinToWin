@@ -1,3 +1,9 @@
+#preview
+There's a town council meeting happening soon, and it seems like they're planning some new urban development...
+
+#dialogue
+You attended the town meeting. In the meeting, he council members approved for a brand new park to be built! The construction is planned to being next month.
+
 #real-event
 The town council approved funding for a new public park. Construction will begin next month.
 

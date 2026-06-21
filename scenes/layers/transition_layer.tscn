@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bxigef2xkgg42"]
+
+[node name="TransitionLayer" type="CanvasLayer" unique_id=524541884]
+process_mode = 3
+layer = 300
+
+[node name="TransitionRoot" type="Control" parent="." unique_id=1600668709]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

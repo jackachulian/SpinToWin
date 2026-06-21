@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://73jm5qjy52vq"]
 
 [ext_resource type="Script" uid="uid://d1wt4ma6055l8" path="res://addons/dialogue_manager/example_balloon/example_balloon.gd" id="1_36de5"]
+[ext_resource type="FontFile" uid="uid://csoeb8lt1w2fl" path="res://assets/fonts/NoirLullabyStamp-ywgYZ.otf" id="2_1337t"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="2_nlsx6"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
@@ -47,7 +48,7 @@ script = ExtResource("1_36de5")
 
 [node name="Balloon" type="Control" parent="." unique_id=871751244]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(1350, 0)
+custom_minimum_size = Vector2(1000, 0)
 layout_mode = 3
 anchors_preset = 13
 anchor_left = 0.5
@@ -64,7 +65,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -336.0
+offset_top = -209.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -88,6 +89,8 @@ unique_name_in_owner = true
 modulate = Color(1, 0.91764706, 0.63529414, 1)
 layout_mode = 2
 mouse_filter = 1
+theme_override_fonts/normal_font = ExtResource("2_1337t")
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "Character"
 fit_content = true
@@ -120,10 +123,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 235.0
+offset_left = 190.0
 offset_top = -145.0
-offset_right = 641.0
-offset_bottom = -81.0
+offset_right = 466.0
+offset_bottom = -86.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
@@ -133,7 +136,7 @@ script = ExtResource("3_72ixx")
 response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/ResponsesMenu" unique_id=1608524022]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Response example"
 

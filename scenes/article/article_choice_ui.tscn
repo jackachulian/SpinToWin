@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://c3dldhvki5jnh" path="res://scripts/article_system/ui/article_choice_ui.gd" id="1_pvp3q"]
 
 [node name="ArticleChoiceUI" type="MarginContainer" unique_id=1740173751 node_paths=PackedStringArray("option_button")]
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 script = ExtResource("1_pvp3q")
 option_button = NodePath("OptionButton")
 

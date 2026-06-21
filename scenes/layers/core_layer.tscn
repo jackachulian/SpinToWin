@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://w0bqlv2mloff"]
+
+[ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_ns3km"]
+[ext_resource type="Texture2D" uid="uid://cx4n4wogs0yq8" path="res://assets/sprites/NOF_WEB_GALLERY_01.webp" id="2_jglwl"]
+
+[node name="CoreLayer" type="CanvasLayer" unique_id=883448445]
+process_mode = 1
+layer = 0
+
+[node name="HudRoot" type="Control" parent="." unique_id=1051040131]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_ns3km")
+
+[node name="PlaceholderBg" type="TextureRect" parent="HudRoot" unique_id=740539264]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jglwl")
+expand_mode = 5
