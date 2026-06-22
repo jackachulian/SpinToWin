@@ -6,6 +6,8 @@ extends Control
 	set(value): 
 		if choice:
 			index = clampi(value, 0, choice.options.size() - 1)
+			choice_anim_start_index = visual_index
+			choice_anim_elapsed_time = 0
 		else:
 			index = value
 		update_ui_elements()
@@ -19,9 +21,12 @@ extends Control
 @export var side_margin: float = 120.0
 	
 @export var choice_origin: Control
-@export var sentence_start_label: Label
+@export var sentence_start_rtl: RichTextLabel
 @export var choice_container: Control:
 	set(value): choice_container = value; update_ui_elements()
+@export var choice_anim_curve: Curve
+@export var choice_anim_duration: float = 0.25
+@export var choice_alpha_falloff: float = 0.25
 	
 @export var normal_label_settings: LabelSettings:
 	set(value): normal_label_settings = value; update_ui_elements()
@@ -39,8 +44,6 @@ extends Control
 ## where the arrow is pointed at and the item that will be selected for the choice 
 ## on the next click/key press
 
-@export var scroll_speed: float = 12.0
-
 ## Index smoothed over time to animate towards the current index.
 var visual_index: float = 0
 
@@ -57,14 +60,24 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		hide()
 
+const SNAP_WEIGHT: float = 10.0
+
+var choice_anim_start_index: float = 0.0
+var choice_anim_elapsed_time: float = 0.0
+
 func _process(delta: float) -> void:
-	visual_index = move_toward(visual_index, index, scroll_speed * delta)
+	choice_anim_elapsed_time += delta
+	
+	var t = clamp(choice_anim_elapsed_time / choice_anim_duration, 0.0, 1.0)
+	var curve_sample := choice_anim_curve.sample(t)
+	visual_index = lerpf(choice_anim_start_index, float(index), curve_sample)
 	
 	for item_index: int in choice_container.get_child_count():
 		var item: Control = choice_container.get_child(item_index)
 		var item_visual_index: float = item_index - visual_index
 		item.rotation_degrees = item_visual_index * item_angle_delta
 		item.pivot_offset = item_pivot_offset
+		item.modulate = Color(1,1,1,1 - absf(float(item_index) - visual_index)*choice_alpha_falloff)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -90,8 +103,8 @@ func setup(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -
 	
 	choice_origin.global_position = global_pos
 	
-	sentence_start_label.text = sentence_start
-	sentence_start_label.update_minimum_size()
+	sentence_start_rtl.text = "[bgcolor=#dbdbd7]"+sentence_start+"[/bgcolor]"
+	sentence_start_rtl.update_minimum_size()
 	
 	for child: Node in choice_container.get_children():
 		child.queue_free()
@@ -117,9 +130,14 @@ func setup(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -
 		
 	var end_local_point := choice_origin.position + Vector2(max_width, 0)
 	var end_global_point := get_global_transform() * end_local_point
-	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	var viewport_rect := get_viewport().get_visible_rect()
+	var viewport_size: Vector2 = viewport_rect.size
 	if end_global_point.x > viewport_size.x - side_margin:
 		choice_origin.global_position.x = viewport_size.x - side_margin - max_width
+		
+	var start_global_point := sentence_start_rtl.global_position
+	if start_global_point.x < viewport_rect.position.x + side_margin:
+		choice_origin.global_position.x = viewport_rect.position.x + sentence_start_rtl.size.x + side_margin
 		
 	update_ui_elements()
 

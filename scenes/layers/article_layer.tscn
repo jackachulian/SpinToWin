@@ -60,6 +60,11 @@ border_width_bottom = 3
 border_color = Color(0.89, 0.8336333, 0.7209, 1)
 corner_radius_top_left = 15
 
+[sub_resource type="Curve" id="Curve_nqdth"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.006329119, 0.006289363), 0.0, 4.897574, 0, 0, Vector2(1, 1), -0.112495825, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yffph"]
 bg_color = Color(0.85882354, 0.85882354, 0.84313726, 1)
 shadow_offset = Vector2(-2, 2)
@@ -94,11 +99,10 @@ submit_article_panel = NodePath("SubmitArticle")
 real_event_label = NodePath("RealEvent/MarginContainer/VBoxContainer/RealEventDescLabel")
 desired_perception_label = NodePath("DesiredPerception/MarginContainer/VBoxContainer/DesiredPerceptionLabel")
 blur_material = ExtResource("2_ya2e7")
-choice_edit_blur_radius = 0.5
+choice_edit_blur_radius = 0.75
 choice_edit_panel = NodePath("ChoiceEditPanel")
 
 [node name="SpinTheArticleLabel" type="Label" parent="ArticleUI" unique_id=1616736438]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -325,7 +329,7 @@ offset_transform_enabled = true
 offset_transform_scale = Vector2(1.05, 1.05)
 mouse_filter = 2
 
-[node name="ChoiceEditPanel" type="Control" parent="ArticleUI" unique_id=434387884 node_paths=PackedStringArray("choice_origin", "sentence_start_label", "choice_container", "left_arrow", "right_arrow")]
+[node name="ChoiceEditPanel" type="Control" parent="ArticleUI" unique_id=434387884 node_paths=PackedStringArray("choice_origin", "sentence_start_rtl", "choice_container", "left_arrow", "right_arrow")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -338,14 +342,16 @@ item_pivot_offset = Vector2(-300, 15)
 arrow_offset = Vector2(15, 22.5)
 side_margin = 32.0
 choice_origin = NodePath("ChoiceOrigin")
-sentence_start_label = NodePath("SentenceStart/SentenceStartBg/SentenceStartLabel")
+sentence_start_rtl = NodePath("ChoiceOrigin/SentenceStart/SentenceStartRTL")
 choice_container = NodePath("ChoiceOrigin/ChoiceContainer")
+choice_anim_curve = SubResource("Curve_nqdth")
+choice_anim_duration = null
+choice_alpha_falloff = null
 normal_label_settings = ExtResource("14_ruko1")
 focused_label_settings = ExtResource("15_a5tvl")
 left_arrow = NodePath("ChoiceOrigin/LeftArrowPolygon2D")
 right_arrow = NodePath("ChoiceOrigin/RightArrowPolygon2D2")
 choice_option_item_scene = ExtResource("7_l8meg")
-scroll_speed = 6.0
 
 [node name="ChoiceOrigin" type="Control" parent="ArticleUI/ChoiceEditPanel" unique_id=118560927]
 layout_mode = 1
@@ -357,6 +363,68 @@ offset_top = -441.0
 offset_right = 705.0
 offset_bottom = -441.0
 grow_vertical = 0
+
+[node name="SentenceStart" type="Control" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=505345108]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -170.0
+offset_bottom = 9.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(-300, 15)
+
+[node name="SentenceStartBg" type="PanelContainer" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin/SentenceStart" unique_id=612390355 node_paths=PackedStringArray("label")]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -15.0
+offset_bottom = 15.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_yffph")
+script = ExtResource("15_dsg1b")
+label = NodePath("SentenceStartLabel")
+
+[node name="SentenceStartLabel" type="Label" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin/SentenceStart/SentenceStartBg" unique_id=561619182]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 20
+text = "asdaasdasd"
+label_settings = SubResource("LabelSettings_ruko1")
+horizontal_alignment = 2
+
+[node name="SentenceStartRTL" type="RichTextLabel" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin/SentenceStart" unique_id=674252518]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.019607844, 0.03137255, 0.039215688, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+bbcode_enabled = true
+text = "[bgcolor=#dbdbd7]This is a [/bgcolor]"
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="ChoiceContainer" type="Control" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=712736407]
 layout_mode = 1
@@ -394,44 +462,5 @@ position = Vector2(322, -7.5)
 rotation = -3.1415925
 color = Color(0.36540002, 0.7943101, 0.87, 1)
 polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)
-
-[node name="SentenceStart" type="Control" parent="ArticleUI/ChoiceEditPanel" unique_id=505345108]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -834.0
-offset_top = -266.0
-offset_right = -334.0
-offset_bottom = -199.0
-grow_horizontal = 0
-grow_vertical = 2
-pivot_offset = Vector2(-300, 15)
-
-[node name="SentenceStartBg" type="PanelContainer" parent="ArticleUI/ChoiceEditPanel/SentenceStart" unique_id=612390355 node_paths=PackedStringArray("label")]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -59.5
-offset_right = 59.5
-offset_bottom = 30.0
-grow_horizontal = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_yffph")
-script = ExtResource("15_dsg1b")
-label = NodePath("SentenceStartLabel")
-
-[node name="SentenceStartLabel" type="Label" parent="ArticleUI/ChoiceEditPanel/SentenceStart/SentenceStartBg" unique_id=561619182]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 20
-text = "This is a "
-label_settings = SubResource("LabelSettings_ruko1")
-horizontal_alignment = 2
 
 [connection signal="pressed" from="ArticleUI/SubmitArticle/MarginContainer/SubmitButton" to="ArticleUI" method="_on_submit_button_pressed"]

@@ -69,10 +69,10 @@ func _on_meta_clicked(meta: String):
 			break
 			
 		part_index -= 1
-		
-	if sentence_start.length() > 100:
-		sentence_start = "..."+sentence_start.right(100)
-	sentence_start += "______"
+		#
+	#if sentence_start.length() > 25:
+		#sentence_start = "..."+sentence_start.right(25)
+	#sentence_start += "______"
 	
 	choice_clicked.emit(choice, global_pos, sentence_start)
 	rebuild_text()
