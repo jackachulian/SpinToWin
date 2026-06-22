@@ -73,7 +73,7 @@ static func _parse_choice(text: String) -> ArticleChoice:
 	var choice := ArticleChoice.new()
 
 	var regex := RegEx.new()
-	regex.compile(r"(.+?)\s*\((-?\d+),(-?\d+),(-?\d+)\)")
+	regex.compile(r"(.+?)\s*\((-?\d+),(-?\d+),(-?\d+),(-?\d+),(-?\d+)\)")
 
 	for option_text in text.split("/"):
 		option_text = option_text.strip_edges()
@@ -88,9 +88,18 @@ static func _parse_choice(text: String) -> ArticleChoice:
 
 		option.text = regex_match.get_string(1).strip_edges()
 
-		option.public_approval = regex_match.get_string(2).to_int()
-		option.public_trust = regex_match.get_string(3).to_int()
-		option.government = regex_match.get_string(4).to_int()
+		for i: int in range(0, 4):
+			var match_string := regex_match.get_string(i+2)
+			if not match_string.is_empty() and match_string.is_valid_int():
+				option.reputation_changes[i] = match_string.to_int()
+			else:
+				push_error("invalid int: ", match_string)
+				
+		var trust_match_string := regex_match.get_string(5)
+		if not trust_match_string.is_empty() and trust_match_string.is_valid_int():
+			option.public_trust_change = trust_match_string.to_int()
+		else:
+			push_error("invalid int: ", trust_match_string)
 
 		choice.options.append(option)
 

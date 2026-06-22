@@ -1,17 +1,23 @@
 class_name TitleMenuUI
 extends AnimatableControl
 
-@export var title_label: Control
-@export var choices_container: Control
+
+@export var player_data: PlayerData
+@export var article_loader: ArticleLoader
 
 @export var title_menu_layer: TransitionableLayer
 @export var options_layer: TransitionableLayer
 @export var article_layer: TransitionableLayer
 
+@export var title_label: Control
+@export var choices_container: Control
+
 func _on_new_pressed() -> void:
 	print("new game pressed")
 	# TODO: bring this to a new game dialogue or just straight to the map
-	title_menu_layer.open_nested(article_layer)
+	player_data.start_new_save()
+	article_loader.load_test_article()
+	title_menu_layer.transition_to(article_layer)
 	pass
 	
 func _on_continue_pressed() -> void:

@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://ctlan0yk1q4c6"]
+
+[ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_i6re7"]
+[ext_resource type="Script" uid="uid://b6epdcd108esy" path="res://scripts/results/faction_ui.gd" id="1_l1jev"]
+[ext_resource type="Texture2D" uid="uid://bf3o57s62bg5c" path="res://icon.svg" id="1_pb0kv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ieh6"]
+bg_color = Color(0, 0, 0, 0)
+shadow_color = Color(0, 0, 0, 0.25490198)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o0ard"]
+bg_color = Color(0.0504, 0.100279994, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.82804394, 0.784154, 0.6590126, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kik5"]
+resource_local_to_scene = true
+bg_color = Color(0.37254903, 0.6392157, 0.3647059, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="FactionUI" type="Control" unique_id=1678427921 node_paths=PackedStringArray("texture_rect", "faction_name_label", "reputation_bar", "rep_up_arrow", "rep_down_arrow")]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+offset_transform_enabled = true
+theme = ExtResource("1_i6re7")
+script = ExtResource("1_l1jev")
+texture_rect = NodePath("TextureRect")
+faction_name_label = NodePath("LabelContainer/Label")
+reputation_bar = NodePath("ProgressBar")
+rep_up_arrow = NodePath("TextureRect/RepUpArrow")
+rep_down_arrow = NodePath("TextureRect/RepDownArrow")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1830524685]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+texture = ExtResource("1_pb0kv")
+
+[node name="RepUpArrow" type="Polygon2D" parent="TextureRect" unique_id=1724529641]
+visible = false
+position = Vector2(123, 49)
+color = Color(0.37254903, 0.6392157, 0.3647059, 1)
+polygon = PackedVector2Array(0, -15, -15, 15, 15, 15)
+
+[node name="RepDownArrow" type="Polygon2D" parent="TextureRect" unique_id=1782889583]
+visible = false
+position = Vector2(123, 49)
+color = Color(0.7019608, 0.28627452, 0.22352941, 1)
+polygon = PackedVector2Array(0, 15, -15, -15, 15, -15)
+
+[node name="LabelContainer" type="PanelContainer" parent="." unique_id=1165043586]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = 2.0
+offset_right = 82.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ieh6")
+
+[node name="Label" type="Label" parent="LabelContainer" unique_id=1092740077]
+layout_mode = 2
+text = "Faction Name"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1045002707]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = 30.0
+offset_right = 91.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_o0ard")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4kik5")
+value = 64.78
+show_percentage = false

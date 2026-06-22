@@ -20,7 +20,6 @@ stacked_outline_2/color = Color(1, 1, 1, 1)
 [node name="TitleMenuLayer" type="CanvasLayer" unique_id=1946908040 node_paths=PackedStringArray("animatable_control")]
 script = ExtResource("1_icfvy")
 animatable_control = NodePath("TitleMenuUI")
-open_layer_on_start = true
 
 [node name="TitleMenuUI" type="Control" parent="." unique_id=443854135 node_paths=PackedStringArray("title_label", "choices_container")]
 layout_mode = 3

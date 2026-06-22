@@ -29,6 +29,11 @@ func open_nested(trans_layer: TransitionableLayer) -> void:
 	await trans_layer.closed
 	open()
 	
+## Close this layer and open the given layer.
+func transition_to(trans_layer: TransitionableLayer) -> void:
+	trans_layer.open()
+	close()
+	
 func close() -> void:
 	closed.emit()
 	

@@ -42,7 +42,7 @@ func rebuild_text() -> void:
 				elif hovered_meta == meta:
 					text += "[url=%s][choice line=%d part=%d][bgcolor=black][color=white]%s[/color][/bgcolor][/choice][/url]" % [meta, line_index, part_index, option_text]
 				else:
-					text += "[url=%s]%s[/url]" % [meta, option_text]
+					text += "[url=%s][u]%s[/u][/url]" % [meta, option_text]
 				
 		text += " "
 	

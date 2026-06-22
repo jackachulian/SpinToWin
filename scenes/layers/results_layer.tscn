@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://cgctdvcuaa0r5"]
+
+[ext_resource type="Script" uid="uid://bb7al8ko4q3nb" path="res://scripts/core/transitionable_layer.gd" id="1_krrw2"]
+[ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="2_ioo6w"]
+[ext_resource type="Script" uid="uid://dom2i5ylu4hw5" path="res://scripts/results/results_ui.gd" id="3_krrw2"]
+[ext_resource type="PackedScene" uid="uid://ctlan0yk1q4c6" path="res://scenes/results/faction_ui.tscn" id="4_krrw2"]
+[ext_resource type="FontFile" uid="uid://cnda311t1okga" path="res://assets/fonts/QuietStreets-yrYM.ttf" id="5_ioo6w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_roip1"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0016065428, 0.050566174, 0.064224966, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.9493333, 0.81, 1)
+corner_radius_top_right = 24
+corner_radius_bottom_left = 24
+shadow_size = 10
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_loe11"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.010594848, 0.16510493, 0.1902841, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.44324148, 0.7480646, 0.7333559, 1)
+corner_radius_top_right = 24
+corner_radius_bottom_left = 24
+shadow_size = 10
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1djg"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.042410195, 0.15367776, 0.16343787, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 24
+corner_radius_bottom_left = 24
+shadow_size = 10
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2rook"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.018399997, 0.20531331, 0.23, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.96, 0.76064, 0.105600014, 1)
+corner_radius_top_right = 24
+corner_radius_bottom_left = 24
+
+[node name="ResultsLayer" type="CanvasLayer" unique_id=886279475 node_paths=PackedStringArray("animatable_control")]
+script = ExtResource("1_krrw2")
+animatable_control = NodePath("ResultsUI")
+
+[node name="ResultsUI" type="Control" parent="." unique_id=1574235591 node_paths=PackedStringArray("faction_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ioo6w")
+script = ExtResource("3_krrw2")
+faction_container = NodePath("MarginContainer/FactionContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="ResultsUI" unique_id=1640696192]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 40
+
+[node name="FactionContainer" type="HBoxContainer" parent="ResultsUI/MarginContainer" unique_id=701879252]
+layout_mode = 2
+
+[node name="FactionUI" parent="ResultsUI/MarginContainer/FactionContainer" unique_id=1678427921 instance=ExtResource("4_krrw2")]
+layout_mode = 2
+
+[node name="FactionUI2" parent="ResultsUI/MarginContainer/FactionContainer" unique_id=1118013385 instance=ExtResource("4_krrw2")]
+layout_mode = 2
+
+[node name="FactionUI3" parent="ResultsUI/MarginContainer/FactionContainer" unique_id=149669904 instance=ExtResource("4_krrw2")]
+layout_mode = 2
+
+[node name="FactionUI4" parent="ResultsUI/MarginContainer/FactionContainer" unique_id=1628389034 instance=ExtResource("4_krrw2")]
+layout_mode = 2
+
+[node name="Continue" type="Control" parent="ResultsUI" unique_id=1315760782]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -268.0
+offset_top = -131.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ResultsUI/Continue" unique_id=1815301136]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="ContinueButton" type="Button" parent="ResultsUI/Continue/MarginContainer" unique_id=2117174455]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ioo6w")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_roip1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_loe11")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1djg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2rook")
+text = "CONTINUE"

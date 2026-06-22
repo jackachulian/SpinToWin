@@ -453,14 +453,14 @@ rotation = 0.27925268
 [node name="LeftArrowPolygon2D" type="Polygon2D" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=2025154191]
 visible = false
 position = Vector2(-15, -7.5)
-color = Color(0.36540002, 0.7943101, 0.87, 1)
+color = Color(0.8805216, 0.7007186, 0.11187818, 1)
 polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)
 
 [node name="RightArrowPolygon2D2" type="Polygon2D" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin" unique_id=1738914625]
 visible = false
 position = Vector2(322, -7.5)
 rotation = -3.1415925
-color = Color(0.36540002, 0.7943101, 0.87, 1)
+color = Color(0.8586707, 0.7087068, 0.22933632, 1)
 polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)
 
 [connection signal="pressed" from="ArticleUI/SubmitArticle/MarginContainer/SubmitButton" to="ArticleUI" method="_on_submit_button_pressed"]

@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://c5l013w08nt72" path="res://scripts/core/main_game.gd" id="1_s3esy"]
 [ext_resource type="Script" uid="uid://dh832ue8yul2n" path="res://scripts/article_system/article_test_loader.gd" id="2_ipu61"]
 [ext_resource type="PackedScene" uid="uid://w0bqlv2mloff" path="res://scenes/layers/core_layer.tscn" id="3_70vka"]
+[ext_resource type="Script" uid="uid://cj4okj3sr6n3x" path="res://scripts/core/player_data.gd" id="3_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://dmo78qc1o5jde" path="res://scenes/layers/article_layer.tscn" id="4_2l77h"]
 [ext_resource type="PackedScene" uid="uid://cbgovibcuuf2h" path="res://scenes/title_menu_layer.tscn" id="4_nqdth"]
+[ext_resource type="PackedScene" uid="uid://cgctdvcuaa0r5" path="res://scenes/layers/results_layer.tscn" id="6_5cypo"]
 [ext_resource type="PackedScene" uid="uid://bx6h6r5sdfdtt" path="res://scenes/layers/pause_layer.tscn" id="6_nqdth"]
 [ext_resource type="PackedScene" uid="uid://bxigef2xkgg42" path="res://scenes/layers/transition_layer.tscn" id="7_5cypo"]
 [ext_resource type="PackedScene" uid="uid://dumg5me26m8hw" path="res://scenes/layers/options_layer.tscn" id="8_nqdth"]
@@ -19,21 +21,48 @@ open_layer_on_start = NodePath("TitleMenuLayer")
 [node name="Systems" type="Node" parent="." unique_id=1431060476]
 editor_description = "Defined place for high-level systems"
 
-[node name="ArticleLoader" type="Node" parent="Systems" unique_id=737525035 node_paths=PackedStringArray("article_ui")]
+[node name="PlayerData" type="Node" parent="Systems" unique_id=209823503]
+script = ExtResource("3_o6v7o")
+
+[node name="ArticleLoader" type="Node" parent="Systems" unique_id=737525035]
 script = ExtResource("2_ipu61")
-article_ui = NodePath("../../ArticleLayer/ArticleUI")
 
 [node name="CoreLayer" parent="." unique_id=883448445 instance=ExtResource("3_70vka")]
 
 [node name="TitleMenuLayer" parent="." unique_id=1946908040 instance=ExtResource("4_nqdth")]
+visible = false
 
-[node name="TitleMenuUI" parent="TitleMenuLayer" index="0" unique_id=443854135 node_paths=PackedStringArray("title_menu_layer", "options_layer", "article_layer")]
+[node name="TitleMenuUI" parent="TitleMenuLayer" index="0" unique_id=443854135 node_paths=PackedStringArray("player_data", "article_loader", "title_menu_layer", "options_layer", "article_layer")]
+player_data = NodePath("../../Systems/PlayerData")
+article_loader = NodePath("../../Systems/ArticleLoader")
 title_menu_layer = NodePath("..")
 options_layer = NodePath("../../OptionsLayer")
 article_layer = NodePath("../../ArticleLayer")
 
 [node name="ArticleLayer" parent="." unique_id=197263611 instance=ExtResource("4_2l77h")]
 visible = false
+
+[node name="ArticleUI" parent="ArticleLayer" index="0" unique_id=1421558068 node_paths=PackedStringArray("player_data", "article_loader", "results_layer")]
+player_data = NodePath("../../Systems/PlayerData")
+article_loader = NodePath("../../Systems/ArticleLoader")
+results_layer = NodePath("../../ResultsLayer")
+
+[node name="ChoiceEditPanel" parent="ArticleLayer/ArticleUI" index="6" unique_id=434387884]
+choice_anim_duration = 0.25
+choice_alpha_falloff = 0.25
+
+[node name="ChoiceOptionItem2" parent="ArticleLayer/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" parent_id_path=PackedInt32Array(197263611, 712736407) index="1" unique_id=1756681024]
+modulate = Color(1, 1, 1, 0.75)
+
+[node name="ChoiceOptionItem3" parent="ArticleLayer/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" parent_id_path=PackedInt32Array(197263611, 712736407) index="2" unique_id=136626459]
+modulate = Color(1, 1, 1, 0.5)
+
+[node name="ResultsLayer" parent="." unique_id=886279475 instance=ExtResource("6_5cypo")]
+visible = false
+
+[node name="ResultsUI" parent="ResultsLayer" index="0" unique_id=1574235591 node_paths=PackedStringArray("player_data", "article_loader")]
+player_data = NodePath("../../Systems/PlayerData")
+article_loader = NodePath("../../Systems/ArticleLoader")
 
 [node name="DialogueLayer" parent="." unique_id=548383277 instance=ExtResource("12_o6v7o")]
 visible = false
@@ -49,3 +78,4 @@ visible = false
 
 [editable path="TitleMenuLayer"]
 [editable path="ArticleLayer"]
+[editable path="ResultsLayer"]
