@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://rck3gmq7gfni"]
 
 [ext_resource type="Script" uid="uid://bb7al8ko4q3nb" path="res://scripts/core/transitionable_layer.gd" id="1_vj1ly"]
+[ext_resource type="Script" uid="uid://bw0id45e0eebq" path="res://scripts/ui/city_map/city_map_ui.gd" id="2_rowob"]
 
 [node name="CityMapLayer" type="CanvasLayer" unique_id=146308038]
 script = ExtResource("1_vj1ly")
+
+[node name="CityMapUI" type="Control" parent="." unique_id=1633336644]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_rowob")

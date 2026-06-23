@@ -1,17 +1,29 @@
 class_name MainGame
 extends Node
 
+
 ## The layer to open when the game is started
 @export var open_layer_on_start: TransitionableLayer
+
+static var instance: MainGame
+
+func _enter_tree() -> void:
+	instance = self
 
 func _ready() -> void:
 	if open_layer_on_start:
 		open_layer_on_start.open()
 
+# -------- Systems --------
+@onready var player_data: PlayerData = $Systems/PlayerData
+@onready var article_loader: ArticleLoader = $Systems/ArticleLoader
+
 # -------- Canvas layers --------
 @onready var core_layer: CanvasLayer = $CoreLayer
 @onready var title_menu_layer: TransitionableLayer = $TitleMenuLayer
+@onready var city_map_layer: TransitionableLayer = $CityMapLayer
 @onready var article_layer: TransitionableLayer = $ArticleLayer
+@onready var results_layer: TransitionableLayer = $ResultsLayer
 @onready var dialogue_layer: DialogueManagerExampleBalloon = $DialogueLayer
 @onready var pause_layer: CanvasLayer = $PauseLayer
 @onready var options_layer: TransitionableLayer = $OptionsLayer

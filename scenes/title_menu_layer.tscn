@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_52g1n"]
 [ext_resource type="Script" uid="uid://bb7al8ko4q3nb" path="res://scripts/core/transitionable_layer.gd" id="1_icfvy"]
 [ext_resource type="FontFile" uid="uid://k2mdld8xovp0" path="res://assets/fonts/BillionaireMediumGrunge.ttf" id="2_icfvy"]
-[ext_resource type="Script" uid="uid://dvjff1baxk1eu" path="res://scripts/main_menu/main_menu_ui.gd" id="3_gbj6b"]
+[ext_resource type="Script" uid="uid://dvjff1baxk1eu" path="res://scripts/ui/main_menu/main_menu_ui.gd" id="3_gbj6b"]
 [ext_resource type="Resource" uid="uid://bv1igdg7svcoj" path="res://assets/dialogue/test.dialogue" id="4_c5xmk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ruko1"]

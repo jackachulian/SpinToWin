@@ -4,10 +4,10 @@
 [ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_wlco4"]
 [ext_resource type="Material" uid="uid://deia4rqmwu5pp" path="res://assets/materials/article_blur_and_tint.tres" id="2_ya2e7"]
 [ext_resource type="Theme" uid="uid://4ttvne76rnip" path="res://assets/theme/newspaper.tres" id="3_l8meg"]
-[ext_resource type="Script" uid="uid://bs2v7cmmlsbqu" path="res://scripts/article_system/ui/article_ui.gd" id="4_jorgq"]
-[ext_resource type="Script" uid="uid://digulv7cl4ogt" path="res://scripts/article_system/ui/article_text_rtl.gd" id="5_dsg1b"]
-[ext_resource type="Script" uid="uid://cytpddreko8mt" path="res://scripts/article_system/ui/article_choice_text_effect.gd" id="5_jorgq"]
-[ext_resource type="Script" uid="uid://bykxqd7u5a17a" path="res://scripts/article_system/ui/choice_edit_panel.gd" id="6_ya2e7"]
+[ext_resource type="Script" uid="uid://bs2v7cmmlsbqu" path="res://scripts/ui/article/article_ui.gd" id="4_jorgq"]
+[ext_resource type="Script" uid="uid://digulv7cl4ogt" path="res://scripts/ui/article/article_text_rtl.gd" id="5_dsg1b"]
+[ext_resource type="Script" uid="uid://cytpddreko8mt" path="res://scripts/ui/article/article_choice_text_effect.gd" id="5_jorgq"]
+[ext_resource type="Script" uid="uid://bykxqd7u5a17a" path="res://scripts/ui/article/choice_edit_panel.gd" id="6_ya2e7"]
 [ext_resource type="FontFile" uid="uid://cnda311t1okga" path="res://assets/fonts/QuietStreets-yrYM.ttf" id="6_yffph"]
 [ext_resource type="PackedScene" uid="uid://cqeuh2iyyc7yp" path="res://scenes/article/article_choice_option_item.tscn" id="7_l8meg"]
 [ext_resource type="FontFile" uid="uid://c8qul3alvi37g" path="res://assets/fonts/CarpalTunnel-aEWa.ttf" id="7_ruko1"]
@@ -17,7 +17,7 @@
 [ext_resource type="FontFile" uid="uid://k2mdld8xovp0" path="res://assets/fonts/BillionaireMediumGrunge.ttf" id="11_7o6uv"]
 [ext_resource type="LabelSettings" uid="uid://c8p38kni0q7v0" path="res://assets/theme/choice_normal_label_settings.tres" id="14_ruko1"]
 [ext_resource type="LabelSettings" uid="uid://ootlj8gd1833" path="res://assets/theme/choice_focused_label_settings.tres" id="15_a5tvl"]
-[ext_resource type="Script" uid="uid://c4ltvbc8lesbt" path="res://scripts/article_system/ui/article_choice_option_item_ui.gd" id="15_dsg1b"]
+[ext_resource type="Script" uid="uid://c4ltvbc8lesbt" path="res://scripts/ui/article/article_choice_option_item_ui.gd" id="15_dsg1b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp04v"]
 bg_color = Color(0.86, 0.85799336, 0.8428, 1)
@@ -80,7 +80,7 @@ layer = 0
 script = ExtResource("1_ruko1")
 animatable_control = NodePath("ArticleUI")
 
-[node name="ArticleUI" type="Control" parent="." unique_id=1421558068 node_paths=PackedStringArray("article_layer", "header_rtl", "body_rtl", "real_event_panel", "desired_perception_panel", "article_panel", "submit_article_panel", "real_event_label", "desired_perception_label", "choice_edit_panel")]
+[node name="ArticleUI" type="Control" parent="." unique_id=1421558068 node_paths=PackedStringArray("header_rtl", "body_rtl", "real_event_panel", "desired_perception_panel", "article_panel", "submit_article_panel", "real_event_label", "desired_perception_label", "choice_edit_panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -89,7 +89,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_wlco4")
 script = ExtResource("4_jorgq")
-article_layer = NodePath("..")
 header_rtl = NodePath("ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer/HeaderRTL")
 body_rtl = NodePath("ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer/BodyRTL")
 real_event_panel = NodePath("RealEvent")

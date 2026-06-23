@@ -3,13 +3,19 @@ extends CanvasLayer
 
 @export var animatable_control: AnimatableControl
 
-var animating
+var is_open: bool
+var animating: bool
 
 signal opened()
 signal closed()
 signal animating_finished()
 		
 func open() -> void:
+	if is_open:
+		push_warning("menu already open")
+		return
+	
+	is_open = true
 	opened.emit()
 	
 	if animating:
@@ -23,18 +29,23 @@ func open() -> void:
 ## Open the given layer. Once that layer is closed,
 ## re-open this layer.
 func open_nested(trans_layer: TransitionableLayer) -> void:
-	trans_layer.open()
 	close()
+	trans_layer.open()
 	
 	await trans_layer.closed
 	open()
 	
 ## Close this layer and open the given layer.
 func transition_to(trans_layer: TransitionableLayer) -> void:
-	trans_layer.open()
 	close()
+	trans_layer.open()
 	
 func close() -> void:
+	if not is_open:
+		push_warning("menu already closed")
+		return
+		
+	is_open = false
 	closed.emit()
 	
 	if animating:

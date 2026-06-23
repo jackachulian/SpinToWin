@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqeuh2iyyc7yp"]
 
-[ext_resource type="Script" uid="uid://c4ltvbc8lesbt" path="res://scripts/article_system/ui/article_choice_option_item_ui.gd" id="1_f3ycj"]
+[ext_resource type="Script" uid="uid://c4ltvbc8lesbt" path="res://scripts/ui/article/article_choice_option_item_ui.gd" id="1_f3ycj"]
 [ext_resource type="LabelSettings" uid="uid://c8p38kni0q7v0" path="res://assets/theme/choice_normal_label_settings.tres" id="2_f3ycj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ieh6"]

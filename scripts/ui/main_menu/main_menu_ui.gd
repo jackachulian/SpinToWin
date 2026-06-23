@@ -1,15 +1,6 @@
 class_name TitleMenuUI
 extends AnimatableControl
 
-
-@export var player_data: PlayerData
-@export var article_loader: ArticleLoader
-
-@export var title_menu_layer: TransitionableLayer
-@export var options_layer: TransitionableLayer
-@export var credits_layer: TransitionableLayer
-@export var article_layer: TransitionableLayer
-
 @export var title_label: Control
 @export var choices_container: Control
 @export var continue_button: Control
@@ -20,25 +11,25 @@ extends AnimatableControl
 
 func _on_new_pressed() -> void:
 	print("new game pressed")
-	player_data.start_new_save()
+	MainGame.instance.player_data.start_new_save()
 	# TODO: bring this to a new game dialogue or just straight to the map
-	article_loader.load_test_article()
-	title_menu_layer.transition_to(article_layer)
+	MainGame.instance.article_loader.load_test_article()
+	MainGame.instance.title_menu_layer.transition_to(MainGame.instance.article_layer)
 	pass
 	
 func _on_continue_pressed() -> void:
 	print("continue pressed")
-	await title_menu_layer.close()
+	await MainGame.instance.title_menu_layer.close()
 	#TODO: abstract this call and relevent variables to its own System
 	DialogueManager.show_dialogue_balloon(starting_dialogue, "start")
 	pass
 
 func _on_options_pressed() -> void:
-	title_menu_layer.open_nested(options_layer)
+	MainGame.instance.title_menu_layer.open_nested(MainGame.instance.options_layer)
 
 func _on_credits_pressed() -> void:
 	print("credits pressed")
-	title_menu_layer.open_nested(credits_layer)
+	MainGame.instance.title_menu_layer.open_nested(MainGame.instance.credits_layer)
 	
 func _on_quit_pressed() -> void:
 	print("quit pressed")
@@ -102,4 +93,4 @@ func animate_controls(start_x: float, end_x: float, start_modulate: Color, targe
 
 func check_continue() -> void:
 	if not override_continue:
-		continue_button.visible = player_data.save_started if not override_continue else true
+		continue_button.visible = MainGame.instance.player_data.save_started if not override_continue else true

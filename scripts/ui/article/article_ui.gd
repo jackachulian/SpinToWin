@@ -1,12 +1,6 @@
 class_name ArticleUI
 extends AnimatableControl
 
-@export var player_data: PlayerData
-@export var article_loader: ArticleLoader
-
-@export var article_layer: TransitionableLayer
-@export var results_layer: TransitionableLayer
-
 @export var header_rtl: ArticleTextRTL
 @export var body_rtl: ArticleTextRTL
 
@@ -50,10 +44,8 @@ func _on_choice_edit_panel_item_selected(_choice: ArticleChoice, _index: int) ->
 	
 	
 func _on_submit_button_pressed() -> void:
-	player_data.apply_changes_from_article(article_loader.article)
-	
-	# TODO: take player to an article results panel
-	article_layer.transition_to(results_layer)
+	MainGame.instance.player_data.apply_changes_from_article(MainGame.instance.article_loader.article)
+	MainGame.instance.article_layer.transition_to(MainGame.instance.results_layer)
 
 	
 const ANIM_CLEAR_COLOR := Color(1,1,1,0)
@@ -66,7 +58,7 @@ const SUBMIT_ANIM_IN_DURATION := 1.0
 const SUBMIT_ANIM_OUT_DURATION := 0.8
 
 func animate_in() -> void:
-	setup(article_loader.article)
+	setup(MainGame.instance.article_loader.article)
 	
 	await get_tree().process_frame
 

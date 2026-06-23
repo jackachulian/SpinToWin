@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kxixxy40y5b0"]
 
-[ext_resource type="Script" uid="uid://c3dldhvki5jnh" path="res://scripts/article_system/ui/article_choice_ui.gd" id="1_pvp3q"]
+[ext_resource type="Script" uid="uid://c3dldhvki5jnh" path="res://scripts/ui/article/article_choice_ui.gd" id="1_pvp3q"]
 
 [node name="ArticleChoiceUI" type="MarginContainer" unique_id=1740173751 node_paths=PackedStringArray("option_button")]
 theme_override_constants/margin_left = 0
