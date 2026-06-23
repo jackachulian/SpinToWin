@@ -21,7 +21,7 @@ stacked_outline_2/color = Color(1, 1, 1, 1)
 script = ExtResource("1_icfvy")
 animatable_control = NodePath("TitleMenuUI")
 
-[node name="TitleMenuUI" type="Control" parent="." unique_id=443854135 node_paths=PackedStringArray("title_label", "choices_container")]
+[node name="TitleMenuUI" type="Control" parent="." unique_id=443854135 node_paths=PackedStringArray("title_label", "choices_container", "continue_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,6 +32,7 @@ theme = ExtResource("1_52g1n")
 script = ExtResource("3_gbj6b")
 title_label = NodePath("MarginContainer/VBoxContainer/GameTitleLabel")
 choices_container = NodePath("MarginContainer/VBoxContainer/ChoicesContainer")
+continue_button = NodePath("MarginContainer/VBoxContainer/ChoicesContainer/ContinueButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="TitleMenuUI" unique_id=1945778532]
 layout_mode = 1
@@ -47,7 +48,7 @@ theme_override_constants/margin_bottom = 40
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleMenuUI/MarginContainer" unique_id=1309441062]
 layout_mode = 2
-theme_override_constants/separation = 64
+theme_override_constants/separation = 40
 
 [node name="GameTitleLabel" type="Label" parent="TitleMenuUI/MarginContainer/VBoxContainer" unique_id=1028209631]
 layout_mode = 2
@@ -78,6 +79,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Options"
 
+[node name="CreditsButton" type="Button" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=439786898]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Credits"
+
 [node name="QuitButton" type="Button" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=637154430]
 custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
@@ -87,4 +94,5 @@ text = "Quit Game"
 [connection signal="pressed" from="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer/NewButton" to="TitleMenuUI" method="_on_new_pressed"]
 [connection signal="pressed" from="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer/ContinueButton" to="TitleMenuUI" method="_on_continue_pressed"]
 [connection signal="pressed" from="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer/OptionsButton" to="TitleMenuUI" method="_on_options_pressed"]
+[connection signal="pressed" from="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer/CreditsButton" to="TitleMenuUI" method="_on_credits_pressed"]
 [connection signal="pressed" from="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer/QuitButton" to="TitleMenuUI" method="_on_quit_pressed"]

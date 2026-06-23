@@ -7,15 +7,17 @@ extends AnimatableControl
 
 @export var title_menu_layer: TransitionableLayer
 @export var options_layer: TransitionableLayer
+@export var credits_layer: TransitionableLayer
 @export var article_layer: TransitionableLayer
 
 @export var title_label: Control
 @export var choices_container: Control
+@export var continue_button: Control
 
 func _on_new_pressed() -> void:
 	print("new game pressed")
-	# TODO: bring this to a new game dialogue or just straight to the map
 	player_data.start_new_save()
+	# TODO: bring this to a new game dialogue or just straight to the map
 	article_loader.load_test_article()
 	title_menu_layer.transition_to(article_layer)
 	pass
@@ -26,6 +28,10 @@ func _on_continue_pressed() -> void:
 
 func _on_options_pressed() -> void:
 	title_menu_layer.open_nested(options_layer)
+
+func _on_credits_pressed() -> void:
+	print("credits pressed")
+	title_menu_layer.open_nested(credits_layer)
 	
 func _on_quit_pressed() -> void:
 	print("quit pressed")
@@ -42,6 +48,7 @@ const OUT_CASCADE_DELAY := 0.0
 
 func animate_in():
 	show()
+	check_continue()
 	await animate_controls(OUT_X, IN_X, OUT_MODULATE, IN_MODULATE, IN_DURATION, IN_CASCADE_DELAY, Tween.TRANS_BACK)
 
 func animate_out():
@@ -82,3 +89,6 @@ func animate_controls(start_x: float, end_x: float, start_modulate: Color, targe
 		current_duration += cascade_delay
 			
 	await tween.finished
+
+func check_continue() -> void:
+	continue_button.visible = player_data.save_started

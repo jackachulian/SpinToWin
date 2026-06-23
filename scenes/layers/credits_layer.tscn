@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://bkb14y8dd4vtu"]
+
+[ext_resource type="Script" uid="uid://bb7al8ko4q3nb" path="res://scripts/core/transitionable_layer.gd" id="1_vu3al"]
+[ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="2_6kcx7"]
+[ext_resource type="Script" uid="uid://lmu385cdeetg" path="res://scripts/credits/credits_ui.gd" id="3_v83xl"]
+[ext_resource type="FontFile" uid="uid://k2mdld8xovp0" path="res://assets/fonts/BillionaireMediumGrunge.ttf" id="4_8v7w7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qjhbw"]
+font_size = 80
+font_color = Color(0.99999994, 0.7738882, 0.47253954, 1)
+shadow_color = Color(0, 0, 0, 0.9764706)
+shadow_offset = Vector2(0, 4)
+stacked_outline_count = 3
+stacked_outline_0/size = 8
+stacked_outline_0/color = Color(1, 0.7058824, 0.26666668, 1)
+stacked_outline_1/size = 32
+stacked_outline_2/size = 16
+stacked_outline_2/color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6kcx7"]
+bg_color = Color(0.010799999, 0.019233331, 0.02, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.89, 0.8336333, 0.7209, 1)
+corner_radius_top_right = 2
+corner_radius_bottom_right = 48
+
+[node name="CreditsLayer" type="CanvasLayer" unique_id=1077651328 node_paths=PackedStringArray("animatable_control")]
+script = ExtResource("1_vu3al")
+animatable_control = NodePath("CreditsUI")
+
+[node name="CreditsUI" type="Control" parent="." unique_id=1017809479 node_paths=PackedStringArray("credits_layer", "credits_panel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_6kcx7")
+script = ExtResource("3_v83xl")
+credits_layer = NodePath("..")
+credits_panel = NodePath("CreditsPanel")
+
+[node name="CreditsPanel" type="PanelContainer" parent="CreditsUI" unique_id=877933178]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsUI/CreditsPanel" unique_id=545533764]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsUI/CreditsPanel/MarginContainer" unique_id=2036315898]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HeaderLabel" type="Label" parent="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer" unique_id=589002237]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8v7w7")
+text = "Credits"
+label_settings = SubResource("LabelSettings_qjhbw")
+horizontal_alignment = 1
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer" unique_id=845030044]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=984474443]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6kcx7")
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer/ChoicesContainer/PanelContainer" unique_id=867070978]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer/ChoicesContainer/PanelContainer/MarginContainer" unique_id=817772027]
+layout_mode = 2
+text = "Jackachulian - Programming & Music"
+
+[node name="PanelContainer2" type="PanelContainer" parent="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1277723776]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6kcx7")
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer/ChoicesContainer/PanelContainer2" unique_id=2060186636]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer/ChoicesContainer/PanelContainer2/MarginContainer" unique_id=996947403]
+layout_mode = 2
+text = "D3vi1i5h_V0id - Writing & Programming"
+
+[node name="PanelContainer3" type="PanelContainer" parent="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=2044333673]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6kcx7")
+
+[node name="MarginContainer" type="MarginContainer" parent="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer/ChoicesContainer/PanelContainer3" unique_id=2078832816]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer/ChoicesContainer/PanelContainer3/MarginContainer" unique_id=1962379464]
+layout_mode = 2
+text = "Veracruz - UI Art & 2D Art"
+
+[node name="BackButton" type="Button" parent="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer" unique_id=663409190]
+layout_mode = 2
+size_flags_horizontal = 4
+text = " Back "
+
+[connection signal="pressed" from="CreditsUI/CreditsPanel/MarginContainer/VBoxContainer/BackButton" to="CreditsUI" method="_on_back_button_pressed"]

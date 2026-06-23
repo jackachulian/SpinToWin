@@ -20,10 +20,13 @@ var previous_public_trust: int
 
 const FACTIONS = ["The Nellworian Crown", "The Consortium", "The Laymen’s Syndicate", "The New Argentis City Government"]
 
+## When a save is loaded, this is true, otherwise, this is false
+static var save_started: bool = false
 
 func start_new_save():
 	reputations = [50, 50, 50, 50]
 	public_trust = 100
+	save_started = true
 
 func apply_changes_from_article(article: ArticleLevel):
 	previous_reputations = reputations.duplicate()

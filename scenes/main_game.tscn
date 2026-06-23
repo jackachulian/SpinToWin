@@ -7,11 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://dmo78qc1o5jde" path="res://scenes/layers/article_layer.tscn" id="4_2l77h"]
 [ext_resource type="PackedScene" uid="uid://cbgovibcuuf2h" path="res://scenes/title_menu_layer.tscn" id="4_nqdth"]
 [ext_resource type="PackedScene" uid="uid://cgctdvcuaa0r5" path="res://scenes/layers/results_layer.tscn" id="6_5cypo"]
+[ext_resource type="PackedScene" uid="uid://rck3gmq7gfni" path="res://scenes/layers/city_map_layer.tscn" id="6_8xp80"]
 [ext_resource type="PackedScene" uid="uid://bx6h6r5sdfdtt" path="res://scenes/layers/pause_layer.tscn" id="6_nqdth"]
 [ext_resource type="PackedScene" uid="uid://bxigef2xkgg42" path="res://scenes/layers/transition_layer.tscn" id="7_5cypo"]
 [ext_resource type="PackedScene" uid="uid://dumg5me26m8hw" path="res://scenes/layers/options_layer.tscn" id="8_nqdth"]
 [ext_resource type="PackedScene" uid="uid://cp7bmkraww10n" path="res://scenes/layers/debug_layer.tscn" id="8_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://73jm5qjy52vq" path="res://addons/dialogue_manager/example_balloon/example_balloon.tscn" id="12_o6v7o"]
+[ext_resource type="PackedScene" uid="uid://bkb14y8dd4vtu" path="res://scenes/layers/credits_layer.tscn" id="12_sp04v"]
 
 [node name="MainGame" type="Node" unique_id=1565906414 node_paths=PackedStringArray("open_layer_on_start")]
 process_mode = 3
@@ -32,12 +34,16 @@ script = ExtResource("2_ipu61")
 [node name="TitleMenuLayer" parent="." unique_id=1946908040 instance=ExtResource("4_nqdth")]
 visible = false
 
-[node name="TitleMenuUI" parent="TitleMenuLayer" index="0" unique_id=443854135 node_paths=PackedStringArray("player_data", "article_loader", "title_menu_layer", "options_layer", "article_layer")]
+[node name="TitleMenuUI" parent="TitleMenuLayer" index="0" unique_id=443854135 node_paths=PackedStringArray("player_data", "article_loader", "title_menu_layer", "options_layer", "credits_layer", "article_layer")]
 player_data = NodePath("../../Systems/PlayerData")
 article_loader = NodePath("../../Systems/ArticleLoader")
 title_menu_layer = NodePath("..")
 options_layer = NodePath("../../OptionsLayer")
+credits_layer = NodePath("../../CreditsLayer")
 article_layer = NodePath("../../ArticleLayer")
+
+[node name="CityMapLayer" parent="." unique_id=146308038 instance=ExtResource("6_8xp80")]
+visible = false
 
 [node name="ArticleLayer" parent="." unique_id=197263611 instance=ExtResource("4_2l77h")]
 visible = false
@@ -70,6 +76,9 @@ visible = false
 [node name="PauseLayer" parent="." unique_id=1504918786 instance=ExtResource("6_nqdth")]
 
 [node name="OptionsLayer" parent="." unique_id=1297827084 instance=ExtResource("8_nqdth")]
+visible = false
+
+[node name="CreditsLayer" parent="." unique_id=1077651328 instance=ExtResource("12_sp04v")]
 visible = false
 
 [node name="TransitionLayer" parent="." unique_id=524541884 instance=ExtResource("7_5cypo")]

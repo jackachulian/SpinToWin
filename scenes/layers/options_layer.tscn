@@ -21,7 +21,6 @@ stacked_outline_2/color = Color(1, 1, 1, 1)
 layer = 250
 script = ExtResource("1_nvqnw")
 animatable_control = NodePath("OptionsUI")
-open_layer_on_start = true
 
 [node name="OptionsUI" type="Control" parent="." unique_id=544074231 node_paths=PackedStringArray("options_layer", "options_panel")]
 layout_mode = 3

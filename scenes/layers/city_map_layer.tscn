@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://rck3gmq7gfni"]
+
+[ext_resource type="Script" uid="uid://bb7al8ko4q3nb" path="res://scripts/core/transitionable_layer.gd" id="1_vj1ly"]
+
+[node name="CityMapLayer" type="CanvasLayer" unique_id=146308038]
+script = ExtResource("1_vj1ly")
