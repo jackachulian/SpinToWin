@@ -35,6 +35,7 @@ title_label = NodePath("MarginContainer/VBoxContainer/GameTitleLabel")
 choices_container = NodePath("MarginContainer/VBoxContainer/ChoicesContainer")
 continue_button = NodePath("MarginContainer/VBoxContainer/ChoicesContainer/ContinueButton")
 starting_dialogue = ExtResource("4_c5xmk")
+override_continue = true
 
 [node name="MarginContainer" type="MarginContainer" parent="TitleMenuUI" unique_id=1945778532]
 layout_mode = 1

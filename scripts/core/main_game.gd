@@ -24,7 +24,7 @@ func _ready() -> void:
 @onready var city_map_layer: TransitionableLayer = $CityMapLayer
 @onready var article_layer: TransitionableLayer = $ArticleLayer
 @onready var results_layer: TransitionableLayer = $ResultsLayer
-@onready var dialogue_layer: DialogueManagerExampleBalloon = $DialogueLayer
+@onready var dialogue_layer: TransitionableLayer = $DialogueLayer
 @onready var pause_layer: CanvasLayer = $PauseLayer
 @onready var options_layer: TransitionableLayer = $OptionsLayer
 @onready var credits_layer: TransitionableLayer = $CreditsLayer

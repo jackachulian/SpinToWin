@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bxigef2xkgg42" path="res://scenes/layers/transition_layer.tscn" id="7_5cypo"]
 [ext_resource type="PackedScene" uid="uid://dumg5me26m8hw" path="res://scenes/layers/options_layer.tscn" id="8_nqdth"]
 [ext_resource type="PackedScene" uid="uid://cp7bmkraww10n" path="res://scenes/layers/debug_layer.tscn" id="8_o6v7o"]
-[ext_resource type="PackedScene" uid="uid://73jm5qjy52vq" path="res://addons/dialogue_manager/example_balloon/example_balloon.tscn" id="12_o6v7o"]
+[ext_resource type="PackedScene" uid="uid://dkgyw8btmx3qt" path="res://scenes/layers/dialogue_layer.tscn" id="9_8xp80"]
 [ext_resource type="PackedScene" uid="uid://bkb14y8dd4vtu" path="res://scenes/layers/credits_layer.tscn" id="12_sp04v"]
 
 [node name="MainGame" type="Node" unique_id=1565906414 node_paths=PackedStringArray("open_layer_on_start")]
@@ -42,7 +42,7 @@ visible = false
 [node name="ResultsLayer" parent="." unique_id=886279475 instance=ExtResource("6_5cypo")]
 visible = false
 
-[node name="DialogueLayer" parent="." unique_id=548383277 instance=ExtResource("12_o6v7o")]
+[node name="DialogueLayer" parent="." unique_id=1630943851 instance=ExtResource("9_8xp80")]
 visible = false
 
 [node name="PauseLayer" parent="." unique_id=1504918786 instance=ExtResource("6_nqdth")]
