@@ -21,17 +21,19 @@ stacked_outline_2/color = Color(1, 1, 1, 1)
 bg_color = Color(0.010799999, 0.019233331, 0.02, 1)
 border_width_left = 3
 border_width_top = 3
-border_width_right = 3
+border_width_right = 12
 border_width_bottom = 3
 border_color = Color(0.89, 0.8336333, 0.7209, 1)
 corner_radius_top_right = 2
 corner_radius_bottom_right = 48
+shadow_size = 10
+shadow_offset = Vector2(0, 2)
 
 [node name="CreditsLayer" type="CanvasLayer" unique_id=1077651328 node_paths=PackedStringArray("animatable_control")]
 script = ExtResource("1_vu3al")
 animatable_control = NodePath("CreditsUI")
 
-[node name="CreditsUI" type="Control" parent="." unique_id=1017809479 node_paths=PackedStringArray("credits_layer", "credits_panel")]
+[node name="CreditsUI" type="Control" parent="." unique_id=1017809479 node_paths=PackedStringArray("credits_layer", "credits_panel", "back_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,6 +44,7 @@ theme = ExtResource("2_6kcx7")
 script = ExtResource("3_v83xl")
 credits_layer = NodePath("..")
 credits_panel = NodePath("CreditsPanel")
+back_button = NodePath("CreditsPanel/MarginContainer/VBoxContainer/BackButton")
 
 [node name="CreditsPanel" type="PanelContainer" parent="CreditsUI" unique_id=877933178]
 custom_minimum_size = Vector2(0, 400)

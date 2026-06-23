@@ -1,0 +1,11 @@
+~ start
+Reagan: [[Hi|Hello|Howdy]], this is some dialogue.
+Reagan: Here are some choices.
+- Choice one
+	Reagan: You picked the first choice.
+- Choice two
+	Reagan: You picked the second choice.
+- Start over => start
+- Walk away => END
+Reagan: I am now going to end without doing anything else.
+=> END

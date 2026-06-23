@@ -80,6 +80,7 @@ func _process(delta: float) -> void:
 		item.modulate = Color(1,1,1,1 - absf(float(item_index) - visual_index)*choice_alpha_falloff)
 
 func _input(event: InputEvent) -> void:
+	if !choice: return
 	if event is InputEventKey:
 		if event.is_action_pressed("ui_accept"):
 			select_current_item()
@@ -89,6 +90,7 @@ func _input(event: InputEvent) -> void:
 			index += 1
 
 func _gui_input(event: InputEvent) -> void:
+	if !choice: return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			select_current_item()

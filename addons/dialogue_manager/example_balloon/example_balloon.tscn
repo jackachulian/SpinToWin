@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d1wt4ma6055l8" path="res://addons/dialogue_manager/example_balloon/example_balloon.gd" id="1_36de5"]
 [ext_resource type="FontFile" uid="uid://csoeb8lt1w2fl" path="res://assets/fonts/NoirLullabyStamp-ywgYZ.otf" id="2_1337t"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
+[ext_resource type="Resource" uid="uid://bv1igdg7svcoj" path="res://assets/dialogue/test.dialogue" id="2_kmygl"]
 [ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="2_nlsx6"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
 
@@ -45,6 +46,7 @@ _data = {
 [node name="ExampleBalloon" type="CanvasLayer" unique_id=1850426558]
 layer = 100
 script = ExtResource("1_36de5")
+dialogue_resource = ExtResource("2_kmygl")
 
 [node name="Balloon" type="Control" parent="." unique_id=871751244]
 unique_name_in_owner = true

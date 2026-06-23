@@ -14,6 +14,10 @@ extends AnimatableControl
 @export var choices_container: Control
 @export var continue_button: Control
 
+@export_group("Debug Variables")
+@export var starting_dialogue: DialogueResource
+@export var override_continue: bool
+
 func _on_new_pressed() -> void:
 	print("new game pressed")
 	player_data.start_new_save()
@@ -24,6 +28,9 @@ func _on_new_pressed() -> void:
 	
 func _on_continue_pressed() -> void:
 	print("continue pressed")
+	await title_menu_layer.close()
+	#TODO: abstract this call and relevent variables to its own System
+	DialogueManager.show_dialogue_balloon(starting_dialogue, "start")
 	pass
 
 func _on_options_pressed() -> void:
@@ -89,6 +96,10 @@ func animate_controls(start_x: float, end_x: float, start_modulate: Color, targe
 		current_duration += cascade_delay
 			
 	await tween.finished
+	
+	# For keyboard only controls, set focus to the first button
+	choices_container.get_child(0).call_deferred("grab_focus", true)
 
 func check_continue() -> void:
-	continue_button.visible = player_data.save_started
+	if not override_continue:
+		continue_button.visible = player_data.save_started if not override_continue else true

@@ -22,7 +22,7 @@ layer = 250
 script = ExtResource("1_nvqnw")
 animatable_control = NodePath("OptionsUI")
 
-[node name="OptionsUI" type="Control" parent="." unique_id=544074231 node_paths=PackedStringArray("options_layer", "options_panel")]
+[node name="OptionsUI" type="Control" parent="." unique_id=544074231 node_paths=PackedStringArray("options_layer", "options_panel", "back_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +33,7 @@ theme = ExtResource("2_20xl3")
 script = ExtResource("3_20xl3")
 options_layer = NodePath("..")
 options_panel = NodePath("OptionsPanel")
+back_button = NodePath("OptionsPanel/MarginContainer/VBoxContainer/BackButton")
 
 [node name="OptionsPanel" type="PanelContainer" parent="OptionsUI" unique_id=624063160]
 custom_minimum_size = Vector2(0, 400)

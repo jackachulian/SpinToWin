@@ -4,6 +4,7 @@ extends AnimatableControl
 @export var credits_layer: TransitionableLayer
 
 @export var credits_panel: Control
+@export var back_button: Control
 
 func _ready() -> void:
 	credits_panel.scale = Vector2.ZERO
@@ -16,6 +17,8 @@ func animate_in():
 	tween.tween_property(
 		credits_panel, "scale", Vector2.ONE, 0.4
 	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	await tween.finished
+	back_button.call_deferred("grab_focus", true)
 
 func animate_out():
 	var tween = create_tween()
