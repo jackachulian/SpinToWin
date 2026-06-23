@@ -112,7 +112,8 @@ func setup(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -
 		child.queue_free()
 		
 	index = choice.chosen_option
-	visual_index = index
+	choice_anim_start_index = choice.chosen_option
+	visual_index = choice.chosen_option
 		
 	for option_index: int in choice.options.size():
 		var choice_option_item := choice_option_item_scene.instantiate() as ArticleChoiceOptionItemUI
@@ -130,16 +131,17 @@ func setup(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -
 		max_width = maxf(max_width, item.size.x)
 		max_height = maxf(max_height, item.size.y)
 		
-	var end_local_point := choice_origin.position + Vector2(max_width, 0)
-	var end_global_point := get_global_transform() * end_local_point
 	var viewport_rect := get_viewport().get_visible_rect()
 	var viewport_size: Vector2 = viewport_rect.size
-	if end_global_point.x > viewport_size.x - side_margin:
-		choice_origin.global_position.x = viewport_size.x - side_margin - max_width
 		
 	var start_global_point := sentence_start_rtl.global_position
 	if start_global_point.x < viewport_rect.position.x + side_margin:
 		choice_origin.global_position.x = viewport_rect.position.x + sentence_start_rtl.size.x + side_margin
+		
+	var end_local_point := choice_origin.position + Vector2(max_width, 0)
+	var end_global_point := get_global_transform() * end_local_point
+	if end_global_point.x > viewport_size.x - side_margin:
+		choice_origin.global_position.x = viewport_size.x - side_margin - max_width
 		
 	update_ui_elements()
 

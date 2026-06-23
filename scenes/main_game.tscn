@@ -15,6 +15,19 @@
 [ext_resource type="PackedScene" uid="uid://73jm5qjy52vq" path="res://addons/dialogue_manager/example_balloon/example_balloon.tscn" id="12_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://bkb14y8dd4vtu" path="res://scenes/layers/credits_layer.tscn" id="12_sp04v"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xp80"]
+resource_local_to_scene = true
+bg_color = Color(0.37254903, 0.6392157, 0.3647059, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [node name="MainGame" type="Node" unique_id=1565906414 node_paths=PackedStringArray("open_layer_on_start")]
 process_mode = 3
 script = ExtResource("1_s3esy")
@@ -32,7 +45,6 @@ script = ExtResource("2_ipu61")
 [node name="CoreLayer" parent="." unique_id=883448445 instance=ExtResource("3_70vka")]
 
 [node name="TitleMenuLayer" parent="." unique_id=1946908040 instance=ExtResource("4_nqdth")]
-visible = false
 
 [node name="TitleMenuUI" parent="TitleMenuLayer" index="0" unique_id=443854135 node_paths=PackedStringArray("player_data", "article_loader", "title_menu_layer", "options_layer", "credits_layer", "article_layer")]
 player_data = NodePath("../../Systems/PlayerData")
@@ -53,22 +65,15 @@ player_data = NodePath("../../Systems/PlayerData")
 article_loader = NodePath("../../Systems/ArticleLoader")
 results_layer = NodePath("../../ResultsLayer")
 
-[node name="ChoiceEditPanel" parent="ArticleLayer/ArticleUI" index="6" unique_id=434387884]
-choice_anim_duration = 0.25
-choice_alpha_falloff = 0.25
-
-[node name="ChoiceOptionItem2" parent="ArticleLayer/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" parent_id_path=PackedInt32Array(197263611, 712736407) index="1" unique_id=1756681024]
-modulate = Color(1, 1, 1, 0.75)
-
-[node name="ChoiceOptionItem3" parent="ArticleLayer/ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" parent_id_path=PackedInt32Array(197263611, 712736407) index="2" unique_id=136626459]
-modulate = Color(1, 1, 1, 0.5)
-
 [node name="ResultsLayer" parent="." unique_id=886279475 instance=ExtResource("6_5cypo")]
 visible = false
 
 [node name="ResultsUI" parent="ResultsLayer" index="0" unique_id=1574235591 node_paths=PackedStringArray("player_data", "article_loader")]
 player_data = NodePath("../../Systems/PlayerData")
 article_loader = NodePath("../../Systems/ArticleLoader")
+
+[node name="ProgressBar" parent="ResultsLayer/ResultsUI/MarginContainer/FactionContainer/FactionUI4" parent_id_path=PackedInt32Array(886279475, 1628389034) index="2" unique_id=1045002707]
+theme_override_styles/fill = SubResource("StyleBoxFlat_8xp80")
 
 [node name="DialogueLayer" parent="." unique_id=548383277 instance=ExtResource("12_o6v7o")]
 visible = false
@@ -88,3 +93,4 @@ visible = false
 [editable path="TitleMenuLayer"]
 [editable path="ArticleLayer"]
 [editable path="ResultsLayer"]
+[editable path="ResultsLayer/ResultsUI/MarginContainer/FactionContainer/FactionUI4"]

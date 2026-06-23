@@ -6,6 +6,22 @@
 [ext_resource type="PackedScene" uid="uid://ctlan0yk1q4c6" path="res://scenes/results/faction_ui.tscn" id="4_krrw2"]
 [ext_resource type="FontFile" uid="uid://cnda311t1okga" path="res://assets/fonts/QuietStreets-yrYM.ttf" id="5_ioo6w"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ioo6w"]
+font_size = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioo6w"]
+resource_local_to_scene = true
+bg_color = Color(0.37254903, 0.6392157, 0.3647059, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_roip1"]
 content_margin_left = 8.0
 content_margin_top = 4.0
@@ -110,6 +126,16 @@ layout_mode = 2
 [node name="FactionUI4" parent="ResultsUI/MarginContainer/FactionContainer" unique_id=1628389034 instance=ExtResource("4_krrw2")]
 layout_mode = 2
 
+[node name="LabelContainer" parent="ResultsUI/MarginContainer/FactionContainer/FactionUI4" index="1" unique_id=1165043586]
+offset_left = -101.5
+offset_right = 101.5
+
+[node name="Label" parent="ResultsUI/MarginContainer/FactionContainer/FactionUI4/LabelContainer" index="0" unique_id=1092740077]
+label_settings = SubResource("LabelSettings_ioo6w")
+
+[node name="ProgressBar" parent="ResultsUI/MarginContainer/FactionContainer/FactionUI4" index="2" unique_id=1045002707]
+theme_override_styles/fill = SubResource("StyleBoxFlat_ioo6w")
+
 [node name="Continue" type="Control" parent="ResultsUI" unique_id=1315760782]
 layout_mode = 1
 anchors_preset = 3
@@ -142,3 +168,5 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_loe11")
 theme_override_styles/hover = SubResource("StyleBoxFlat_x1djg")
 theme_override_styles/focus = SubResource("StyleBoxFlat_2rook")
 text = "CONTINUE"
+
+[editable path="ResultsUI/MarginContainer/FactionContainer/FactionUI4"]

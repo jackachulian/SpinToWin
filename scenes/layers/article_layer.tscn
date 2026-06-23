@@ -345,8 +345,6 @@ choice_origin = NodePath("ChoiceOrigin")
 sentence_start_rtl = NodePath("ChoiceOrigin/SentenceStart/SentenceStartRTL")
 choice_container = NodePath("ChoiceOrigin/ChoiceContainer")
 choice_anim_curve = SubResource("Curve_nqdth")
-choice_anim_duration = null
-choice_alpha_falloff = null
 normal_label_settings = ExtResource("14_ruko1")
 focused_label_settings = ExtResource("15_a5tvl")
 left_arrow = NodePath("ChoiceOrigin/LeftArrowPolygon2D")
@@ -441,11 +439,13 @@ offset_right = 307.0
 offset_bottom = 30.0
 
 [node name="ChoiceOptionItem2" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=1756681024 instance=ExtResource("7_l8meg")]
+modulate = Color(1, 1, 1, 0.75)
 layout_mode = 0
 offset_bottom = 30.0
 rotation = 0.13962634
 
 [node name="ChoiceOptionItem3" parent="ArticleUI/ChoiceEditPanel/ChoiceOrigin/ChoiceContainer" unique_id=136626459 instance=ExtResource("7_l8meg")]
+modulate = Color(1, 1, 1, 0.5)
 layout_mode = 0
 offset_bottom = 30.0
 rotation = 0.27925268

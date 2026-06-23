@@ -93,6 +93,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4ieh6")
 layout_mode = 2
 text = "Faction Name"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1045002707]
 layout_mode = 1

@@ -18,7 +18,7 @@ var public_trust: int
 ## This data may be displayed on the results layer.
 var previous_public_trust: int
 
-const FACTIONS = ["The Nellworian Crown", "The Consortium", "The Laymen’s Syndicate", "The New Argentis City Government"]
+const FACTIONS = ["The Nellworian Crown", "The Consortium", "The Laymen’s Syndicate", "New Argentis City Government"]
 
 ## When a save is loaded, this is true, otherwise, this is false
 static var save_started: bool = false

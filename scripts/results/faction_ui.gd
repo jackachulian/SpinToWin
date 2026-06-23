@@ -29,6 +29,8 @@ func setup(faction: int, old_reputation: float, new_reputation: float) -> void:
 	self.old_reputation = old_reputation
 	self.new_reputation = new_reputation
 	
+	faction_name_label.text = PlayerData.FACTIONS[faction]
+	
 	var color := get_reputation_color(old_reputation)
 	reputation_bar.value = old_reputation
 	var fill_stylebox: StyleBoxFlat = reputation_bar.get_theme_stylebox("fill")

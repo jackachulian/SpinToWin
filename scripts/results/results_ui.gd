@@ -4,7 +4,18 @@ extends AnimatableControl
 @export var player_data: PlayerData
 @export var article_loader: ArticleLoader
 
+@export var results_layer: TransitionableLayer
+@export var map_layer: TransitionableLayer
+
 @export var faction_container: Control
+
+func _on_continue_button_pressed() -> void:
+	player_data.apply_changes_from_article(article_loader.article)
+	
+	# TODO: take player back to the map if the game is still going,
+	# or this will probably be where any endings are played if the player won/lost
+	results_layer.transition_to(map_layer)
+
 
 func animate_in():
 	for faction_index: int in faction_container.get_child_count():
