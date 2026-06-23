@@ -27,5 +27,6 @@ func _ready() -> void:
 @onready var dialogue_layer: DialogueManagerExampleBalloon = $DialogueLayer
 @onready var pause_layer: CanvasLayer = $PauseLayer
 @onready var options_layer: TransitionableLayer = $OptionsLayer
+@onready var credits_layer: TransitionableLayer = $CreditsLayer
 @onready var transition_layer: CanvasLayer = $TransitionLayer
 @onready var debug_layer: CanvasLayer = $DebugLayer
