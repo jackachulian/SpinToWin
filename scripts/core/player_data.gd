@@ -1,7 +1,7 @@
 class_name PlayerData
 extends Node
 
-## Indexes correspond to the FACTIONS array.
+## Indexes correspond to the FACTIONS array in FactionData
 ## Ranges from 0 to 100
 var reputations: Array[int]
 
@@ -17,8 +17,6 @@ var public_trust: int
 ## before the new trust is calculated.
 ## This data may be displayed on the results layer.
 var previous_public_trust: int
-
-const FACTIONS = ["The Nellworian Crown", "The Consortium", "The Laymen’s Syndicate", "New Argentis City Government"]
 
 ## When a save is loaded, this is true, otherwise, this is false
 static var save_started: bool = false

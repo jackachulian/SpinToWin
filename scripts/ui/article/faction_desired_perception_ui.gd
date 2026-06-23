@@ -19,8 +19,8 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 
 func setup() -> void:
-	var article := MainGame.instance.article_loader.article
-	faction_name_label.text = PlayerData.FACTIONS[faction_id]
+	var article := MainGame.instance.event_manager.article
+	faction_name_label.text = MainGame.instance.faction_data.names[faction_id]
 	desired_perception_label.text = article.desired_perceptions[faction_id]
 
 func _gui_input(event: InputEvent) -> void:

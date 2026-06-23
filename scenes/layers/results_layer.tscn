@@ -169,4 +169,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x1djg")
 theme_override_styles/focus = SubResource("StyleBoxFlat_2rook")
 text = "CONTINUE"
 
+[connection signal="pressed" from="ResultsUI/Continue/MarginContainer/ContinueButton" to="ResultsUI" method="_on_continue_button_pressed"]
+
 [editable path="ResultsUI/MarginContainer/FactionContainer/FactionUI4"]

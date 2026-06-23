@@ -2,9 +2,6 @@
 class_name ArticleLevel
 extends RefCounted
 
-## Shown on the event on the map when hovered over
-var preview: String
-
 var real_event: String
 
 ## One for each faction ID

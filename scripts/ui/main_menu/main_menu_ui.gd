@@ -12,19 +12,20 @@ extends AnimatableControl
 func _on_new_pressed() -> void:
 	print("new game pressed")
 	MainGame.instance.player_data.start_new_save()
-	# TODO: bring this to a new game dialogue or just straight to the map
-	MainGame.instance.article_loader.load_test_article()
-	MainGame.instance.title_menu_layer.transition_to(MainGame.instance.article_layer)
+	# TODO: maybe a new game dialogue here before going to map
+	MainGame.instance.transition_to(MainGame.instance.city_map_layer)
 	pass
 	
 func _on_continue_pressed() -> void:
 	print("continue pressed")
 	await MainGame.instance.title_menu_layer.close()
 	#TODO: abstract this call and relevent variables to its own System
+	MainGame.instance.dialogue_layer.open_active()
 	DialogueManager.show_dialogue_balloon(starting_dialogue, "start")
 	pass
 
 func _on_options_pressed() -> void:
+	print("options pressed")
 	MainGame.instance.title_menu_layer.open_nested(MainGame.instance.options_layer)
 
 func _on_credits_pressed() -> void:

@@ -1,22 +1,37 @@
 class_name MainGame
 extends Node
 
+static var instance: MainGame = MainGame.new()
+
 
 ## The layer to open when the game is started
 @export var open_layer_on_start: TransitionableLayer
 
-static var instance: MainGame
+## The current active layer. There can be one active layer,
+## and when a new active layer is opened, any current active layer is closed.
+var active_layer: TransitionableLayer
+
 
 func _enter_tree() -> void:
 	instance = self
 
 func _ready() -> void:
+	faction_data = $Systems/FactionData
 	if open_layer_on_start:
-		open_layer_on_start.open()
+		transition_to(open_layer_on_start)
+		
+## Closes any active layer. 
+## The passed layer becomes the new active layer and is opened.
+func transition_to(trans_layer: TransitionableLayer) -> void:
+	if active_layer: 
+		active_layer.close()
+	active_layer = trans_layer
+	active_layer.open()
 
 # -------- Systems --------
 @onready var player_data: PlayerData = $Systems/PlayerData
-@onready var article_loader: ArticleLoader = $Systems/ArticleLoader
+@onready var event_manager: EventManager = $Systems/EventManager
+var faction_data: FactionData = FactionData.new()
 
 # -------- Canvas layers --------
 @onready var core_layer: CanvasLayer = $CoreLayer

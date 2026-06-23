@@ -35,6 +35,11 @@ func open_nested(trans_layer: TransitionableLayer) -> void:
 	await trans_layer.closed
 	open()
 	
+## Open this as the active layer on the MainGame instance.
+## Will close any previous active layer
+func open_active() -> void:
+	MainGame.instance.transition_to(self)
+	
 ## Close this layer and open the given layer.
 func transition_to(trans_layer: TransitionableLayer) -> void:
 	close()

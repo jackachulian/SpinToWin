@@ -7,7 +7,7 @@ static func load_file(path: String) -> ArticleLevel:
 
 static func parse(text: String) -> ArticleLevel:
 	var article := ArticleLevel.new()
-	article.desired_perceptions.resize(PlayerData.FACTIONS.size())
+	article.desired_perceptions.resize(MainGame.instance.faction_data.names.size())
 
 	var current_section := ""
 
@@ -22,9 +22,6 @@ static func parse(text: String) -> ArticleLevel:
 			continue
 
 		match current_section:
-			"#preview": # dialogue to play (idk if this will be in another file or not)
-				article.preview += line
-			
 			"#real-event":
 				article.real_event += line + "\n"
 
@@ -46,7 +43,6 @@ static func parse(text: String) -> ArticleLevel:
 			"#body":
 				article.body.append(_parse_article_line(line))
 
-	article.preview = article.preview.strip_edges()
 	article.real_event = article.real_event.strip_edges()
 	for i in article.desired_perceptions.size():
 		article.desired_perceptions[i] = article.desired_perceptions[i].strip_edges()

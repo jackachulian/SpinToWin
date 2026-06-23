@@ -20,13 +20,13 @@ extends AnimatableControl
 func _ready() -> void:
 	blur_material.set_shader_parameter("blur_radius", 0.00)
 	choice_edit_panel.item_selected.connect(_on_choice_edit_panel_item_selected)
+	
+	header_rtl.choice_clicked.connect(_on_choice_clicked)
+	body_rtl.choice_clicked.connect(_on_choice_clicked)
 
 func setup(article: ArticleLevel) -> void:
 	header_rtl.setup([article.header])
 	body_rtl.setup(article.body)
-	
-	header_rtl.choice_clicked.connect(_on_choice_clicked)
-	body_rtl.choice_clicked.connect(_on_choice_clicked)
 	
 	real_event_label.text = article.real_event
 	desired_perception_ui.setup()
@@ -43,8 +43,8 @@ func _on_choice_edit_panel_item_selected(_choice: ArticleChoice, _index: int) ->
 	
 	
 func _on_submit_button_pressed() -> void:
-	MainGame.instance.player_data.apply_changes_from_article(MainGame.instance.article_loader.article)
-	MainGame.instance.article_layer.transition_to(MainGame.instance.results_layer)
+	MainGame.instance.player_data.apply_changes_from_article(MainGame.instance.event_manager.article)
+	MainGame.instance.results_layer.open_active()
 
 	
 const ANIM_CLEAR_COLOR := Color(1,1,1,0)
@@ -57,7 +57,7 @@ const SUBMIT_ANIM_IN_DURATION := 1.0
 const SUBMIT_ANIM_OUT_DURATION := 0.8
 
 func animate_in() -> void:
-	setup(MainGame.instance.article_loader.article)
+	setup(MainGame.instance.event_manager.article)
 	
 	await get_tree().process_frame
 

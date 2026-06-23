@@ -4,9 +4,11 @@
 [ext_resource type="Script" uid="uid://bw0id45e0eebq" path="res://scripts/ui/city_map/city_map_ui.gd" id="2_rowob"]
 [ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="2_wrs82"]
 [ext_resource type="Texture2D" uid="uid://bf3o57s62bg5c" path="res://icon.svg" id="4_leaux"]
+[ext_resource type="PackedScene" uid="uid://cuvjjqwfdonss" path="res://scenes/city_map/city_map_faction_preview.tscn" id="5_ue58t"]
+[ext_resource type="PackedScene" uid="uid://bi1paa7uiif22" path="res://scenes/city_map/event_ui.tscn" id="6_e3gvu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leaux"]
-bg_color = Color(0.059399996, 0.10747, 0.11, 0.68235296)
+bg_color = Color(0.0224, 0.07, 0.07, 0.8392157)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -15,22 +17,8 @@ border_color = Color(0.6318, 0.78, 0.78, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ue58t"]
-bg_color = Color(0.0504, 0.100279994, 0.12, 1)
-border_color = Color(0.82804394, 0.784154, 0.6590126, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3gvu"]
-resource_local_to_scene = true
-bg_color = Color(0.37254903, 0.6392157, 0.3647059, 1)
-border_color = Color(0.8, 0.8, 0.8, 0)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+[sub_resource type="LabelSettings" id="LabelSettings_4ieh6"]
+font_size = 18
 
 [node name="CityMapLayer" type="CanvasLayer" unique_id=146308038]
 script = ExtResource("1_vj1ly")
@@ -58,56 +46,54 @@ offset_right = 466.0
 offset_bottom = 284.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_leaux")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CityMapUI/PanelContainer" unique_id=255769519]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer" unique_id=1651421061]
+[node name="InfoContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer" unique_id=1651421061]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_right = 15
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CityMapUI/PanelContainer/VBoxContainer/MarginContainer" unique_id=1066170595]
+[node name="HBoxContainer" type="HBoxContainer" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer" unique_id=1066170595]
 layout_mode = 2
-theme_override_constants/separation = 8
 
-[node name="TextureRect" type="TextureRect" parent="CityMapUI/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1561566677]
+[node name="TextureRect" type="TextureRect" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1561566677]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("4_leaux")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="CityMapUI/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1367405159]
+[node name="Label" type="Label" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1367405159]
 layout_mode = 2
 text = "Current Time: Midday"
+label_settings = SubResource("LabelSettings_4ieh6")
 
-[node name="MarginContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1346161239]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CityMapUI/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer" unique_id=2105853353]
+[node name="Spacer" type="Control" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=101692564]
+custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CityMapUI/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=1738999383]
-custom_minimum_size = Vector2(48, 48)
+[node name="CityMapFactionPreview" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1443954488 instance=ExtResource("5_ue58t")]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture = ExtResource("4_leaux")
-expand_mode = 1
+size_flags_horizontal = 3
+faction_id = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="CityMapUI/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/HBoxContainer" unique_id=462375980]
-custom_minimum_size = Vector2(100, 15)
+[node name="CityMapFactionPreview2" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1910342403 instance=ExtResource("5_ue58t")]
 layout_mode = 2
-size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_ue58t")
-theme_override_styles/fill = SubResource("StyleBoxFlat_e3gvu")
-value = 64.78
-show_percentage = false
+size_flags_horizontal = 3
+faction_id = 2
 
-[node name="Control" type="Control" parent="CityMapUI/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer" unique_id=310800012]
+[node name="CityMapFactionPreview3" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1203858224 instance=ExtResource("5_ue58t")]
 layout_mode = 2
+size_flags_horizontal = 3
+faction_id = 3
+
+[node name="EventMapContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer" unique_id=501916676]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventMap" type="Control" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer" unique_id=1685153136]
+layout_mode = 2
+
+[node name="EventUI" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=234452478 instance=ExtResource("6_e3gvu")]
+layout_mode = 0

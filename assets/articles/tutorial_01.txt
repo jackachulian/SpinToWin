@@ -1,6 +1,3 @@
-#preview
-There's a town council meeting happening soon, and it seems like they're planning some new urban development...
-
 #real-event
 The town council approved funding for a new public park. Construction will begin next month.
 

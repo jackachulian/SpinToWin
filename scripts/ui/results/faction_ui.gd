@@ -24,12 +24,13 @@ var old_reputation: float
 var new_reputation: float
 
 # TODO: pass a faction data object or similar
+@warning_ignore("shadowed_variable")
 func setup(faction: int, old_reputation: float, new_reputation: float) -> void:	
 	self.faction = faction
 	self.old_reputation = old_reputation
 	self.new_reputation = new_reputation
 	
-	faction_name_label.text = PlayerData.FACTIONS[faction]
+	faction_name_label.text = MainGame.instance.faction_data.names[faction]
 	
 	var color := get_reputation_color(old_reputation)
 	reputation_bar.value = old_reputation

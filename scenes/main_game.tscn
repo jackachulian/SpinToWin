@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://ctfnjguaapiug"]
 
 [ext_resource type="Script" uid="uid://c5l013w08nt72" path="res://scripts/core/main_game.gd" id="1_s3esy"]
-[ext_resource type="Script" uid="uid://dh832ue8yul2n" path="res://scripts/systems/article/article_test_loader.gd" id="2_ipu61"]
+[ext_resource type="Script" uid="uid://dh832ue8yul2n" path="res://scripts/core/article_data.gd" id="2_ipu61"]
 [ext_resource type="PackedScene" uid="uid://w0bqlv2mloff" path="res://scenes/layers/core_layer.tscn" id="3_70vka"]
 [ext_resource type="Script" uid="uid://cj4okj3sr6n3x" path="res://scripts/core/player_data.gd" id="3_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://dmo78qc1o5jde" path="res://scenes/layers/article_layer.tscn" id="4_2l77h"]
 [ext_resource type="PackedScene" uid="uid://cbgovibcuuf2h" path="res://scenes/title_menu_layer.tscn" id="4_nqdth"]
+[ext_resource type="Script" uid="uid://yopsldd2qcxg" path="res://scripts/systems/factions/faction_data.gd" id="4_sp04v"]
 [ext_resource type="PackedScene" uid="uid://cgctdvcuaa0r5" path="res://scenes/layers/results_layer.tscn" id="6_5cypo"]
 [ext_resource type="PackedScene" uid="uid://rck3gmq7gfni" path="res://scenes/layers/city_map_layer.tscn" id="6_8xp80"]
 [ext_resource type="PackedScene" uid="uid://bx6h6r5sdfdtt" path="res://scenes/layers/pause_layer.tscn" id="6_nqdth"]
@@ -26,12 +27,16 @@ editor_description = "Defined place for high-level systems"
 [node name="PlayerData" type="Node" parent="Systems" unique_id=209823503]
 script = ExtResource("3_o6v7o")
 
-[node name="ArticleLoader" type="Node" parent="Systems" unique_id=737525035]
+[node name="EventManager" type="Node" parent="Systems" unique_id=737525035]
 script = ExtResource("2_ipu61")
+
+[node name="FactionData" type="Node" parent="Systems" unique_id=560973650]
+script = ExtResource("4_sp04v")
 
 [node name="CoreLayer" parent="." unique_id=883448445 instance=ExtResource("3_70vka")]
 
 [node name="TitleMenuLayer" parent="." unique_id=1946908040 instance=ExtResource("4_nqdth")]
+visible = false
 
 [node name="CityMapLayer" parent="." unique_id=146308038 instance=ExtResource("6_8xp80")]
 visible = false
