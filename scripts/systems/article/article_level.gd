@@ -2,9 +2,16 @@
 class_name ArticleLevel
 extends RefCounted
 
+## Shown on the event on the map when hovered over
+var preview: String
+
 var real_event: String
-var desired_perception: String
+
+## One for each faction ID
+var desired_perceptions: Array[String] = []
+
 var header: ArticleLine
+
 var body: Array[ArticleLine] = []
 
 ## Returns a list of changes if the article were to be submitted in its current state. The last item is Public Trurst change, all other items are reputation changes where their index corresponds to the FACTION array in PlayerData.
@@ -25,7 +32,7 @@ static func _add_line_reputation_changes(reputation_changes: Array[int], line: A
 
 func print_data():
 	print(real_event)
-	print(desired_perception)
+	print(desired_perceptions)
 
 	print("-------- #header --------")
 	_print_article_line(header)

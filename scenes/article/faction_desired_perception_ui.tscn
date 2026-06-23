@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bvijq8hyjfwod"]
+
+[ext_resource type="Texture2D" uid="uid://bf3o57s62bg5c" path="res://icon.svg" id="1_4kswq"]
+[ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_t2h6u"]
+[ext_resource type="Script" uid="uid://k51g1tjm6quv" path="res://scripts/ui/article/faction_desired_perception_ui.gd" id="2_64i1n"]
+[ext_resource type="FontFile" uid="uid://c8qul3alvi37g" path="res://assets/fonts/CarpalTunnel-aEWa.ttf" id="2_t2h6u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_64i1n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5tik6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6vxh"]
+bg_color = Color(1, 1, 1, 0.1254902)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_4kik5"]
+font_size = 14
+font_color = Color(0.99535555, 0.9449063, 0.768716, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o0ard"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ieh6"]
+
+[node name="FactionDesiredPerception" type="PanelContainer" unique_id=39800844 node_paths=PackedStringArray("texture_rect", "faction_name_label", "desired_perception_label")]
+offset_right = 267.0
+offset_bottom = 304.0
+theme = ExtResource("1_t2h6u")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_64i1n")
+script = ExtResource("2_64i1n")
+texture_rect = NodePath("VBoxContainer/HBoxContainer/TextureRect")
+faction_name_label = NodePath("VBoxContainer/HBoxContainer/FactionNameLabel")
+desired_perception_label = NodePath("VBoxContainer/DesiredPerceptionLabel")
+normal_stylebox = SubResource("StyleBoxEmpty_5tik6")
+hovered_stylebox = SubResource("StyleBoxFlat_a6vxh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1830267793]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1258746379]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=1344604205]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_4kswq")
+expand_mode = 1
+
+[node name="FactionNameLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=116688167]
+custom_minimum_size = Vector2(1, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "New Argentis City Government"
+label_settings = SubResource("LabelSettings_4kik5")
+autowrap_mode = 2
+
+[node name="DesiredPerceptionLabel" type="Label" parent="VBoxContainer" unique_id=1224662191]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_t2h6u")
+text = "Faction's desired perception"
+label_settings = SubResource("LabelSettings_o0ard")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HoverPanel" type="Panel" parent="." unique_id=576524414]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4ieh6")

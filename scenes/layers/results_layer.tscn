@@ -7,7 +7,6 @@
 [ext_resource type="FontFile" uid="uid://cnda311t1okga" path="res://assets/fonts/QuietStreets-yrYM.ttf" id="5_ioo6w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ioo6w"]
-font_size = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioo6w"]
 resource_local_to_scene = true
@@ -115,6 +114,7 @@ theme_override_constants/margin_bottom = 40
 layout_mode = 2
 
 [node name="FactionUI" parent="ResultsUI/MarginContainer/FactionContainer" unique_id=1678427921 instance=ExtResource("4_krrw2")]
+visible = false
 layout_mode = 2
 
 [node name="FactionUI2" parent="ResultsUI/MarginContainer/FactionContainer" unique_id=1118013385 instance=ExtResource("4_krrw2")]

@@ -17,6 +17,9 @@ func animate_in():
 		faction_ui.setup(faction_index, old_rep, new_rep)
 	
 	for faction_index: int in faction_container.get_child_count():
+		# skip showing Nellworian's Crown, for now
+		if faction_index == 0: continue
+		
 		var faction_ui: FactionUI = faction_container.get_child(faction_index)
 		faction_ui.show()
 		animate_faction_ui(faction_ui)

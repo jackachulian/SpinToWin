@@ -5,17 +5,16 @@ extends AnimatableControl
 @export var body_rtl: ArticleTextRTL
 
 @export var real_event_panel: Control
-@export var desired_perception_panel: Control
 @export var article_panel: Control
 @export var submit_article_panel: Control
 
 @export var real_event_label: Label
-@export var desired_perception_label: Label
 
 #@export var article_texture_rect: TextureRect
 @export var blur_material: ShaderMaterial
 @export var choice_edit_blur_radius: float = 0.375
 
+@export var desired_perception_ui: DesiredPerceptionUI
 @export var choice_edit_panel: ChoiceEditPanel
 
 func _ready() -> void:
@@ -30,7 +29,7 @@ func setup(article: ArticleLevel) -> void:
 	body_rtl.choice_clicked.connect(_on_choice_clicked)
 	
 	real_event_label.text = article.real_event
-	desired_perception_label.text = article.desired_perception
+	desired_perception_ui.setup()
 	
 func _on_choice_clicked(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -> void:
 	choice_edit_panel.setup(choice, global_pos, sentence_start)
@@ -66,9 +65,9 @@ func animate_in() -> void:
 	real_event_panel.offset_transform_position = REAL_EVENT_ANIM_OFFSET
 	real_event_panel.modulate = ANIM_CLEAR_COLOR
 	
-	desired_perception_panel.offset_transform_enabled = true
-	desired_perception_panel.offset_transform_position = DESIRED_PERCEPTION_ANIM_OFFSET
-	desired_perception_panel.modulate = ANIM_CLEAR_COLOR
+	desired_perception_ui.offset_transform_enabled = true
+	desired_perception_ui.offset_transform_position = DESIRED_PERCEPTION_ANIM_OFFSET
+	desired_perception_ui.modulate = ANIM_CLEAR_COLOR
 	
 	article_panel.offset_transform_enabled = true
 	article_panel.offset_transform_scale = Vector2.ZERO
@@ -83,8 +82,8 @@ func animate_in() -> void:
 	tween.tween_property(real_event_panel, "offset_transform_position", Vector2.ZERO, ANIM_IN_DURATION)
 	tween.tween_property(real_event_panel, "modulate", Color.WHITE, ANIM_IN_DURATION)
 	
-	tween.tween_property(desired_perception_panel, "offset_transform_position", Vector2.ZERO, ANIM_IN_DURATION)
-	tween.tween_property(desired_perception_panel, "modulate", Color.WHITE, ANIM_IN_DURATION)
+	tween.tween_property(desired_perception_ui, "offset_transform_position", Vector2.ZERO, ANIM_IN_DURATION)
+	tween.tween_property(desired_perception_ui, "modulate", Color.WHITE, ANIM_IN_DURATION)
 	
 	tween.tween_property(article_panel, "offset_transform_scale", Vector2.ONE, ANIM_IN_DURATION)
 	tween.tween_property(article_panel, "modulate", Color.WHITE, ANIM_IN_DURATION)
@@ -100,8 +99,8 @@ func animate_out() -> void:
 	tween.tween_property(real_event_panel, "offset_transform_position", REAL_EVENT_ANIM_OFFSET, ANIM_OUT_DURATION)
 	tween.tween_property(real_event_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_OUT_DURATION)
 	
-	tween.tween_property(desired_perception_panel, "offset_transform_position", DESIRED_PERCEPTION_ANIM_OFFSET, ANIM_OUT_DURATION)
-	tween.tween_property(desired_perception_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_OUT_DURATION)
+	tween.tween_property(desired_perception_ui, "offset_transform_position", DESIRED_PERCEPTION_ANIM_OFFSET, ANIM_OUT_DURATION)
+	tween.tween_property(desired_perception_ui, "modulate", ANIM_CLEAR_COLOR, ANIM_OUT_DURATION)
 	
 	tween.tween_property(article_panel, "offset_transform_scale", Vector2.ZERO, ANIM_OUT_DURATION)
 	tween.tween_property(article_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_OUT_DURATION)

@@ -1,14 +1,17 @@
 #preview
 There's a town council meeting happening soon, and it seems like they're planning some new urban development...
 
-#dialogue
-You attended the town meeting. In the meeting, he council members approved for a brand new park to be built! The construction is planned to being next month.
-
 #real-event
 The town council approved funding for a new public park. Construction will begin next month.
 
-#desired-perception
-The government wants citizens to feel excited and grateful about the project.
+#desired-perception-0
+(The Nellworian Crown's desired perception but idk if this will be in the game, this tag can be omitted)
+#desired-perception-1
+The Consortium's desired perception
+#desired-perception-2
+The Laymen Syndicate's desired perception
+#desired-perception-3
+The New Argentis City Government's desired perception
 
 #header
 Town Council [Approves New Park (0,0,2,1,2) / Invests in Community Future (0,1,0,4,3) / Delivers Historic Gift to Citizens (-2,1,3,-6,1)]
