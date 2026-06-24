@@ -50,9 +50,13 @@ visible = false
 [node name="DialogueLayer" parent="." unique_id=1630943851 instance=ExtResource("9_8xp80")]
 visible = false
 
-[node name="HudLayer" parent="." unique_id=2082625234 instance=ExtResource("11_sp04v")]
-
 [node name="OptionsLayer" parent="." unique_id=1297827084 instance=ExtResource("8_nqdth")]
+visible = false
+
+[node name="HudLayer" parent="." unique_id=2082625234 instance=ExtResource("11_sp04v")]
+layer = 300
+
+[node name="PopupUI" parent="HudLayer/HudUI" parent_id_path=PackedInt32Array(2082625234, 1928380700) index="1" unique_id=158801729]
 visible = false
 
 [node name="CreditsLayer" parent="." unique_id=1077651328 instance=ExtResource("12_sp04v")]
@@ -61,3 +65,5 @@ visible = false
 [node name="TransitionLayer" parent="." unique_id=524541884 instance=ExtResource("7_5cypo")]
 
 [node name="DebugLayer" parent="." unique_id=1595910766 instance=ExtResource("8_o6v7o")]
+
+[editable path="HudLayer"]

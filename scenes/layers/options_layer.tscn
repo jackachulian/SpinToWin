@@ -18,12 +18,27 @@ stacked_outline_1/size = 32
 stacked_outline_2/size = 16
 stacked_outline_2/color = Color(1, 1, 1, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ewmxb"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0016065428, 0.050566174, 0.064224966, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.98393804, 0.5884861, 0.5698377, 1)
+corner_radius_top_right = 15
+shadow_size = 10
+shadow_offset = Vector2(0, 2)
+
 [node name="OptionsLayer" type="CanvasLayer" unique_id=1297827084 node_paths=PackedStringArray("animatable_control")]
 layer = 250
 script = ExtResource("1_nvqnw")
 animatable_control = NodePath("OptionsUI")
 
-[node name="OptionsUI" type="Control" parent="." unique_id=544074231 node_paths=PackedStringArray("options_layer", "bg_darkener", "options_panel", "back_button")]
+[node name="OptionsUI" type="Control" parent="." unique_id=544074231 node_paths=PackedStringArray("options_layer", "bg_darkener", "options_panel", "back_button", "quit_to_title_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,6 +51,7 @@ options_layer = NodePath("..")
 bg_darkener = NodePath("BackgroundDarkener")
 options_panel = NodePath("OptionsPanel")
 back_button = NodePath("OptionsPanel/MarginContainer/VBoxContainer/BackButton")
+quit_to_title_button = NodePath("OptionsPanel/MarginContainer/VBoxContainer/QuitToTitleButton")
 
 [node name="BackgroundDarkener" type="ColorRect" parent="OptionsUI" unique_id=689818676]
 layout_mode = 1
@@ -67,20 +83,20 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 3.0
-offset_bottom = 3.0
+offset_left = -193.0
+offset_top = -245.5
+offset_right = 193.0
+offset_bottom = 245.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="MarginContainer" type="MarginContainer" parent="OptionsUI/OptionsPanel" unique_id=1970774825]
 layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="OptionsUI/OptionsPanel/MarginContainer" unique_id=1536220421]
 layout_mode = 2
@@ -96,11 +112,55 @@ horizontal_alignment = 1
 [node name="ChoicesContainer" type="VBoxContainer" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer" unique_id=49636137]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=493198209]
+layout_mode = 2
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=32050519]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1044925051]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=449387553]
+layout_mode = 2
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=526128207]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=2054166569]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1372135334]
+layout_mode = 2
+text = "Ambience Volume"
+horizontal_alignment = 1
+
+[node name="AmbienceSlider" type="HSlider" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=818040404]
+layout_mode = 2
+
+[node name="Spacer3" type="Control" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1320274596]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
 
 [node name="BackButton" type="Button" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer" unique_id=472577676]
 layout_mode = 2
 size_flags_horizontal = 4
 text = " Back "
 
+[node name="QuitToTitleButton" type="Button" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer" unique_id=1083684204]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.99465686, 0.5491222, 0.5533334, 1)
+theme_override_colors/font_hover_color = Color(0.96, 0.82559997, 0.82559997, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ewmxb")
+text = "Quit To Title"
+
 [connection signal="pressed" from="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/BackButton" to="OptionsUI" method="_on_back_button_pressed"]
+[connection signal="pressed" from="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/QuitToTitleButton" to="OptionsUI" method="_on_quit_to_title_pressed"]
