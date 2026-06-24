@@ -6,6 +6,7 @@ extends AnimatableControl
 @export var bg_darkener: Control
 @export var options_panel: Control
 @export var back_button: Control
+@export var quit_to_title_button: Button
 
 func _ready() -> void:
 	options_panel.scale = Vector2.ZERO
@@ -13,7 +14,20 @@ func _ready() -> void:
 func _on_back_button_pressed() -> void:
 	options_layer.close()
 
+func _on_quit_to_title_pressed() -> void:
+	var option_index := await MainGame.instance.popup_ui.show_popup(
+		"Quit Game",
+		"Are you sure you want to quit? You will lose all your progress!",
+		["Confirm", "Cancel"]
+	)
+	if option_index == 0:
+		options_layer.close()
+		MainGame.instance.player_data.save_started = false
+		MainGame.instance.title_menu_layer.open_active()
+
 func animate_in():
+	quit_to_title_button.visible = MainGame.instance.player_data.save_started
+	
 	var tween = create_tween().set_parallel()
 	tween.tween_property(
 		options_panel, "scale", Vector2.ONE, 0.4

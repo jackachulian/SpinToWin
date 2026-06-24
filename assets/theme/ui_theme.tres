@@ -21,6 +21,18 @@ corner_radius_top_right = 15
 shadow_size = 10
 shadow_offset = Vector2(0, 2)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skdtr"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.3524628, 0.4804529, 0.3976739, 0.6)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkmqt"]
 bg_color = Color(0.059399996, 0.10747, 0.11, 1)
 border_width_left = 3
@@ -43,6 +55,7 @@ Button/styles/focus = ExtResource("2_emww3")
 Button/styles/hover = ExtResource("3_3hhkj")
 Button/styles/normal = ExtResource("4_iquyq")
 Button/styles/pressed = SubResource("StyleBoxFlat_qvnyc")
+HSlider/styles/slider = SubResource("StyleBoxFlat_skdtr")
 MarginContainer/constants/margin_bottom = 15
 MarginContainer/constants/margin_left = 30
 MarginContainer/constants/margin_right = 30
