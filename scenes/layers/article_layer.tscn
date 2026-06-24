@@ -82,7 +82,7 @@ layer = 0
 script = ExtResource("1_ruko1")
 animatable_control = NodePath("ArticleUI")
 
-[node name="ArticleUI" type="Control" parent="." unique_id=1421558068 node_paths=PackedStringArray("header_rtl", "body_rtl", "real_event_panel", "article_panel", "submit_article_panel", "real_event_label", "desired_perception_ui", "choice_edit_panel")]
+[node name="ArticleUI" type="Control" parent="." unique_id=1421558068 node_paths=PackedStringArray("header_rtl", "body_rtl", "spin_the_article_label", "real_event_panel", "article_panel", "submit_article_panel", "real_event_label", "desired_perception_ui", "choice_edit_panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,6 +94,7 @@ theme = ExtResource("1_wlco4")
 script = ExtResource("4_jorgq")
 header_rtl = NodePath("ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer/HeaderRTL")
 body_rtl = NodePath("ArticlePanelContainer/MarginContainer/ArticleContainer/ScrollContainer/SectionVBoxContainer/BodyRTL")
+spin_the_article_label = NodePath("SpinTheArticleLabel")
 real_event_panel = NodePath("RealEvent")
 article_panel = NodePath("ArticlePanelContainer")
 submit_article_panel = NodePath("SubmitArticle")

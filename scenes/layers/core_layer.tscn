@@ -19,6 +19,16 @@ mouse_filter = 1
 theme = ExtResource("1_ns3km")
 script = ExtResource("2_sp3ab")
 
+[node name="SolidColorBg" type="ColorRect" parent="CoreUI" unique_id=25957578]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0013732907, 0.07575845, 0.081229426, 1)
+
 [node name="PlaceholderBg" type="TextureRect" parent="CoreUI" unique_id=740539264]
 layout_mode = 1
 anchors_preset = 15

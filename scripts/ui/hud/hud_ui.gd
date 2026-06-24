@@ -43,13 +43,13 @@ func animate_in_options_button() -> void:
 	options_button.show()
 	if tween:
 		tween.kill()
-	tween = create_tween()
-	tween.tween_property(options_button, "modulate", Color.WHITE, 0.5)
+	tween = create_tween().set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(options_button, "modulate", Color.WHITE, 0.3)
 	
 func animate_out_options_button() -> void:
 	if tween:
 		tween.kill()
-	tween = create_tween()
-	tween.tween_property(options_button, "modulate", Color(1,1,1,0), 0.5)
+	tween = create_tween().set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(options_button, "modulate", Color(1,1,1,0), 0.15)
 	await tween.finished
 	options_button.hide()

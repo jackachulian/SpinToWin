@@ -57,6 +57,7 @@ func animate_out():
 #func animate_out_quick():
 	#animate_buttons(0, -400, 0.3, 0)
 
+var tween: Tween
 func animate_controls(start_x: float, end_x: float, start_modulate: Color, target_modulate: Color, duration: float, cascade_delay: float, trans: Tween.TransitionType) -> void:
 	await get_tree().process_frame
 	
@@ -69,7 +70,8 @@ func animate_controls(start_x: float, end_x: float, start_modulate: Color, targe
 		control.modulate = start_modulate
 	
 	var current_duration := duration
-	var tween = create_tween()
+	if tween: tween.kill()
+	tween = create_tween()
 	tween.set_trans(trans)
 	tween.set_parallel(true)
 	for control: Control in controls:

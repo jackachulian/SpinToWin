@@ -4,6 +4,7 @@ extends AnimatableControl
 @export var header_rtl: ArticleTextRTL
 @export var body_rtl: ArticleTextRTL
 
+@export var spin_the_article_label: Label
 @export var real_event_panel: Control
 @export var article_panel: Control
 @export var submit_article_panel: Control
@@ -48,6 +49,7 @@ func _on_submit_button_pressed() -> void:
 
 	
 const ANIM_CLEAR_COLOR := Color(1,1,1,0)
+const TITLE_ANIM_OFFSET := Vector2(0, -100)
 const REAL_EVENT_ANIM_OFFSET := Vector2(-100, 0)
 const DESIRED_PERCEPTION_ANIM_OFFSET := Vector2(100, 0)
 const SUBMIT_ANIM_OFFSET := Vector2(100, 0)
@@ -60,6 +62,10 @@ func animate_in() -> void:
 	setup(MainGame.instance.event_manager.article)
 	
 	await get_tree().process_frame
+	
+	spin_the_article_label.offset_transform_enabled = true
+	spin_the_article_label.offset_transform_position = TITLE_ANIM_OFFSET
+	spin_the_article_label.modulate = ANIM_CLEAR_COLOR
 
 	real_event_panel.offset_transform_enabled = true
 	real_event_panel.offset_transform_position = REAL_EVENT_ANIM_OFFSET
@@ -79,6 +85,9 @@ func animate_in() -> void:
 
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	
+	tween.tween_property(spin_the_article_label, "offset_transform_position", Vector2.ZERO, ANIM_IN_DURATION)
+	tween.tween_property(spin_the_article_label, "modulate", Color.WHITE, ANIM_IN_DURATION)
+	
 	tween.tween_property(real_event_panel, "offset_transform_position", Vector2.ZERO, ANIM_IN_DURATION)
 	tween.tween_property(real_event_panel, "modulate", Color.WHITE, ANIM_IN_DURATION)
 	
@@ -95,6 +104,9 @@ func animate_in() -> void:
 	
 func animate_out() -> void:
 	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
+	
+	tween.tween_property(spin_the_article_label, "offset_transform_position", TITLE_ANIM_OFFSET, ANIM_OUT_DURATION)
+	tween.tween_property(spin_the_article_label, "modulate", ANIM_CLEAR_COLOR, ANIM_OUT_DURATION)
 	
 	tween.tween_property(real_event_panel, "offset_transform_position", REAL_EVENT_ANIM_OFFSET, ANIM_OUT_DURATION)
 	tween.tween_property(real_event_panel, "modulate", ANIM_CLEAR_COLOR, ANIM_OUT_DURATION)
