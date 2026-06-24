@@ -10,6 +10,8 @@ resource_local_to_scene = true
 script = ExtResource("2_dc0kv")
 event_name = "Test Event"
 event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+max_start_time = 3
+duration = 1
 article_file_path = "res://assets/articles/tutorial_01.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
@@ -55,6 +57,7 @@ scale = Vector2(0.578125, 0.55078137)
 polygon = PackedVector2Array(64, 8, 42, 17, 32, 40, 41, 63, 64, 72, 86, 62, 96, 40, 86, 17)
 
 [node name="PopupInfoPanel" type="PanelContainer" parent="." unique_id=1263547871]
+visible = false
 propagate_maximum_size = false
 layout_mode = 1
 anchors_preset = 8

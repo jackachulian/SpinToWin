@@ -3,9 +3,6 @@ extends Control
 
 @export var event_data: EventData
 
-@export var start_time: int
-@export var end_time: int
-
 @export var icon_control: Control
 @export var popup_panel: Control
 @export var popup_y_offset: float = 16.0

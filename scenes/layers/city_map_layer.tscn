@@ -23,6 +23,8 @@ resource_local_to_scene = true
 script = ExtResource("7_nm77f")
 event_name = "Test Event"
 event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+max_start_time = 3
+duration = 1
 article_file_path = "res://assets/articles/tutorial_01.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
@@ -31,6 +33,8 @@ resource_local_to_scene = true
 script = ExtResource("7_nm77f")
 event_name = "Test Event"
 event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+max_start_time = 3
+duration = 1
 article_file_path = "res://assets/articles/tutorial_01.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
@@ -39,6 +43,8 @@ resource_local_to_scene = true
 script = ExtResource("7_nm77f")
 event_name = "Test Event"
 event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+max_start_time = 3
+duration = 1
 article_file_path = "res://assets/articles/tutorial_01.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
@@ -47,6 +53,8 @@ resource_local_to_scene = true
 script = ExtResource("7_nm77f")
 event_name = "Test Event"
 event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+max_start_time = 3
+duration = 1
 article_file_path = "res://assets/articles/tutorial_01.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
@@ -55,6 +63,8 @@ resource_local_to_scene = true
 script = ExtResource("7_nm77f")
 event_name = "Test Event"
 event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+max_start_time = 3
+duration = 1
 article_file_path = "res://assets/articles/tutorial_01.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
@@ -65,7 +75,7 @@ font_size = 18
 script = ExtResource("1_vj1ly")
 animatable_control = NodePath("CityMapUI")
 
-[node name="CityMapUI" type="Control" parent="." unique_id=1633336644 node_paths=PackedStringArray("event_map_control", "event_popups_control")]
+[node name="CityMapUI" type="Control" parent="." unique_id=1633336644 node_paths=PackedStringArray("event_map_control", "event_popups_control", "time_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,88 +84,100 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_wrs82")
 script = ExtResource("2_rowob")
-event_map_control = NodePath("PanelContainer/VBoxContainer/EventMapContainer/EventMap")
-event_popups_control = NodePath("PanelContainer/VBoxContainer/MarginContainer/EventPopups")
+event_map_control = NodePath("MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap")
+event_popups_control = NodePath("MarginContainer/PanelContainer/Control/VBoxContainer/MarginContainer/EventPopups")
+time_label = NodePath("MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer/TimeLabel")
 
-[node name="PanelContainer" type="PanelContainer" parent="CityMapUI" unique_id=486704109]
+[node name="MarginContainer" type="MarginContainer" parent="CityMapUI" unique_id=2071077795]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -466.0
-offset_top = -284.0
-offset_right = 466.0
-offset_bottom = 284.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CityMapUI/MarginContainer" unique_id=486704109]
+clip_contents = true
+layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_leaux")
 
-[node name="VBoxContainer" type="Control" parent="CityMapUI/PanelContainer" unique_id=1533041251]
+[node name="Control" type="Control" parent="CityMapUI/MarginContainer/PanelContainer" unique_id=1681002937]
 layout_mode = 2
 
-[node name="EventMapContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer" unique_id=501916676]
-layout_mode = 0
-offset_top = 98.0
-offset_right = 926.0
-offset_bottom = 562.0
+[node name="VBoxContainer" type="Control" parent="CityMapUI/MarginContainer/PanelContainer/Control" unique_id=1533041251]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EventMapContainer" type="MarginContainer" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer" unique_id=501916676]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 90.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 
-[node name="EventMap" type="Control" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer" unique_id=1685153136]
+[node name="EventMap" type="Control" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer" unique_id=1685153136]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="EventUI" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=234452478 instance=ExtResource("6_e3gvu")]
+[node name="EventUI" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=234452478 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
-offset_left = 761.0
-offset_top = -21.0
-offset_right = 831.0
-offset_bottom = 67.0
+offset_left = 965.0
+offset_top = -9.0
+offset_right = 1035.0
+offset_bottom = 79.0
 event_data = SubResource("Resource_nm77f")
 
-[node name="EventUI2" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=1832251012 instance=ExtResource("6_e3gvu")]
+[node name="EventUI2" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=1832251012 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
-offset_left = 781.0
-offset_top = 328.0
-offset_right = 851.0
-offset_bottom = 416.0
+offset_left = 955.0
+offset_top = 398.0
+offset_right = 1025.0
+offset_bottom = 486.0
 event_data = SubResource("Resource_oc4xn")
 
-[node name="EventUI3" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=1438903290 instance=ExtResource("6_e3gvu")]
+[node name="EventUI3" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=1438903290 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
-offset_left = 387.0
-offset_top = 144.0
-offset_right = 457.0
-offset_bottom = 232.0
+offset_left = 468.0
+offset_top = 167.0
+offset_right = 538.0
+offset_bottom = 255.0
 event_data = SubResource("Resource_g82fp")
 
-[node name="EventUI4" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=516969618 instance=ExtResource("6_e3gvu")]
+[node name="EventUI4" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=516969618 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 328.0
-offset_right = 89.0
-offset_bottom = 416.0
+offset_left = -14.0
+offset_top = 405.0
+offset_right = 56.0
+offset_bottom = 493.0
 event_data = SubResource("Resource_mxyj7")
 
-[node name="EventUI5" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=1643655914 instance=ExtResource("6_e3gvu")]
+[node name="EventUI5" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=1643655914 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
-offset_left = 13.0
-offset_top = -32.0
-offset_right = 83.0
-offset_bottom = 56.0
+offset_left = -10.0
+offset_top = -15.0
+offset_right = 60.0
+offset_bottom = 73.0
 event_data = SubResource("Resource_iidtw")
 
-[node name="InfoContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer" unique_id=1651421061]
-layout_mode = 0
-offset_right = 926.0
+[node name="InfoContainer" type="MarginContainer" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer" unique_id=1651421061]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
 offset_bottom = 94.0
+grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer" unique_id=1066170595]
+[node name="HBoxContainer" type="HBoxContainer" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer" unique_id=1066170595]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1561566677]
+[node name="TextureRect" type="TextureRect" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1561566677]
 custom_minimum_size = Vector2(64, 64)
 custom_maximum_size = Vector2(64, 64)
 layout_mode = 2
@@ -163,31 +185,31 @@ size_flags_vertical = 4
 texture = ExtResource("4_leaux")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1367405159]
+[node name="TimeLabel" type="Label" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1367405159]
 layout_mode = 2
-text = "Current Time: Midday"
+text = "Act I - Midday"
 label_settings = SubResource("LabelSettings_4ieh6")
 
-[node name="Spacer" type="Control" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=101692564]
+[node name="Spacer" type="Control" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer" unique_id=101692564]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
-[node name="CityMapFactionPreview" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1443954488 instance=ExtResource("5_ue58t")]
+[node name="CityMapFactionPreview" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1443954488 instance=ExtResource("5_ue58t")]
 layout_mode = 2
 size_flags_horizontal = 3
 faction_id = 1
 
-[node name="CityMapFactionPreview2" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1910342403 instance=ExtResource("5_ue58t")]
+[node name="CityMapFactionPreview2" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1910342403 instance=ExtResource("5_ue58t")]
 layout_mode = 2
 size_flags_horizontal = 3
 faction_id = 2
 
-[node name="CityMapFactionPreview3" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1203858224 instance=ExtResource("5_ue58t")]
+[node name="CityMapFactionPreview3" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1203858224 instance=ExtResource("5_ue58t")]
 layout_mode = 2
 size_flags_horizontal = 3
 faction_id = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer" unique_id=1761353466]
+[node name="MarginContainer" type="MarginContainer" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer" unique_id=1761353466]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -198,6 +220,6 @@ mouse_filter = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="EventPopups" type="Control" parent="CityMapUI/PanelContainer/VBoxContainer/MarginContainer" unique_id=137916151]
+[node name="EventPopups" type="Control" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/MarginContainer" unique_id=137916151]
 layout_mode = 2
 mouse_filter = 2

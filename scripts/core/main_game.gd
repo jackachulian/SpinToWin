@@ -45,3 +45,6 @@ var faction_data: FactionData = FactionData.new()
 @onready var credits_layer: TransitionableLayer = $CreditsLayer
 @onready var transition_layer: CanvasLayer = $TransitionLayer
 @onready var debug_layer: CanvasLayer = $DebugLayer
+
+# -------- Misc --------
+@onready var city_map_ui: CityMapUI = $CityMapLayer/CityMapUI

@@ -3,6 +3,9 @@
 class_name EventManager
 extends Node
 
+## All events that are scheduled to happen at some point during the game
+var event_schedule: Array[EventData]
+
 ## The event that is currently being played/investigated.
 var event_data: EventData
 
@@ -38,7 +41,7 @@ func progress_event() -> void:
 	
 	# Starting dialogue, if there is any
 	if event_phase == EventPhase.START_DIALOGUE:
-		if not event_data.start_dialogue.is_empty():
+		if not event_data.start_dialogue_path.is_empty():
 			MainGame.instance.dialogue_layer.open_active()
 			# TODO: play dialogue according to event_data.start_dialogue
 		else:
@@ -61,7 +64,7 @@ func progress_event() -> void:
 	
 	# End dialogue, if there is any
 	elif event_phase == EventPhase.END_DIALOGUE:
-		if not event_data.end_dialogue.is_empty():
+		if not event_data.end_dialogue_path.is_empty():
 			MainGame.instance.dialogue_layer.open_active()
 		else:
 			progress_event()
@@ -70,6 +73,7 @@ func progress_event() -> void:
 	elif event_phase == EventPhase.ENDED:
 		MainGame.instance.player_data.completed_events.append(event_data)
 		event_data = null
+		MainGame.instance.player_data.advance_time()
 		# Back to the map
 		MainGame.instance.city_map_layer.open_active()
 		
