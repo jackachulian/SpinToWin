@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://w0bqlv2mloff" path="res://scenes/layers/core_layer.tscn" id="3_70vka"]
 [ext_resource type="Script" uid="uid://cj4okj3sr6n3x" path="res://scripts/core/player_data.gd" id="3_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://dmo78qc1o5jde" path="res://scenes/layers/article_layer.tscn" id="4_2l77h"]
-[ext_resource type="PackedScene" uid="uid://cbgovibcuuf2h" path="res://scenes/title_menu_layer.tscn" id="4_nqdth"]
+[ext_resource type="PackedScene" uid="uid://cbgovibcuuf2h" path="res://scenes/layers/title_menu_layer.tscn" id="4_nqdth"]
 [ext_resource type="Script" uid="uid://yopsldd2qcxg" path="res://scripts/systems/factions/faction_data.gd" id="4_sp04v"]
 [ext_resource type="PackedScene" uid="uid://cgctdvcuaa0r5" path="res://scenes/layers/results_layer.tscn" id="6_5cypo"]
 [ext_resource type="PackedScene" uid="uid://rck3gmq7gfni" path="res://scenes/layers/city_map_layer.tscn" id="6_8xp80"]
@@ -13,83 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dumg5me26m8hw" path="res://scenes/layers/options_layer.tscn" id="8_nqdth"]
 [ext_resource type="PackedScene" uid="uid://cp7bmkraww10n" path="res://scenes/layers/debug_layer.tscn" id="8_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://dkgyw8btmx3qt" path="res://scenes/layers/dialogue_layer.tscn" id="9_8xp80"]
-[ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="11_vnsdt"]
-[ext_resource type="Script" uid="uid://lw8sbpi8p5y3" path="res://scripts/ui/hud_ui.gd" id="12_ikqpi"]
+[ext_resource type="PackedScene" uid="uid://bcmkuyv5y8gqa" path="res://scenes/layers/hud_layer.tscn" id="11_sp04v"]
 [ext_resource type="PackedScene" uid="uid://bkb14y8dd4vtu" path="res://scenes/layers/credits_layer.tscn" id="12_sp04v"]
-[ext_resource type="Texture2D" uid="uid://bjy652mn4pybt" path="res://assets/sprites/IconsWenrexa/04.png" id="13_5luka"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp3ab"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0.0016065428, 0.050566174, 0.064224966, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.9493333, 0.81, 1)
-corner_radius_bottom_left = 15
-shadow_size = 10
-shadow_offset = Vector2(0, 2)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yokwu"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0.010594848, 0.16510493, 0.1902841, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.44324148, 0.7480646, 0.7333559, 1)
-corner_radius_bottom_left = 15
-shadow_size = 10
-shadow_offset = Vector2(0, 2)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmqkc"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0.042410195, 0.15367776, 0.16343787, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
-corner_radius_bottom_left = 15
-shadow_size = 10
-shadow_offset = Vector2(0, 2)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmx8j"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0.01, 0.01, 0.01, 0.8784314)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.66, 0.66, 0.66, 1)
-corner_radius_bottom_left = 15
-shadow_size = 10
-shadow_offset = Vector2(0, 2)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jr8kx"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0.018399997, 0.20531331, 0.23, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.96, 0.76064, 0.105600014, 1)
-corner_radius_bottom_left = 15
 
 [node name="MainGame" type="Node" unique_id=1565906414 node_paths=PackedStringArray("open_layer_on_start")]
 process_mode = 3
@@ -125,41 +50,7 @@ visible = false
 [node name="DialogueLayer" parent="." unique_id=1630943851 instance=ExtResource("9_8xp80")]
 visible = false
 
-[node name="HudLayer" type="CanvasLayer" parent="." unique_id=352658802]
-process_mode = 1
-layer = 0
-
-[node name="HudUI" type="Control" parent="HudLayer" unique_id=1051040131 node_paths=PackedStringArray("options_button")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("11_vnsdt")
-script = ExtResource("12_ikqpi")
-options_button = NodePath("OptionsButton")
-
-[node name="OptionsButton" type="Button" parent="HudLayer/HudUI" unique_id=1081475265]
-modulate = Color(1, 1, 1, 0.8862745)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -43.0
-offset_top = 3.0
-offset_right = -3.0
-offset_bottom = 43.0
-grow_horizontal = 0
-theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_sp3ab")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yokwu")
-theme_override_styles/hover = SubResource("StyleBoxFlat_lmqkc")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_xmx8j")
-theme_override_styles/focus = SubResource("StyleBoxFlat_jr8kx")
-icon = ExtResource("13_5luka")
-expand_icon = true
+[node name="HudLayer" parent="." unique_id=2082625234 instance=ExtResource("11_sp04v")]
 
 [node name="OptionsLayer" parent="." unique_id=1297827084 instance=ExtResource("8_nqdth")]
 visible = false

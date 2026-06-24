@@ -94,6 +94,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("2_ioo6w")
 script = ExtResource("3_krrw2")
 faction_container = NodePath("MarginContainer/FactionContainer")
@@ -105,6 +106,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 80
 theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 80
@@ -112,6 +114,7 @@ theme_override_constants/margin_bottom = 40
 
 [node name="FactionContainer" type="HBoxContainer" parent="ResultsUI/MarginContainer" unique_id=701879252]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="FactionUI" parent="ResultsUI/MarginContainer/FactionContainer" unique_id=1678427921 instance=ExtResource("4_krrw2")]
 visible = false
