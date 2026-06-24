@@ -1,12 +1,11 @@
-class_name DialogueManagerBalloon extends Control
-## A basic dialogue balloon for use with Dialogue Manager.
-
+class_name CustomDialogueBalloon
+extends Control
 
 ## The dialogue resource
 @export var dialogue_resource: DialogueResource
 
 ## Start from a given title when using balloon as a [Node] in a scene.
-@export var start_from_title: String = ""
+@export var start_from_title: String = "start"
 
 ## If running as a [Node] in a scene then auto start the dialogue.
 @export var auto_start: bool = false
@@ -22,6 +21,16 @@ class_name DialogueManagerBalloon extends Control
 
 ## A sound player for voice lines (if they exist).
 @onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
+
+@export_group("Speaker Colors")
+## Maps a speaker string to a personal color
+@export var known_speaker_colors: Dictionary[String, Color]
+
+## The color for the Narration speaker
+@export var narration_color: Color
+
+## The default color for speakers
+@export var default_speaker_color: Color
 
 ## Temporary game states
 var temporary_game_states: Array = []
@@ -48,7 +57,7 @@ var dialogue_line: DialogueLine:
 			if owner == null:
 				queue_free()
 			else:
-				hide()
+				dialogue_end.emit()
 	get:
 		return dialogue_line
 
@@ -70,6 +79,15 @@ var mutation_cooldown: Timer = Timer.new()
 ## Indicator to show that player can progress dialogue.
 @onready var progress: Polygon2D = %Progress
 
+## Only changed by DialogueUI
+var can_start: bool = false:
+	set(value):
+		if value: can_start_now.emit()
+		can_start = value
+
+signal can_start_now
+
+signal dialogue_end
 
 func _ready() -> void:
 	balloon.hide()
@@ -81,6 +99,8 @@ func _ready() -> void:
 
 	mutation_cooldown.timeout.connect(_on_mutation_cooldown_timeout)
 	add_child(mutation_cooldown)
+
+	dialogue_end.connect(_on_dialogue_end)
 
 	if auto_start:
 		if not is_instance_valid(dialogue_resource):
@@ -108,9 +128,17 @@ func _notification(what: int) -> void:
 		if visible_ratio < 1:
 			dialogue_label.skip_typing()
 
+## Queue up some dialogue to start when it can
+func queue_start(with_dialogue_resource: DialogueResource = null, title: String = "start", extra_game_states: Array = []) -> void:
+	if can_start:
+		start(with_dialogue_resource, title, extra_game_states)
+	else:
+		await can_start_now
+		can_start = false
+		start(with_dialogue_resource, title, extra_game_states)
 
 ## Start some dialogue
-func start(with_dialogue_resource: DialogueResource = null, title: String = "", extra_game_states: Array = []) -> void:
+func start(with_dialogue_resource: DialogueResource = null, title: String = "start", extra_game_states: Array = []) -> void:
 	temporary_game_states = [self] + extra_game_states
 	is_waiting_for_input = false
 	if is_instance_valid(with_dialogue_resource):
@@ -118,7 +146,8 @@ func start(with_dialogue_resource: DialogueResource = null, title: String = "", 
 	if not title.is_empty():
 		start_from_title = title
 	dialogue_line = await dialogue_resource.get_next_dialogue_line(start_from_title, temporary_game_states)
-	show()
+	dialogue_label.self_modulate = Color.WHITE
+	character_label.self_modulate = Color.WHITE
 
 
 ## Apply any changes to the balloon given a new [DialogueLine].
@@ -130,13 +159,13 @@ func apply_dialogue_line() -> void:
 	balloon.focus_mode = Control.FOCUS_ALL
 	balloon.grab_focus()
 
+	#character_label.modulate = known_speaker_colors.get(dialogue_line.character, default_speaker_color) if not dialogue_line.character.is_empty() else narration_color
 	character_label.visible = not dialogue_line.character.is_empty()
-	character_label.text = tr(dialogue_line.character, "dialogue")
+	character_label.text = tr(dialogue_line.character if dialogue_line.character else "Narration", &"dialogue")
 
 	dialogue_label.hide()
 	dialogue_label.dialogue_line = dialogue_line
 
-	responses_menu.hide()
 	responses_menu.responses = dialogue_line.responses
 
 	# Show our balloon
@@ -156,7 +185,7 @@ func apply_dialogue_line() -> void:
 		next(dialogue_line.next_id)
 	elif dialogue_line.responses.size() > 0:
 		balloon.focus_mode = Control.FOCUS_NONE
-		responses_menu.show()
+		responses_menu.animate_in()
 	elif dialogue_line.time != "":
 		var time: float = dialogue_line.text.length() * 0.02 if dialogue_line.time == "auto" else dialogue_line.time.to_float()
 		await get_tree().create_timer(time).timeout
@@ -178,7 +207,7 @@ func next(next_id: String) -> void:
 func _on_mutation_cooldown_timeout() -> void:
 	if will_hide_balloon:
 		will_hide_balloon = false
-		balloon.hide()
+		dialogue_end.emit()
 
 
 func _on_mutated(mutation: Dictionary) -> void:
@@ -213,5 +242,9 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
 
+
+func _on_dialogue_end() -> void:
+	balloon.focus_mode = Control.FOCUS_NONE
+	responses_menu.animate_out()
 
 #endregion

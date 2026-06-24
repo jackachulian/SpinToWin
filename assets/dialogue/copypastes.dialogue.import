@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cvnvo62birq3n"
+path="res://.godot/imported/copypastes.dialogue-e5c2c9f00d322eac93b320feac26d923.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/copypastes.dialogue"
+dest_files=["res://.godot/imported/copypastes.dialogue-e5c2c9f00d322eac93b320feac26d923.tres"]
+
+[params]
+
+defaults=true

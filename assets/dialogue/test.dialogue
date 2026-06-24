@@ -7,5 +7,8 @@ Reagan: Here are some choices.
 	Reagan: You picked the second choice.
 - Start over => start
 - Walk away => END
-Reagan: I am now going to end without doing anything else.
+Reagan: This is a test for a special keyword: [color=limegreen]The Laymen's Syndicate[/color].
+Unknown: This is an unknown character's message.
+This is narration without any character speaking.
+This dialogue is now going to end without doing anything else.
 => END
