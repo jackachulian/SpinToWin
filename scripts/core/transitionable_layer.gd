@@ -53,6 +53,8 @@ func close() -> void:
 	is_open = false
 	closed.emit()
 	
+	# TODO: fix transition softlocks
+	
 	while animating:
 		print(name, " waiting for anim finish")
 		await animating_finished

@@ -20,25 +20,15 @@ func _on_options_pressed() -> void:
 func _on_maingame_initialized() -> void:
 	update_options_button_visibility()
 		
-	MainGame.instance.title_menu_layer.opened.connect(_on_title_opened)
-	MainGame.instance.title_menu_layer.closed.connect(_on_title_closed)
-	MainGame.instance.options_layer.opened.connect(_on_options_opened)
-	MainGame.instance.options_layer.closed.connect(_on_options_closed)
-		
-func _on_title_opened() -> void:
-	update_options_button_visibility()
-	
-func _on_title_closed() -> void:
-	update_options_button_visibility()
-	
-func _on_options_opened() -> void:
-	update_options_button_visibility()
-	
-func _on_options_closed() -> void:
-	update_options_button_visibility()
+	MainGame.instance.title_menu_layer.opened.connect(update_options_button_visibility)
+	MainGame.instance.title_menu_layer.closed.connect(update_options_button_visibility)
+	MainGame.instance.options_layer.opened.connect(update_options_button_visibility)
+	MainGame.instance.options_layer.closed.connect(update_options_button_visibility)
+	MainGame.instance.credits_layer.opened.connect(update_options_button_visibility)
+	MainGame.instance.credits_layer.closed.connect(update_options_button_visibility)
 
 func update_options_button_visibility() -> void:
-	if MainGame.instance.title_menu_layer.is_open or MainGame.instance.options_layer.is_open:
+	if MainGame.instance.title_menu_layer.is_open or MainGame.instance.options_layer.is_open or MainGame.instance.credits_layer.is_open:
 		if options_button_visible:
 			options_button_visible = false
 			animate_out_options_button()
