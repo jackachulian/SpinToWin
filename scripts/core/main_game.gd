@@ -33,9 +33,15 @@ func transition_to(trans_layer: TransitionableLayer) -> void:
 	if active_layer == trans_layer:
 		print(name, " is already open")
 		return
+	while active_layer and active_layer.animating:
+		print("waiting for ",active_layer.name," to finish animating")
+		await active_layer.animating_finished
 	if active_layer: 
 		active_layer.close()
 	active_layer = trans_layer
+	while active_layer.animating:
+		print("waiting for ",active_layer.name," to finish animating")
+		await active_layer.animating_finished
 	active_layer.open()
 
 # -------- Systems --------

@@ -165,6 +165,7 @@ layout_mode = 2
 
 [node name="ButtonContainer" type="HBoxContainer" parent="HudUI/PopupUI/MarginContainer/VBoxContainer" unique_id=582424327]
 layout_mode = 2
+alignment = 1
 
 [node name="Button" type="Button" parent="HudUI/PopupUI/MarginContainer/VBoxContainer/ButtonContainer" unique_id=1242551041]
 layout_mode = 2
