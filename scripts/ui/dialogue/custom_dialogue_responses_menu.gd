@@ -1,8 +1,7 @@
 @icon("res://addons/dialogue_manager/assets/responses_menu.svg")
 
-## A [Container] for dialogue responses provided by [b]Dialogue Manager[/b].
-class_name DialogueResponsesMenu extends Container
-
+class_name CustomDialogueResponsesMenu
+extends Container
 
 ## Emitted when a response is focused.
 signal response_focused(response: Control)
@@ -27,18 +26,15 @@ signal response_selected(response: Control)
 @export var hide_failed_responses: bool = false
 
 ## The list of dialogue responses.
-var responses: Array = []: set = set_responses, get = get_responses
-
-func set_responses(value) -> void:
-	responses = value
-	_apply_responses()
-
-func get_responses() -> Array:
-	return responses
+var responses: Array = []: 
+	set(value):
+		responses = value
+		_apply_responses()
+	get():
+		return responses
 
 # The previously focused item in this menu.
 var _previously_focused_item: Control = null
-
 
 func _ready() -> void:
 	visibility_changed.connect(func():
@@ -53,7 +49,6 @@ func _ready() -> void:
 
 	get_viewport().gui_focus_changed.connect(_on_focus_changed)
 
-
 ## Get the selectable items in the menu.
 func get_menu_items() -> Array:
 	var items: Array = []
@@ -63,7 +58,6 @@ func get_menu_items() -> Array:
 		items.append(child)
 
 	return items
-
 
 ## Prepare the menu for keyboard and mouse navigation.
 func configure_focus() -> void:
@@ -102,24 +96,77 @@ func configure_focus() -> void:
 	if auto_focus_first_item:
 		items[0].grab_focus()
 
+#region Animate
+
+const OUT_X := 25
+const IN_X := 0
+const OUT_MODULATE := Color(1,1,1,0)
+const IN_MODULATE := Color(1,1,1,1)
+const IN_DURATION := 1.7
+const OUT_DURATION := 0.3
+const IN_CASCADE_DELAY := 0.16
+const OUT_CASCADE_DELAY := 0.0
+
+func animate_in() -> void:
+	show()
+	await animate_controls(OUT_X, IN_X, OUT_MODULATE, IN_MODULATE, IN_DURATION, IN_CASCADE_DELAY, Tween.TRANS_BACK)
+	# Animation complete, auto configure focus
+	if auto_configure_focus:
+		configure_focus()
+
+func animate_out():
+	await animate_controls(IN_X, OUT_X, IN_MODULATE, OUT_MODULATE, OUT_DURATION, OUT_CASCADE_DELAY, Tween.TRANS_CUBIC)
+	hide()
+
+func animate_controls(start_x: float, end_x: float, start_modulate: Color, target_modulate: Color, duration: float, cascade_delay: float, trans: Tween.TransitionType) -> void:
+	await get_tree().process_frame
+	
+	var controls := get_children().filter(func(c): return c != response_template)
+	
+	if controls.size() == 0:
+		return
+	
+	for control: Control in controls:
+		var start_pos = Vector2(start_x, control.position.y)
+		control.position = start_pos
+		control.modulate = start_modulate
+	
+	var current_duration := duration
+	var tween = create_tween()
+	tween.set_trans(trans)
+	tween.set_parallel(true)
+	for control: Control in controls:
+		var target_pos = Vector2(end_x, control.position.y)
+		
+		tween.tween_property(
+			control, "position", target_pos, current_duration
+		).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(
+			control, "modulate", target_modulate, current_duration
+		).set_ease(Tween.EASE_IN_OUT)
+		
+		current_duration += cascade_delay
+			
+	await tween.finished
+
+#endregion
 
 #region Internal
-
 
 # Set up the visual side of things.
 func _apply_responses() -> void:
 	# Remove any current items
+	await animate_out()
 	for item in get_children():
 		if item == response_template: continue
-
 		remove_child(item)
 		item.queue_free()
-
+	
 	# Add new items
 	if responses.size() > 0:
 		for response in responses:
 			if hide_failed_responses and not response.is_allowed: continue
-
+			
 			var item: Control
 			if is_instance_valid(response_template):
 				item = response_template.duplicate(DUPLICATE_GROUPS | DUPLICATE_SCRIPTS | DUPLICATE_SIGNALS)
@@ -130,26 +177,21 @@ func _apply_responses() -> void:
 			if not response.is_allowed:
 				item.name = item.name + &"Disallowed"
 				item.disabled = true
-
+			
 			# If the item has a response property then use that
 			if "response" in item:
 				item.response = response
 			# Otherwise assume we can just set the text
 			else:
 				item.text = response.text
-
+			
 			item.set_meta("response", response)
-
+			
 			add_child(item)
-
-		if auto_configure_focus:
-			configure_focus()
-
 
 #endregion
 
 #region Signals
-
 
 func _on_focus_changed(control: Control) -> void:
 	if "Disallowed" in control.name: return
@@ -159,12 +201,10 @@ func _on_focus_changed(control: Control) -> void:
 		_previously_focused_item = control
 		response_focused.emit(control)
 
-
 func _on_response_mouse_entered(item: Control) -> void:
 	if "Disallowed" in item.name: return
 
 	item.grab_focus()
-
 
 func _on_response_gui_input(event: InputEvent, item: Control, response) -> void:
 	if "Disallowed" in item.name: return
@@ -175,6 +215,5 @@ func _on_response_gui_input(event: InputEvent, item: Control, response) -> void:
 	elif event.is_action_pressed(&"ui_accept" if next_action.is_empty() else next_action) and item in get_menu_items():
 		get_viewport().set_input_as_handled()
 		response_selected.emit(response)
-
 
 #endregion

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bb7al8ko4q3nb" path="res://scripts/core/transitionable_layer.gd" id="1_rnduo"]
 [ext_resource type="Script" uid="uid://mu1gngn4gprb" path="res://scripts/ui/dialogue/dialogue_ui.gd" id="2_ti2pp"]
-[ext_resource type="Script" uid="uid://cb0pyrktxjuwc" path="res://scripts/ui/dialogue/dialogue_balloon.gd" id="3_fitoo"]
+[ext_resource type="Script" uid="uid://chu636ag0tvlp" path="res://scripts/ui/dialogue/custom_dialogue_balloon.gd" id="3_fitoo"]
 [ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="4_vtb8j"]
 [ext_resource type="FontFile" uid="uid://csoeb8lt1w2fl" path="res://assets/fonts/NoirLullabyStamp-ywgYZ.otf" id="5_obwq5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="6_hgao8"]
-[ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="7_8t51h"]
+[ext_resource type="Script" uid="uid://bldnlsb175s2o" path="res://scripts/ui/dialogue/custom_dialogue_responses_menu.gd" id="7_fitoo"]
 
 [sub_resource type="Animation" id="Animation_nlsx6"]
 length = 0.001
@@ -48,7 +48,7 @@ _data = {
 script = ExtResource("1_rnduo")
 animatable_control = NodePath("DialogueUI")
 
-[node name="DialogueUI" type="Control" parent="." unique_id=1391121205 node_paths=PackedStringArray("dialogue_balloon")]
+[node name="DialogueUI" type="Control" parent="." unique_id=1391121205 node_paths=PackedStringArray("dialogue_balloon", "dialogue_box")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,6 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_ti2pp")
 dialogue_balloon = NodePath("DialogueBalloon")
+dialogue_box = NodePath("DialogueBalloon/Balloon/MarginContainer/PanelContainer")
 
 [node name="DialogueBalloon" type="Control" parent="DialogueUI" unique_id=1660674987]
 layout_mode = 1
@@ -66,6 +67,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_fitoo")
+known_speaker_colors = Dictionary[String, Color]({
+"Reagan": Color(1, 0.652, 0.64, 1)
+})
+narration_color = Color(1, 1, 1, 1)
+default_speaker_color = Color(1, 0.91764706, 0.63529414, 1)
 
 [node name="Balloon" type="Control" parent="DialogueUI/DialogueBalloon" unique_id=871751244]
 unique_name_in_owner = true
@@ -153,10 +159,11 @@ grow_vertical = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 2
 alignment = 1
-script = ExtResource("7_8t51h")
+script = ExtResource("7_fitoo")
 response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="DialogueUI/DialogueBalloon/Balloon/ResponsesMenu" unique_id=1608524022]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Response example"

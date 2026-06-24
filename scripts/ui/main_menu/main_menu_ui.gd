@@ -6,7 +6,6 @@ extends AnimatableControl
 @export var continue_button: Control
 
 @export_group("Debug Variables")
-@export var starting_dialogue: DialogueResource
 @export var override_continue: bool
 
 func _on_new_pressed() -> void:
@@ -18,11 +17,9 @@ func _on_new_pressed() -> void:
 	
 func _on_continue_pressed() -> void:
 	print("continue pressed")
-	await MainGame.instance.title_menu_layer.close()
-	#TODO: abstract this call and relevent variables to its own System
 	MainGame.instance.dialogue_layer.open_active()
-	DialogueManager.show_dialogue_balloon(starting_dialogue, "start")
-	pass
+	DialogueLoader.run_new_game_dialogue()
+	
 
 func _on_options_pressed() -> void:
 	print("options pressed")
