@@ -44,7 +44,7 @@ func _on_choice_edit_panel_item_selected(_choice: ArticleChoice, _index: int) ->
 	
 func _on_submit_button_pressed() -> void:
 	MainGame.instance.player_data.apply_changes_from_article(MainGame.instance.event_manager.article)
-	MainGame.instance.results_layer.open_active()
+	MainGame.instance.event_manager.progress_event()
 
 	
 const ANIM_CLEAR_COLOR := Color(1,1,1,0)

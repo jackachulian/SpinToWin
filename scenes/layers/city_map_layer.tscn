@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bf3o57s62bg5c" path="res://icon.svg" id="4_leaux"]
 [ext_resource type="PackedScene" uid="uid://cuvjjqwfdonss" path="res://scenes/city_map/city_map_faction_preview.tscn" id="5_ue58t"]
 [ext_resource type="PackedScene" uid="uid://bi1paa7uiif22" path="res://scenes/city_map/event_ui.tscn" id="6_e3gvu"]
+[ext_resource type="Script" uid="uid://cb8n3evhugaer" path="res://scripts/systems/events/event_data.gd" id="7_nm77f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leaux"]
 bg_color = Color(0.0224, 0.07, 0.07, 0.8392157)
@@ -17,11 +18,52 @@ border_color = Color(0.6318, 0.78, 0.78, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 
+[sub_resource type="Resource" id="Resource_nm77f"]
+resource_local_to_scene = true
+script = ExtResource("7_nm77f")
+event_name = "Test Event"
+event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+article_file_path = "res://assets/articles/tutorial_01.txt"
+metadata/_custom_type_script = "uid://cb8n3evhugaer"
+
+[sub_resource type="Resource" id="Resource_oc4xn"]
+resource_local_to_scene = true
+script = ExtResource("7_nm77f")
+event_name = "Test Event"
+event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+article_file_path = "res://assets/articles/tutorial_01.txt"
+metadata/_custom_type_script = "uid://cb8n3evhugaer"
+
+[sub_resource type="Resource" id="Resource_g82fp"]
+resource_local_to_scene = true
+script = ExtResource("7_nm77f")
+event_name = "Test Event"
+event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+article_file_path = "res://assets/articles/tutorial_01.txt"
+metadata/_custom_type_script = "uid://cb8n3evhugaer"
+
+[sub_resource type="Resource" id="Resource_mxyj7"]
+resource_local_to_scene = true
+script = ExtResource("7_nm77f")
+event_name = "Test Event"
+event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+article_file_path = "res://assets/articles/tutorial_01.txt"
+metadata/_custom_type_script = "uid://cb8n3evhugaer"
+
+[sub_resource type="Resource" id="Resource_iidtw"]
+resource_local_to_scene = true
+script = ExtResource("7_nm77f")
+event_name = "Test Event"
+event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+article_file_path = "res://assets/articles/tutorial_01.txt"
+metadata/_custom_type_script = "uid://cb8n3evhugaer"
+
 [sub_resource type="LabelSettings" id="LabelSettings_4ieh6"]
 font_size = 18
 
-[node name="CityMapLayer" type="CanvasLayer" unique_id=146308038]
+[node name="CityMapLayer" type="CanvasLayer" unique_id=146308038 node_paths=PackedStringArray("animatable_control")]
 script = ExtResource("1_vj1ly")
+animatable_control = NodePath("CityMapUI")
 
 [node name="CityMapUI" type="Control" parent="." unique_id=1633336644 node_paths=PackedStringArray("event_map_control", "event_popups_control")]
 layout_mode = 3
@@ -33,7 +75,7 @@ grow_vertical = 2
 theme = ExtResource("2_wrs82")
 script = ExtResource("2_rowob")
 event_map_control = NodePath("PanelContainer/VBoxContainer/EventMapContainer/EventMap")
-event_popups_control = NodePath("PanelContainer/VBoxContainer/EventMapContainer/EventPopups")
+event_popups_control = NodePath("PanelContainer/VBoxContainer/MarginContainer/EventPopups")
 
 [node name="PanelContainer" type="PanelContainer" parent="CityMapUI" unique_id=486704109]
 layout_mode = 1
@@ -71,6 +113,7 @@ offset_left = 761.0
 offset_top = -21.0
 offset_right = 831.0
 offset_bottom = 67.0
+event_data = SubResource("Resource_nm77f")
 
 [node name="EventUI2" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=1832251012 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
@@ -78,6 +121,7 @@ offset_left = 781.0
 offset_top = 328.0
 offset_right = 851.0
 offset_bottom = 416.0
+event_data = SubResource("Resource_oc4xn")
 
 [node name="EventUI3" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=1438903290 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
@@ -85,6 +129,7 @@ offset_left = 387.0
 offset_top = 144.0
 offset_right = 457.0
 offset_bottom = 232.0
+event_data = SubResource("Resource_g82fp")
 
 [node name="EventUI4" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=516969618 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
@@ -92,6 +137,7 @@ offset_left = 19.0
 offset_top = 328.0
 offset_right = 89.0
 offset_bottom = 416.0
+event_data = SubResource("Resource_mxyj7")
 
 [node name="EventUI5" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=1643655914 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
@@ -99,10 +145,7 @@ offset_left = 13.0
 offset_top = -32.0
 offset_right = 83.0
 offset_bottom = 56.0
-
-[node name="EventPopups" type="Control" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer" unique_id=137916151]
-layout_mode = 2
-mouse_filter = 2
+event_data = SubResource("Resource_iidtw")
 
 [node name="InfoContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer" unique_id=1651421061]
 layout_mode = 0
@@ -143,3 +186,18 @@ faction_id = 2
 layout_mode = 2
 size_flags_horizontal = 3
 faction_id = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer" unique_id=1761353466]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="EventPopups" type="Control" parent="CityMapUI/PanelContainer/VBoxContainer/MarginContainer" unique_id=137916151]
+layout_mode = 2
+mouse_filter = 2

@@ -6,7 +6,7 @@ extends AnimatableControl
 func _on_continue_button_pressed() -> void:
 	# TODO: take player back to the map if the game is still going,
 	# or this will probably be where any endings are played if the player won/lost
-	MainGame.instance.city_map_layer.open_active()
+	MainGame.instance.event_manager.progress_event()
 
 func animate_in():
 	show()

@@ -20,6 +20,9 @@ var popup_linger_timer: Timer
 
 var popup_fit_control: Control
 
+var on_top_of_icon: bool
+
+var popup_showing: bool
 signal popup_shown()
 
 func _ready() -> void:
@@ -44,6 +47,9 @@ func _ready() -> void:
 	add_child(popup_linger_timer)
 	popup_linger_timer.timeout.connect(_on_popup_linger_timer_timeout)
 	
+func _on_investigate_button_pressed() -> void:
+	MainGame.instance.event_manager.play_event(event_data)
+	
 func fit_popup_in_global_rect() -> void:
 	var parent_global_rect := popup_fit_control.get_global_rect()
 	popup_panel.size = Vector2.ZERO
@@ -55,9 +61,11 @@ func fit_popup_in_global_rect() -> void:
 	popup_panel.size = Vector2.ZERO
 	var event_center_y := global_position.y + size.y / 2.0
 	popup_panel.global_position.y = event_center_y - popup_y_offset - popup_panel.size.y
+	on_top_of_icon = true
 	var popup_global_rect := popup_panel.get_global_rect()
 	if not parent_global_rect.encloses(popup_global_rect):
 		popup_panel.global_position.y = event_center_y + popup_y_offset
+		on_top_of_icon = false
 		
 	popup_panel.size = Vector2.ZERO
 	
@@ -97,14 +105,38 @@ func _on_popup_linger_timer_timeout() -> void:
 		hide_popup()
 	
 func show_popup() -> void:
-	popup_panel.show()
 	if not popup_linger_timer.is_stopped():
 		popup_linger_timer.stop()
+	fit_popup_in_global_rect()
+	animate_in_popup()
 	fit_popup_in_global_rect()
 	popup_shown.emit()
 		
 func hide_popup() -> void:
-	popup_panel.hide()
+	await animate_out_popup()
+	#animate_out_popup()
+
+var tween: Tween
+func animate_in_popup() -> void:
+	if popup_showing: return
+	popup_showing = true
+	popup_panel.show()
+	popup_panel.modulate = Color(1,1,1,0)
+	popup_panel.offset_transform_scale = Vector2.ZERO
+	popup_panel.offset_transform_pivot_ratio = Vector2(0.5, 1 if on_top_of_icon else 0)
+	popup_panel.offset_transform_enabled = true
+	if tween: tween.kill()
+	tween = create_tween().set_parallel().set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(popup_panel, "modulate", Color.WHITE, 0.3)
+	tween.tween_property(popup_panel, "offset_transform_scale", Vector2.ONE, 0.3)
 	
-func _on_investigate_button_pressed() -> void:
-	MainGame.instance.event_manager.play_event(event_data)
+func animate_out_popup() -> void:
+	if not popup_showing: return
+	popup_showing = false
+	popup_panel.offset_transform_enabled = true
+	if tween: tween.kill()
+	tween = create_tween().set_parallel()
+	tween.tween_property(popup_panel, "modulate", Color(1,1,1,0), 0.15)
+	#tween.tween_property(popup_panel, "offset_transform_scale", Vector2.ZERO, 0.15)
+	await tween.finished
+	popup_panel.hide()

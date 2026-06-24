@@ -1,6 +1,9 @@
 class_name PlayerData
 extends Node
 
+## When a save is loaded, this is true, otherwise, this is false
+static var save_started: bool = false
+
 ## Indexes correspond to the FACTIONS array in FactionData
 ## Ranges from 0 to 100
 var reputations: Array[int]
@@ -18,8 +21,9 @@ var public_trust: int
 ## This data may be displayed on the results layer.
 var previous_public_trust: int
 
-## When a save is loaded, this is true, otherwise, this is false
-static var save_started: bool = false
+## List of events that have already been fully completed and cannot
+## be encountered anymore
+var completed_events: Array[EventData]
 
 func start_new_save():
 	reputations = [50, 50, 50, 50]

@@ -15,8 +15,19 @@ func _ready() -> void:
 			#child.fit_popup_in_parent_global_rect()
 			child.popup_shown.connect(_on_event_ui_popup_shown.bind(child))
 			
+func animate_in():
+	super.animate_in()
+	update_event_visibility()
+			
+func update_event_visibility() -> void:
+	var completed_events := MainGame.instance.player_data.completed_events
+	for child: Node in event_map_control.get_children():
+		if child is EventUI:
+			child.visible = not child.event_data in completed_events
+			
 func _on_event_ui_popup_shown(ui: EventUI) -> void:
 	for child: Node in event_map_control.get_children():
 		if child is EventUI:
 			if child != ui:
 				child.hide_popup()
+				

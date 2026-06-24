@@ -68,6 +68,7 @@ func progress_event() -> void:
 			
 	# End of event
 	elif event_phase == EventPhase.ENDED:
+		MainGame.instance.player_data.completed_events.append(event_data)
 		event_data = null
 		# Back to the map
 		MainGame.instance.city_map_layer.open_active()
