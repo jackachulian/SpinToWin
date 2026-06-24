@@ -3,6 +3,7 @@ extends CanvasLayer
 
 @export var animatable_control: AnimatableControl
 
+
 var is_open: bool
 var animating: bool
 

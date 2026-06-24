@@ -11,6 +11,10 @@ static var instance: MainGame = MainGame.new()
 ## and when a new active layer is opened, any current active layer is closed.
 var active_layer: TransitionableLayer
 
+var is_initialized: bool = false
+
+## Called after ready initializations and reference sets are made
+signal initialized()
 
 func _enter_tree() -> void:
 	instance = self
@@ -19,6 +23,9 @@ func _ready() -> void:
 	faction_data = $Systems/FactionData
 	if open_layer_on_start:
 		transition_to(open_layer_on_start)
+		
+	is_initialized = true
+	initialized.emit()
 		
 ## Closes any active layer. 
 ## The passed layer becomes the new active layer and is opened.

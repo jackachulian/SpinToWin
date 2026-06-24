@@ -2,12 +2,13 @@
 
 [ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_ns3km"]
 [ext_resource type="Texture2D" uid="uid://cx4n4wogs0yq8" path="res://assets/sprites/NOF_WEB_GALLERY_01.webp" id="2_jglwl"]
+[ext_resource type="Script" uid="uid://cl8gxcsoyfe41" path="res://scripts/core/core_ui.gd" id="2_sp3ab"]
 
 [node name="CoreLayer" type="CanvasLayer" unique_id=883448445]
 process_mode = 1
 layer = 0
 
-[node name="HudRoot" type="Control" parent="." unique_id=1051040131]
+[node name="CoreUI" type="Control" parent="." unique_id=1051040131]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,8 +17,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("1_ns3km")
+script = ExtResource("2_sp3ab")
 
-[node name="PlaceholderBg" type="TextureRect" parent="HudRoot" unique_id=740539264]
+[node name="PlaceholderBg" type="TextureRect" parent="CoreUI" unique_id=740539264]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
