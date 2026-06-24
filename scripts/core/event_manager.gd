@@ -74,8 +74,6 @@ func progress_event() -> void:
 		MainGame.instance.player_data.completed_events.append(event_data)
 		event_data = null
 		MainGame.instance.player_data.advance_time()
-		# Back to the map
-		MainGame.instance.city_map_layer.open_active()
 		
 
 ## Load an article to be the main active article that will be edited by the ArticleLayer

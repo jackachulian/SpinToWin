@@ -23,6 +23,9 @@ func _ready() -> void:
 ## Closes any active layer. 
 ## The passed layer becomes the new active layer and is opened.
 func transition_to(trans_layer: TransitionableLayer) -> void:
+	if active_layer == trans_layer:
+		print(name, " is already open")
+		return
 	if active_layer: 
 		active_layer.close()
 	active_layer = trans_layer

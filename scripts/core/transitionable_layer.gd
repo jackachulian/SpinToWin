@@ -18,13 +18,9 @@ func open() -> void:
 	is_open = true
 	opened.emit()
 	
-	if animating:
+	while animating:
 		await animating_finished
-	
-	animating = true
 	await animate_in()
-	animating = false
-	animating_finished.emit()
 	
 ## Open the given layer. Once that layer is closed,
 ## re-open this layer.
@@ -38,6 +34,9 @@ func open_nested(trans_layer: TransitionableLayer) -> void:
 ## Open this as the active layer on the MainGame instance.
 ## Will close any previous active layer
 func open_active() -> void:
+	if MainGame.instance.active_layer == self:
+		print(name, " is already open")
+		return
 	MainGame.instance.transition_to(self)
 	
 ## Close this layer and open the given layer.
@@ -53,20 +52,25 @@ func close() -> void:
 	is_open = false
 	closed.emit()
 	
-	if animating:
+	while animating:
+		print(name, " waiting for anim finish")
 		await animating_finished
-	
-	animating = true
 	await animate_out()
-	animating = false
-	animating_finished.emit()
 
 func animate_in():
 	show()
+	print("animating in ", name)
 	if animatable_control:
+		animating = true
 		await animatable_control.animate_in()
+		animating = false
+	animating_finished.emit()
 		
 func animate_out():
+	print("animating out ", name)
 	if animatable_control:
+		animating = true
 		await animatable_control.animate_out()
+		animating = false
+	animating_finished.emit()
 	hide()

@@ -48,6 +48,8 @@ func apply_changes_from_article(article: ArticleLevel):
 		reputations[i] += changes[i]
 	public_trust += changes[4]
 
+## Move time forward and open the appropriate layer
+## based on the time
 func advance_time() -> void:
 	time += 1
 	if time >= 4:
@@ -59,5 +61,9 @@ func advance_time() -> void:
 		# TODO: Do end game stuff / endings
 		MainGame.instance.title_menu_layer.open_active()
 		return
+		
+	else:
+		# Otherwise, open the city map scene if it's not already open
+		MainGame.instance.city_map_layer.open_active()
 		
 	time_changed.emit()

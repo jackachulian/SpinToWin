@@ -13,7 +13,7 @@ func _on_new_pressed() -> void:
 	print("new game pressed")
 	MainGame.instance.player_data.start_new_save()
 	# TODO: maybe a new game dialogue here before going to map
-	MainGame.instance.transition_to(MainGame.instance.city_map_layer)
+	MainGame.instance.city_map_layer.open_active()
 	pass
 	
 func _on_continue_pressed() -> void:
