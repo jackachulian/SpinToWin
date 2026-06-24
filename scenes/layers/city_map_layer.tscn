@@ -23,7 +23,7 @@ font_size = 18
 [node name="CityMapLayer" type="CanvasLayer" unique_id=146308038]
 script = ExtResource("1_vj1ly")
 
-[node name="CityMapUI" type="Control" parent="." unique_id=1633336644]
+[node name="CityMapUI" type="Control" parent="." unique_id=1633336644 node_paths=PackedStringArray("event_map_control", "event_popups_control")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,6 +32,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_wrs82")
 script = ExtResource("2_rowob")
+event_map_control = NodePath("PanelContainer/VBoxContainer/EventMapContainer/EventMap")
+event_popups_control = NodePath("PanelContainer/VBoxContainer/EventMapContainer/EventPopups")
 
 [node name="PanelContainer" type="PanelContainer" parent="CityMapUI" unique_id=486704109]
 layout_mode = 1
@@ -49,18 +51,72 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_leaux")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CityMapUI/PanelContainer" unique_id=255769519]
+[node name="VBoxContainer" type="Control" parent="CityMapUI/PanelContainer" unique_id=1533041251]
 layout_mode = 2
 
-[node name="InfoContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer" unique_id=1651421061]
+[node name="EventMapContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer" unique_id=501916676]
+layout_mode = 0
+offset_top = 98.0
+offset_right = 926.0
+offset_bottom = 562.0
+size_flags_vertical = 3
+
+[node name="EventMap" type="Control" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer" unique_id=1685153136]
 layout_mode = 2
+mouse_filter = 1
+
+[node name="EventUI" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=234452478 instance=ExtResource("6_e3gvu")]
+layout_mode = 0
+offset_left = 761.0
+offset_top = -21.0
+offset_right = 831.0
+offset_bottom = 67.0
+
+[node name="EventUI2" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=1832251012 instance=ExtResource("6_e3gvu")]
+layout_mode = 0
+offset_left = 781.0
+offset_top = 328.0
+offset_right = 851.0
+offset_bottom = 416.0
+
+[node name="EventUI3" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=1438903290 instance=ExtResource("6_e3gvu")]
+layout_mode = 0
+offset_left = 387.0
+offset_top = 144.0
+offset_right = 457.0
+offset_bottom = 232.0
+
+[node name="EventUI4" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=516969618 instance=ExtResource("6_e3gvu")]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 328.0
+offset_right = 89.0
+offset_bottom = 416.0
+
+[node name="EventUI5" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=1643655914 instance=ExtResource("6_e3gvu")]
+layout_mode = 0
+offset_left = 13.0
+offset_top = -32.0
+offset_right = 83.0
+offset_bottom = 56.0
+
+[node name="EventPopups" type="Control" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer" unique_id=137916151]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="InfoContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer" unique_id=1651421061]
+layout_mode = 0
+offset_right = 926.0
+offset_bottom = 94.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer" unique_id=1066170595]
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CityMapUI/PanelContainer/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1561566677]
 custom_minimum_size = Vector2(64, 64)
+custom_maximum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("4_leaux")
 expand_mode = 1
 
@@ -87,13 +143,3 @@ faction_id = 2
 layout_mode = 2
 size_flags_horizontal = 3
 faction_id = 3
-
-[node name="EventMapContainer" type="MarginContainer" parent="CityMapUI/PanelContainer/VBoxContainer" unique_id=501916676]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="EventMap" type="Control" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer" unique_id=1685153136]
-layout_mode = 2
-
-[node name="EventUI" parent="CityMapUI/PanelContainer/VBoxContainer/EventMapContainer/EventMap" unique_id=234452478 instance=ExtResource("6_e3gvu")]
-layout_mode = 0

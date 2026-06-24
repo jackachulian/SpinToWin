@@ -8,11 +8,6 @@ extends Control
 @export var rep_up_arrow: Polygon2D
 @export var rep_down_arrow: Polygon2D
 
-
-var GOOD_COLOR := Color(0.374, 0.64, 0.365, 1.0)
-var AVERAGE_COLOR := Color(0.69, 0.576, 0.262, 1.0)
-var BAD_COLOR := Color(0.7, 0.287, 0.224, 1.0)
-
 ## The ID of the faction this is displaying (see FACTION array on PlayerData).
 var faction: int
 
@@ -32,7 +27,7 @@ func setup(faction: int, old_reputation: float, new_reputation: float) -> void:
 	
 	faction_name_label.text = MainGame.instance.faction_data.names[faction]
 	
-	var color := get_reputation_color(old_reputation)
+	var color := FactionData.get_reputation_color(old_reputation)
 	reputation_bar.value = old_reputation
 	var fill_stylebox: StyleBoxFlat = reputation_bar.get_theme_stylebox("fill")
 	fill_stylebox.bg_color = color
@@ -40,11 +35,7 @@ func setup(faction: int, old_reputation: float, new_reputation: float) -> void:
 	rep_up_arrow.hide()
 	rep_down_arrow.hide()
 	
-func get_reputation_color(reputation: float) -> Color:
-	if reputation < 50:
-		return lerp(BAD_COLOR, AVERAGE_COLOR, clampf(remap(reputation, 10, 50, 0, 1), 0, 1))
-	else:
-		return lerp(AVERAGE_COLOR, GOOD_COLOR, clampf(remap(reputation, 50, 90, 0, 1), 0, 1))
+
 
 const ANIM_OFFSET := Vector2(0.0, -100.0)
 
@@ -81,7 +72,7 @@ func animate_rep_change() -> void:
 	
 	tween.tween_property(reputation_bar, "value", new_reputation, 0.5).set_trans(Tween.TRANS_BACK)
 	
-	var new_rep_color := get_reputation_color(new_reputation)
+	var new_rep_color := FactionData.get_reputation_color(new_reputation)
 	var fill_stylebox: StyleBoxFlat = reputation_bar.get_theme_stylebox("fill")
 	tween.tween_property(fill_stylebox, "bg_color", new_rep_color, 0.5).set_trans(Tween.TRANS_BACK)
 	

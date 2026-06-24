@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://djmbkwy3chp3h" path="res://scripts/ui/city_map/event_ui.gd" id="1_ah41s"]
 [ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_dc0kv"]
 [ext_resource type="Script" uid="uid://cb8n3evhugaer" path="res://scripts/systems/events/event_data.gd" id="2_dc0kv"]
+[ext_resource type="StyleBox" uid="uid://hihta8a11juh" path="res://assets/theme/popup_style_box.tres" id="4_wtyxo"]
 
 [sub_resource type="Resource" id="Resource_e3gvu"]
 script = ExtResource("2_dc0kv")
@@ -11,89 +12,96 @@ event_description = "There's a town council meeting happening soon, and it seems
 article_file_path = "res://assets/articles/tutorial_01.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ieh6"]
-bg_color = Color(0.011259554, 0.049196914, 0.051734425, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.568, 0.6934333, 0.71, 0.6156863)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [sub_resource type="LabelSettings" id="LabelSettings_o0ard"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4kik5"]
 font_size = 14
 
-[node name="EventUI" type="Control" unique_id=234452478]
+[node name="EventUI" type="Control" unique_id=234452478 node_paths=PackedStringArray("icon_control", "popup_panel", "name_label", "desc_label")]
+custom_minimum_size = Vector2(70, 88)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 100.0
-offset_bottom = 100.0
+offset_right = 71.0
+offset_bottom = 88.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 1
 theme = ExtResource("1_dc0kv")
 script = ExtResource("1_ah41s")
 event_data = SubResource("Resource_e3gvu")
+icon_control = NodePath("IconControl")
+popup_panel = NodePath("PopupInfoPanel")
+name_label = NodePath("PopupInfoPanel/MarginContainer/VBoxContainer/NameLabel")
+desc_label = NodePath("PopupInfoPanel/MarginContainer/VBoxContainer/DescLabel")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1553996210]
-position = Vector2(12, 24.000008)
+[node name="IconControl" type="Control" parent="." unique_id=1941426756]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="IconControl" unique_id=1553996210]
+position = Vector2(-2.5, 9.470589)
 scale = Vector2(0.59375, 0.5588235)
 color = Color(0.5544, 0.72, 0.7062, 0.7372549)
 polygon = PackedVector2Array(64, 128, 104, 64, 112, 40, 104, 16, 88, 0, 64, -8, 40, 0, 24, 16, 16, 40, 24, 64)
 
-[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=653543790]
-position = Vector2(12, 25)
+[node name="Polygon2D2" type="Polygon2D" parent="IconControl" unique_id=653543790]
+position = Vector2(-2.5, 10.470581)
 scale = Vector2(0.578125, 0.55078137)
 polygon = PackedVector2Array(64, 8, 42, 17, 32, 40, 41, 63, 64, 72, 86, 62, 96, 40, 86, 17)
 
-[node name="PopupInfoHoverControl" type="Control" parent="." unique_id=570155382]
+[node name="PopupInfoPanel" type="PanelContainer" parent="." unique_id=1263547871]
+visible = false
+custom_minimum_size = Vector2(256, 0)
+propagate_maximum_size = false
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -95.0
-offset_top = -273.0
-offset_right = 95.0
+anchor_bottom = 0.5
+offset_left = -128.5
+offset_top = -157.5
+offset_right = 127.5
+offset_bottom = -40.5
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("4_wtyxo")
 
-[node name="PopupInfoPanel" type="PanelContainer" parent="PopupInfoHoverControl" unique_id=1263547871]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 179.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_4ieh6")
-
-[node name="MarginContainer" type="MarginContainer" parent="PopupInfoHoverControl/PopupInfoPanel" unique_id=2023027549]
+[node name="MarginContainer" type="MarginContainer" parent="PopupInfoPanel" unique_id=2023027549]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PopupInfoHoverControl/PopupInfoPanel/MarginContainer" unique_id=1394121821]
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupInfoPanel/MarginContainer" unique_id=1394121821]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="PopupInfoHoverControl/PopupInfoPanel/MarginContainer/VBoxContainer" unique_id=657513806]
+[node name="NameLabel" type="Label" parent="PopupInfoPanel/MarginContainer/VBoxContainer" unique_id=657513806]
 layout_mode = 2
 text = "Event Name"
 label_settings = SubResource("LabelSettings_o0ard")
 
-[node name="DescLabel" type="Label" parent="PopupInfoHoverControl/PopupInfoPanel/MarginContainer/VBoxContainer" unique_id=1904788534]
+[node name="DescLabel" type="Label" parent="PopupInfoPanel/MarginContainer/VBoxContainer" unique_id=1904788534]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
-size_flags_vertical = 3
-text = "Event description"
+size_flags_vertical = 1
+text = "Event description "
 label_settings = SubResource("LabelSettings_4kik5")
 autowrap_mode = 2
 
-[node name="InvestigateButton" type="Button" parent="PopupInfoHoverControl/PopupInfoPanel/MarginContainer/VBoxContainer" unique_id=1558583601]
+[node name="Spacer" type="Control" parent="PopupInfoPanel/MarginContainer/VBoxContainer" unique_id=909090714]
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
+
+[node name="InvestigateButton" type="Button" parent="PopupInfoPanel/MarginContainer/VBoxContainer" unique_id=1558583601]
+layout_mode = 2
+mouse_filter = 1
 text = "Investigate"
 
-[connection signal="pressed" from="PopupInfoHoverControl/PopupInfoPanel/MarginContainer/VBoxContainer/InvestigateButton" to="." method="_on_investigate_button_pressed"]
+[connection signal="pressed" from="PopupInfoPanel/MarginContainer/VBoxContainer/InvestigateButton" to="." method="_on_investigate_button_pressed"]

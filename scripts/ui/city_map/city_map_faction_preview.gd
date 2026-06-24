@@ -7,7 +7,7 @@ extends Control
 @export var expand_control: Control
 
 @export var texture_rect: TextureRect
-@export var progress_bar: ProgressBar
+@export var reputation_bar: ProgressBar
 
 @export var hover_panel: PanelContainer
 @export var name_label: Label
@@ -18,12 +18,21 @@ extends Control
 
 func _ready() -> void:
 	hover_panel.self_modulate = Color(1,1,1,0)
-	hover_panel.size.y = base_container.size.y
+	#hover_panel.size.y = base_container.size.y
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	
 	name_label.text = MainGame.instance.faction_data.names[faction_id]
 	desc_label.text = MainGame.instance.faction_data.short_descriptions[faction_id]
+	
+	visibility_changed.connect(_on_visibility_changed)
+	
+func _on_visibility_changed() -> void:
+	if visible:
+		var reputation := MainGame.instance.player_data.reputations[faction_id]
+		reputation_bar.value = reputation
+		var fill_stylebox: StyleBoxFlat = reputation_bar.get_theme_stylebox("fill")
+		fill_stylebox.bg_color = FactionData.get_reputation_color(reputation)
 	
 var tween: Tween
 func _on_mouse_entered() -> void:

@@ -3,21 +3,14 @@
 [ext_resource type="Script" uid="uid://crb2j8q1uxgye" path="res://scripts/ui/city_map/city_map_faction_preview.gd" id="1_dt7kb"]
 [ext_resource type="Texture2D" uid="uid://bf3o57s62bg5c" path="res://icon.svg" id="1_x1xgt"]
 [ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_x35ka"]
+[ext_resource type="StyleBox" uid="uid://hihta8a11juh" path="res://assets/theme/popup_style_box.tres" id="3_s4ou0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ieh6"]
-bg_color = Color(0.012999999, 0.09130001, 0.1, 0.3764706)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ue58t"]
+bg_color = Color(0.009248525, 0.026789203, 0.03419995, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.0021838667, 0.04200436, 0.053392716, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ue58t"]
-bg_color = Color(0.0504, 0.100279994, 0.12, 1)
 border_color = Color(0.82804394, 0.784154, 0.6590126, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
@@ -27,6 +20,10 @@ corner_radius_bottom_left = 16
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3gvu"]
 resource_local_to_scene = true
 bg_color = Color(0.37254903, 0.6392157, 0.3647059, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0.8, 0.8, 0.8, 0)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
@@ -40,7 +37,7 @@ font_color = Color(0.98, 0.86534005, 0.5978, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_4ieh6"]
 font_size = 12
 
-[node name="CityMapFactionPreview" type="Control" unique_id=1443954488 node_paths=PackedStringArray("base_container", "expand_control", "hover_panel", "name_label", "desc_label")]
+[node name="CityMapFactionPreview" type="Control" unique_id=1443954488 node_paths=PackedStringArray("base_container", "expand_control", "texture_rect", "reputation_bar", "hover_panel", "name_label", "desc_label")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 205.0
@@ -49,6 +46,8 @@ theme = ExtResource("1_x35ka")
 script = ExtResource("1_dt7kb")
 base_container = NodePath("HoverPanel/VBoxContainer/BaseContainer")
 expand_control = NodePath("HoverPanel/VBoxContainer/ExpandControl/MarginContainer/VBoxContainer")
+texture_rect = NodePath("HoverPanel/VBoxContainer/BaseContainer/HBoxContainer/TextureRect")
+reputation_bar = NodePath("HoverPanel/VBoxContainer/BaseContainer/HBoxContainer/ProgressBar")
 hover_panel = NodePath("HoverPanel")
 name_label = NodePath("HoverPanel/VBoxContainer/ExpandControl/MarginContainer/VBoxContainer/NameLabel")
 desc_label = NodePath("HoverPanel/VBoxContainer/ExpandControl/MarginContainer/VBoxContainer/DescLabel")
@@ -64,7 +63,7 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_4ieh6")
+theme_override_styles/panel = ExtResource("3_s4ou0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HoverPanel" unique_id=1439536794]
 layout_mode = 2
