@@ -99,6 +99,7 @@ grow_vertical = 0
 [node name="PanelContainer" type="PanelContainer" parent="DialogueUI/DialogueBalloon/Balloon/MarginContainer" unique_id=1858330092]
 clip_children = 2
 layout_mode = 2
+offset_transform_enabled = true
 mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogueUI/DialogueBalloon/Balloon/MarginContainer/PanelContainer" unique_id=1802632765]
@@ -136,6 +137,7 @@ size_flags_vertical = 8
 
 [node name="Progress" type="Polygon2D" parent="DialogueUI/DialogueBalloon/Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control" unique_id=1348110526]
 unique_name_in_owner = true
+visible = false
 polygon = PackedVector2Array(0, 0, 10, 10, 20, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DialogueUI/DialogueBalloon/Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Control" unique_id=168682091]

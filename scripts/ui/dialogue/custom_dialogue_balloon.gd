@@ -145,9 +145,10 @@ func start(with_dialogue_resource: DialogueResource = null, title: String = "sta
 		dialogue_resource = with_dialogue_resource
 	if not title.is_empty():
 		start_from_title = title
-	dialogue_line = await dialogue_resource.get_next_dialogue_line(start_from_title, temporary_game_states)
+	balloon.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_INHERITED
 	dialogue_label.self_modulate = Color.WHITE
 	character_label.self_modulate = Color.WHITE
+	dialogue_line = await dialogue_resource.get_next_dialogue_line(start_from_title, temporary_game_states)
 
 
 ## Apply any changes to the balloon given a new [DialogueLine].
@@ -245,6 +246,7 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 
 func _on_dialogue_end() -> void:
 	balloon.focus_mode = Control.FOCUS_NONE
+	balloon.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_DISABLED
 	responses_menu.animate_out()
 
 #endregion

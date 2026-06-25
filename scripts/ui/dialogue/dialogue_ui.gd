@@ -32,8 +32,8 @@ func animate_out():
 func animate_dialogue_box(start_y: float, end_y: float, start_modulate: Color, target_modulate: Color, duration: float, trans: Tween.TransitionType) -> void:
 	await get_tree().process_frame
 	
-	var pos_x := dialogue_box.position.x
-	dialogue_box.position = Vector2(pos_x, start_y)
+	var pos_x := dialogue_box.offset_transform_position.x
+	dialogue_box.offset_transform_position = Vector2(pos_x, start_y)
 	dialogue_box.modulate = start_modulate
 	
 	var target_pos := Vector2(pos_x, end_y)
@@ -41,7 +41,7 @@ func animate_dialogue_box(start_y: float, end_y: float, start_modulate: Color, t
 	tween.set_trans(trans)
 	tween.set_parallel(true)
 	tween.tween_property(
-		dialogue_box, "position", target_pos, duration
+		dialogue_box, "offset_transform_position", target_pos, duration
 	).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(
 		dialogue_box, "modulate", target_modulate, duration
