@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://3j5i3cxcwsd"]
+
+[ext_resource type="Script" uid="uid://dhplgeh73xap3" path="res://scripts/systems/audio/audio_manager.gd" id="1_hrhdx"]
+[ext_resource type="AudioStream" uid="uid://d5ncraimi1jj" path="res://assets/audio/BRS_Rain_Street_City_Splatty_1.wav" id="2_aac8q"]
+[ext_resource type="AudioStream" uid="uid://diy64ji18he7i" path="res://assets/audio/CityStreet_BW.1724.wav" id="3_7ijxr"]
+
+[node name="AudioManager" type="Node" unique_id=683407791 node_paths=PackedStringArray("rain_ambience_asp", "city_ambience_asp")]
+script = ExtResource("1_hrhdx")
+rain_ambience_asp = NodePath("RainAmbienceASP")
+city_ambience_asp = NodePath("CityAmbienceASP")
+
+[node name="RainAmbienceASP" type="AudioStreamPlayer" parent="." unique_id=382494308]
+stream = ExtResource("2_aac8q")
+bus = &"Ambience"
+
+[node name="CityAmbienceASP" type="AudioStreamPlayer" parent="." unique_id=1237633380]
+stream = ExtResource("3_7ijxr")
+bus = &"Ambience"

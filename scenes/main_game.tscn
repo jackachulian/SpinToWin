@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://bv1igdg7svcoj" path="res://assets/dialogue/test.dialogue" id="6_vnsdt"]
 [ext_resource type="PackedScene" uid="uid://bxigef2xkgg42" path="res://scenes/layers/transition_layer.tscn" id="7_5cypo"]
 [ext_resource type="Script" uid="uid://tyrlm6syhdiv" path="res://scripts/systems/rain/rain_manager.gd" id="7_ikqpi"]
+[ext_resource type="PackedScene" uid="uid://3j5i3cxcwsd" path="res://scenes/systems/audio_manager.tscn" id="8_5luka"]
 [ext_resource type="PackedScene" uid="uid://dumg5me26m8hw" path="res://scenes/layers/options_layer.tscn" id="8_nqdth"]
 [ext_resource type="PackedScene" uid="uid://cp7bmkraww10n" path="res://scenes/layers/debug_layer.tscn" id="8_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://dkgyw8btmx3qt" path="res://scenes/layers/dialogue_layer.tscn" id="9_8xp80"]
@@ -43,6 +44,8 @@ balloon = NodePath("../../DialogueLayer/DialogueUI/DialogueBalloon")
 
 [node name="RainManager" type="Node" parent="Systems" unique_id=1839088847]
 script = ExtResource("7_ikqpi")
+
+[node name="AudioManager" parent="Systems" unique_id=683407791 instance=ExtResource("8_5luka")]
 
 [node name="CoreLayer" parent="." unique_id=883448445 instance=ExtResource("3_70vka")]
 

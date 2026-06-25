@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c1kv75ua6hsld" path="res://scripts/ui/options/options_ui.gd" id="3_20xl3"]
 [ext_resource type="FontFile" uid="uid://k2mdld8xovp0" path="res://assets/fonts/BillionaireMediumGrunge.ttf" id="3_ewmxb"]
 [ext_resource type="Material" uid="uid://deia4rqmwu5pp" path="res://assets/materials/article_blur_and_tint.tres" id="4_ewmxb"]
+[ext_resource type="Script" uid="uid://dyn0isqa6jdsl" path="res://scripts/ui/options/volume_slider.gd" id="6_um5vg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ruko1"]
 font_size = 80
@@ -113,41 +114,72 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=493198209]
+[node name="MasterLabel" type="Label" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=292806304]
 layout_mode = 2
-text = "SFX Volume"
+text = "Master Volume"
 horizontal_alignment = 1
 
-[node name="SFXSlider" type="HSlider" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=32050519]
+[node name="MasterSlider" type="HSlider" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1603510995]
 layout_mode = 2
+max_value = 1.0
+step = 0.1
+tick_count = 11
+ticks_on_borders = true
+script = ExtResource("6_um5vg")
 
-[node name="Spacer" type="Control" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1044925051]
+[node name="MasterSpacer" type="Control" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=178688851]
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=449387553]
+[node name="MusicLabel" type="Label" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=449387553]
 layout_mode = 2
 text = "Music Volume"
 horizontal_alignment = 1
 
 [node name="MusicSlider" type="HSlider" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=526128207]
 layout_mode = 2
+max_value = 1.0
+step = 0.1
+tick_count = 11
+ticks_on_borders = true
+script = ExtResource("6_um5vg")
+audio_bus_name = "Music"
 
-[node name="Spacer2" type="Control" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=2054166569]
+[node name="MusicSpacer" type="Control" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=2054166569]
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1372135334]
+[node name="SFXLabel" type="Label" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=493198209]
+layout_mode = 2
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=32050519]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+tick_count = 11
+ticks_on_borders = true
+script = ExtResource("6_um5vg")
+audio_bus_name = "SFX"
+
+[node name="SFXSpacer" type="Control" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1044925051]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="AmbienceLabel" type="Label" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1372135334]
 layout_mode = 2
 text = "Ambience Volume"
 horizontal_alignment = 1
 
 [node name="AmbienceSlider" type="HSlider" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=818040404]
 layout_mode = 2
-
-[node name="Spacer3" type="Control" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1320274596]
-custom_minimum_size = Vector2(0, 6)
-layout_mode = 2
+max_value = 1.0
+step = 0.1
+tick_count = 11
+ticks_on_borders = true
+script = ExtResource("6_um5vg")
+audio_bus_name = "Ambience"
 
 [node name="BackButton" type="Button" parent="OptionsUI/OptionsPanel/MarginContainer/VBoxContainer" unique_id=472577676]
 layout_mode = 2
