@@ -49,6 +49,7 @@ func transition_to(trans_layer: TransitionableLayer) -> void:
 @onready var event_manager: EventManager = $Systems/EventManager
 var faction_data: FactionData = FactionData.new()
 @onready var dialogue_loader: DialogueLoader = $Systems/DialogueLoader
+@onready var rain_manager: RainManager = $Systems/RainManager
 
 # -------- Canvas layers --------
 @onready var core_layer: CanvasLayer = $CoreLayer
