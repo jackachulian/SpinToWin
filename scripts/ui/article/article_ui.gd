@@ -35,6 +35,7 @@ func setup(article: ArticleLevel) -> void:
 func _on_choice_clicked(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -> void:
 	choice_edit_panel.setup(choice, global_pos, sentence_start)
 	choice_edit_panel.show()
+	MainGame.instance.audio_manager.play_audio_by_id("article_choice_open")
 	blur_material.set_shader_parameter("blur_radius", choice_edit_blur_radius)
 
 func _on_choice_edit_panel_item_selected(_choice: ArticleChoice, _index: int) -> void:

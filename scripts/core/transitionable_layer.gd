@@ -62,13 +62,13 @@ func close() -> void:
 	# TODO: fix transition softlocks
 	
 	while animating:
-		print(name, " waiting for anim finish")
+		#print(name, " waiting for anim finish")
 		await animating_finished
 	await animate_out()
 
 func animate_in():
 	show()
-	print("animating in ", name)
+	#print("animating in ", name)
 	if animatable_control:
 		animating = true
 		await animatable_control.animate_in()
@@ -76,7 +76,7 @@ func animate_in():
 	animating_finished.emit()
 		
 func animate_out():
-	print("animating out ", name)
+	#print("animating out ", name)
 	if animatable_control:
 		animating = true
 		await animatable_control.animate_out()

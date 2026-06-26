@@ -36,6 +36,7 @@ func _on_visibility_changed() -> void:
 	
 var tween: Tween
 func _on_mouse_entered() -> void:
+	MainGame.instance.audio_manager.play_audio_by_id("ui_expand")
 	if tween: tween.kill()
 	tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel()
 	tween.tween_property(hover_panel, "self_modulate", Color.WHITE, 0.4)
@@ -43,6 +44,7 @@ func _on_mouse_entered() -> void:
 	tween.tween_property(hover_panel, "size", Vector2(hover_panel.size.x, hovered_height), 0.4)
 	
 func _on_mouse_exited() -> void:
+	MainGame.instance.audio_manager.play_audio_by_id("ui_expand", "SFX", -1.0, 0.7)
 	if tween: tween.kill()
 	tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel()
 	tween.tween_property(hover_panel, "self_modulate", Color(1,1,1,0), 0.4)

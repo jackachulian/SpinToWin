@@ -10,7 +10,6 @@ var event_schedule: Array[EventData]
 var event_data: EventData
 
 enum EventPhase {
-	STARTING,
 	START_DIALOGUE,
 	ARTICLE_EDIT,
 	RESULTS,
@@ -30,21 +29,25 @@ var article: ArticleLevel
 ## call progress_event() on this event manager.
 func play_event(event_data: EventData) -> void:
 	self.event_data = event_data
-	event_phase = EventPhase.STARTING
-	progress_event()
+	event_phase = EventPhase.START_DIALOGUE
+	open_layer_for_event_phase()
+
+func progress_event() -> void:
+	event_phase = (event_phase + 1) as EventPhase
+	print("event phase=", event_phase)
+	open_layer_for_event_phase()
 
 ## Move forward in an event's progression and transition to whatever
 ## current layer is needed
-func progress_event() -> void:	
-	# Advance to the next phase
-	event_phase = (event_phase + 1) as EventPhase
-	
+func open_layer_for_event_phase() -> void:		
 	# Starting dialogue, if there is any
 	if event_phase == EventPhase.START_DIALOGUE:
 		if not event_data.start_dialogue_path.is_empty():
+			var dialogue := ResourceLoader.load(event_data.start_dialogue_path)
 			MainGame.instance.dialogue_layer.open_active()
-			# TODO: play dialogue according to event_data.start_dialogue
+			DialogueLoader.run_dialogue(dialogue)
 		else:
+			print("skipping start dialogue")
 			progress_event()
 		
 	# Article edit, if there is an article
@@ -62,10 +65,13 @@ func progress_event() -> void:
 		else:
 			progress_event()
 	
-	# End dialogue, if there is any
+	# End dialogue, if there is any.
+	# Otherwise, end the event here
 	elif event_phase == EventPhase.END_DIALOGUE:
 		if not event_data.end_dialogue_path.is_empty():
+			var dialogue := ResourceLoader.load(event_data.end_dialogue_path)
 			MainGame.instance.dialogue_layer.open_active()
+			DialogueLoader.run_dialogue(dialogue)
 		else:
 			progress_event()
 			
@@ -73,8 +79,9 @@ func progress_event() -> void:
 	elif event_phase == EventPhase.ENDED:
 		MainGame.instance.player_data.completed_events.append(event_data)
 		event_data = null
-		MainGame.instance.player_data.advance_time()
-		
+		# will open the appropriate layer based on time
+		print("event ended, advancing game phase")
+		MainGame.instance.player_data.advance_gase_phase()
 
 ## Load an article to be the main active article that will be edited by the ArticleLayer
 ## and its results shown on the ResultsLayer

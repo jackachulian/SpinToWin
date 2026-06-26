@@ -3,6 +3,7 @@ extends AnimatableControl
 
 @export var options_layer: TransitionableLayer
 
+@export var first_selected: Control
 @export var bg_darkener: Control
 @export var options_panel: Control
 @export var back_button: Control
@@ -33,8 +34,8 @@ func animate_in():
 		options_panel, "scale", Vector2.ONE, 0.4
 	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(bg_darkener, "modulate", Color.WHITE, 0.3)
+	first_selected.call_deferred("grab_focus", true)
 	await tween.finished
-	back_button.call_deferred("grab_focus", true)
 
 func animate_out():
 	var tween = create_tween().set_parallel()

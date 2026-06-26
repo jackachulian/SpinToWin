@@ -47,7 +47,7 @@ func rebuild_text() -> void:
 		text += " "
 	
 func _on_meta_clicked(meta: String):
-	print("Clicked: ", meta)
+	#print("Clicked: ", meta)
 	editing_meta = meta
 	
 	var params := meta.split("/")
@@ -79,12 +79,12 @@ func _on_meta_clicked(meta: String):
 	
 
 func _on_meta_hover_started(meta):
-	print("Hovered: ", meta)
+	#print("Hovered: ", meta)
 	hovered_meta = meta
 	rebuild_text()
 
 func _on_meta_hover_ended(meta):
-	print("Unhovered: ", meta)
+	#print("Unhovered: ", meta)
 	hovered_meta = ""
 	rebuild_text()
 	

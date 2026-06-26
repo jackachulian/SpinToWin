@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://3j5i3cxcwsd"]
 
 [ext_resource type="Script" uid="uid://dhplgeh73xap3" path="res://scripts/systems/audio/audio_manager.gd" id="1_hrhdx"]
+[ext_resource type="AudioStream" uid="uid://bil2v0phu5gpi" path="res://assets/audio/ad4_typewriter_08_r06.wav" id="2_7ijxr"]
 [ext_resource type="AudioStream" uid="uid://d5ncraimi1jj" path="res://assets/audio/BRS_Rain_Street_City_Splatty_1.wav" id="2_aac8q"]
 [ext_resource type="AudioStream" uid="uid://cxno0qcyf5wrh" path="res://assets/audio/ad4_typewriter_15_r07.wav" id="3_03wka"]
 [ext_resource type="AudioStream" uid="uid://diy64ji18he7i" path="res://assets/audio/CityStreet_BW.1724.wav" id="3_7ijxr"]
@@ -8,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://cttxm22mriy4d" path="res://assets/audio/ad4_pinkrobot_head_click_v01_r05.wav" id="5_uxk66"]
 [ext_resource type="AudioStream" uid="uid://bynbci4041j5o" path="res://assets/audio/ad4_abacus_click_v04_r12.wav" id="6_hds1h"]
 [ext_resource type="AudioStream" uid="uid://dap7cmylllgeo" path="res://assets/audio/ad4_toyfryingpan_03_v01_r07.wav" id="7_hl7fh"]
+[ext_resource type="AudioStream" uid="uid://baj74q3oo721j" path="res://assets/audio/ad4_typewriter_24_r06.wav" id="8_uydfr"]
 
 [node name="AudioManager" type="Node" unique_id=683407791 node_paths=PackedStringArray("rain_ambience_asp", "city_ambience_asp")]
 script = ExtResource("1_hrhdx")
@@ -15,7 +17,8 @@ rain_ambience_asp = NodePath("RainAmbienceASP")
 city_ambience_asp = NodePath("CityAmbienceASP")
 audio_stream_dict = Dictionary[StringName, AudioStream]({
 &"article_choice_confirm": ExtResource("3_03wka"),
-&"article_choice_select": ExtResource("6_hds1h"),
+&"article_choice_open": ExtResource("8_uydfr"),
+&"article_choice_select": ExtResource("2_7ijxr"),
 &"article_submit": ExtResource("4_uydfr"),
 &"ui_back": ExtResource("7_hl7fh"),
 &"ui_confirm": ExtResource("5_uxk66"),

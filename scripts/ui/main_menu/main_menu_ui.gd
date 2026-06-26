@@ -11,14 +11,15 @@ extends AnimatableControl
 func _on_new_pressed() -> void:
 	print("new game pressed")
 	MainGame.instance.player_data.start_new_save()
-	# TODO: maybe a new game dialogue here before going to map
-	MainGame.instance.city_map_layer.open_active()
+	MainGame.instance.player_data.open_layer_for_game_phase()
 	pass
 	
 func _on_continue_pressed() -> void:
 	print("continue pressed")
+	#MainGame.instance.player_data.open_layer_for_game_phase()
 	MainGame.instance.dialogue_layer.open_active()
 	DialogueLoader.run_new_game_dialogue()
+	
 	
 
 func _on_options_pressed() -> void:
@@ -45,6 +46,7 @@ const OUT_CASCADE_DELAY := 0.0
 func animate_in():
 	show()
 	check_continue()
+	choices_container.get_child(0).call_deferred("grab_focus", true)
 	await animate_controls(OUT_X, IN_X, OUT_MODULATE, IN_MODULATE, IN_DURATION, IN_CASCADE_DELAY, Tween.TRANS_BACK)
 
 func animate_out():
@@ -87,9 +89,6 @@ func animate_controls(start_x: float, end_x: float, start_modulate: Color, targe
 		current_duration += cascade_delay
 			
 	await tween.finished
-	
-	# For keyboard only controls, set focus to the first button
-	choices_container.get_child(0).call_deferred("grab_focus", true)
 
 func check_continue() -> void:
 	if not override_continue:

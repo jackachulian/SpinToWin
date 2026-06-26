@@ -6,7 +6,7 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ieh6"]
 bg_color = Color(0, 0, 0, 0)
-shadow_color = Color(0, 0, 0, 0.25490198)
+shadow_color = Color(0, 0, 0, 0.6392157)
 shadow_size = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o0ard"]

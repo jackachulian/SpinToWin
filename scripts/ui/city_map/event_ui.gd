@@ -73,7 +73,7 @@ func _on_icon_mouse_entered() -> void:
 		icon_linger_timer.stop()
 	
 func _on_icon_mouse_exited() -> void:
-	print("icon linger timer started")
+	#print("icon linger timer started")
 	icon_linger_timer.start()
 	icon_hovered = false
 	
@@ -87,17 +87,17 @@ func _on_popup_mouse_entered() -> void:
 		popup_linger_timer.stop()
 	
 func _on_popup_mouse_exited() -> void:
-	print("popup linger timer started")
+	#print("popup linger timer started")
 	popup_linger_timer.start()
 	popup_hovered = false
 	
 func _on_icon_linger_timer_timeout() -> void:
-	print("icon linger timer timeout")
+	#print("icon linger timer timeout")
 	if not popup_hovered and popup_linger_timer.is_stopped():
 		hide_popup()
 	
 func _on_popup_linger_timer_timeout() -> void:
-	print("popup linger timer timeout")
+	#print("popup linger timer timeout")
 	if not icon_hovered and icon_linger_timer.is_stopped():
 		hide_popup()
 	
@@ -117,6 +117,7 @@ var tween: Tween
 func animate_in_popup() -> void:
 	if popup_showing: return
 	popup_showing = true
+	MainGame.instance.audio_manager.play_audio_by_id("ui_expand")
 	popup_panel.show()
 	popup_panel.modulate = Color(1,1,1,0)
 	popup_panel.offset_transform_scale = Vector2.ZERO
@@ -130,6 +131,7 @@ func animate_in_popup() -> void:
 func animate_out_popup() -> void:
 	if not popup_showing: return
 	popup_showing = false
+	MainGame.instance.audio_manager.play_audio_by_id("ui_expand", "SFX", -1.0, 0.7)
 	popup_panel.offset_transform_enabled = true
 	if tween: tween.kill()
 	tween = create_tween().set_parallel()

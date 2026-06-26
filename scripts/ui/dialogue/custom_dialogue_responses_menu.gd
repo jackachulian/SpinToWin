@@ -109,10 +109,10 @@ const OUT_CASCADE_DELAY := 0.0
 
 func animate_in() -> void:
 	show()
-	await animate_controls(OUT_X, IN_X, OUT_MODULATE, IN_MODULATE, IN_DURATION, IN_CASCADE_DELAY, Tween.TRANS_BACK)
-	# Animation complete, auto configure focus
 	if auto_configure_focus:
 		configure_focus()
+	await animate_controls(OUT_X, IN_X, OUT_MODULATE, IN_MODULATE, IN_DURATION, IN_CASCADE_DELAY, Tween.TRANS_BACK)
+	# Animation complete, auto configure focus
 
 func animate_out():
 	await animate_controls(IN_X, OUT_X, IN_MODULATE, OUT_MODULATE, OUT_DURATION, OUT_CASCADE_DELAY, Tween.TRANS_CUBIC)

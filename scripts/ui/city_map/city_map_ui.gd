@@ -35,23 +35,29 @@ func update_events() -> void:
 	var act := MainGame.instance.player_data.act
 	var time := MainGame.instance.player_data.time
 	
+	for child: Node in event_map_control.get_children():
+		if child is EventUI:
+			var event_data: EventData = child.event_data
+			child.visible = is_event_playable(event_data)
+		
+func get_playable_event_count() -> int:
 	var playable_event_count: int = 0
 	for child: Node in event_map_control.get_children():
 		if child is EventUI:
 			var event_data: EventData = child.event_data
-			var event_playable = (
-				event_data.act == act
-				and event_data.start_time >= time
-				and event_data.start_time + event_data.duration - 1 <= time
-			)
-			child.visible = event_playable
-			if event_playable:
+			if is_event_playable(event_data):
 				playable_event_count += 1
 				
-	if playable_event_count == 0:
-		push_warning("No events available today, skipping to next time")
-		MainGame.instance.player_data.advance_time()
-		
+	return playable_event_count
+	
+static func is_event_playable(event_data: EventData) -> bool:
+	var act := MainGame.instance.player_data.act
+	var time := MainGame.instance.player_data.time
+	return (
+		event_data.act == act
+		and event_data.start_time >= time
+		and event_data.start_time + event_data.duration - 1 <= time
+	)
 			
 func _on_event_ui_popup_shown(ui: EventUI) -> void:
 	for child: Node in event_map_control.get_children():

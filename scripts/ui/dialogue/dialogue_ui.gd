@@ -12,12 +12,13 @@ const IN_MODULATE := Color(1,1,1,1)
 const IN_DURATION := 0.5
 const OUT_DURATION := 0.3
 
-func _ready() -> void:
-	dialogue_box.modulate = OUT_MODULATE
+func _on_dialogue_ended() -> void:
+	MainGame.instance.player_data.advance_gase_phase()
 
 func animate_in():
 	show()
 	dialogue_balloon.balloon.show()
+	MainGame.instance.dialogue_loader.dialogue_end.connect(_on_dialogue_ended)
 	dialogue_balloon.dialogue_label.self_modulate = Color.TRANSPARENT
 	dialogue_balloon.character_label.self_modulate = Color.TRANSPARENT
 	await animate_dialogue_box(OUT_Y, IN_Y, OUT_MODULATE, IN_MODULATE, IN_DURATION, Tween.TRANS_BACK)
@@ -26,6 +27,8 @@ func animate_in():
 
 func animate_out():
 	dialogue_balloon.can_start = false
+	dialogue_balloon.responses_menu.animate_out()
+	MainGame.instance.dialogue_loader.dialogue_end.disconnect(_on_dialogue_ended)
 	await animate_dialogue_box(IN_Y, OUT_Y, IN_MODULATE, OUT_MODULATE, OUT_DURATION, Tween.TRANS_CUBIC)
 	hide()
 

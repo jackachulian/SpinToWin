@@ -17,6 +17,8 @@ func play_audio_by_id(id: StringName, bus: StringName = &"SFX", volume_db: float
 	if not audio_stream_dict.has(id):
 		push_error("No stream with id: ", id)
 		return
+		
+	#push_warning("playing audio ", id)
 	
 	var temp_player = AudioStreamPlayer.new()
 	add_child(temp_player)
@@ -43,14 +45,26 @@ func _on_tree_node_added(node: Node) -> void:
 	# Connect to all buttons in the scene tree
 	if node is BaseButton:
 		# Connect both mouse hovering and keyboard/controller focus
-		node.mouse_entered.connect(play_audio_by_id.bind("ui_select"))
-		#node.focus_entered.connect(play_audio_by_id.bind("ui_select"))
-		node.pressed.connect(play_audio_by_id.bind("ui_confirm"))
+		node.mouse_entered.connect(_on_node_mouse_entered.bind(node))
+		node.focus_entered.connect(_on_node_focus_entered.bind(node))
+		node.pressed.connect(_on_node_pressed.bind(node))
 
 func _on_tree_node_removed(node: Node) -> void:
 	# Disconnect to all buttons in the scene tree
 	if node is BaseButton:
 		# Connect both mouse hovering and keyboard/controller focus
-		node.mouse_entered.disconnect(play_audio_by_id.bind("ui_select"))
-		#node.focus_entered.disconnect(play_audio_by_id.bind("ui_select"))
-		node.pressed.disconnect(play_audio_by_id.bind("ui_confirm"))
+		node.mouse_entered.disconnect(_on_node_mouse_entered.bind(node))
+		node.focus_entered.disconnect(_on_node_focus_entered.bind(node))
+		node.pressed.disconnect(_on_node_pressed.bind(node))
+
+func _on_node_mouse_entered(_node: Node) -> void:
+	#push_warning("hovered ", node.name)
+	play_audio_by_id("ui_select")
+	
+func _on_node_focus_entered(_node: Node) -> void:
+	#push_warning("focused ", node.name)
+	play_audio_by_id("ui_select")
+	
+func _on_node_pressed(_node: Node) -> void:
+	#push_warning("pressed ", node.name)
+	play_audio_by_id("ui_confirm")

@@ -4,6 +4,17 @@ extends Node
 ## When a save is loaded, this is true, otherwise, this is false
 static var save_started: bool = false
 
+enum GamePhase {
+	ACT_START_TITLE_CARD, # shows a full screen title card for the act number and title
+	ACT_START_DIALOGUE,
+	CITY_MAP,
+	EVENT, # will use the current event's EventPhase
+	ACT_END_DIALOGUE,
+	GAME_ENDED
+}
+
+var game_phase: GamePhase
+
 ## Current act (0-2 for act 1-3)
 var act: int = 0
 
@@ -35,11 +46,97 @@ signal time_changed()
 
 func start_new_save():
 	save_started = true
+	game_phase = GamePhase.ACT_START_TITLE_CARD
 	reputations = [50, 50, 50, 50]
 	public_trust = 100
+	act = 0
+	time = 0
+	completed_events.clear()
 	
 	MainGame.instance.city_map_ui.schedule_all_events()
 
+## Advance the state of the game and go to the appropriate layer.
+func advance_gase_phase() -> void:
+	if not save_started:
+		printerr("no save loaded, can't advance game phase")
+		return
+	
+	# after the title card, advance to the act start dialogue
+	if game_phase == GamePhase.ACT_START_TITLE_CARD:
+		game_phase = GamePhase.ACT_START_DIALOGUE
+			
+	# after start dialogue, go to city map
+	elif game_phase == GamePhase.ACT_START_DIALOGUE:
+		game_phase = GamePhase.CITY_MAP
+	
+	# If in the city map phase,
+	# moves time forward and open the appropriate layer
+	# based on the time.
+	elif game_phase == GamePhase.CITY_MAP:
+		if time >= 3:
+			game_phase = GamePhase.ACT_END_DIALOGUE
+		else:
+			time += 1
+			print("advanced time: act=%d, time=%d" % [act, time])
+		time_changed.emit()
+		
+	# after the act end dialogue is complete, move to the next act,
+	# or end the game if the last act was just ended
+	elif game_phase == GamePhase.ACT_END_DIALOGUE:
+		act += 1
+		time = 0
+		
+		if act >= 3:
+			print("game completed, going back to title and clearing save")
+			game_phase = GamePhase.GAME_ENDED
+		else:
+			game_phase = GamePhase.ACT_START_TITLE_CARD
+		
+	print("advanced game: act=%d time=%d phase=%d " % [act, time, game_phase])
+	## after the phase change / time change, open the appropriate layer
+	open_layer_for_game_phase()
+	
+## Open the layer that corresponds with the current game state.
+## Intended to be used when newgame/continue pressed and after the phase advances.
+## May transition the game phase if there is nothing to show for the current game phase.
+func open_layer_for_game_phase() -> void:
+	match game_phase:
+		GamePhase.ACT_START_TITLE_CARD:
+			## TODO: open title card scene, and let that scene advance after it's done.
+			## Advancing here for now
+				advance_gase_phase()
+				
+		GamePhase.ACT_START_DIALOGUE:
+			var playing = DialogueLoader.run_day_start_dialogue(act)
+			if playing:
+				MainGame.instance.dialogue_layer.open_active()
+			else:
+				print("no start dialogue for act=", act, ", skipping to map")
+				advance_gase_phase()
+				
+		GamePhase.CITY_MAP:
+			var playable_event_count := MainGame.instance.city_map_ui.get_playable_event_count()
+			if playable_event_count > 0:
+				MainGame.instance.city_map_layer.open_active()
+			else:
+				print("No events available right now, advancing game phase")
+				MainGame.instance.player_data.advance_gase_phase()
+			
+		GamePhase.EVENT:
+			MainGame.instance.event_manager.open_layer_for_event_phase()
+			
+		GamePhase.ACT_END_DIALOGUE:
+			var playing = DialogueLoader.run_day_end_dialogue(act)
+			if playing:
+				MainGame.instance.dialogue_layer.open_active()
+			else:
+				print("no end dialogue for act=", act, ", skipping")
+				advance_gase_phase()
+			
+		GamePhase.GAME_ENDED:
+			save_started = false
+			MainGame.instance.title_menu_layer.open_active()
+	
 func apply_changes_from_article(article: ArticleLevel):
 	previous_reputations = reputations.duplicate()
 	previous_public_trust = public_trust
@@ -47,23 +144,3 @@ func apply_changes_from_article(article: ArticleLevel):
 	for i in range(0,4):
 		reputations[i] += changes[i]
 	public_trust += changes[4]
-
-## Move time forward and open the appropriate layer
-## based on the time
-func advance_time() -> void:
-	time += 1
-	if time >= 4:
-		time = 0
-		act += 1
-	print("advanced time to: act=%d, time=%d" % [act, time])
-	
-	if act >= 2:
-		# TODO: Do end game stuff / endings
-		MainGame.instance.title_menu_layer.open_active()
-		return
-		
-	else:
-		# Otherwise, open the city map scene if it's not already open
-		MainGame.instance.city_map_layer.open_active()
-		
-	time_changed.emit()
