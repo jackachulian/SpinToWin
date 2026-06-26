@@ -13,6 +13,7 @@ func _gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			pressed.emit()
 
+@warning_ignore("shadowed_variable")
 func setup(choice: ArticleChoice, index: int):
 	self.index = index
 	label.text = choice.options[index].text

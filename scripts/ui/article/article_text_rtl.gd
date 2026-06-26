@@ -20,6 +20,7 @@ func _ready() -> void:
 	meta_hover_started.connect(_on_meta_hover_started)
 	meta_hover_ended.connect(_on_meta_hover_ended)
 	
+@warning_ignore("shadowed_variable")
 func setup(lines: Array[ArticleLine]) -> void:
 	self.lines = lines
 	rebuild_text()
@@ -83,6 +84,7 @@ func _on_meta_hover_started(meta):
 	hovered_meta = meta
 	rebuild_text()
 
+@warning_ignore("unused_parameter")
 func _on_meta_hover_ended(meta):
 	#print("Unhovered: ", meta)
 	hovered_meta = ""

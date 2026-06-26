@@ -27,6 +27,7 @@ var article: ArticleLevel
 ## Will immediately progress to the first layer needed
 ## based on what the event contains. To progress further after any of those scenes are complete,
 ## call progress_event() on this event manager.
+@warning_ignore("shadowed_variable")
 func play_event(event_data: EventData) -> void:
 	self.event_data = event_data
 	event_phase = EventPhase.START_DIALOGUE
@@ -92,6 +93,7 @@ func open_layer_for_event_phase() -> void:
 
 ## Load an article to be the main active article that will be edited by the ArticleLayer
 ## and its results shown on the ResultsLayer
+@warning_ignore("shadowed_variable")
 func set_active_article(article: ArticleLevel) -> void:
 	self.article = article
 	article.print_data()

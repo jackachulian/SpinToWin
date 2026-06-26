@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://cp7bmkraww10n"]
 
+[ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_sq661"]
+[ext_resource type="Script" uid="uid://5rx0w6vls7bo" path="res://scripts/ui/debug/debug_ui.gd" id="2_kxdbl"]
+
 [node name="DebugLayer" type="CanvasLayer" unique_id=1595910766]
 process_mode = 3
 layer = 400
 
-[node name="DebugRoot" type="Control" parent="." unique_id=547425388]
-visible = false
+[node name="DebugUI" type="Control" parent="." unique_id=547425388 node_paths=PackedStringArray("foldable_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,3 +15,52 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_sq661")
+script = ExtResource("2_kxdbl")
+foldable_container = NodePath("FoldableContainer")
+
+[node name="FoldableContainer" type="FoldableContainer" parent="DebugUI" unique_id=1446634754]
+layout_mode = 0
+offset_right = 139.0
+offset_bottom = 32.0
+title = "Debug"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugUI/FoldableContainer" unique_id=1434598411]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="DebugUI/FoldableContainer/VBoxContainer" unique_id=1194280221]
+layout_mode = 2
+text = "Act I Start"
+alignment = 0
+
+[node name="Button2" type="Button" parent="DebugUI/FoldableContainer/VBoxContainer" unique_id=1639977756]
+layout_mode = 2
+text = "Act I End"
+alignment = 0
+
+[node name="Button3" type="Button" parent="DebugUI/FoldableContainer/VBoxContainer" unique_id=746526975]
+layout_mode = 2
+text = "Act II Start"
+alignment = 0
+
+[node name="Button4" type="Button" parent="DebugUI/FoldableContainer/VBoxContainer" unique_id=96320764]
+layout_mode = 2
+text = "Act II End"
+alignment = 0
+
+[node name="Button5" type="Button" parent="DebugUI/FoldableContainer/VBoxContainer" unique_id=197171836]
+layout_mode = 2
+text = "Act III Start"
+alignment = 0
+
+[node name="Button6" type="Button" parent="DebugUI/FoldableContainer/VBoxContainer" unique_id=769081507]
+layout_mode = 2
+text = "Act III End"
+alignment = 0
+
+[connection signal="pressed" from="DebugUI/FoldableContainer/VBoxContainer/Button" to="DebugUI" method="_on_act_button_pressed" binds= [0, true]]
+[connection signal="pressed" from="DebugUI/FoldableContainer/VBoxContainer/Button2" to="DebugUI" method="_on_act_button_pressed" binds= [0, false]]
+[connection signal="pressed" from="DebugUI/FoldableContainer/VBoxContainer/Button3" to="DebugUI" method="_on_act_button_pressed" binds= [1, true]]
+[connection signal="pressed" from="DebugUI/FoldableContainer/VBoxContainer/Button4" to="DebugUI" method="_on_act_button_pressed" binds= [1, false]]
+[connection signal="pressed" from="DebugUI/FoldableContainer/VBoxContainer/Button5" to="DebugUI" method="_on_act_button_pressed" binds= [2, true]]
+[connection signal="pressed" from="DebugUI/FoldableContainer/VBoxContainer/Button6" to="DebugUI" method="_on_act_button_pressed" binds= [2, false]]
