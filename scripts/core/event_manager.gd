@@ -43,6 +43,7 @@ func open_layer_for_event_phase() -> void:
 	# Starting dialogue, if there is any
 	if event_phase == EventPhase.START_DIALOGUE:
 		if not event_data.start_dialogue_path.is_empty():
+			print("playing start dialogue for event")
 			var dialogue := ResourceLoader.load(event_data.start_dialogue_path)
 			MainGame.instance.dialogue_layer.open_active()
 			DialogueLoader.run_dialogue(dialogue)
@@ -53,26 +54,32 @@ func open_layer_for_event_phase() -> void:
 	# Article edit, if there is an article
 	elif event_phase == EventPhase.ARTICLE_EDIT:
 		if not event_data.article_file_path.is_empty():
+			print("opening article")
 			load_and_set_active_article(event_data.article_file_path)
 			MainGame.instance.article_layer.open_active()
 		else:
+			print("skipping article")
 			progress_event()
 	
 	# Results, if there is an article
 	elif event_phase == EventPhase.RESULTS:
 		if not event_data.article_file_path.is_empty():
+			print("showing results")
 			MainGame.instance.results_layer.open_active()
 		else:
+			print("skipping results page")
 			progress_event()
 	
 	# End dialogue, if there is any.
 	# Otherwise, end the event here
 	elif event_phase == EventPhase.END_DIALOGUE:
 		if not event_data.end_dialogue_path.is_empty():
+			print("playing end dialogue for event")
 			var dialogue := ResourceLoader.load(event_data.end_dialogue_path)
 			MainGame.instance.dialogue_layer.open_active()
 			DialogueLoader.run_dialogue(dialogue)
 		else:
+			print("skipping event dialogue")
 			progress_event()
 			
 	# End of event
@@ -81,7 +88,7 @@ func open_layer_for_event_phase() -> void:
 		event_data = null
 		# will open the appropriate layer based on time
 		print("event ended, advancing game phase")
-		MainGame.instance.player_data.advance_gase_phase()
+		MainGame.instance.player_data.advance_game_phase()
 
 ## Load an article to be the main active article that will be edited by the ArticleLayer
 ## and its results shown on the ResultsLayer

@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://w0bqlv2mloff"]
 
 [ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_ns3km"]
-[ext_resource type="Texture2D" uid="uid://cx4n4wogs0yq8" path="res://assets/sprites/NOF_WEB_GALLERY_01.webp" id="2_jglwl"]
 [ext_resource type="Script" uid="uid://cl8gxcsoyfe41" path="res://scripts/core/core_ui.gd" id="2_sp3ab"]
+[ext_resource type="Texture2D" uid="uid://bav782hb0fg7q" path="res://assets/sprites/Captura_de_pantalla_2026-06-25_152432.png" id="3_jglwl"]
+[ext_resource type="Shader" uid="uid://de6tar0rutmbm" path="res://assets/shaders/background.gdshader" id="3_sp3ab"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sp3ab"]
+shader = ExtResource("3_sp3ab")
+shader_parameter/dark_tint = Color(0.028178671, 0.10378171, 0.1104779, 1)
+shader_parameter/light_tint = Color(1, 0.95783335, 0.77, 1)
+shader_parameter/tint_strength = 0.32800001558
+shader_parameter/contrast = 1.0
 
 [node name="CoreLayer" type="CanvasLayer" unique_id=883448445]
 process_mode = 1
@@ -30,11 +38,13 @@ grow_vertical = 2
 color = Color(0.0013732907, 0.07575845, 0.081229426, 1)
 
 [node name="PlaceholderBg" type="TextureRect" parent="CoreUI" unique_id=740539264]
+modulate = Color(0.8745074, 0.9988776, 0.95230323, 1)
+material = SubResource("ShaderMaterial_sp3ab")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_jglwl")
+texture = ExtResource("3_jglwl")
 expand_mode = 5

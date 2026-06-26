@@ -56,7 +56,7 @@ func start_new_save():
 	MainGame.instance.city_map_ui.schedule_all_events()
 
 ## Advance the state of the game and go to the appropriate layer.
-func advance_gase_phase() -> void:
+func advance_game_phase() -> void:
 	if not save_started:
 		printerr("no save loaded, can't advance game phase")
 		return
@@ -73,6 +73,10 @@ func advance_gase_phase() -> void:
 	# moves time forward and open the appropriate layer
 	# based on the time.
 	elif game_phase == GamePhase.CITY_MAP:
+		if MainGame.instance.event_manager.event_data != null:
+			MainGame.instance.event_manager.progress_event()
+			return
+		
 		if time >= 3:
 			game_phase = GamePhase.ACT_END_DIALOGUE
 		else:
@@ -104,7 +108,7 @@ func open_layer_for_game_phase() -> void:
 		GamePhase.ACT_START_TITLE_CARD:
 			## TODO: open title card scene, and let that scene advance after it's done.
 			## Advancing here for now
-				advance_gase_phase()
+				advance_game_phase()
 				
 		GamePhase.ACT_START_DIALOGUE:
 			var playing = DialogueLoader.run_day_start_dialogue(act)
@@ -112,7 +116,7 @@ func open_layer_for_game_phase() -> void:
 				MainGame.instance.dialogue_layer.open_active()
 			else:
 				print("no start dialogue for act=", act, ", skipping to map")
-				advance_gase_phase()
+				advance_game_phase()
 				
 		GamePhase.CITY_MAP:
 			var playable_event_count := MainGame.instance.city_map_ui.get_playable_event_count()
@@ -120,7 +124,7 @@ func open_layer_for_game_phase() -> void:
 				MainGame.instance.city_map_layer.open_active()
 			else:
 				print("No events available right now, advancing game phase")
-				MainGame.instance.player_data.advance_gase_phase()
+				MainGame.instance.player_data.advance_game_phase()
 			
 		GamePhase.EVENT:
 			MainGame.instance.event_manager.open_layer_for_event_phase()
@@ -131,7 +135,7 @@ func open_layer_for_game_phase() -> void:
 				MainGame.instance.dialogue_layer.open_active()
 			else:
 				print("no end dialogue for act=", act, ", skipping")
-				advance_gase_phase()
+				advance_game_phase()
 			
 		GamePhase.GAME_ENDED:
 			save_started = false

@@ -32,9 +32,6 @@ func update_time_ui() -> void:
 	time_label.text = "Act %s - %s" % [act_string, time_string]
 	
 func update_events() -> void:
-	var act := MainGame.instance.player_data.act
-	var time := MainGame.instance.player_data.time
-	
 	for child: Node in event_map_control.get_children():
 		if child is EventUI:
 			var event_data: EventData = child.event_data
@@ -113,7 +110,7 @@ func try_schedule_event(schedule: Array[EventData], event_data: EventData) -> bo
 			var valid_time: bool = true
 			for other_event_data in schedule:
 				var at_same_time: bool = (time <= other_event_data.start_time + other_event_data.duration-1
-				and time + event_data.duration-1 < other_event_data.start_time)
+				and time + event_data.duration-1 <= other_event_data.start_time)
 				
 				# An event cannot be at the same time and at the same place as another event
 				if at_same_time and event_data.location_id == other_event_data.location_id:

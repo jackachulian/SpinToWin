@@ -12,7 +12,9 @@ event_name = "Test Event"
 event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
 max_start_time = 3
 duration = 1
+start_dialogue_path = "uid://bv1igdg7svcoj"
 article_file_path = "res://assets/articles/tutorial_01.txt"
+end_dialogue_path = "uid://bv1igdg7svcoj"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
 [sub_resource type="LabelSettings" id="LabelSettings_o0ard"]

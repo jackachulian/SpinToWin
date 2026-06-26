@@ -13,7 +13,7 @@ const IN_DURATION := 0.5
 const OUT_DURATION := 0.3
 
 func _on_dialogue_ended() -> void:
-	MainGame.instance.player_data.advance_gase_phase()
+	MainGame.instance.player_data.advance_game_phase()
 
 func animate_in():
 	show()
