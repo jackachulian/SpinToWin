@@ -50,6 +50,7 @@ func transition_to(trans_layer: TransitionableLayer) -> void:
 var faction_data: FactionData = FactionData.new()
 @onready var dialogue_loader: DialogueLoader = $Systems/DialogueLoader
 @onready var rain_manager: RainManager = $Systems/RainManager
+@onready var audio_manager: AudioManager = $Systems/AudioManager
 
 # -------- Canvas layers --------
 @onready var core_layer: CanvasLayer = $CoreLayer

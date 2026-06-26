@@ -38,12 +38,14 @@ func _on_choice_clicked(choice: ArticleChoice, global_pos: Vector2, sentence_sta
 	blur_material.set_shader_parameter("blur_radius", choice_edit_blur_radius)
 
 func _on_choice_edit_panel_item_selected(_choice: ArticleChoice, _index: int) -> void:
+	MainGame.instance.audio_manager.play_audio_by_id("article_choice_confirm", "SFX", 1.0)
 	blur_material.set_shader_parameter("blur_radius", 0.00)
 	header_rtl.reset_editing_text()
 	body_rtl.reset_editing_text()
 	
 	
 func _on_submit_button_pressed() -> void:
+	MainGame.instance.audio_manager.play_audio_by_id("article_submit", "SFX", 3.0)
 	MainGame.instance.player_data.apply_changes_from_article(MainGame.instance.event_manager.article)
 	MainGame.instance.event_manager.progress_event()
 
