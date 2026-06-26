@@ -9,14 +9,17 @@
 [ext_resource type="Script" uid="uid://yopsldd2qcxg" path="res://scripts/systems/factions/faction_data.gd" id="4_sp04v"]
 [ext_resource type="Script" uid="uid://q8wlwhjpcrv7" path="res://scripts/systems/dialogue/dialogue_loader.gd" id="5_ihbck"]
 [ext_resource type="PackedScene" uid="uid://cgctdvcuaa0r5" path="res://scenes/layers/results_layer.tscn" id="6_5cypo"]
+[ext_resource type="Resource" uid="uid://d3jl4jpm48xi2" path="res://assets/dialogue/new_game.dialogue" id="6_6de02"]
 [ext_resource type="PackedScene" uid="uid://rck3gmq7gfni" path="res://scenes/layers/city_map_layer.tscn" id="6_8xp80"]
-[ext_resource type="Resource" uid="uid://bv1igdg7svcoj" path="res://assets/dialogue/test.dialogue" id="6_vnsdt"]
 [ext_resource type="PackedScene" uid="uid://bxigef2xkgg42" path="res://scenes/layers/transition_layer.tscn" id="7_5cypo"]
+[ext_resource type="Resource" uid="uid://ccj5uh6gc1psb" path="res://assets/dialogue/act_2_start.dialogue" id="7_6de02"]
 [ext_resource type="Script" uid="uid://tyrlm6syhdiv" path="res://scripts/systems/rain/rain_manager.gd" id="7_ikqpi"]
-[ext_resource type="Resource" uid="uid://cf7ji2sg33cy0" path="res://assets/dialogue/tutorial.dialogue" id="7_yu8cv"]
 [ext_resource type="PackedScene" uid="uid://3j5i3cxcwsd" path="res://scenes/systems/audio_manager.tscn" id="8_5luka"]
+[ext_resource type="Resource" uid="uid://ci2a6dr8iv71v" path="res://assets/dialogue/act_2_end.dialogue" id="8_cybgu"]
+[ext_resource type="Resource" uid="uid://kkylx5lfsbcj" path="res://assets/dialogue/act_3_start.dialogue" id="8_ibnub"]
 [ext_resource type="PackedScene" uid="uid://dumg5me26m8hw" path="res://scenes/layers/options_layer.tscn" id="8_nqdth"]
 [ext_resource type="PackedScene" uid="uid://cp7bmkraww10n" path="res://scenes/layers/debug_layer.tscn" id="8_o6v7o"]
+[ext_resource type="Resource" uid="uid://cngkvb8xkqa28" path="res://assets/dialogue/act_3_end.dialogue" id="9_5wboo"]
 [ext_resource type="PackedScene" uid="uid://dkgyw8btmx3qt" path="res://scenes/layers/dialogue_layer.tscn" id="9_8xp80"]
 [ext_resource type="PackedScene" uid="uid://bcmkuyv5y8gqa" path="res://scenes/layers/hud_layer.tscn" id="11_sp04v"]
 [ext_resource type="PackedScene" uid="uid://bkb14y8dd4vtu" path="res://scenes/layers/credits_layer.tscn" id="12_sp04v"]
@@ -40,8 +43,11 @@ script = ExtResource("4_sp04v")
 
 [node name="DialogueLoader" type="Node" parent="Systems" unique_id=190393891 node_paths=PackedStringArray("balloon")]
 script = ExtResource("5_ihbck")
-dialogue_new_game = ExtResource("6_vnsdt")
-dialogue_tutorial = ExtResource("7_yu8cv")
+dialogue_new_game = ExtResource("6_6de02")
+dialogue_a2_day_start = ExtResource("7_6de02")
+dialogue_a2_day_end = ExtResource("8_cybgu")
+dialogue_a3_day_start = ExtResource("8_ibnub")
+dialogue_a3_day_end = ExtResource("9_5wboo")
 balloon = NodePath("../../DialogueLayer/DialogueUI/DialogueBalloon")
 
 [node name="RainManager" type="Node" parent="Systems" unique_id=1839088847]

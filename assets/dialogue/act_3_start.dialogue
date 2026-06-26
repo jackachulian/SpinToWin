@@ -1,0 +1,90 @@
+~ start
+It's been a few days since that night.
+I've been more on edge[speed=0.35]...[speed=1] [wait=0.6]well,[wait=0.6] the whole city's been on edge.
+[color=springgreen]Leads[/color] that come to the office have been mostly about violent incidents and disputes.
+A few protests from workers down in Old Saint's here, some drunken brawls in the clubs of Cheshire.
+Stuff like that, really.
+set locals.act_2_behaviour = player_data.get_flag("act_2_behaviour")
+if locals.act_2_behaviour == false
+	=>< obedience
+else
+	=>< truthful
+There's a knock at the door.
+Must be [color=ffa6a3]Mr. Kraus[/color] again-
+???: Uhm[speed=0.35]...[speed=1] H-[wait=0.4]Hello?
+It wasn't [color=ffa6a3]Mr. Kraus[/color], it was a timid woman wearing a green gown with a band across her mid section and holding her purse with two hands.
+Her clothing wasn't too lavish, but she did have a stylish black overcoat with bushy fur around her shoulders. She had beautiful flowing blonde curls with a series of flowers adorning the left side of her head. 
+She was no older than myself, yet she looked like the world had been far kinder to her. Perhaps thanks to her beauty.
+Her posture was tense, as if she was afraid I was going to jump up and attack her at any moment.
+With where this city's heading[speed=0.35]...[speed=1] I wouldn't blame her of being so careful.
+Juno: Pleasure to meet you. My name's [wait=0.3]uhm,[wait=0.3] [color=caa1ff]Juno Merryweather[/color], you may call me [color=caa1ff]Juno[/color].
+Juno: I work for- er,[wait=0.3] I[wait=0.3] [speed=0.4]used[speed=1][wait=0.3] to work for [color=ff7f3b]Mr. Voss[/color].
+Juno: Before he,[wait=0.3] uhm,[wait=0.3] died[speed=0.35]...[speed=1]
+Reagan: Wait... Did you say [color=ff7f3b]Voss[/color]?[wait=0.5] As in, [color=ff7f3b]Director George Voss[/color]?
+[color=caa1ff]Juno[/color] nodded slowly.
+Reagan: The man that I published that article about a few weeks back?
+[color=caa1ff]Juno[/color] nodded again.
+Reagan: So why have you come here today, [color=caa1ff]Juno[/color]?... Are you working for [color=dodgerblue]the city[/color] like that detective?
+Juno: I[speed=0.35]...[speed=1] Well[speed=0.35]...[speed=1]
+[color=caa1ff]Juno[/color] held out a cream file,[wait=0.3] which I accepted.
+I scanned through the file as she continued on.
+Juno: I'm,[wait=0.3] uhm,[wait=0.3] quite favored by [color=ff7f3b]Mr. Voss[/color][speed=0.35]...[speed=1]
+Juno: Shortly before he passed, there was a discussion over the landline that [color=ff7f3b]Mr. Voss[/color] had with a few others.
+Juno: I couldn't tell who was on the other end, but I knew they were unhappy with [color=ff7f3b]Mr. Voss[/color]. They were yelling quite loudly.
+Juno: A-And after [color=ff7f3b]Mr. Voss[/color] hung up the call, he handed me this file. H-He was saying a lot about[wait=0.3] uhm,[wait=0.3] my heart and that I was the only one he could trust to deliver this file.
+I closed the file abruptly.
+This file[speed=0.35]...[speed=1][wait] It had everything from the incriminating evidence of [color=ff7f3b]Voss's[/color] homicide to the involvement of each of the three factions.
+I guess [color=caa1ff]Juno[/color] had read it herself because from the look on her face, she could tell what I was thinking.
+Juno: At first[speed=0.35]...[speed=1] I didn't know what to do with it. I mean,[wait=0.3] he didn't leave much instruction before he was k-killed. But, eventually, I knew this had to h-hit the headlines.
+Juno: I-I mean, it's literally evidence that his death was planned by-
+I rushed over and put a hand over her mouth. The woman froze like a statue.
+Reagan: Shh![wait=0.3] You can't go around speaking about this so loudly, especially in public.
+I slowly released my hand from her mouth and she nodded softly.
+Juno: I[speed=0.35]...[speed=1] I understand[speed=0.35]...[speed=1]
+I spoke slowly and calmly, making sure to keep my voice low.
+Reagan: I can see here in the file that everything going down right now in the city is all part of their plan. And the reason [color=ff7f3b]Voss[/color] was[speed=0.35]...[speed=1] taken care of[wait=0.3] is because he didn't support this?
+[color=caa1ff]Juno[/color] gulped, suddenly fearful of any lurking eyes.
+Juno: Y-Yes, that's true[speed=0.35]...[speed=1]
+I let out a long sigh, running my hand over my face.
+Reagan: And I'm guessing you want me to publish this story and then[speed=0.35]...[speed=1][wait=0.3] what?[wait=0.3] Skip town?
+[color=caa1ff]Juno[/color] nodded.[wait=0.3][speed=0.5] She reached into her bosom and pulled a small metal train credit.[wait=0.3] She placed it on the desk,[wait=0.3][speed=0.3] looking into my eyes for a moment.
+Juno: [color=ffa6a3]R-Reagan[/color], right? I[speed=0.35]...[speed=1] know how crazy this is to ask of you[speed=0.35]...[speed=1]
+Juno: But,[wait=0.3] I need this [color=springgreen]lead[/color] published. [color=ff7f3b]Mr. Voss[/color] t-trusted me with this!
+She came up and clasped her hands over mine.
+Juno: Please, [color=ffa6a3]Reagan[/color], publish this story and flee New Argentis with me.
+set locals.highest_rep = player_data.get_highest_reputation()
+What do I do?
+- Promise to flee [if locals.highest_rep < 80]
+	set player_data.set_flag("fled_with_juno", true)
+	Reagan: Okay, okay.[wait=0.3] I'll take care of it.[wait=0.3] But for now, you need to get out of here.[wait=0.3] I'll set the article to hit the morning papers and meet you at the station by dawn.[wait=0.5] Deal?
+	[color=caa1ff]Juno's[/color] eyes lit up at my words and she swiftly pulled back, adjusting her overcoat a bit with poorly-contained joy.
+	Juno: Ah,[wait=0.3] yes![wait=0.3] I will leave you to your work then, [color=ffa6a3]Reagan[/color]!
+	Before I can say another word, the woman's taken her purse and carried herself out of my office, humming a tune.
+- Let her down easy
+	if locals.highest_rep >= 80
+		I've got a faction on my hands that's dangerously powerful. They could probably stop me from leaving the city before I even reach the station. Fat chance of doing that.
+	Reagan: Look[speed=0.35]...[speed=1] I'll see what I can do, but I'm not making any promises.
+	The woman visibly deflated at my words. She seemed to hover there for a moment, unsure to push harder or back off.[wait=0.3] She settled on the latter.
+	Juno: [speed=0.5]Ah,[wait=0.3] yes[speed=0.35]...[speed=1] I will leave you to your work then, [color=ffa6a3]Reagan[/color].
+	Reagan: [color=caa1ff]Juno[/color].[wait] [speed=0.4]Perhaps...[wait] [speed=1]I will consider still publishing the article.
+	Reagan: But I'm afraid I've given too much to this city to let it go. And[speed=0.35]...[speed=1] maybe it's taken too much from me to make it out alive.[wait=0.3] Just[speed=0.35]...[speed=1] have a safe journey.
+	[color=caa1ff]Juno[/color] nodded, a tear welling in her eye, which she turned to hide. It felt strange to have someone cry for me after all I've seen in this city.
+	The door clicked shut as I sat back down at my desk, already getting [color=springgreen]leads[/color] reported in.
+I glanced at the train credit and the cream file on my desk. I opened the top drawer to my right and set them both inside.
+I don't know if I should publish that article or not,[wait=0.3] but I have to make a decision at some point[if player_data.get_flag("fled_with_juno")], especially now that I've promised her[/if][speed=0.35]...[speed=1]
+=> END
+
+
+~ obedience
+I've been pushing them off and focusing on[speed=0.35]...[speed=1] more[wait=0.6] [speed=0.3]acceptable[speed=1][wait=0.3] [color=springgreen]leads[/color].
+The factions keep contacting me, telling me how to [color=firebrick]spin[/color] them in their favor.
+I[wait=0.4] don't[wait=0.4] push[wait=0.4] back.
+And even if I did, I'd have to-
+=> END
+
+
+~ truthful
+I've been trying to publish the truth, but violence is violence.
+It's[speed=0.35]...[speed=1] hard to go against the current even if it's the truth.
+And sometimes, I can't even-
+=> END
