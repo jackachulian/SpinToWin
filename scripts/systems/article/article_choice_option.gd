@@ -13,3 +13,6 @@ var reputation_changes: Array = [0,0,0,0]
 ## (There will probably not be any options that increase public trust,
 ## but there will likely be lies that have more trust lowering than other lies)
 var public_trust_change: int = 0
+
+## If true, will have red highlight and may afffect the story
+var is_lie: bool = false
