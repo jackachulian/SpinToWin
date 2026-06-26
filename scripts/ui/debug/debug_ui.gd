@@ -7,7 +7,8 @@ func _ready() -> void:
 
 func _on_act_button_pressed(act: int, is_start: bool) -> void:
 	var player_data := MainGame.instance.player_data
-	player_data.start_new_save()
+	if not player_data.save_started:
+		player_data.start_new_save(false)
 	player_data.act = act
 	
 	if is_start:

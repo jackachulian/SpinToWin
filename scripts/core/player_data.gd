@@ -23,7 +23,7 @@ var time: int = 0
 
 ## Indexes correspond to the FACTIONS array in FactionData
 ## Ranges from 0 to 100
-var reputations: Array[int]
+var reputations: Array[int] = [50, 50, 50, 50]
 
 ## When an article is submitted, the current reputations are copied here
 ## before the new reputations are calculated.
@@ -31,7 +31,7 @@ var reputations: Array[int]
 var previous_reputations: Array[int]
 
 ## Ranges from 0 to 100
-var public_trust: int
+var public_trust: int = 100
 
 ## When an article is submitted, the current trust is copied here
 ## before the new trust is calculated.
@@ -40,20 +40,60 @@ var previous_public_trust: int
 
 ## List of events that have already been fully completed and cannot
 ## be encountered anymore
-var completed_events: Array[EventData]
+var completed_events: Array[EventData] = []
 
+## If the player posted the truth of the conspiracy
+var flags: Dictionary[String, bool] = {}
+
+## When the current time block changes
 signal time_changed()
 
-func start_new_save():
+## When any reputation with any faction changes
+signal reputation_changed()
+
+## When any flag's value is set
+signal flag_changed()
+
+func start_new_save(reset_properties: bool = true):
 	save_started = true
 	game_phase = GamePhase.ACT_START_TITLE_CARD
-	reputations = [50, 50, 50, 50]
-	public_trust = 100
-	act = 0
-	time = 0
-	completed_events.clear()
+	
+	# don't want to reset properties if via the debug menu,
+	# where we want to have changed properties used in dialogue
+	if reset_properties:
+		reputations = [50, 50, 50, 50]
+		public_trust = 100
+		act = 0
+		time = 0
+		completed_events.clear()
+		flags.clear()
 	
 	MainGame.instance.city_map_ui.schedule_all_events()
+
+## Returns the id of the faction with the highest reputation
+func get_highest_faction() -> int:
+	var highest_faction = -1
+	var highest_rep = -9999
+	for faction_id in reputations.size():
+		if reputations[faction_id] > highest_rep:
+			highest_faction = faction_id
+			highest_rep = reputations[faction_id]
+	return highest_faction
+	
+## Get the reputation value of the highest reputation faction returned by get_highest_faction()
+func get_highest_reputation() -> int:
+	return reputations.max()
+
+func get_faction_name(faction_id: int) -> String:
+	return MainGame.instance.faction_data.names[faction_id]
+
+func get_flag(id: String) -> bool:
+	return flags.get(id, false)
+	
+func set_flag(id: String, value: bool) -> void:
+	flags[id] = value
+	print("set flag %s to %s" % [id, value])
+	flag_changed.emit()
 
 ## Advance the state of the game and go to the appropriate layer.
 func advance_game_phase() -> void:
@@ -148,3 +188,4 @@ func apply_changes_from_article(article: ArticleLevel):
 	for i in range(0,4):
 		reputations[i] += changes[i]
 	public_trust += changes[4]
+	reputation_changed.emit()

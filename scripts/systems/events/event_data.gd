@@ -37,4 +37,5 @@ var start_time: int
 
 @export_file("*.dialogue") var start_dialogue_path: String
 @export_file("*.txt") var article_file_path: String
+@export_file("*.dialogue") var article_dialogue_path: String
 @export_file("*.dialogue") var end_dialogue_path: String

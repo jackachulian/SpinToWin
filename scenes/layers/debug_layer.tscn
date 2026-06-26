@@ -2,6 +2,62 @@
 
 [ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_sq661"]
 [ext_resource type="Script" uid="uid://5rx0w6vls7bo" path="res://scripts/ui/debug/debug_ui.gd" id="2_kxdbl"]
+[ext_resource type="Script" uid="uid://c270qtq4uq12m" path="res://scripts/ui/debug/reputation_slider.gd" id="3_kxdbl"]
+[ext_resource type="Script" uid="uid://dfpu4ca4rk4ik" path="res://scripts/ui/debug/flag_check_box.gd" id="4_xf8o0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wpx6a"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.050980393, 0.08235294, 0.078431375, 0.93333334)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfigf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.11882686, 0.16982102, 0.1634385, 0.93333334)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5glpr"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.050980393, 0.08235294, 0.078431375, 0.93333334)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rarv2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.11764706, 0.16862746, 0.16470589, 0.93333334)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xf8o0"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.051354572, 0.08135276, 0.07985405, 0.93333334)
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="DebugLayer" type="CanvasLayer" unique_id=1595910766]
 process_mode = 3
@@ -23,44 +79,103 @@ foldable_container = NodePath("FoldableContainer")
 layout_mode = 0
 offset_right = 139.0
 offset_bottom = 32.0
+theme_override_styles/title_panel = SubResource("StyleBoxFlat_wpx6a")
+theme_override_styles/title_hover_panel = SubResource("StyleBoxFlat_qfigf")
+theme_override_styles/title_collapsed_panel = SubResource("StyleBoxFlat_5glpr")
+theme_override_styles/title_collapsed_hover_panel = SubResource("StyleBoxFlat_rarv2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_xf8o0")
 title = "Debug"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DebugUI/FoldableContainer" unique_id=1434598411]
+[node name="HBoxContainer" type="HBoxContainer" parent="DebugUI/FoldableContainer" unique_id=2024930324]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="DebugUI/FoldableContainer/VBoxContainer" unique_id=1194280221]
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugUI/FoldableContainer/HBoxContainer" unique_id=1434598411]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer" unique_id=1194280221]
 layout_mode = 2
 text = "Act I Start"
 alignment = 0
 
-[node name="Button2" type="Button" parent="DebugUI/FoldableContainer/VBoxContainer" unique_id=1639977756]
+[node name="Button2" type="Button" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer" unique_id=1639977756]
 layout_mode = 2
 text = "Act I End"
 alignment = 0
 
-[node name="Button3" type="Button" parent="DebugUI/FoldableContainer/VBoxContainer" unique_id=746526975]
+[node name="Button3" type="Button" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer" unique_id=746526975]
 layout_mode = 2
 text = "Act II Start"
 alignment = 0
 
-[node name="Button4" type="Button" parent="DebugUI/FoldableContainer/VBoxContainer" unique_id=96320764]
+[node name="Button4" type="Button" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer" unique_id=96320764]
 layout_mode = 2
 text = "Act II End"
 alignment = 0
 
-[node name="Button5" type="Button" parent="DebugUI/FoldableContainer/VBoxContainer" unique_id=197171836]
+[node name="Button5" type="Button" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer" unique_id=197171836]
 layout_mode = 2
 text = "Act III Start"
 alignment = 0
 
-[node name="Button6" type="Button" parent="DebugUI/FoldableContainer/VBoxContainer" unique_id=769081507]
+[node name="Button6" type="Button" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer" unique_id=769081507]
 layout_mode = 2
 text = "Act III End"
 alignment = 0
 
-[connection signal="pressed" from="DebugUI/FoldableContainer/VBoxContainer/Button" to="DebugUI" method="_on_act_button_pressed" binds= [0, true]]
-[connection signal="pressed" from="DebugUI/FoldableContainer/VBoxContainer/Button2" to="DebugUI" method="_on_act_button_pressed" binds= [0, false]]
-[connection signal="pressed" from="DebugUI/FoldableContainer/VBoxContainer/Button3" to="DebugUI" method="_on_act_button_pressed" binds= [1, true]]
-[connection signal="pressed" from="DebugUI/FoldableContainer/VBoxContainer/Button4" to="DebugUI" method="_on_act_button_pressed" binds= [1, false]]
-[connection signal="pressed" from="DebugUI/FoldableContainer/VBoxContainer/Button5" to="DebugUI" method="_on_act_button_pressed" binds= [2, true]]
-[connection signal="pressed" from="DebugUI/FoldableContainer/VBoxContainer/Button6" to="DebugUI" method="_on_act_button_pressed" binds= [2, false]]
+[node name="VBoxContainer2" type="VBoxContainer" parent="DebugUI/FoldableContainer/HBoxContainer" unique_id=38033223]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer2" unique_id=786725661]
+layout_mode = 2
+text = "Consortium Rep."
+
+[node name="HSlider" type="HSlider" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer2" unique_id=88861499]
+layout_mode = 2
+step = 10.0
+tick_count = 3
+ticks_on_borders = true
+script = ExtResource("3_kxdbl")
+faction_id = 1
+
+[node name="Label2" type="Label" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer2" unique_id=1035823035]
+layout_mode = 2
+text = "Syndicate Rep."
+
+[node name="HSlider2" type="HSlider" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer2" unique_id=2129848533]
+layout_mode = 2
+step = 10.0
+tick_count = 3
+ticks_on_borders = true
+script = ExtResource("3_kxdbl")
+faction_id = 2
+
+[node name="Label3" type="Label" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer2" unique_id=1743652757]
+layout_mode = 2
+text = "Argentis Rep."
+
+[node name="HSlider3" type="HSlider" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer2" unique_id=1785246330]
+layout_mode = 2
+step = 10.0
+tick_count = 3
+ticks_on_borders = true
+script = ExtResource("3_kxdbl")
+faction_id = 3
+
+[node name="CheckBox" type="CheckBox" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer2" unique_id=1121455089]
+layout_mode = 2
+text = "Posted Conspiracy"
+script = ExtResource("4_xf8o0")
+flag_id = "posted_conspiracy"
+
+[node name="CheckBox2" type="CheckBox" parent="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer2" unique_id=639865513]
+layout_mode = 2
+text = "Fled with Juno"
+script = ExtResource("4_xf8o0")
+flag_id = "fled_with_juno"
+
+[connection signal="pressed" from="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer/Button" to="DebugUI" method="_on_act_button_pressed" binds= [0, true]]
+[connection signal="pressed" from="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer/Button2" to="DebugUI" method="_on_act_button_pressed" binds= [0, false]]
+[connection signal="pressed" from="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer/Button3" to="DebugUI" method="_on_act_button_pressed" binds= [1, true]]
+[connection signal="pressed" from="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer/Button4" to="DebugUI" method="_on_act_button_pressed" binds= [1, false]]
+[connection signal="pressed" from="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer/Button5" to="DebugUI" method="_on_act_button_pressed" binds= [2, true]]
+[connection signal="pressed" from="DebugUI/FoldableContainer/HBoxContainer/VBoxContainer/Button6" to="DebugUI" method="_on_act_button_pressed" binds= [2, false]]

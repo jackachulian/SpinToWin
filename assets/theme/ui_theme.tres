@@ -55,6 +55,7 @@ Button/styles/focus = ExtResource("2_emww3")
 Button/styles/hover = ExtResource("3_3hhkj")
 Button/styles/normal = ExtResource("4_iquyq")
 Button/styles/pressed = SubResource("StyleBoxFlat_qvnyc")
+CheckBox/styles/hover_pressed = ExtResource("3_3hhkj")
 HSlider/styles/slider = SubResource("StyleBoxFlat_skdtr")
 MarginContainer/constants/margin_bottom = 15
 MarginContainer/constants/margin_left = 30

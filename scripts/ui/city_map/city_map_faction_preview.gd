@@ -33,6 +33,12 @@ func _on_visibility_changed() -> void:
 		reputation_bar.value = reputation
 		var fill_stylebox: StyleBoxFlat = reputation_bar.get_theme_stylebox("fill")
 		fill_stylebox.bg_color = FactionData.get_reputation_color(reputation)
+		if not MainGame.instance.player_data.reputation_changed.is_connected(_on_reputation_changed):
+			MainGame.instance.player_data.reputation_changed.connect(_on_reputation_changed)
+	
+func _on_reputation_changed() -> void:
+	var reputation := MainGame.instance.player_data.reputations[faction_id]
+	reputation_bar.value = reputation
 	
 var tween: Tween
 func _on_mouse_entered() -> void:
