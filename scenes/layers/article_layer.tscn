@@ -237,7 +237,7 @@ text = "Description of the real event that took place"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="DesiredPerception" type="PanelContainer" parent="ArticleUI" unique_id=34398821 node_paths=PackedStringArray("faction_desired_perception_uis", "first_expanded_ui")]
+[node name="DesiredPerception" type="PanelContainer" parent="ArticleUI" unique_id=34398821 node_paths=PackedStringArray("article_ui", "faction_desired_perception_uis", "first_expanded_ui")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -252,6 +252,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_0jjck")
 script = ExtResource("11_e5wne")
+article_ui = NodePath("..")
 faction_desired_perception_uis = [NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception3"), NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception"), NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception2")]
 first_expanded_ui = NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception3")
 

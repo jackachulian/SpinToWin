@@ -28,7 +28,7 @@ var reputations: Array[int] = [50, 50, 50, 50]
 ## When an article is submitted, the current reputations are copied here
 ## before the new reputations are calculated.
 ## This data may be displayed on the results layer.
-var previous_reputations: Array[int]
+var previous_reputations: Array[int] = [0,0,0,0]
 
 ## Ranges from 0 to 100
 var public_trust: int = 100
@@ -117,7 +117,7 @@ func advance_game_phase() -> void:
 			MainGame.instance.event_manager.progress_event()
 			return
 		
-		if time >= 3:
+		if time >= 2:
 			game_phase = GamePhase.ACT_END_DIALOGUE
 		else:
 			time += 1

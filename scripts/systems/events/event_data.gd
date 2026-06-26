@@ -28,6 +28,9 @@ extends Resource
 ## and the player is required to investigate it
 @export var exclusive: bool
 
+## If true, tutorial sequence and dialogue will play during this event's article editing
+@export var is_tutorial: bool
+
 ## The act that this event was scheduled for by the event scheduler
 var act: int
 
@@ -37,5 +40,4 @@ var start_time: int
 
 @export_file("*.dialogue") var start_dialogue_path: String
 @export_file("*.txt") var article_file_path: String
-@export_file("*.dialogue") var article_dialogue_path: String
 @export_file("*.dialogue") var end_dialogue_path: String

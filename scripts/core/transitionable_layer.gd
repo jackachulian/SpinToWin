@@ -20,6 +20,7 @@ func open() -> void:
 	opened.emit()
 	
 	while animating:
+		print("waiting for ",name," to finish animating")
 		await animating_finished
 	await animate_in()
 	
@@ -81,5 +82,5 @@ func animate_out():
 		animating = true
 		await animatable_control.animate_out()
 		animating = false
-	animating_finished.emit()
 	hide()
+	animating_finished.emit()

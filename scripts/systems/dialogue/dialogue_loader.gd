@@ -3,6 +3,7 @@ extends Node
 
 @export_group("Quick Dialogues", "dialogue_")
 @export var dialogue_new_game: DialogueResource
+@export var dialogue_tutorial: DialogueResource
 
 @export_subgroup("Act 1", "dialogue_a1_")
 @export var dialogue_a1_day_end: DialogueResource
@@ -14,6 +15,7 @@ extends Node
 @export_subgroup("Act 3", "dialogue_a3_")
 @export var dialogue_a3_day_start: DialogueResource
 @export var dialogue_a3_day_end: DialogueResource
+
 
 @export var balloon: CustomDialogueBalloon
 
@@ -34,6 +36,10 @@ static func run_dialogue(dialogue: DialogueResource) -> void:
 static func run_new_game_dialogue() -> void:
 	var dl = get_dialogue_loader()
 	dl.balloon.queue_start(dl.dialogue_new_game)
+
+static func run_tutorial_dialogue() -> void:
+	var dl = get_dialogue_loader()
+	dl.balloon.queue_start(dl.dialogue_tutorial)
 
 ## [param act] determines which start of day dialogue plays
 ## an [param act] value of [code]1[/code] results in the new game dialogue playing

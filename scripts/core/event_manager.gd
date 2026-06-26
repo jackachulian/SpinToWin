@@ -96,7 +96,7 @@ func open_layer_for_event_phase() -> void:
 @warning_ignore("shadowed_variable")
 func set_active_article(article: ArticleLevel) -> void:
 	self.article = article
-	article.print_data()
+	#article.print_data()
 	
 func load_and_set_active_article(path: String) -> void:
 	set_active_article(ArticleParser.load_file(path))

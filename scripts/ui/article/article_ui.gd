@@ -18,6 +18,15 @@ extends AnimatableControl
 @export var desired_perception_ui: DesiredPerceptionUI
 @export var choice_edit_panel: ChoiceEditPanel
 
+enum TutorialState {
+	CLICK_CHOICE,
+	CONFIRM_CHOICE_OPTION,
+	CLICK_DESIRED_PERCEPTIONS,
+	COMPLETED
+}
+## only used in the tutorial
+var tutorial_state: TutorialState
+
 func _ready() -> void:
 	blur_material.set_shader_parameter("blur_radius", 0.00)
 	choice_edit_panel.item_selected.connect(_on_choice_edit_panel_item_selected)
@@ -32,17 +41,40 @@ func setup(article: ArticleLevel) -> void:
 	real_event_label.text = article.real_event
 	desired_perception_ui.setup()
 	
+	if MainGame.instance.event_manager.event_data.is_tutorial:
+		print("Playing tutorial dialogue")
+		#await get_tree().create_timer(1.0).timeout
+		MainGame.instance.dialogue_layer.open()
+		tutorial_state = TutorialState.CLICK_CHOICE
+		MainGame.instance.dialogue_ui.show_tutorial_focus_global_rect(article_panel.get_global_rect())
+		DialogueLoader.run_tutorial_dialogue()
+		MainGame.instance.dialogue_balloon.will_block_other_input = false
+		MainGame.instance.dialogue_balloon.balloon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		MainGame.instance.dialogue_balloon.can_advance_via_input = false
+	
 func _on_choice_clicked(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -> void:
 	choice_edit_panel.setup(choice, global_pos, sentence_start)
 	choice_edit_panel.show()
 	MainGame.instance.audio_manager.play_audio_by_id("article_choice_open")
 	blur_material.set_shader_parameter("blur_radius", choice_edit_blur_radius)
+	
+	if MainGame.instance.event_manager.event_data.is_tutorial:
+		if tutorial_state == TutorialState.CLICK_CHOICE:
+			MainGame.instance.dialogue_balloon.advance()
+			MainGame.instance.dialogue_ui.hide_tutorial_rect()
+			tutorial_state = TutorialState.CONFIRM_CHOICE_OPTION
 
 func _on_choice_edit_panel_item_selected(_choice: ArticleChoice, _index: int) -> void:
 	MainGame.instance.audio_manager.play_audio_by_id("article_choice_confirm", "SFX", 1.0)
 	blur_material.set_shader_parameter("blur_radius", 0.00)
 	header_rtl.reset_editing_text()
 	body_rtl.reset_editing_text()
+	
+	if MainGame.instance.event_manager.event_data.is_tutorial:
+		if tutorial_state == TutorialState.CONFIRM_CHOICE_OPTION:
+			MainGame.instance.dialogue_balloon.advance()
+			MainGame.instance.dialogue_ui.show_tutorial_focus_global_rect(desired_perception_ui.get_global_rect())
+			tutorial_state = TutorialState.CLICK_DESIRED_PERCEPTIONS
 	
 	
 func _on_submit_button_pressed() -> void:
@@ -61,11 +93,11 @@ const ANIM_OUT_DURATION := 0.6
 const SUBMIT_ANIM_IN_DURATION := 1.0
 const SUBMIT_ANIM_OUT_DURATION := 0.8
 
+var tween: Tween
+
 func animate_in() -> void:
 	setup(MainGame.instance.event_manager.article)
-	
-	await get_tree().process_frame
-	
+
 	spin_the_article_label.offset_transform_enabled = true
 	spin_the_article_label.offset_transform_position = TITLE_ANIM_OFFSET
 	spin_the_article_label.modulate = ANIM_CLEAR_COLOR
@@ -85,8 +117,12 @@ func animate_in() -> void:
 	submit_article_panel.offset_transform_enabled = true
 	submit_article_panel.offset_transform_position = SUBMIT_ANIM_OFFSET
 	submit_article_panel.modulate = ANIM_CLEAR_COLOR
+		
+	await get_tree().process_frame
 
-	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
+	if tween:
+		tween.kill()
+	tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	
 	tween.tween_property(spin_the_article_label, "offset_transform_position", Vector2.ZERO, ANIM_IN_DURATION)
 	tween.tween_property(spin_the_article_label, "modulate", Color.WHITE, ANIM_IN_DURATION)
@@ -106,7 +142,9 @@ func animate_in() -> void:
 	await tween.finished
 	
 func animate_out() -> void:
-	var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
+	if tween:
+		tween.kill()
+	tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	
 	tween.tween_property(spin_the_article_label, "offset_transform_position", TITLE_ANIM_OFFSET, ANIM_OUT_DURATION)
 	tween.tween_property(spin_the_article_label, "modulate", ANIM_CLEAR_COLOR, ANIM_OUT_DURATION)

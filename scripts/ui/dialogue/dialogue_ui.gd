@@ -5,6 +5,8 @@ extends AnimatableControl
 
 @export var dialogue_box: Control
 
+@onready var tutorial_focus_rect: Control = $TutorialFocusRect
+
 const OUT_Y := 20
 const IN_Y := 0
 const OUT_MODULATE := Color(1,1,1,0)
@@ -12,8 +14,23 @@ const IN_MODULATE := Color(1,1,1,1)
 const IN_DURATION := 0.5
 const OUT_DURATION := 0.3
 
+func _ready() -> void:
+	hide_tutorial_rect()
+
+func show_tutorial_focus_global_rect(global_rect: Rect2) -> void:
+	tutorial_focus_rect.global_position = global_rect.position
+	tutorial_focus_rect.size = global_rect.size
+	tutorial_focus_rect.show()
+	
+func hide_tutorial_rect() -> void:
+	tutorial_focus_rect.hide()
+
 func _on_dialogue_ended() -> void:
-	MainGame.instance.player_data.advance_game_phase()
+	await get_tree().process_frame
+	if MainGame.instance.active_layer == MainGame.instance.dialogue_layer:
+		MainGame.instance.player_data.advance_game_phase()
+	else:
+		MainGame.instance.dialogue_layer.close()
 
 func animate_in():
 	show()

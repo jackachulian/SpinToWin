@@ -85,6 +85,10 @@ var can_start: bool = false:
 		if value: can_start_now.emit()
 		can_start = value
 
+## If false, dialogue cannot advance to the next line via user input.
+## (Is automatically set to true when a dialogue starts, can be set to false afterward)
+var can_advance_via_input: bool = true
+
 signal can_start_now
 
 signal dialogue_end
@@ -130,6 +134,7 @@ func _notification(what: int) -> void:
 
 ## Queue up some dialogue to start when it can
 func queue_start(with_dialogue_resource: DialogueResource = null, title: String = "start", extra_game_states: Array = []) -> void:
+	can_advance_via_input = true
 	if can_start:
 		start(with_dialogue_resource, title, extra_game_states)
 	else:
@@ -160,7 +165,7 @@ func apply_dialogue_line() -> void:
 	balloon.focus_mode = Control.FOCUS_ALL
 	balloon.grab_focus()
 
-	#character_label.modulate = known_speaker_colors.get(dialogue_line.character, default_speaker_color) if not dialogue_line.character.is_empty() else narration_color
+	character_label.modulate = known_speaker_colors.get(dialogue_line.character, default_speaker_color) if not dialogue_line.character.is_empty() else narration_color
 	character_label.visible = not dialogue_line.character.is_empty()
 	character_label.text = tr(dialogue_line.character if dialogue_line.character else "Narration", &"dialogue")
 
@@ -219,6 +224,9 @@ func _on_mutated(mutation: Dictionary) -> void:
 
 
 func _on_balloon_gui_input(event: InputEvent) -> void:
+	if not can_advance_via_input: 
+		return
+	
 	# See if we need to skip typing of the dialogue
 	if dialogue_label.is_typing:
 		var mouse_was_clicked: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()
@@ -236,13 +244,16 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		next(dialogue_line.next_id)
+		
 	elif event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
 		next(dialogue_line.next_id)
 
+## Intended to be called from other scripts
+func advance() -> void:
+	next(dialogue_line.next_id)
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
-
 
 func _on_dialogue_end() -> void:
 	balloon.focus_mode = Control.FOCUS_NONE

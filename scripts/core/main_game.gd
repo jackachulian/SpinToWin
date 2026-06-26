@@ -60,6 +60,7 @@ var faction_data: FactionData = FactionData.new()
 @onready var results_layer: TransitionableLayer = $ResultsLayer
 @onready var dialogue_layer: TransitionableLayer = $DialogueLayer
 @onready var options_layer: TransitionableLayer = $OptionsLayer
+@onready var hud_layer: CanvasLayer = $HudLayer
 @onready var credits_layer: TransitionableLayer = $CreditsLayer
 @onready var transition_layer: CanvasLayer = $TransitionLayer
 @onready var debug_layer: CanvasLayer = $DebugLayer
@@ -67,3 +68,6 @@ var faction_data: FactionData = FactionData.new()
 # -------- Misc --------
 @onready var city_map_ui: CityMapUI = $CityMapLayer/CityMapUI
 @onready var popup_ui: PopupUI = $HudLayer/HudUI/PopupUI
+@onready var dialogue_ui: DialogueUI = $DialogueLayer/DialogueUI
+@onready var dialogue_balloon: CustomDialogueBalloon = $DialogueLayer/DialogueUI/DialogueBalloon
+@onready var hud_ui: HudUI = $HudLayer/HudUI

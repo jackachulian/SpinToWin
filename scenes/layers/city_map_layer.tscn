@@ -21,10 +21,13 @@ corner_radius_top_right = 15
 [sub_resource type="Resource" id="Resource_nm77f"]
 resource_local_to_scene = true
 script = ExtResource("7_nm77f")
-event_name = "Test Event"
-event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
-max_start_time = 3
+event_name = "Tutorial"
+event_description = "Tutorial event desc here"
 duration = 1
+location_id = 2
+guaranteed = true
+exclusive = true
+is_tutorial = true
 start_dialogue_path = "uid://bv1igdg7svcoj"
 article_file_path = "res://assets/articles/tutorial_01.txt"
 end_dialogue_path = "uid://bv1igdg7svcoj"
@@ -35,9 +38,9 @@ resource_local_to_scene = true
 script = ExtResource("7_nm77f")
 event_name = "Test Event"
 event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
-max_start_time = 3
+min_start_time = 1
+max_start_time = 2
 duration = 1
-location_id = 1
 start_dialogue_path = "uid://bv1igdg7svcoj"
 article_file_path = "res://assets/articles/tutorial_01.txt"
 end_dialogue_path = "uid://bv1igdg7svcoj"
@@ -48,9 +51,10 @@ resource_local_to_scene = true
 script = ExtResource("7_nm77f")
 event_name = "Test Event"
 event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
-max_start_time = 3
+min_start_time = 1
+max_start_time = 2
 duration = 1
-location_id = 2
+location_id = 1
 start_dialogue_path = "uid://bv1igdg7svcoj"
 article_file_path = "res://assets/articles/tutorial_01.txt"
 end_dialogue_path = "uid://bv1igdg7svcoj"
@@ -61,7 +65,8 @@ resource_local_to_scene = true
 script = ExtResource("7_nm77f")
 event_name = "Test Event"
 event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
-max_start_time = 3
+min_start_time = 1
+max_start_time = 2
 duration = 1
 location_id = 3
 start_dialogue_path = "uid://bv1igdg7svcoj"
@@ -74,7 +79,8 @@ resource_local_to_scene = true
 script = ExtResource("7_nm77f")
 event_name = "Test Event"
 event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
-max_start_time = 3
+min_start_time = 1
+max_start_time = 2
 duration = 1
 location_id = 4
 start_dialogue_path = "uid://bv1igdg7svcoj"
@@ -147,13 +153,21 @@ size_flags_vertical = 3
 layout_mode = 2
 mouse_filter = 1
 
+[node name="Tutorial" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=1438903290 instance=ExtResource("6_e3gvu")]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 167.0
+offset_right = 538.0
+offset_bottom = 255.0
+event_data = SubResource("Resource_nm77f")
+
 [node name="EventUI" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=234452478 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
 offset_left = 965.0
 offset_top = -9.0
 offset_right = 1035.0
 offset_bottom = 79.0
-event_data = SubResource("Resource_nm77f")
+event_data = SubResource("Resource_oc4xn")
 
 [node name="EventUI2" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=1832251012 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
@@ -161,14 +175,6 @@ offset_left = 955.0
 offset_top = 398.0
 offset_right = 1025.0
 offset_bottom = 486.0
-event_data = SubResource("Resource_oc4xn")
-
-[node name="EventUI3" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=1438903290 instance=ExtResource("6_e3gvu")]
-layout_mode = 0
-offset_left = 468.0
-offset_top = 167.0
-offset_right = 538.0
-offset_bottom = 255.0
 event_data = SubResource("Resource_g82fp")
 
 [node name="EventUI4" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=516969618 instance=ExtResource("6_e3gvu")]

@@ -55,9 +55,60 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("2_ti2pp")
 dialogue_balloon = NodePath("DialogueBalloon")
 dialogue_box = NodePath("DialogueBalloon/Balloon/MarginContainer/PanelContainer")
+
+[node name="TutorialFocusRect" type="Control" parent="DialogueUI" unique_id=625293370]
+anchors_preset = 0
+offset_left = 358.0
+offset_top = 169.0
+offset_right = 800.0
+offset_bottom = 484.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="DialogueUI/TutorialFocusRect" unique_id=599745641]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -1153.0
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4509804)
+
+[node name="ColorRect2" type="ColorRect" parent="DialogueUI/TutorialFocusRect" unique_id=1277291783]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1116.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4509804)
+
+[node name="ColorRect3" type="ColorRect" parent="DialogueUI/TutorialFocusRect" unique_id=2037292392]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -1160.0
+offset_top = -799.0
+offset_right = 1123.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.4509804)
+
+[node name="ColorRect4" type="ColorRect" parent="DialogueUI/TutorialFocusRect" unique_id=1193854316]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1155.0
+offset_right = 1111.0
+offset_bottom = 863.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 0.4509804)
 
 [node name="DialogueBalloon" type="Control" parent="DialogueUI" unique_id=1660674987]
 layout_mode = 1
@@ -66,6 +117,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("3_fitoo")
 known_speaker_colors = Dictionary[String, Color]({
 "Reagan": Color(1, 0.652, 0.64, 1)
@@ -95,6 +147,7 @@ anchor_bottom = 1.0
 offset_top = -209.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="DialogueUI/DialogueBalloon/Balloon/MarginContainer" unique_id=1858330092]
 clip_children = 2
@@ -159,6 +212,7 @@ offset_bottom = -86.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
+mouse_filter = 2
 theme_override_constants/separation = 2
 alignment = 1
 script = ExtResource("7_fitoo")
