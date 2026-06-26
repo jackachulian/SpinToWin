@@ -20,7 +20,6 @@ func _on_continue_pressed() -> void:
 	MainGame.instance.dialogue_layer.open_active()
 	DialogueLoader.run_new_game_dialogue()
 	
-	
 
 func _on_options_pressed() -> void:
 	print("options pressed")

@@ -3,7 +3,10 @@ extends Node
 
 @export_group("Quick Dialogues", "dialogue_")
 @export var dialogue_new_game: DialogueResource
-@export var dialogue_tutorial: DialogueResource
+
+@export_subgroup("Tutorials", "dialogue_tutorial")
+@export var dialogue_tutorial_1: DialogueResource
+@export var dialogue_tutorial_2: DialogueResource
 
 @export_subgroup("Act 1", "dialogue_a1_")
 @export var dialogue_a1_day_end: DialogueResource
@@ -31,15 +34,15 @@ static func get_dialogue_loader() -> DialogueLoader:
 
 static func run_dialogue(dialogue: DialogueResource) -> void:
 	var dl = get_dialogue_loader()
-	dl.balloon.queue_start(dialogue)
+	dl.start_dialogue(dialogue)
 
 static func run_new_game_dialogue() -> void:
 	var dl = get_dialogue_loader()
-	dl.balloon.queue_start(dl.dialogue_new_game)
+	dl.start_dialogue(dl.dialogue_new_game)
 
 static func run_tutorial_dialogue() -> void:
 	var dl = get_dialogue_loader()
-	dl.balloon.queue_start(dl.dialogue_tutorial)
+	dl.start_dialogue(dl.dialogue_tutorial_1)
 
 ## [param act] determines which start of day dialogue plays
 ## an [param act] value of [code]1[/code] results in the new game dialogue playing
@@ -49,7 +52,7 @@ static func run_day_start_dialogue(act: int) -> bool:
 	var dialogues: Array[DialogueResource] = [dl.dialogue_new_game, dl.dialogue_a2_day_start, dl.dialogue_a3_day_start]
 	var dialogue := dialogues[act]
 	if dialogue != null:
-		dl.balloon.queue_start(dialogue)
+		dl.start_dialogue(dialogue)
 		return true
 	else:
 		return false
@@ -60,7 +63,7 @@ static func run_day_end_dialogue(act: int) -> bool:
 	var dialogues: Array[DialogueResource] = [dl.dialogue_a1_day_end, dl.dialogue_a2_day_end, dl.dialogue_a3_day_end]
 	var dialogue := dialogues[act]
 	if dialogue != null:
-		dl.balloon.queue_start(dialogue)
+		dl.start_dialogue(dialogue)
 		return true
 	else:
 		return false
@@ -68,4 +71,4 @@ static func run_day_end_dialogue(act: int) -> bool:
 #endregion
 
 func start_dialogue(dialogue_to_start: DialogueResource) -> void:
-	balloon.queue_start(dialogue_to_start)
+	balloon.queue_start(dialogue_to_start, "start", [{"player_data" = MainGame.instance.player_data}])

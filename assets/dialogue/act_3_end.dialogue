@@ -1,0 +1,35 @@
+import "res://assets/dialogue/act_3_end_1.dialogue" as ending_1
+import "res://assets/dialogue/act_3_end_2.dialogue" as ending_2
+import "res://assets/dialogue/act_3_end_3.dialogue" as ending_3
+
+~ start
+I had put it off long enough.
+Every few minutes, I would glance at the drawer storing my potential future in it. The file with all the evidence,[wait=0.3] all the power I would need.
+I glanced at the clock, just shy of midnight.[wait] I popped my head out of my office, seeing no one and hearing no one.[wait=0.3] The coast was clear.
+The cream file was labeled with [color=ff7f3b]Director George Voss[/color] in a messy cursive font. Each document inside was punched in by a typewriter with almost zero redactions.
+I scanned through the contents again, just to be sure of myself before I even consider this...
+It was as concrete as I remember it being this morning. [color=ff7f3b]Voss[/color] himself must have wrote it since it was the most offical and civic reporting of his own homicide.
+It looks like the factions each played a role in his murder. [color=limegreen]The Laymen's Syndicate[/color] smuggled the poison in the city. [color=gold]The Consortium[/color] paid off nearly all of [color=ff7f3b]Voss's[/color] security.
+And worst of all, it was all orchestrated by his own friend and colleague in the [color=dodgerblue]NACG[/color], [color=9ec3ff]Mayor Elias Wiley[/color]. [color=ff7f3b]Voss[/color] writes that he suspects it was jealousy or a power grab.
+[speed=0.4]But now the question becomes simple...
+set locals.highest_faction = player_data.get_highest_reputation() >= 80
+set locals.flee = player_data.get_flag("fled_with_juno")
+Do I publish this [color=springgreen]lead[/color], or do I suppress it? [if locals.flee]I did promise [color=caa1ff]Juno[/color] I'd publish it.[/if]
+- Publish the truth
+	if not locals.highest_faction
+		I haven't been on the best terms with any of the factions anyways. So why serve them?
+	The truth needs to be known[if not locals.flee][speed=0.35]...[speed=1][else]![/if]
+	if not locals.flee
+		I'm not leaving with [color=caa1ff]Juno[/color], but that's[speed=0.35]...[speed=1] fine with me.
+		I'm going to change this city.[wait] I[wait=0.3] [speed=0.1]need[speed=1][wait=0.3] to change this city.
+		Even if I'll die for it by those at the top...
+		=> ending_2/start
+	[color=caa1ff]Juno[/color] is trusting me to do this.[wait] [color=ff7f3b]Voss[/color] is trusting me to do this...[wait] kind of...
+	This article can make a difference in this city...[wait=0.3] I think...[wait=0.3] It might help,[wait=0.3] it might not.[wait=0.3] But either way, I'll have done something.
+	And I don't have to die for it![wait=0.3] That's my favorite part.
+	=> ending_3/start
+- Suppress the truth [if locals.highest_faction]
+	[speed=0.3]Maybe [color=ffa6a3]Mr. Kraus[/color] was right all along.
+	[speed=0.3]The truth is meant to be [color=firebrick]spun[/color].[wait] I mean,[wait=0.3] how much would one paper change the world?[wait] How much would[wait=0.3] I[wait=0.3] change the world?
+	=> ending_1/start
+=> END

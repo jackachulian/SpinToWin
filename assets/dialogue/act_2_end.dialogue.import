@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ci2a6dr8iv71v"
+path="res://.godot/imported/act_2_end.dialogue-e8cb4d1f66c155277e5f9b052dadcc6c.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/act_2_end.dialogue"
+dest_files=["res://.godot/imported/act_2_end.dialogue-e8cb4d1f66c155277e5f9b052dadcc6c.tres"]
+
+[params]
+
+defaults=true
