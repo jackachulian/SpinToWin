@@ -17,6 +17,7 @@ func setup() -> void:
 			ui.collapse()
 
 func _on_faction_ui_clicked(clicked_ui: FactionDesiredPerceptionUI) -> void:
+	MainGame.instance.audio_manager.play_audio_by_id("ui_expand")
 	for ui in faction_desired_perception_uis:
 		if ui == clicked_ui:
 			ui.expand()

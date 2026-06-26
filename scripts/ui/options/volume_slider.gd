@@ -13,3 +13,5 @@ func _ready() -> void:
 @warning_ignore("shadowed_variable_base_class")
 func _on_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(_bus, linear_to_db(value))
+	if audio_bus_name == "SFX":
+		MainGame.instance.audio_manager.play_audio_by_id("ui_select")

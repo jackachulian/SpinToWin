@@ -19,6 +19,7 @@ audio_stream_dict = Dictionary[StringName, AudioStream]({
 &"article_submit": ExtResource("4_uydfr"),
 &"ui_back": ExtResource("7_hl7fh"),
 &"ui_confirm": ExtResource("5_uxk66"),
+&"ui_expand": ExtResource("7_hl7fh"),
 &"ui_select": ExtResource("6_hds1h")
 })
 
