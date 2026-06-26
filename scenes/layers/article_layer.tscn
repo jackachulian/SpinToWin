@@ -485,4 +485,12 @@ rotation = -3.1415925
 color = Color(0.8586707, 0.7087068, 0.22933632, 1)
 polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)
 
+[node name="InputBlocker" type="Control" parent="ArticleUI" unique_id=1055219188]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="pressed" from="ArticleUI/SubmitArticle/MarginContainer/SubmitButton" to="ArticleUI" method="_on_submit_button_pressed"]

@@ -18,6 +18,8 @@ extends AnimatableControl
 @export var desired_perception_ui: DesiredPerceptionUI
 @export var choice_edit_panel: ChoiceEditPanel
 
+@onready var input_blocker: Control = $InputBlocker
+
 enum TutorialState {
 	CLICK_CHOICE,
 	CONFIRM_CHOICE_OPTION,
@@ -35,6 +37,7 @@ func _ready() -> void:
 	body_rtl.choice_clicked.connect(_on_choice_clicked)
 
 func setup(article: ArticleLevel) -> void:
+	input_blocker.hide()
 	header_rtl.setup([article.header])
 	body_rtl.setup(article.body)
 	
@@ -44,6 +47,7 @@ func setup(article: ArticleLevel) -> void:
 	if MainGame.instance.event_manager.event_data.is_tutorial:
 		print("Playing tutorial dialogue")
 		#await get_tree().create_timer(1.0).timeout
+		input_blocker.show()
 		MainGame.instance.dialogue_layer.open()
 		tutorial_state = TutorialState.CLICK_CHOICE
 		MainGame.instance.dialogue_ui.show_tutorial_focus_global_rect(article_panel.get_global_rect())
@@ -51,6 +55,11 @@ func setup(article: ArticleLevel) -> void:
 		MainGame.instance.dialogue_balloon.will_block_other_input = false
 		MainGame.instance.dialogue_balloon.balloon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		MainGame.instance.dialogue_balloon.can_advance_via_input = false
+		
+		while not MainGame.instance.dialogue_layer.is_open:
+			await MainGame.instance.dialogue_layer.animating_finished
+		input_blocker.hide()
+	
 	
 func _on_choice_clicked(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -> void:
 	choice_edit_panel.setup(choice, global_pos, sentence_start)
@@ -160,5 +169,12 @@ func animate_out() -> void:
 	
 	tween.tween_property(submit_article_panel, "offset_transform_position", SUBMIT_ANIM_OFFSET, SUBMIT_ANIM_OUT_DURATION)
 	tween.tween_property(submit_article_panel, "modulate", ANIM_CLEAR_COLOR, SUBMIT_ANIM_OUT_DURATION)
+	
+	MainGame.instance.dialogue_balloon.will_block_other_input = true
+	MainGame.instance.dialogue_balloon.balloon.mouse_filter = Control.MOUSE_FILTER_STOP
+	MainGame.instance.dialogue_balloon.can_advance_via_input = true
+	MainGame.instance.dialogue_layer.close()
+	tutorial_state = ArticleUI.TutorialState.COMPLETED
+	MainGame.instance.dialogue_ui.hide_tutorial_rect()
 	
 	await tween.finished

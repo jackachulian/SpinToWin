@@ -5,9 +5,12 @@ extends Control
 @export var index: int = 0:
 	set(value): 
 		if choice:
-			index = clampi(value, 0, choice.options.size() - 1)
-			choice_anim_start_index = visual_index
-			choice_anim_elapsed_time = 0
+			var new_index := clampi(value, 0, choice.options.size() - 1)
+			if new_index != index:
+				index = new_index
+				choice_anim_start_index = visual_index
+				choice_anim_elapsed_time = 0
+				MainGame.instance.audio_manager.play_audio_by_id("article_choice_select")
 		else:
 			index = value
 		update_ui_elements()
@@ -86,10 +89,8 @@ func _input(event: InputEvent) -> void:
 			select_current_item()
 		elif event.is_action_pressed("ui_up"):
 			index -= 1
-			MainGame.instance.audio_manager.play_audio_by_id("article_choice_select")
 		elif event.is_action_pressed("ui_down"):
 			index += 1
-			MainGame.instance.audio_manager.play_audio_by_id("article_choice_select")
 
 func _gui_input(event: InputEvent) -> void:
 	if !choice: return
@@ -98,10 +99,8 @@ func _gui_input(event: InputEvent) -> void:
 			select_current_item()
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			index -= 1
-			MainGame.instance.audio_manager.play_audio_by_id("article_choice_select")
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 			index += 1
-			MainGame.instance.audio_manager.play_audio_by_id("article_choice_select")
 
 @warning_ignore("shadowed_variable")
 func setup(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -> void:
