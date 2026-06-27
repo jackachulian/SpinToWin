@@ -29,7 +29,7 @@ Do I publish this [color=springgreen]lead[/color], or do I suppress it? [if loca
 	And I don't have to die for it![wait=0.3] That's my favorite part.
 	=> ending_3/start
 - Suppress the truth [if locals.highest_faction]
-	[speed=0.3]Maybe [color=ffa6a3]Mr. Kraus[/color] was right all along.
+	[speed=0.3]Maybe [color=bd9964]Mr. Kraus[/color] was right all along.
 	[speed=0.3]The truth is meant to be [color=firebrick]spun[/color].[wait] I mean,[wait=0.3] how much would one paper change the world?[wait] How much would[wait=0.3] I[wait=0.3] change the world?
 	=> ending_1/start
 => END

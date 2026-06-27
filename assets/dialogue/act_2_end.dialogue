@@ -14,10 +14,10 @@ Reflected back at me is my own eyes, my own face. The pouring rain, however, has
 Reagan: I feel like that sometimes, me.
 Reagan: I do my best, trying to be my best. But the job is tough at times.
 if locals.act_2_behaviour
-	Reagan: I didn't listen to [color=ffa6a3]Mr. Kraus[/color] today. He said that [color=firebrick]lying[/color] is important, but[wait=0.6] I don't think it is.
+	Reagan: I didn't listen to [color=bd9964]Mr. Kraus[/color] today. He said that [color=firebrick]lying[/color] is important, but[wait=0.6] I don't think it is.
 	Reagan: At least[speed=0.35]...[speed=1] The truth is important too.
 else
-	Reagan: Today, I learned what [color=ffa6a3]Mr. Kraus[/color] called 'the real job'.
+	Reagan: Today, I learned what [color=bd9964]Mr. Kraus[/color] called 'the real job'.
 	Reagan: [speed=0.35]...[speed=1]
 	Reagan: I don't agree with it,[wait] but[speed=0.35]...[speed=1]
 	Reagan: Sometimes, the truth needs to be[speed=0.35]...[speed=1] [color=firebrick]spun[/color].
