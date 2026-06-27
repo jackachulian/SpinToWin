@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://gjj4hbd6y8xn" path="res://assets/theme/ui_theme.tres" id="1_ns3km"]
 [ext_resource type="Script" uid="uid://cl8gxcsoyfe41" path="res://scripts/core/core_ui.gd" id="2_sp3ab"]
-[ext_resource type="Texture2D" uid="uid://bav782hb0fg7q" path="res://assets/sprites/Captura_de_pantalla_2026-06-25_152432.png" id="3_jglwl"]
 [ext_resource type="Shader" uid="uid://de6tar0rutmbm" path="res://assets/shaders/background.gdshader" id="3_sp3ab"]
+[ext_resource type="Texture2D" uid="uid://cx4n4wogs0yq8" path="res://assets/sprites/NOF_WEB_GALLERY_01.webp" id="4_sp3ab"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sp3ab"]
 shader = ExtResource("3_sp3ab")
@@ -46,5 +46,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_jglwl")
+texture = ExtResource("4_sp3ab")
 expand_mode = 5

@@ -157,9 +157,11 @@ func advance_game_phase() -> void:
 func open_layer_for_game_phase() -> void:
 	match game_phase:
 		GamePhase.ACT_START_TITLE_CARD:
-			## TODO: open title card scene, and let that scene advance after it's done.
-			## Advancing here for now
-				advance_game_phase()
+			var title_text = ["ACT I", "ACT II", "ACT III"][act]
+			var subtitle_text = ["\"Cog in the Machine\"", "\"End of an Era\"", "\"Make a Decision\""][act]
+			MainGame.instance.active_layer.close()
+			await MainGame.instance.hud_ui.act_title_card_ui.animate_title_card(title_text, subtitle_text)
+			advance_game_phase()
 				
 		GamePhase.ACT_START_DIALOGUE:
 			var playing = DialogueLoader.run_day_start_dialogue(act)

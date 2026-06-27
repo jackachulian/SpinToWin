@@ -3,6 +3,9 @@ extends Control
 
 @export var options_button: Button
 
+@export var act_title_card_ui: ActTitleCardUI
+
+
 var options_button_visible: bool
 
 func _ready() -> void:
