@@ -82,7 +82,6 @@ audio_stream_dict = Dictionary[StringName, AudioStream]({
 [node name="CoreLayer" parent="." unique_id=883448445 instance=ExtResource("3_70vka")]
 
 [node name="TitleMenuLayer" parent="." unique_id=1946908040 instance=ExtResource("4_nqdth")]
-visible = false
 
 [node name="CityMapLayer" parent="." unique_id=146308038 instance=ExtResource("6_8xp80")]
 visible = false
@@ -121,6 +120,7 @@ visible = false
 visible = false
 
 [node name="DebugLayer" parent="." unique_id=1595910766 instance=ExtResource("8_o6v7o")]
+visible = false
 
 [node name="FoldableContainer" parent="DebugLayer/DebugUI" parent_id_path=PackedInt32Array(1595910766, 547425388) index="0" unique_id=1446634754]
 folded = true

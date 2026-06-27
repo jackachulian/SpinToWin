@@ -64,7 +64,7 @@ What do I do?
 	if locals.highest_rep >= 80
 		I've got a faction on my hands that's dangerously powerful. They could probably stop me from leaving the city before I even reach the station. Fat chance of doing that.
 	Reagan: Look[speed=0.35]...[speed=1] I'll see what I can do, but I'm not making any promises.
-	The woman visibly deflated at my words. She seemed to hover there for a moment, unsure to push harder or back off.[wait=0.3] She settled on the latter.
+	The woman was visibly deflated at my words. She seemed to hover there for a moment, unsure to push harder or back off.[wait=0.3] She settled on the latter.
 	Juno: [speed=0.5]Ah,[wait=0.3] yes[speed=0.35]...[speed=1] I will leave you to your work then, [color=ffa6a3]Reagan[/color].
 	Reagan: [color=caa1ff]Juno[/color].[wait] [speed=0.4]Perhaps...[wait] [speed=1]I will consider still publishing the article.
 	Reagan: But I'm afraid I've given too much to this city to let it go. And[speed=0.35]...[speed=1] maybe it's taken too much from me to make it out alive.[wait=0.3] Just[speed=0.35]...[speed=1] have a safe journey.
