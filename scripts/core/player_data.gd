@@ -10,6 +10,7 @@ enum GamePhase {
 	CITY_MAP,
 	EVENT, # will use the current event's EventPhase
 	ACT_END_DIALOGUE,
+	LOSE_DIALOGUE, # for when the player wins/loses the game
 	GAME_ENDED
 }
 
@@ -68,11 +69,14 @@ func start_new_save(reset_properties: bool = true):
 	# where we want to have changed properties used in dialogue
 	if reset_properties:
 		reputations = [50, 50, 50, 50]
+		reputation_changed.emit()
 		public_trust = 100
 		act = 0
 		time = 0
+		time_changed.emit()
 		completed_events.clear()
 		flags.clear()
+		flag_changed.emit()
 	
 	MainGame.instance.city_map_ui.schedule_all_events()
 
@@ -129,7 +133,10 @@ func advance_game_phase() -> void:
 			return
 		
 		if time >= 2:
-			game_phase = GamePhase.ACT_END_DIALOGUE
+			## Check for lose state at end of day
+			check_lose_state()
+			if game_phase != GamePhase.LOSE_DIALOGUE:
+				game_phase = GamePhase.ACT_END_DIALOGUE
 		else:
 			time += 1
 			print("advanced time: act=%d, time=%d" % [act, time])
@@ -146,10 +153,16 @@ func advance_game_phase() -> void:
 			game_phase = GamePhase.GAME_ENDED
 		else:
 			game_phase = GamePhase.ACT_START_TITLE_CARD
+			
+	## after losing dialogue, end the game
+	elif game_phase == GamePhase.LOSE_DIALOGUE:
+		game_phase = GamePhase.GAME_ENDED
 		
 	print("advanced game: act=%d time=%d phase=%d " % [act, time, game_phase])
 	## after the phase change / time change, open the appropriate layer
 	open_layer_for_game_phase()
+	
+	
 	
 ## Open the layer that corresponds with the current game state.
 ## Intended to be used when newgame/continue pressed and after the phase advances.
@@ -191,24 +204,62 @@ func open_layer_for_game_phase() -> void:
 			MainGame.instance.event_manager.open_layer_for_event_phase()
 			
 		GamePhase.ACT_END_DIALOGUE:
+			## Check for lose state incase jumped to with the debug menu
+			check_lose_state()
+			if game_phase == GamePhase.LOSE_DIALOGUE:
+				open_layer_for_game_phase()
+				return
+			
 			var playing = DialogueLoader.run_day_end_dialogue(act)
 			if playing:
 				MainGame.instance.dialogue_layer.open_active()
 			else:
 				print("no end dialogue for act=", act, ", skipping")
 				advance_game_phase()
+				
+		GamePhase.LOSE_DIALOGUE:
+			play_lose_dialogue()
 			
 		GamePhase.GAME_ENDED:
 			save_started = false
 			MainGame.instance.title_menu_layer.open_active()
+	
+## set game state to lost if any rep is below 0
+func check_lose_state() -> void:
+	for rep in reputations:
+		if rep <= 0:
+			print("game lost - 0 rep with a faction")
+			game_phase = GamePhase.LOSE_DIALOGUE
+	
+func play_lose_dialogue() -> void:
+	if reputations[1] <= 0:
+		print("playing consortium lose dialogue if it exists")
+		if not play_dialogue(MainGame.instance.dialogue_loader.dialogue_lose_consortium):
+			advance_game_phase()
+	elif reputations[2] <= 0:
+		print("playing syndicate lose dialogue if it exists")
+		if not play_dialogue(MainGame.instance.dialogue_loader.dialogue_lose_syndicate):
+			advance_game_phase()
+	elif reputations[3] <= 0:
+		print("playing argentis lose dialogue if it exists")
+		if not play_dialogue(MainGame.instance.dialogue_loader.dialogue_lose_argentis):
+			advance_game_phase()
+	
+func play_dialogue(dialogue_resource: DialogueResource) -> bool:
+	if dialogue_resource:
+		DialogueLoader.run_dialogue(dialogue_resource)
+		MainGame.instance.dialogue_layer.open_active()	
+		return true
+	else:
+		return false
 	
 func apply_changes_from_article(article: ArticleLevel):
 	previous_reputations = reputations.duplicate()
 	previous_public_trust = public_trust
 	var changes := article.get_total_changes()
 	for i in range(0,4):
-		reputations[i] += changes[i]
-	public_trust += changes[-3]
+		reputations[i] = clampi(reputations[i] + changes[i], 0, 100)
+	public_trust = clampi(public_trust + changes[-3], 0, 100)
 	truth_count += changes[-2]
 	lie_count += changes[-1]
 	reputation_changed.emit()

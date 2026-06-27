@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cl8gxcsoyfe41" path="res://scripts/core/core_ui.gd" id="2_sp3ab"]
 [ext_resource type="Shader" uid="uid://de6tar0rutmbm" path="res://assets/shaders/background.gdshader" id="3_sp3ab"]
 [ext_resource type="Texture2D" uid="uid://b70dac628npio" path="res://assets/sprites/Captura_de_pantalla_2026-06-26_162647.png" id="4_sp3ab"]
+[ext_resource type="VideoStream" uid="uid://re0axnsarddo" path="res://assets/ClosedEyes_TitleSequence.ogv" id="5_yokwu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sp3ab"]
 shader = ExtResource("3_sp3ab")
@@ -50,10 +51,10 @@ texture = ExtResource("4_sp3ab")
 expand_mode = 5
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CoreUI" unique_id=1940763020]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+stream = ExtResource("5_yokwu")

@@ -19,6 +19,10 @@ extends Node
 @export var dialogue_a3_day_start: DialogueResource
 @export var dialogue_a3_day_end: DialogueResource
 
+@export_subgroup("Lose", "dialogue_ending_")
+@export var dialogue_lose_consortium: DialogueResource
+@export var dialogue_lose_syndicate: DialogueResource
+@export var dialogue_lose_argentis: DialogueResource
 
 @export var balloon: CustomDialogueBalloon
 

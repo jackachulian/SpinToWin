@@ -120,7 +120,6 @@ visible = false
 visible = false
 
 [node name="DebugLayer" parent="." unique_id=1595910766 instance=ExtResource("8_o6v7o")]
-visible = false
 
 [node name="FoldableContainer" parent="DebugLayer/DebugUI" parent_id_path=PackedInt32Array(1595910766, 547425388) index="0" unique_id=1446634754]
 folded = true
