@@ -18,6 +18,7 @@ func animate_title_card(title_text: String, subtitle_text: String) -> void:
 	show()
 	
 	MainGame.instance.audio_manager.fade_out_ambience()
+	MainGame.instance.audio_manager.fade_out_music()
 	var tween := create_tween()
 	tween.set_parallel(false)
 	modulate = Color(1,1,1,0)
@@ -33,6 +34,7 @@ func animate_title_card(title_text: String, subtitle_text: String) -> void:
 	tween.set_parallel(true)
 	tween.tween_property(projector_ambience, "volume_db", -80.0, 1.0)
 	tween.tween_callback(MainGame.instance.audio_manager.fade_in_ambience)
+	tween.tween_callback(MainGame.instance.audio_manager.fade_in_music)
 	
 	await tween.finished
 	

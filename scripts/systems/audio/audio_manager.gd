@@ -3,6 +3,7 @@ extends Node
 
 @export var rain_ambience_asp: AudioStreamPlayer
 @export var city_ambience_asp: AudioStreamPlayer
+@onready var music_asp: AudioStreamPlayer = $MusicASP
 
 @export var audio_stream_dict: Dictionary[StringName, AudioStream]
 
@@ -12,6 +13,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	fade_in_ambience()
+	fade_in_music()
 
 func play_audio_by_id(id: StringName, bus: StringName = &"SFX", volume_db: float = 0.0, pitch: float = 1.0, pitch_variance: float = 0.1) -> void:
 	if not audio_stream_dict.has(id):
@@ -33,13 +35,13 @@ func play_audio_by_id(id: StringName, bus: StringName = &"SFX", volume_db: float
 	await temp_player.finished
 	temp_player.queue_free()
 
-func fade_in_asps(asps: Array[AudioStreamPlayer]) -> void:
+func fade_in_asps(asps: Array[AudioStreamPlayer], volume_db: float = 0.0) -> void:
 	var tween = create_tween().set_parallel().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	
 	for asp in asps:
 		asp.volume_db = -80.0
-		asp.play()
-		tween.tween_property(asp, "volume_db", 0.0, 2.0)
+		if not asp.playing: asp.play()
+		tween.tween_property(asp, "volume_db", volume_db, 2.0)
 		
 func fade_out_asps(asps: Array[AudioStreamPlayer]) -> void:
 	var tween = create_tween().set_parallel().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
@@ -47,14 +49,20 @@ func fade_out_asps(asps: Array[AudioStreamPlayer]) -> void:
 	for asp in asps:
 		tween.tween_property(asp, "volume_db", -80.0, 3.0)
 	await tween.finished
-	for asp in asps:
-		tween.stop()
+	#for asp in asps:
+		#tween.stop()
 	
 func fade_in_ambience() -> void:
-	fade_in_asps([rain_ambience_asp, city_ambience_asp])
+	fade_in_asps([rain_ambience_asp, city_ambience_asp], -3.0)
 	
 func fade_out_ambience() -> void:
 	fade_out_asps([rain_ambience_asp, city_ambience_asp])
+	
+func fade_in_music() -> void:
+	fade_in_asps([music_asp])
+	
+func fade_out_music() -> void:
+	fade_out_asps([music_asp])
 	
 func _on_tree_node_added(node: Node) -> void:
 	# Connect to all buttons in the scene tree

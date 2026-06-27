@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bynbci4041j5o" path="res://assets/audio/ad4_abacus_click_v04_r12.wav" id="6_hds1h"]
 [ext_resource type="AudioStream" uid="uid://dap7cmylllgeo" path="res://assets/audio/ad4_toyfryingpan_03_v01_r07.wav" id="7_hl7fh"]
 [ext_resource type="AudioStream" uid="uid://baj74q3oo721j" path="res://assets/audio/ad4_typewriter_24_r06.wav" id="8_uydfr"]
+[ext_resource type="AudioStream" uid="uid://b1ruluijunwit" path="res://assets/audio/jazz.wav" id="11_uxk66"]
 
 [node name="AudioManager" type="Node" unique_id=683407791 node_paths=PackedStringArray("rain_ambience_asp", "city_ambience_asp")]
 script = ExtResource("1_hrhdx")
@@ -32,4 +33,8 @@ bus = &"Ambience"
 
 [node name="CityAmbienceASP" type="AudioStreamPlayer" parent="." unique_id=1237633380]
 stream = ExtResource("3_7ijxr")
+bus = &"Ambience"
+
+[node name="MusicASP" type="AudioStreamPlayer" parent="." unique_id=499529526]
+stream = ExtResource("11_uxk66")
 bus = &"Ambience"
