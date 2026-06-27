@@ -91,6 +91,32 @@ metadata/_custom_type_script = "uid://cb8n3evhugaer"
 [sub_resource type="LabelSettings" id="LabelSettings_4ieh6"]
 font_size = 18
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouewp"]
+resource_local_to_scene = true
+bg_color = Color(0.37254903, 0.6392157, 0.3647059, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27a3"]
+resource_local_to_scene = true
+bg_color = Color(0.37254903, 0.6392157, 0.3647059, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [node name="CityMapLayer" type="CanvasLayer" unique_id=146308038 node_paths=PackedStringArray("animatable_control")]
 script = ExtResource("1_vj1ly")
 animatable_control = NodePath("CityMapUI")
@@ -230,10 +256,22 @@ layout_mode = 2
 size_flags_horizontal = 3
 faction_id = 2
 
+[node name="NameLabel" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer/CityMapFactionPreview2/HoverPanel/VBoxContainer/BaseContainer/HBoxContainer" parent_id_path=PackedInt32Array(1910342403, 1293129886) index="0" unique_id=12817663]
+text = "[font_size=36][color=limegreen]S"
+
+[node name="ProgressBar" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer/CityMapFactionPreview2/HoverPanel/VBoxContainer/BaseContainer/HBoxContainer" parent_id_path=PackedInt32Array(1910342403, 1293129886) index="2" unique_id=1121838017]
+theme_override_styles/fill = SubResource("StyleBoxFlat_ouewp")
+
 [node name="CityMapFactionPreview3" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1203858224 instance=ExtResource("5_ue58t")]
 layout_mode = 2
 size_flags_horizontal = 3
 faction_id = 3
+
+[node name="NameLabel" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer/CityMapFactionPreview3/HoverPanel/VBoxContainer/BaseContainer/HBoxContainer" parent_id_path=PackedInt32Array(1203858224, 1293129886) index="0" unique_id=12817663]
+text = "[font_size=36][color=dodgerblue]A"
+
+[node name="ProgressBar" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer/CityMapFactionPreview3/HoverPanel/VBoxContainer/BaseContainer/HBoxContainer" parent_id_path=PackedInt32Array(1203858224, 1293129886) index="2" unique_id=1121838017]
+theme_override_styles/fill = SubResource("StyleBoxFlat_a27a3")
 
 [node name="MarginContainer" type="MarginContainer" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer" unique_id=1761353466]
 layout_mode = 1
@@ -249,3 +287,6 @@ theme_override_constants/margin_right = 15
 [node name="EventPopups" type="Control" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/MarginContainer" unique_id=137916151]
 layout_mode = 2
 mouse_filter = 2
+
+[editable path="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer/CityMapFactionPreview2"]
+[editable path="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer/CityMapFactionPreview3"]

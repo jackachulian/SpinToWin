@@ -19,6 +19,8 @@ corner_radius_bottom_left = 6
 [sub_resource type="LabelSettings" id="LabelSettings_4kik5"]
 font_size = 14
 font_color = Color(0.99535555, 0.9449063, 0.768716, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.41960785)
 
 [sub_resource type="LabelSettings" id="LabelSettings_o0ard"]
 
@@ -44,6 +46,7 @@ layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer" unique_id=1344604205]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 0

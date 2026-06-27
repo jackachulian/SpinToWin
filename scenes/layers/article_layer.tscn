@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://cnda311t1okga" path="res://assets/fonts/QuietStreets-yrYM.ttf" id="6_yffph"]
 [ext_resource type="PackedScene" uid="uid://cqeuh2iyyc7yp" path="res://scenes/article/article_choice_option_item.tscn" id="7_l8meg"]
 [ext_resource type="FontFile" uid="uid://c8qul3alvi37g" path="res://assets/fonts/CarpalTunnel-aEWa.ttf" id="7_ruko1"]
+[ext_resource type="Texture2D" uid="uid://cmmuujak0name" path="res://assets/Newspaper UI.png" id="7_snvld"]
 [ext_resource type="StyleBox" uid="uid://dvurd71iunc7h" path="res://assets/theme/submit_button.tres" id="8_a5tvl"]
 [ext_resource type="StyleBox" uid="uid://88tr2d208sxv" path="res://assets/theme/submit_button_pressed.tres" id="9_0jjck"]
 [ext_resource type="StyleBox" uid="uid://beluarpuoa5kj" path="res://assets/theme/submit_button_hover.tres" id="10_e5wne"]
@@ -22,17 +23,7 @@
 [ext_resource type="Script" uid="uid://c4ltvbc8lesbt" path="res://scripts/ui/article/article_choice_option_item_ui.gd" id="15_dsg1b"]
 [ext_resource type="LabelSettings" uid="uid://cj3q4tqun80lg" path="res://assets/theme/choice_lie_focused_label_settings.tres" id="19_7o6uv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sp04v"]
-bg_color = Color(0.86, 0.85799336, 0.8428, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.4932394, 0.4846596, 0.46324605, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jmsn1"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_4kik5"]
 script = ExtResource("5_jorgq")
@@ -106,6 +97,7 @@ desired_perception_ui = NodePath("DesiredPerception")
 choice_edit_panel = NodePath("ChoiceEditPanel")
 
 [node name="SpinTheArticleLabel" type="Label" parent="ArticleUI" unique_id=1616736438]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -128,16 +120,28 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -340.0
-offset_top = -220.0
+offset_top = -233.0
 offset_right = 340.0
-offset_bottom = 274.0
+offset_bottom = 261.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 1
 theme = ExtResource("3_l8meg")
-theme_override_styles/panel = SubResource("StyleBoxFlat_sp04v")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jmsn1")
+
+[node name="BG" type="Control" parent="ArticleUI/ArticlePanelContainer" unique_id=368030775]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ArticleUI/ArticlePanelContainer/BG" unique_id=599031094]
+layout_mode = 0
+offset_left = -15.0
+offset_top = -53.0
+offset_right = 778.0
+offset_bottom = 630.0
+texture = ExtResource("7_snvld")
+expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="ArticleUI/ArticlePanelContainer" unique_id=267602175]
 layout_mode = 2
@@ -150,6 +154,7 @@ theme_override_constants/margin_bottom = 32
 layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="ArticleUI/ArticlePanelContainer/MarginContainer/ArticleContainer" unique_id=1683731892]
+visible = false
 layout_mode = 0
 offset_right = 610.0
 offset_bottom = 4.0

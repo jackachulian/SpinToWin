@@ -37,4 +37,4 @@ bus = &"Ambience"
 
 [node name="MusicASP" type="AudioStreamPlayer" parent="." unique_id=499529526]
 stream = ExtResource("11_uxk66")
-bus = &"Ambience"
+bus = &"Music"

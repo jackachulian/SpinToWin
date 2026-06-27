@@ -53,7 +53,7 @@ func fade_out_asps(asps: Array[AudioStreamPlayer]) -> void:
 		#tween.stop()
 	
 func fade_in_ambience() -> void:
-	fade_in_asps([rain_ambience_asp, city_ambience_asp], -3.0)
+	fade_in_asps([rain_ambience_asp, city_ambience_asp], -6.0)
 	
 func fade_out_ambience() -> void:
 	fade_out_asps([rain_ambience_asp, city_ambience_asp])

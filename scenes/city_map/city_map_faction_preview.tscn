@@ -31,7 +31,6 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
 [sub_resource type="LabelSettings" id="LabelSettings_4kik5"]
-font_size = 14
 font_color = Color(0.98, 0.86534005, 0.5978, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4ieh6"]
@@ -81,7 +80,21 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_constants/separation = 8
 
+[node name="NameLabel" type="RichTextLabel" parent="HoverPanel/VBoxContainer/BaseContainer/HBoxContainer" unique_id=12817663]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.170167, 0.6231493, 0.6343145, 0.34509805)
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 2
+bbcode_enabled = true
+text = "[font_size=36][color=gold]C"
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TextureRect" type="TextureRect" parent="HoverPanel/VBoxContainer/BaseContainer/HBoxContainer" unique_id=1539965997]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 0
