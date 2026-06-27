@@ -1,0 +1,21 @@
+#real-event
+Foundry Eleven has caught fire and one man saved hundreds.
+
+#desired-perception-1
+Don't pin this on the Metal Barons. They knew the risks working in the foundry.
+#desired-perception-2
+Spark as much outrage as you can. Gut those old pigs of Old Saint's.
+#desired-perception-3
+Safety standards in Old Saint's District will be tightened after this incident.
+
+#header
+Foundry Eleven [Laborer Saves Hundreds! (4,-6,2,0,0) / Goes Up in Flames! (-3,5,3,0,0)]
+
+#body
+Yesterday, in Old Saint's District, Foundry Eleven, one of the [largest (5,0,1,0,0) / most infamous (-5,5,-1,0,0)] foundries this side of the isthmus, [went up in flames (3,-2,-3,0,0) / went up in flames due to cut corners (-4,5,-3,0,0)]!
+
+Reports from on scene state there was a mysterious unnamed laborer at the site that had [predicted this disaster due to upper management's oversights (-7,5,-1,0,0) / miraculously sounded the alarm right as the fire started up (3,-8,-3,0,0)].
+
+This laborer, who other factory workers are calling a hero, has chosen to remain anonymous, [fearing for his safety from the Metal Barons (-8,10,-2,0,0) / not wanting to be publicly recognized for his actions (2,-2,5,0,0)].
+
+Government inspectors and regulators say "this incident was a [lesson to learn from for the NACG (2,2,-2,0,0) / sign to raise safety standard for more lax business owners (-5,6,8,0,0)]".

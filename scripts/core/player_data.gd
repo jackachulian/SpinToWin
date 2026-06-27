@@ -110,6 +110,11 @@ func get_truth_to_lie_ratio() -> float:
 		return INF
 	return (truth_count * 1.0) / lie_count
 
+func get_lie_percent() -> float:
+	if lie_count == 0 and truth_count == 0:
+		return 100.0
+	return float(lie_count) / float(truth_count + lie_count)
+
 ## Advance the state of the game and go to the appropriate layer.
 func advance_game_phase() -> void:
 	if not save_started:
@@ -132,7 +137,7 @@ func advance_game_phase() -> void:
 			MainGame.instance.event_manager.progress_event()
 			return
 		
-		if time >= 2:
+		if time >= 2 and not act == 0 or time >= 3:
 			## Check for lose state at end of day
 			check_lose_state()
 			if game_phase != GamePhase.LOSE_DIALOGUE:
