@@ -95,18 +95,6 @@ visible = false
 [node name="DialogueLayer" parent="." unique_id=1630943851 instance=ExtResource("9_8xp80")]
 visible = false
 
-[node name="DialogueBalloon" parent="DialogueLayer/DialogueUI" parent_id_path=PackedInt32Array(1630943851, 1391121205) index="1" unique_id=1660674987]
-known_speaker_colors = Dictionary[String, Color]({
-"???": Color(1, 1, 1, 1),
-"Cassian": Color(0.64, 1, 0.73599994, 1),
-"Detective": Color(0.61960787, 0.7647059, 1, 1),
-"Juno": Color(0.7903334, 0.63, 1, 1),
-"Mayor Wiley": Color(0.61960787, 0.7647059, 1, 1),
-"Mr. Kraus": Color(0.9882353, 1, 0.6313726, 1),
-"Reagan": Color(1, 0.652, 0.64, 1),
-"Silas": Color(0.98766667, 1, 0.63, 1)
-})
-
 [node name="OptionsLayer" parent="." unique_id=1297827084 instance=ExtResource("8_nqdth")]
 visible = false
 

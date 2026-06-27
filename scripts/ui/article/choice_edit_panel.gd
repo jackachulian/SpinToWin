@@ -159,7 +159,7 @@ func _on_child_order_changed() -> void:
 	update_ui_elements()
 
 func update_ui_elements() -> void:
-	if not choice_container:
+	if not choice_container or Engine.is_editor_hint():
 		return
 	
 	var max_width: float = 0.0
