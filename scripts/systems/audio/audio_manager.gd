@@ -11,7 +11,7 @@ func _enter_tree() -> void:
 	get_tree().node_removed.connect(_on_tree_node_removed)
 
 func _ready() -> void:
-	fade_in_asps([rain_ambience_asp, city_ambience_asp])
+	fade_in_ambience()
 
 func play_audio_by_id(id: StringName, bus: StringName = &"SFX", volume_db: float = 0.0, pitch: float = 1.0, pitch_variance: float = 0.1) -> void:
 	if not audio_stream_dict.has(id):
@@ -39,7 +39,22 @@ func fade_in_asps(asps: Array[AudioStreamPlayer]) -> void:
 	for asp in asps:
 		asp.volume_db = -80.0
 		asp.play()
-		tween.tween_property(asp, "volume_db", -.0, 2.0)
+		tween.tween_property(asp, "volume_db", 0.0, 2.0)
+		
+func fade_out_asps(asps: Array[AudioStreamPlayer]) -> void:
+	var tween = create_tween().set_parallel().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	
+	for asp in asps:
+		tween.tween_property(asp, "volume_db", -80.0, 3.0)
+	await tween.finished
+	for asp in asps:
+		tween.stop()
+	
+func fade_in_ambience() -> void:
+	fade_in_asps([rain_ambience_asp, city_ambience_asp])
+	
+func fade_out_ambience() -> void:
+	fade_out_asps([rain_ambience_asp, city_ambience_asp])
 	
 func _on_tree_node_added(node: Node) -> void:
 	# Connect to all buttons in the scene tree

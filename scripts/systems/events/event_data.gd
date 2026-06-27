@@ -28,8 +28,9 @@ extends Resource
 ## and the player is required to investigate it
 @export var exclusive: bool
 
-## If true, tutorial sequence and dialogue will play during this event's article editing
-@export var is_tutorial: bool
+## If true, event will autmatically be played if it is the only
+## available event
+@export var auto_start: bool
 
 ## The act that this event was scheduled for by the event scheduler
 var act: int
@@ -37,7 +38,14 @@ var act: int
 ## The start time that this event was scheduled for by the event scheduler
 var start_time: int
 
-
+## Plays when the event is selected, before article editing (optional)
 @export_file("*.dialogue") var start_dialogue_path: String
+
+## The article that is edited (optional)
 @export_file("*.txt") var article_file_path: String
+
+## Plays on the article scene itself (optional)
+@export_file("*.dialogue") var article_dialogue_path: String
+
+## Plays after the article results are shown (optional)
 @export_file("*.dialogue") var end_dialogue_path: String

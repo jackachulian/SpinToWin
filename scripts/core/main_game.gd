@@ -67,7 +67,8 @@ var faction_data: FactionData = FactionData.new()
 
 # -------- Misc --------
 @onready var city_map_ui: CityMapUI = $CityMapLayer/CityMapUI
-@onready var popup_ui: PopupUI = $HudLayer/HudUI/PopupUI
+@onready var article_ui: ArticleUI = $ArticleLayer/ArticleUI
 @onready var dialogue_ui: DialogueUI = $DialogueLayer/DialogueUI
 @onready var dialogue_balloon: CustomDialogueBalloon = $DialogueLayer/DialogueUI/DialogueBalloon
 @onready var hud_ui: HudUI = $HudLayer/HudUI
+@onready var popup_ui: PopupUI = $HudLayer/HudUI/PopupUI

@@ -21,13 +21,13 @@ extends AnimatableControl
 @onready var input_blocker: Control = $InputBlocker
 
 enum TutorialState {
+	NONE,
 	CLICK_CHOICE,
 	CONFIRM_CHOICE_OPTION,
-	CLICK_DESIRED_PERCEPTIONS,
-	COMPLETED
+	CLICK_DESIRED_PERCEPTIONS
 }
 ## only used in the tutorial
-var tutorial_state: TutorialState
+var tutorial_state: TutorialState = TutorialState.NONE
 
 func _ready() -> void:
 	blur_material.set_shader_parameter("blur_radius", 0.00)
@@ -35,6 +35,30 @@ func _ready() -> void:
 	
 	header_rtl.choice_clicked.connect(_on_choice_clicked)
 	body_rtl.choice_clicked.connect(_on_choice_clicked)
+
+func set_dialogue_blocks_inputs(blocks_inputs: bool) -> void:
+	if blocks_inputs:
+		MainGame.instance.dialogue_balloon.will_block_other_input = true
+		MainGame.instance.dialogue_balloon.balloon.mouse_filter = Control.MOUSE_FILTER_STOP
+		MainGame.instance.dialogue_balloon.can_advance_via_input = true
+	else:
+		MainGame.instance.dialogue_balloon.will_block_other_input = false
+		MainGame.instance.dialogue_balloon.balloon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		MainGame.instance.dialogue_balloon.can_advance_via_input = false
+
+func wait_for_article_choice_click() -> void:
+	tutorial_state = TutorialState.CLICK_CHOICE
+	MainGame.instance.dialogue_ui.show_tutorial_focus_global_rect(article_panel.get_global_rect())
+	set_dialogue_blocks_inputs(false)
+
+func wait_for_article_choice_confirm() -> void:
+	tutorial_state = TutorialState.CONFIRM_CHOICE_OPTION
+	set_dialogue_blocks_inputs(false)
+	
+func wait_for_desired_perception_click() -> void:
+	tutorial_state = TutorialState.CLICK_DESIRED_PERCEPTIONS
+	MainGame.instance.dialogue_ui.show_tutorial_focus_global_rect(desired_perception_ui.get_global_rect())
+	set_dialogue_blocks_inputs(false)
 
 func setup(article: ArticleLevel) -> void:
 	input_blocker.hide()
@@ -44,17 +68,13 @@ func setup(article: ArticleLevel) -> void:
 	real_event_label.text = article.real_event
 	desired_perception_ui.setup()
 	
-	if MainGame.instance.event_manager.event_data.is_tutorial:
-		print("Playing tutorial dialogue")
+	if not MainGame.instance.event_manager.event_data.article_dialogue_path.is_empty():
+		var article_dialogue: DialogueResource = ResourceLoader.load(MainGame.instance.event_manager.event_data.article_dialogue_path)
+		print("Playing article dialogue")
 		#await get_tree().create_timer(1.0).timeout
 		input_blocker.show()
 		MainGame.instance.dialogue_layer.open()
-		tutorial_state = TutorialState.CLICK_CHOICE
-		MainGame.instance.dialogue_ui.show_tutorial_focus_global_rect(article_panel.get_global_rect())
-		DialogueLoader.run_tutorial_dialogue()
-		MainGame.instance.dialogue_balloon.will_block_other_input = false
-		MainGame.instance.dialogue_balloon.balloon.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		MainGame.instance.dialogue_balloon.can_advance_via_input = false
+		DialogueLoader.run_dialogue(article_dialogue)
 		
 		while not MainGame.instance.dialogue_layer.is_open:
 			await MainGame.instance.dialogue_layer.animating_finished
@@ -67,11 +87,12 @@ func _on_choice_clicked(choice: ArticleChoice, global_pos: Vector2, sentence_sta
 	MainGame.instance.audio_manager.play_audio_by_id("article_choice_open")
 	blur_material.set_shader_parameter("blur_radius", choice_edit_blur_radius)
 	
-	if MainGame.instance.event_manager.event_data.is_tutorial:
-		if tutorial_state == TutorialState.CLICK_CHOICE:
-			MainGame.instance.dialogue_balloon.advance()
-			MainGame.instance.dialogue_ui.hide_tutorial_rect()
-			tutorial_state = TutorialState.CONFIRM_CHOICE_OPTION
+	if tutorial_state == TutorialState.CLICK_CHOICE:
+		tutorial_state = ArticleUI.TutorialState.NONE
+		set_dialogue_blocks_inputs(true)
+		MainGame.instance.dialogue_balloon.advance()
+		MainGame.instance.dialogue_ui.hide_tutorial_rect()
+		
 
 func _on_choice_edit_panel_item_selected(_choice: ArticleChoice, _index: int) -> void:
 	MainGame.instance.audio_manager.play_audio_by_id("article_choice_confirm", "SFX", 1.0)
@@ -79,11 +100,12 @@ func _on_choice_edit_panel_item_selected(_choice: ArticleChoice, _index: int) ->
 	header_rtl.reset_editing_text()
 	body_rtl.reset_editing_text()
 	
-	if MainGame.instance.event_manager.event_data.is_tutorial:
-		if tutorial_state == TutorialState.CONFIRM_CHOICE_OPTION:
-			MainGame.instance.dialogue_balloon.advance()
-			MainGame.instance.dialogue_ui.show_tutorial_focus_global_rect(desired_perception_ui.get_global_rect())
-			tutorial_state = TutorialState.CLICK_DESIRED_PERCEPTIONS
+	if tutorial_state == TutorialState.CONFIRM_CHOICE_OPTION:
+		tutorial_state = ArticleUI.TutorialState.NONE
+		set_dialogue_blocks_inputs(true)
+		MainGame.instance.dialogue_balloon.advance()
+		MainGame.instance.dialogue_ui.hide_tutorial_rect()
+		
 	
 	
 func _on_submit_button_pressed() -> void:
@@ -170,11 +192,9 @@ func animate_out() -> void:
 	tween.tween_property(submit_article_panel, "offset_transform_position", SUBMIT_ANIM_OFFSET, SUBMIT_ANIM_OUT_DURATION)
 	tween.tween_property(submit_article_panel, "modulate", ANIM_CLEAR_COLOR, SUBMIT_ANIM_OUT_DURATION)
 	
-	MainGame.instance.dialogue_balloon.will_block_other_input = true
-	MainGame.instance.dialogue_balloon.balloon.mouse_filter = Control.MOUSE_FILTER_STOP
-	MainGame.instance.dialogue_balloon.can_advance_via_input = true
+	set_dialogue_blocks_inputs(true)
 	MainGame.instance.dialogue_layer.close()
-	tutorial_state = ArticleUI.TutorialState.COMPLETED
+	tutorial_state = ArticleUI.TutorialState.NONE
 	MainGame.instance.dialogue_ui.hide_tutorial_rect()
 	
 	await tween.finished
