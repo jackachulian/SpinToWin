@@ -22,9 +22,8 @@ corner_radius_top_right = 15
 resource_local_to_scene = true
 script = ExtResource("7_nm77f")
 event_name = "Tutorial"
-event_description = "Tutorial event desc here"
+event_description = "A super real article not made by your boss"
 duration = 1
-location_id = 2
 guaranteed = true
 exclusive = true
 auto_start = true
@@ -36,56 +35,41 @@ metadata/_custom_type_script = "uid://cb8n3evhugaer"
 [sub_resource type="Resource" id="Resource_oc4xn"]
 resource_local_to_scene = true
 script = ExtResource("7_nm77f")
-event_name = "Test Event"
-event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+event_name = "Foundry Eleven Fire"
+event_description = "Looks like Foundry Eleven over in Old Saint's District caught fire, I made a compiled report of all of the leads talking about it."
 min_start_time = 1
 max_start_time = 2
 duration = 1
-start_dialogue_path = "uid://bv1igdg7svcoj"
-article_file_path = "res://assets/articles/tutorial_01.txt"
-end_dialogue_path = "uid://bv1igdg7svcoj"
+guaranteed = true
+article_file_path = "res://assets/articles/act1_02.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
 [sub_resource type="Resource" id="Resource_g82fp"]
 resource_local_to_scene = true
 script = ExtResource("7_nm77f")
-event_name = "Test Event"
-event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
+event_name = "Tourism Pickpocketing Report"
+event_description = "There's a commotion happening in Cheshire Market. Seems like a tourist was pickpocketed..."
 min_start_time = 1
 max_start_time = 2
 duration = 1
 location_id = 1
-start_dialogue_path = "uid://bv1igdg7svcoj"
-article_file_path = "res://assets/articles/tutorial_01.txt"
-end_dialogue_path = "uid://bv1igdg7svcoj"
+guaranteed = true
+article_file_path = "res://assets/articles/act1_01.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
 [sub_resource type="Resource" id="Resource_mxyj7"]
 resource_local_to_scene = true
 script = ExtResource("7_nm77f")
-event_name = "Test Event"
-event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
-min_start_time = 1
-max_start_time = 2
+event_name = "Death of Director Voss"
+event_description = "Director of Civic Relations, George Voss is dead! At least, according to this mysterious source..."
+min_start_time = 3
+max_start_time = 3
 duration = 1
-location_id = 3
-start_dialogue_path = "uid://bv1igdg7svcoj"
-article_file_path = "res://assets/articles/tutorial_01.txt"
-end_dialogue_path = "uid://bv1igdg7svcoj"
-metadata/_custom_type_script = "uid://cb8n3evhugaer"
-
-[sub_resource type="Resource" id="Resource_iidtw"]
-resource_local_to_scene = true
-script = ExtResource("7_nm77f")
-event_name = "Test Event"
-event_description = "There's a town council meeting happening soon, and it seems like they're planning some new urban development..."
-min_start_time = 1
-max_start_time = 2
-duration = 1
-location_id = 4
-start_dialogue_path = "uid://bv1igdg7svcoj"
-article_file_path = "res://assets/articles/tutorial_01.txt"
-end_dialogue_path = "uid://bv1igdg7svcoj"
+guaranteed = true
+exclusive = true
+auto_start = true
+start_dialogue_path = "uid://bpjsd875iasxq"
+article_file_path = "res://assets/articles/voss_death.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
 [sub_resource type="LabelSettings" id="LabelSettings_4ieh6"]
@@ -182,42 +166,34 @@ mouse_filter = 1
 [node name="Tutorial" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=1438903290 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
 offset_left = 468.0
-offset_top = 167.0
+offset_top = -167.0
 offset_right = 538.0
-offset_bottom = 255.0
+offset_bottom = -79.0
 event_data = SubResource("Resource_nm77f")
 
-[node name="EventUI" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=234452478 instance=ExtResource("6_e3gvu")]
+[node name="FoundryFire" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=234452478 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
-offset_left = 965.0
-offset_top = -9.0
-offset_right = 1035.0
-offset_bottom = 79.0
+offset_left = 168.814
+offset_top = 73.455
+offset_right = 238.81421
+offset_bottom = 161.45508
 event_data = SubResource("Resource_oc4xn")
 
-[node name="EventUI2" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=1832251012 instance=ExtResource("6_e3gvu")]
+[node name="TourismTroubles" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=1832251012 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
-offset_left = 955.0
-offset_top = 398.0
-offset_right = 1025.0
-offset_bottom = 486.0
+offset_left = 539.79
+offset_top = 231.64
+offset_right = 609.79004
+offset_bottom = 319.64005
 event_data = SubResource("Resource_g82fp")
 
-[node name="EventUI4" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=516969618 instance=ExtResource("6_e3gvu")]
+[node name="VossDeath" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=900413591 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
-offset_left = -14.0
-offset_top = 405.0
-offset_right = 56.0
-offset_bottom = 493.0
+offset_left = 468.0
+offset_top = -167.0
+offset_right = 538.0
+offset_bottom = -79.0
 event_data = SubResource("Resource_mxyj7")
-
-[node name="EventUI5" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=1643655914 instance=ExtResource("6_e3gvu")]
-layout_mode = 0
-offset_left = -10.0
-offset_top = -15.0
-offset_right = 60.0
-offset_bottom = 73.0
-event_data = SubResource("Resource_iidtw")
 
 [node name="InfoContainer" type="MarginContainer" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer" unique_id=1651421061]
 layout_mode = 1

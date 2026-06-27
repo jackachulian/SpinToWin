@@ -1,5 +1,5 @@
 ~ start
-set locals.act_2_behaviour = player_data.get_flag("act_2_behaviour")
+set locals.act_2_behaviour = player_data.get_lie_percent() < 50.0
 set player_data.set_flag("act_2_behaviour", locals.act_2_behaviour)
 I sigh and stretch back across the old leather-bound chair.
 Rising from the chair, I notice the moon had already found its place in the night sky.[wait] And that all my coworkers have already left for the night as well...

@@ -63,19 +63,22 @@ static func _parse_article_line(text: String) -> ArticleLine:
 
 	var last_end := 0
 
-	for match in regex.search_all(text):
-		var start := match.get_start()
-		var end := match.get_end()
+	for match_ in regex.search_all(text):
+		var start := match_.get_start()
+		var end := match_.get_end()
 
+		var choice_text := match_.get_string(1)
+		var ret_choice := _parse_choice(choice_text)
+		if ret_choice.options.size() == 0:
+			continue # Possible BBcode so ignore it
+		
+		# Cut out the match_ from the text
 		if start > last_end:
 			result.parts.append(
 				text.substr(last_end, start - last_end)
 			)
-			
-		var choice_text := match.get_string(1)
-		result.parts.append(
-			_parse_choice(choice_text)
-		)
+		
+		result.parts.append(ret_choice)
 		last_end = end
 
 	if last_end < text.length():
@@ -98,7 +101,7 @@ static func _parse_choice(text: String) -> ArticleChoice:
 		var regex_match := regex.search(option_text)
 
 		if regex_match == null:
-			push_error("Invalid choice option: " + option_text)
+			push_warning("Invalid choice option: " + option_text)
 			continue
 
 		var option := ArticleChoiceOption.new()

@@ -41,7 +41,7 @@ func update_time_ui() -> void:
 	var act := MainGame.instance.player_data.act
 	var time := MainGame.instance.player_data.time
 	var act_string = ["I", "II", "III"][act]
-	var time_string = ["Afternoon", "Evening", "Midnight"][time]
+	var time_string = ["Afternoon", "Evening", "Midnight", "Witching Hour"][time]
 	time_label.text = "Act %s - %s" % [act_string, time_string]
 	
 func update_events() -> void:
