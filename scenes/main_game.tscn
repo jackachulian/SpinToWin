@@ -26,6 +26,13 @@
 [ext_resource type="Resource" uid="uid://cpq6bnajop72r" path="res://assets/dialogue/act_1_end.dialogue" id="9_x3ega"]
 [ext_resource type="PackedScene" uid="uid://bcmkuyv5y8gqa" path="res://scenes/layers/hud_layer.tscn" id="11_sp04v"]
 [ext_resource type="PackedScene" uid="uid://bkb14y8dd4vtu" path="res://scenes/layers/credits_layer.tscn" id="12_sp04v"]
+[ext_resource type="AudioStream" uid="uid://cxno0qcyf5wrh" path="res://assets/audio/ad4_typewriter_15_r07.wav" id="16_4e2rb"]
+[ext_resource type="AudioStream" uid="uid://baj74q3oo721j" path="res://assets/audio/ad4_typewriter_24_r06.wav" id="17_6vdpn"]
+[ext_resource type="AudioStream" uid="uid://bil2v0phu5gpi" path="res://assets/audio/ad4_typewriter_08_r06.wav" id="18_jmxl0"]
+[ext_resource type="AudioStream" uid="uid://btx4dthpc0khw" path="res://assets/audio/TypewriterReturn_S011TE.988.wav" id="19_sgdes"]
+[ext_resource type="AudioStream" uid="uid://dap7cmylllgeo" path="res://assets/audio/ad4_toyfryingpan_03_v01_r07.wav" id="20_ibep1"]
+[ext_resource type="AudioStream" uid="uid://cttxm22mriy4d" path="res://assets/audio/ad4_pinkrobot_head_click_v01_r05.wav" id="21_q875d"]
+[ext_resource type="AudioStream" uid="uid://bynbci4041j5o" path="res://assets/audio/ad4_abacus_click_v04_r12.wav" id="22_dvo3n"]
 
 [node name="MainGame" type="Node" unique_id=1565906414 node_paths=PackedStringArray("open_layer_on_start")]
 process_mode = 3
@@ -60,6 +67,17 @@ balloon = NodePath("../../DialogueLayer/DialogueUI/DialogueBalloon")
 script = ExtResource("7_ikqpi")
 
 [node name="AudioManager" parent="Systems" unique_id=683407791 instance=ExtResource("8_5luka")]
+audio_stream_dict = Dictionary[StringName, AudioStream]({
+&"article_choice_confirm": ExtResource("16_4e2rb"),
+&"article_choice_open": ExtResource("17_6vdpn"),
+&"article_choice_select": ExtResource("18_jmxl0"),
+&"article_submit": ExtResource("19_sgdes"),
+&"dialogue_type": ExtResource("18_jmxl0"),
+&"ui_back": ExtResource("20_ibep1"),
+&"ui_confirm": ExtResource("21_q875d"),
+&"ui_expand": ExtResource("20_ibep1"),
+&"ui_select": ExtResource("22_dvo3n")
+})
 
 [node name="CoreLayer" parent="." unique_id=883448445 instance=ExtResource("3_70vka")]
 
@@ -77,6 +95,18 @@ visible = false
 
 [node name="DialogueLayer" parent="." unique_id=1630943851 instance=ExtResource("9_8xp80")]
 visible = false
+
+[node name="DialogueBalloon" parent="DialogueLayer/DialogueUI" parent_id_path=PackedInt32Array(1630943851, 1391121205) index="1" unique_id=1660674987]
+known_speaker_colors = Dictionary[String, Color]({
+"???": Color(1, 1, 1, 1),
+"Cassian": Color(0.64, 1, 0.73599994, 1),
+"Detective": Color(0.61960787, 0.7647059, 1, 1),
+"Juno": Color(0.7903334, 0.63, 1, 1),
+"Mayor Wiley": Color(0.61960787, 0.7647059, 1, 1),
+"Mr. Kraus": Color(0.9882353, 1, 0.6313726, 1),
+"Reagan": Color(1, 0.652, 0.64, 1),
+"Silas": Color(0.98766667, 1, 0.63, 1)
+})
 
 [node name="OptionsLayer" parent="." unique_id=1297827084 instance=ExtResource("8_nqdth")]
 visible = false

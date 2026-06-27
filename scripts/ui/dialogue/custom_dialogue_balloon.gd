@@ -22,6 +22,9 @@ extends Control
 ## A sound player for voice lines (if they exist).
 @onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
 
+@onready var typing_audio_stream_player: AudioStreamPlayer = %TypingAudioStreamPlayer
+
+
 @export_group("Speaker Colors")
 ## Maps a speaker string to a personal color
 @export var known_speaker_colors: Dictionary[String, Color]
@@ -89,6 +92,8 @@ var can_start: bool = false:
 ## (Is automatically set to true when a dialogue starts, can be set to false afterward)
 var can_advance_via_input: bool = true
 
+var type_sound_timer: float = 0.0
+
 signal can_start_now
 
 signal dialogue_end
@@ -110,11 +115,15 @@ func _ready() -> void:
 		if not is_instance_valid(dialogue_resource):
 			assert(false, DMConstants.get_error_message(DMConstants.ERR_MISSING_RESOURCE_FOR_AUTOSTART))
 		start()
+		
+	dialogue_label.spoke.connect(_on_spoke)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if is_instance_valid(dialogue_line):
 		progress.visible = not dialogue_label.is_typing and dialogue_line.responses.size() == 0 and not dialogue_line.has_tag("voice")
+		
+	type_sound_timer += delta
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -131,6 +140,14 @@ func _notification(what: int) -> void:
 		dialogue_line = await dialogue_resource.get_next_dialogue_line(dialogue_line.id)
 		if visible_ratio < 1:
 			dialogue_label.skip_typing()
+
+const TYPE_SOUND_DELAY: float = 0.1
+func _on_spoke(_letter: String, _letter_index: int, _speed: float) -> void:
+	if type_sound_timer >= TYPE_SOUND_DELAY:
+		MainGame.instance.audio_manager.play_audio_by_id("dialogue_type", "SFX", 0.0, 1.0, 0.2)
+		## Interpolate time of next type sound with the timesince the last type sound.
+		## Make sure the next type sound doesnt happen immediately if frame rate is inconsistent, claming the max timer to a fraction of delay
+		type_sound_timer = minf(type_sound_timer - TYPE_SOUND_DELAY, TYPE_SOUND_DELAY*0.25)
 
 ## Queue up some dialogue to start when it can
 func queue_start(with_dialogue_resource: DialogueResource = null, title: String = "start", extra_game_states: Array = []) -> void:

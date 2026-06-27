@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://csoeb8lt1w2fl" path="res://assets/fonts/NoirLullabyStamp-ywgYZ.otf" id="5_obwq5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="6_hgao8"]
 [ext_resource type="Script" uid="uid://bldnlsb175s2o" path="res://scripts/ui/dialogue/custom_dialogue_responses_menu.gd" id="7_fitoo"]
+[ext_resource type="AudioStream" uid="uid://bil2v0phu5gpi" path="res://assets/audio/ad4_typewriter_08_r06.wav" id="8_vtb8j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ieh6"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -259,6 +260,10 @@ text = "Response example"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DialogueUI/DialogueBalloon" unique_id=1539256076]
 unique_name_in_owner = true
+
+[node name="TypingAudioStreamPlayer" type="AudioStreamPlayer" parent="DialogueUI/DialogueBalloon" unique_id=1833298530]
+unique_name_in_owner = true
+stream = ExtResource("8_vtb8j")
 
 [connection signal="gui_input" from="DialogueUI/DialogueBalloon/Balloon" to="DialogueUI/DialogueBalloon" method="_on_balloon_gui_input"]
 [connection signal="response_selected" from="DialogueUI/DialogueBalloon/Balloon/ResponsesMenu" to="DialogueUI/DialogueBalloon" method="_on_responses_menu_response_selected"]
