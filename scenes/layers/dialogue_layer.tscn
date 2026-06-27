@@ -147,10 +147,13 @@ mouse_filter = 2
 script = ExtResource("3_fitoo")
 known_speaker_colors = Dictionary[String, Color]({
 "???": Color(1, 1, 1, 1),
+"Cassian": Color(0.64, 1, 0.73599994, 1),
+"Detective": Color(0.61960787, 0.7647059, 1, 1),
 "Juno": Color(0.7903334, 0.63, 1, 1),
+"Mayor Wiley": Color(0.61960787, 0.7647059, 1, 1),
+"Mr. Kraus": Color(0.9882353, 1, 0.6313726, 1),
 "Reagan": Color(1, 0.652, 0.64, 1),
-"Silas": Color(0.98766667, 1, 0.63, 1),
-"Wiley": Color(0.62, 0.7656666, 1, 1)
+"Silas": Color(0.98766667, 1, 0.63, 1)
 })
 narration_color = Color(1, 1, 1, 1)
 default_speaker_color = Color(1, 0.91764706, 0.63529414, 1)
