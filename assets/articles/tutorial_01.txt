@@ -1,15 +1,15 @@
 #real-event
-The town council approved funding for a new public park. Construction will begin next month.
+A super real article not made by your boss
 
 #desired-perception-boss
-I just wish for you to do great!
+You can figure this out! The job isn't too hard, right?
 
 #header
-Town Council [Approves New Park (0,0,2,1,0) / Invests in Community Future (0,1,0,4,0) / Slimes the Entire Town (-2,1,3,-6,1)]
+Bunny Restoration Efforts Lead to a Rise in Pet Ownership
 
 #body
-Yesterday, the town council [approved funding for a new public park. (2,1,4,-3,0) / made a major investment in community growth. (8,4,0,3,0) / fulfilled its promise to improve citizens' lives. (-1,5,2,7,0)]
+After the peaceful Bunny Protest of last week, the small fluffy creature is now [in the public's eye as a pet option (0,0,0,0,0) / selling out in pet stores city-wide (0,0,0,0,0)].
 
-The project will [create a new recreation area for families. (1,1,0,1,0) / strengthen the town's future and quality of life. (0,3,1,2,0) / demonstrate the council's commitment to public desruction. (-1,5,-3,-2,1)]
+The city originally planned to [ignore the protesters' pleas (1,1,-2,0,0) / investigate the issue further (0,0,1,0,0)], but now, according to lead social worker Thomas Kessler, the city will "[establish a small subsidy to businesses selling rabbits (2,-1,1,0,0) / celebrate a new pet-inspired holiday (0,0,2,0,0)]".
 
-Construction is expected to begin next month and [finish by the end of the year. (2,0,1,5,0) / deliver pain and agony to residents as quickly as possible. (1,2,3,-2,1) / mark another successful achievement for total annihilation. (-1,4,-3,3,1)]
+Now, ex-protesters and city officials alike, are enjoying their fluffy companions thanks to New Argentis' latest pet trends.

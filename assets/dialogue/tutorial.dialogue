@@ -1,15 +1,22 @@
 ~ start
-Mr. Kraus: This is the start of the tutorial
+Mr. Kraus: This is your ArticleSpinner workstation.[wait] Trademarked, obviously.
+Mr. Kraus: You may notice a few things here and there, but for now, try clicking on an underlined text in the article itself.
 
 do player_data.wait_for_article_choice_click()
-Mr. Kraus: Hover over an underlined sentence to edit it
-Mr. Kraus: You clicked an article choice
+Mr. Kraus: Any of them will do, and don't worry if you don't like your choice. You can always change it later!
+Mr. Kraus: Good job, kid.
+Mr. Kraus: These are primarily how you'll [color=firebrick]spin[/color] articles. Simple, right? Just a few clicks.
 
 do player_data.wait_for_article_choice_confirm()
-Mr. Kraus: Use the scroll wheel and left-click to spin the article text
-Mr. Kraus: You confirmed the article choice
+Mr. Kraus: Next, use your scroll wheel to spin to a different choice and left click to select that option.
+Mr. Kraus: Grand.
+Mr. Kraus: These options are important. The important people that read your articles will be judging you based off these, so pick em' carefully.
+Mr. Kraus: Which brings me to my next point...
 
 do player_data.wait_for_desired_perception_click()
-Mr. Kraus: Use the menus on the right to view the desired perception of the article
-Mr. Kraus: You clicked a desired perception
-Mr. Kraus: This is the end of the tutorial
+Mr. Kraus: This menu on the right is for Desired Perceptions. Left click on it.
+Mr. Kraus: For now, it's only got one perception in it, since this is just a test article to get your feet wet.
+Mr. Kraus: But once you start on this stack of files, you'll have more than just one perception.
+Mr. Kraus: This is all you'll need to [color=firebrick]spin[/color] an article, but you might have to investiate a [color=springgreen]lead[/color] on the map before you can [color=firebrick]spin[/color] it.
+Mr. Kraus: And you may even have to talk with someone afterwards too. All depends on the particular article.
+Mr. Kraus: Alright, let me see your best work here. Finish this article while I watch, then just click the Submit button in the bottom right.
