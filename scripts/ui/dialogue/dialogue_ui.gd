@@ -50,11 +50,12 @@ func animate_out():
 	hide()
 
 func animate_dialogue_box(start_y: float, end_y: float, start_modulate: Color, target_modulate: Color, duration: float, trans: Tween.TransitionType) -> void:
-	await get_tree().process_frame
 	
 	var pos_x := dialogue_box.offset_transform_position.x
 	dialogue_box.offset_transform_position = Vector2(pos_x, start_y)
 	dialogue_box.modulate = start_modulate
+	
+	await get_tree().process_frame
 	
 	var target_pos := Vector2(pos_x, end_y)
 	var tween = create_tween()

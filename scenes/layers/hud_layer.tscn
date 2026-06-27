@@ -158,6 +158,7 @@ icon = ExtResource("3_pcgwf")
 expand_icon = true
 
 [node name="ActTitleCardUI" type="ColorRect" parent="HudUI" unique_id=1470298790]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -225,6 +226,7 @@ grow_vertical = 2
 
 [node name="ProjectorAmbience" type="AudioStreamPlayer" parent="HudUI/ActTitleCardUI" unique_id=342288095]
 stream = ExtResource("8_k1klj")
+volume_db = 3.0
 bus = &"Ambience"
 
 [node name="PopupUI" type="PanelContainer" parent="HudUI" unique_id=158801729 node_paths=PackedStringArray("title_label", "message_label", "button_container")]

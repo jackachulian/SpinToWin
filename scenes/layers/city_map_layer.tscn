@@ -27,9 +27,9 @@ duration = 1
 location_id = 2
 guaranteed = true
 exclusive = true
-is_tutorial = true
 start_dialogue_path = "uid://bv1igdg7svcoj"
 article_file_path = "res://assets/articles/tutorial_01.txt"
+article_dialogue_path = "uid://cf7ji2sg33cy0"
 end_dialogue_path = "uid://bv1igdg7svcoj"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 

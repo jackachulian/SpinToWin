@@ -58,6 +58,8 @@ func close() -> void:
 		return
 		
 	is_open = false
+	if MainGame.instance.active_layer == self:
+		MainGame.instance.active_layer = null
 	closed.emit()
 	
 	# TODO: fix transition softlocks

@@ -1,4 +1,15 @@
 ~ start
-Silas: Hover over an underlined sentence to edit it
-Silas: Use the scroll wheel and left-click to spin the article text
-Silas: Use the menus on the right to view the desired perception of the article
+Mr. Kraus: This is the start of the tutorial
+
+do player_data.wait_for_article_choice_click()
+Mr. Kraus: Hover over an underlined sentence to edit it
+Mr. Kraus: You clicked an article choice
+
+do player_data.wait_for_article_choice_confirm()
+Mr. Kraus: Use the scroll wheel and left-click to spin the article text
+Mr. Kraus: You confirmed the article choice
+
+do player_data.wait_for_desired_perception_click()
+Mr. Kraus: Use the menus on the right to view the desired perception of the article
+Mr. Kraus: You clicked a desired perception
+Mr. Kraus: This is the end of the tutorial

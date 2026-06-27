@@ -204,3 +204,12 @@ func apply_changes_from_article(article: ArticleLevel):
 	truth_count += changes[-2]
 	lie_count += changes[-1]
 	reputation_changed.emit()
+	
+func wait_for_article_choice_click() -> void:
+	MainGame.instance.article_ui.wait_for_article_choice_click()
+	
+func wait_for_article_choice_confirm() -> void:
+	MainGame.instance.article_ui.wait_for_article_choice_confirm()
+	
+func wait_for_desired_perception_click() -> void:
+	MainGame.instance.article_ui.wait_for_desired_perception_click()

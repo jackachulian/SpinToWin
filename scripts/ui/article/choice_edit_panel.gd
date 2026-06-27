@@ -169,7 +169,7 @@ func update_ui_elements() -> void:
 		max_width = maxf(max_width, item.size.x)
 		max_height = maxf(max_height, item.size.y)
 		
-		if item.choice:
+		if item and item.choice:
 			var option: ArticleChoiceOption = item.choice.options[item.index]
 			if index == item_index:
 				item.label.label_settings = lie_focused_label_settings if option.is_lie else focused_label_settings

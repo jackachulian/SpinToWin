@@ -84,9 +84,6 @@ visible = false
 [node name="HudLayer" parent="." unique_id=2082625234 instance=ExtResource("11_sp04v")]
 layer = 300
 
-[node name="PopupUI" parent="HudLayer/HudUI" parent_id_path=PackedInt32Array(2082625234, 1928380700) index="2" unique_id=158801729]
-visible = false
-
 [node name="CreditsLayer" parent="." unique_id=1077651328 instance=ExtResource("12_sp04v")]
 visible = false
 
@@ -101,6 +98,7 @@ folded = true
 [node name="HBoxContainer" parent="DebugLayer/DebugUI/FoldableContainer" index="0" unique_id=2024930324]
 visible = false
 
+[editable path="ArticleLayer"]
 [editable path="DialogueLayer"]
 [editable path="DialogueLayer/DialogueUI/DialogueBalloon/Balloon/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/DialogueLabel"]
 [editable path="HudLayer"]
