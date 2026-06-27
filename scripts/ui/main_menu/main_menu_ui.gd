@@ -90,5 +90,4 @@ func animate_controls(start_x: float, end_x: float, start_modulate: Color, targe
 	await tween.finished
 
 func check_continue() -> void:
-	if not override_continue:
-		continue_button.visible = MainGame.instance.player_data.save_started if not override_continue else true
+	continue_button.visible = MainGame.instance.player_data.save_started if not override_continue else true
