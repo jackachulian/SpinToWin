@@ -7,7 +7,7 @@ static func load_file(path: String) -> ArticleLevel:
 
 static func parse(text: String) -> ArticleLevel:
 	var article := ArticleLevel.new()
-	article.desired_perceptions.resize(MainGame.instance.faction_data.names.size())
+	article.desired_perceptions.resize(MainGame.instance.faction_data.names.size() + 2)
 
 	var current_section := ""
 
@@ -36,6 +36,12 @@ static func parse(text: String) -> ArticleLevel:
 				
 			"#desired-perception-3":
 				article.desired_perceptions[3] += line + "\n"
+				
+			"#desired-perception-boss":
+				article.desired_perceptions[4] += line + "\n"
+				
+			"#desired-perception-unknown":
+				article.desired_perceptions[5] += line + "\n"
 
 			"#header":
 				article.header = _parse_article_line(line)

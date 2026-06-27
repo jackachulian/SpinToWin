@@ -4,7 +4,7 @@ extends RefCounted
 
 var real_event: String
 
-## One for each faction ID
+## One for each faction ID. [-2] is boss, [-1] is unknown (displayed as ???)
 var desired_perceptions: Array[String] = []
 
 var header: ArticleLine

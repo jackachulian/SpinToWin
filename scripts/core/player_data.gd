@@ -174,7 +174,15 @@ func open_layer_for_game_phase() -> void:
 		GamePhase.CITY_MAP:
 			var playable_event_count := MainGame.instance.city_map_ui.get_playable_event_count()
 			if playable_event_count > 0:
-				MainGame.instance.city_map_layer.open_active()
+				if playable_event_count == 1:
+					var playable_event := MainGame.instance.city_map_ui.get_playable_events()[0]
+					if playable_event.auto_start:
+						MainGame.instance.event_manager.play_event(playable_event)
+					else:
+						MainGame.instance.city_map_layer.open_active()
+					
+				else:
+					MainGame.instance.city_map_layer.open_active()
 			else:
 				print("No events available right now, advancing game phase")
 				MainGame.instance.player_data.advance_game_phase()

@@ -3,17 +3,18 @@ extends Control
 
 @export var article_ui: ArticleUI
 @export var faction_desired_perception_uis: Array[FactionDesiredPerceptionUI]
-@export var first_expanded_ui: FactionDesiredPerceptionUI
 
 func _ready() -> void:
 	for ui in faction_desired_perception_uis:
 		ui.clicked.connect(_on_faction_ui_clicked.bind(ui))
 
 func setup() -> void:
+	var first_shown: bool = false
 	for ui in faction_desired_perception_uis:
 		ui.setup()
-		if ui == first_expanded_ui:
+		if ui.visible and not first_shown:
 			ui.expand()
+			first_shown = true
 		else:
 			ui.collapse()
 

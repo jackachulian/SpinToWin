@@ -20,9 +20,22 @@ func animate_in():
 	if not MainGame.instance.player_data.time_changed.is_connected(_on_time_changed):
 		MainGame.instance.player_data.time_changed.connect(_on_time_changed)
 		
-	super.animate_in()
 	update_events()
 	update_time_ui()
+	
+	modulate = Color(1,1,1,0)
+	var tween = create_tween().set_parallel()
+	tween.tween_property(
+		self, "modulate", Color.WHITE, 0.8
+	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	await tween.finished
+
+func animate_out():
+	var tween = create_tween().set_parallel()
+	tween.tween_property(
+		self, "modulate", Color(1,1,1,0), 0.8
+	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	await tween.finished
 
 func update_time_ui() -> void:
 	var act := MainGame.instance.player_data.act
@@ -46,6 +59,16 @@ func get_playable_event_count() -> int:
 				playable_event_count += 1
 				
 	return playable_event_count
+	
+func get_playable_events() -> Array[EventData]:
+	var playable_events: Array[EventData] = []
+	for child: Node in event_map_control.get_children():
+		if child is EventUI:
+			var event_data: EventData = child.event_data
+			if is_event_playable(event_data):
+				playable_events.append(event_data)
+				
+	return playable_events
 	
 static func is_event_playable(event_data: EventData) -> bool:
 	var act := MainGame.instance.player_data.act

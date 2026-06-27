@@ -20,8 +20,18 @@ func _ready() -> void:
 
 func setup() -> void:
 	var article := MainGame.instance.event_manager.article
-	faction_name_label.text = MainGame.instance.faction_data.names[faction_id]
-	desired_perception_label.text = article.desired_perceptions[faction_id]
+	var desired_perception := article.desired_perceptions[faction_id]
+	if desired_perception.is_empty():
+		hide()
+	else:
+		show()
+		if faction_id < MainGame.instance.faction_data.names.size():
+			faction_name_label.text = MainGame.instance.faction_data.names[faction_id]
+		elif faction_id == 4:
+			faction_name_label.text = "Mr. Kraus"
+		elif faction_id == 5:
+			faction_name_label.text = "???"
+		desired_perception_label.text = desired_perception
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

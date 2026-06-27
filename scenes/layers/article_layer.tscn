@@ -238,7 +238,7 @@ text = "Description of the real event that took place"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="DesiredPerception" type="PanelContainer" parent="ArticleUI" unique_id=34398821 node_paths=PackedStringArray("article_ui", "faction_desired_perception_uis", "first_expanded_ui")]
+[node name="DesiredPerception" type="PanelContainer" parent="ArticleUI" unique_id=34398821 node_paths=PackedStringArray("article_ui", "faction_desired_perception_uis")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -254,8 +254,7 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_0jjck")
 script = ExtResource("11_e5wne")
 article_ui = NodePath("..")
-faction_desired_perception_uis = [NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception3"), NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception"), NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception2")]
-first_expanded_ui = NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception3")
+faction_desired_perception_uis = [NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception"), NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception2"), NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception3"), NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception4"), NodePath("MarginContainer/VBoxContainer/FactionListContainer/DesiredPerception5")]
 
 [node name="MarginContainer" type="MarginContainer" parent="ArticleUI/DesiredPerception" unique_id=589089175]
 layout_mode = 2
@@ -282,23 +281,26 @@ layout_mode = 2
 [node name="FactionListContainer" type="VBoxContainer" parent="ArticleUI/DesiredPerception/MarginContainer/VBoxContainer" unique_id=1236583109]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="DesiredPerception3" parent="ArticleUI/DesiredPerception/MarginContainer/VBoxContainer/FactionListContainer" unique_id=1958461406 instance=ExtResource("12_7o6uv")]
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="ArticleUI/DesiredPerception/MarginContainer/VBoxContainer/FactionListContainer" unique_id=785493453]
-layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="DesiredPerception" parent="ArticleUI/DesiredPerception/MarginContainer/VBoxContainer/FactionListContainer" unique_id=1329634506 instance=ExtResource("12_7o6uv")]
-layout_mode = 2
-faction_id = 2
-
-[node name="HSeparator" type="HSeparator" parent="ArticleUI/DesiredPerception/MarginContainer/VBoxContainer/FactionListContainer" unique_id=1837391254]
 layout_mode = 2
 
 [node name="DesiredPerception2" parent="ArticleUI/DesiredPerception/MarginContainer/VBoxContainer/FactionListContainer" unique_id=1417303080 instance=ExtResource("12_7o6uv")]
 layout_mode = 2
+faction_id = 2
+
+[node name="DesiredPerception3" parent="ArticleUI/DesiredPerception/MarginContainer/VBoxContainer/FactionListContainer" unique_id=1958461406 instance=ExtResource("12_7o6uv")]
+layout_mode = 2
 faction_id = 3
+
+[node name="DesiredPerception4" parent="ArticleUI/DesiredPerception/MarginContainer/VBoxContainer/FactionListContainer" unique_id=39800844 instance=ExtResource("12_7o6uv")]
+layout_mode = 2
+faction_id = 4
+
+[node name="DesiredPerception5" parent="ArticleUI/DesiredPerception/MarginContainer/VBoxContainer/FactionListContainer" unique_id=1461576151 instance=ExtResource("12_7o6uv")]
+layout_mode = 2
+faction_id = 5
 
 [node name="SubmitArticle" type="Control" parent="ArticleUI" unique_id=1461780542]
 layout_mode = 1
@@ -487,6 +489,7 @@ color = Color(0.8586707, 0.7087068, 0.22933632, 1)
 polygon = PackedVector2Array(0, 0, -30, -10, -25, -3, -150, 0, -25, 3, -30, 10)
 
 [node name="InputBlocker" type="Control" parent="ArticleUI" unique_id=1055219188]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
