@@ -1,3 +1,41 @@
 ~ start
-Reagan: This is act 2 ending dialogue.
+set locals.act_2_behaviour = player_data.get_flag("act_2_behaviour")
+set player_data.set_flag("act_2_behaviour", locals.act_2_behaviour)
+I sigh and stretch back across the old leather-bound chair.
+Rising from the chair, I notice the moon had already found its place in the night sky.[wait] And that all my coworkers have already left for the night as well...
+Why am I always the last one here? Do I work that slowly?
+I pack my bag and head out of headquarters. The rain's picked up quite a bit, but thankfully, I had an umbrella prepared.
+I swear it's always raining around here...
+I look back at the giant neon lettering for 'The Meridian Times', now crying tears of rain.
+The walk home is not too long, I usually stick to the main roads since I know there are lots of cops along the route.
+Walking past a closed toy store, some of the little toys inside are still moving around,[wait=0.3] dolls that wave on set intervals,[wait=0.3] toy horses that gallop in the air.[wait=0.3] That stuff.
+I pause in my quiet walk at the sight of a puddle.
+Reflected back at me is my own eyes, my own face. The pouring rain, however, has caused it to warp and ripple.
+Reagan: I feel like that sometimes, me.
+Reagan: I do my best, trying to be my best. But the job is tough at times.
+if locals.act_2_behaviour
+	Reagan: I didn't listen to [color=ffa6a3]Mr. Kraus[/color] today. He said that [color=firebrick]lying[/color] is important, but[wait=0.6] I don't think it is.
+	Reagan: At least[speed=0.35]...[speed=1] The truth is important too.
+else
+	Reagan: Today, I learned what [color=ffa6a3]Mr. Kraus[/color] called 'the real job'.
+	Reagan: [speed=0.35]...[speed=1]
+	Reagan: I don't agree with it,[wait] but[speed=0.35]...[speed=1]
+	Reagan: Sometimes, the truth needs to be[speed=0.35]...[speed=1] [color=firebrick]spun[/color].
+Reagan: Well, either way, I should stop speaking to reflections in puddles in the middle of the night...
+I stand there for a moment longer, just looking at the constantly shifting form of myself.
+A puddle of water, moved by the wind, the rain, and the foot.
+Is this really who I'll be?
+- Justify
+	This is New Argentis. Everyone's gotta be a bit like water. I'm just securing myself a position in the world. There's nothing wrong with that, right?
+	Screw this puddle. I'm a silvery snake, moving through the grass with purpose.
+	I step through the puddle, feeling the water kick up at my heels.
+	I should've[speed=0.35]...[speed=1] probably not done that[speed=0.35]...[speed=1]
+	I'l have to leave my shoes out to dry tonight.[wait] Ugh[speed=0.35]...[speed=1]
+- Deny
+	No, I can be better than that. I won't let the wind and rain sway me.
+	I won't be the puddle. I'll be more like[speed=0.35]...[speed=1][wait] uhm[speed=0.35]...[speed=1][wait] a[speed=0.35]...[speed=1][wait] t-turtle?
+	Yeah! A turtle. I'll be sturdy and unshakeable like a turtle.
+	[speed=0.35]...[speed=1]
+	I suddenly feel embarressed about myself.
+	I step past the puddle and continue on my way home, not stopping to look at any more puddles,[wait=0.3] partly out of determination,[wait=0.5] and partly out of embarressment[speed=0.35]...[speed=1]
 => END

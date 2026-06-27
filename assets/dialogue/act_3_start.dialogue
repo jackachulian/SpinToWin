@@ -5,11 +5,11 @@ I've been more on edge[speed=0.35]...[speed=1] [wait=0.6]well,[wait=0.6] the who
 A few protests from workers down in Old Saint's here, some drunken brawls in the clubs of Cheshire.
 Stuff like that, really.
 set locals.act_2_behaviour = player_data.get_flag("act_2_behaviour")
-if locals.act_2_behaviour == false
+if not locals.act_2_behaviour
 	=>< obedience
 else
 	=>< truthful
-There's a knock at the door.
+I had just gotten my assignments for the day when there's a knock at the door.
 Must be [color=ffa6a3]Mr. Kraus[/color] again-
 ???: Uhm[speed=0.35]...[speed=1] H-[wait=0.4]Hello?
 It wasn't [color=ffa6a3]Mr. Kraus[/color], it was a timid woman wearing a green gown with a band across her mid section and holding her purse with two hands.

@@ -1,3 +1,7 @@
 ~ start
-Reagan: This is new game dialogue.
+Hello.[wait] My name's [color=ffa6a3]Reagan Thorne[/color], office grunt at New Argentis' greatest newpaper, [color=ffa6fb]The Meridian Times[/color].
+Well[speed=0.35]...[speed=1] I used to be an office grunt, but my ex-boss, [color=a3ffbc]Cassian Graves[/color], got fired and arrested for attempted bribery.
+Now, I've got my own office on the second floor. It's still a bit dusty, which is strange since [color=a3ffbc]Mr. Graves[/color] was said to have worked in this same office.
+Anyway,[wait=0.3] now I'm something of an editor! I handle call-ins on the telephone.
+
 => END
