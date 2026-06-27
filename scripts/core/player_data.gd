@@ -172,7 +172,8 @@ func open_layer_for_game_phase() -> void:
 		GamePhase.ACT_START_TITLE_CARD:
 			var title_text = ["ACT I", "ACT II", "ACT III"][act]
 			var subtitle_text = ["\"Cog in the Machine\"", "\"End of an Era\"", "\"Make a Decision\""][act]
-			MainGame.instance.active_layer.close()
+			if MainGame.instance.active_layer:
+				MainGame.instance.active_layer.close()
 			await MainGame.instance.hud_ui.act_title_card_ui.animate_title_card(title_text, subtitle_text)
 			advance_game_phase()
 				
