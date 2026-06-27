@@ -38,6 +38,12 @@ var public_trust: int = 100
 ## This data may be displayed on the results layer.
 var previous_public_trust: int
 
+## Instances that the player told the truth when they could've told a lie
+var truth_count: int
+
+## Instances that the player told a lie
+var lie_count: int
+
 ## List of events that have already been fully completed and cannot
 ## be encountered anymore
 var completed_events: Array[EventData] = []
@@ -94,6 +100,11 @@ func set_flag(id: String, value: bool) -> void:
 	flags[id] = value
 	print("set flag %s to %s" % [id, value])
 	flag_changed.emit()
+
+func get_truth_to_lie_ratio() -> float:
+	if lie_count == 0: 
+		return INF
+	return (truth_count * 1.0) / lie_count
 
 ## Advance the state of the game and go to the appropriate layer.
 func advance_game_phase() -> void:
@@ -187,5 +198,7 @@ func apply_changes_from_article(article: ArticleLevel):
 	var changes := article.get_total_changes()
 	for i in range(0,4):
 		reputations[i] += changes[i]
-	public_trust += changes[4]
+	public_trust += changes[-3]
+	truth_count += changes[-2]
+	lie_count += changes[-1]
 	reputation_changed.emit()

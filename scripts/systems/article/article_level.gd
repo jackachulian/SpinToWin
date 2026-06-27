@@ -11,9 +11,10 @@ var header: ArticleLine
 
 var body: Array[ArticleLine] = []
 
-## Returns a list of changes if the article were to be submitted in its current state. The last item is Public Trurst change, all other items are reputation changes where their index corresponds to the FACTION array in PlayerData.
+## Returns a list of changes if the article were to be submitted in its current state. [-3] is Public Trurst change, all other items are reputation changes where their index corresponds to the FACTION array in PlayerData.
+## [-2] is ttotal truths told where a lie could have been told, and [-1] is total lies told.
 func get_total_changes() -> Array[int]:
-	var reputation_changes: Array[int] = [0,0,0,0,0]
+	var reputation_changes: Array[int] = [0,0,0,0,0,0,0]
 	_add_line_reputation_changes(reputation_changes, header)
 	for line in body:
 		_add_line_reputation_changes(reputation_changes, line)
@@ -22,10 +23,21 @@ func get_total_changes() -> Array[int]:
 static func _add_line_reputation_changes(reputation_changes: Array[int], line: ArticleLine):
 	for part in line.parts:
 		if part is ArticleChoice:
+			var could_lie: bool = false
+			for opt: ArticleChoiceOption in part.options:
+				if opt.is_lie:
+					could_lie = true
+			
 			var option: ArticleChoiceOption = part.options[part.chosen_option]
 			for i in range(0,4):
 				reputation_changes[i] += option.reputation_changes[i]
-			reputation_changes[4] += option.public_trust_change
+				
+			reputation_changes[-3] += option.public_trust_change
+			if option.is_lie:
+				reputation_changes[-2] += 1
+			elif could_lie:
+				reputation_changes[-1] += 1
+				
 
 func print_data():
 	print(real_event)

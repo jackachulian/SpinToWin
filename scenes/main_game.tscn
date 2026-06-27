@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://rck3gmq7gfni" path="res://scenes/layers/city_map_layer.tscn" id="6_8xp80"]
 [ext_resource type="PackedScene" uid="uid://bxigef2xkgg42" path="res://scenes/layers/transition_layer.tscn" id="7_5cypo"]
 [ext_resource type="Resource" uid="uid://ccj5uh6gc1psb" path="res://assets/dialogue/act_2_start.dialogue" id="7_6de02"]
+[ext_resource type="Resource" uid="uid://cf7ji2sg33cy0" path="res://assets/dialogue/tutorial.dialogue" id="7_cybgu"]
 [ext_resource type="Script" uid="uid://tyrlm6syhdiv" path="res://scripts/systems/rain/rain_manager.gd" id="7_ikqpi"]
 [ext_resource type="PackedScene" uid="uid://3j5i3cxcwsd" path="res://scenes/systems/audio_manager.tscn" id="8_5luka"]
 [ext_resource type="Resource" uid="uid://ci2a6dr8iv71v" path="res://assets/dialogue/act_2_end.dialogue" id="8_cybgu"]
@@ -44,6 +45,7 @@ script = ExtResource("4_sp04v")
 [node name="DialogueLoader" type="Node" parent="Systems" unique_id=190393891 node_paths=PackedStringArray("balloon")]
 script = ExtResource("5_ihbck")
 dialogue_new_game = ExtResource("6_6de02")
+dialogue_tutorial_1 = ExtResource("7_cybgu")
 dialogue_a2_day_start = ExtResource("7_6de02")
 dialogue_a2_day_end = ExtResource("8_cybgu")
 dialogue_a3_day_start = ExtResource("8_ibnub")

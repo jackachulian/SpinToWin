@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c4ltvbc8lesbt" path="res://scripts/ui/article/article_choice_option_item_ui.gd" id="1_f3ycj"]
 [ext_resource type="LabelSettings" uid="uid://c8p38kni0q7v0" path="res://assets/theme/choice_normal_label_settings.tres" id="2_f3ycj"]
+[ext_resource type="FontFile" uid="uid://c8qul3alvi37g" path="res://assets/fonts/CarpalTunnel-aEWa.ttf" id="3_8hf8l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ieh6"]
 bg_color = Color(0, 0, 0, 1)
@@ -9,7 +10,11 @@ shadow_color = Color(0, 0, 0, 0.3529412)
 shadow_size = 20
 shadow_offset = Vector2(-2, 2)
 
-[node name="ChoiceOptionItem" type="PanelContainer" unique_id=1245374934 node_paths=PackedStringArray("label")]
+[sub_resource type="LabelSettings" id="LabelSettings_a44xj"]
+font = ExtResource("3_8hf8l")
+font_color = Color(0.8324177, 0.12107765, 0.10239028, 1)
+
+[node name="ChoiceOptionItem" type="PanelContainer" unique_id=1245374934 node_paths=PackedStringArray("label", "lie_control")]
 custom_minimum_size = Vector2(0, 30)
 offset_right = 246.0
 offset_bottom = 22.0
@@ -19,9 +24,44 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_4ieh6")
 script = ExtResource("1_f3ycj")
 label = NodePath("Label")
+lie_control = NodePath("LieControl")
 
 [node name="Label" type="Label" parent="." unique_id=561619182]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Choice that can be changed"
 label_settings = ExtResource("2_f3ycj")
+
+[node name="LieControl" type="Control" parent="." unique_id=1691277079]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="LieControl" unique_id=1381842217]
+propagate_maximum_size = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = 26.0
+offset_right = 31.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.17661129
+pivot_offset = Vector2(-300, 15)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ieh6")
+
+[node name="Label" type="Label" parent="LieControl/PanelContainer" unique_id=341885270]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "(Lie)"
+label_settings = SubResource("LabelSettings_a44xj")

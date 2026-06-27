@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cj3q4tqun80lg"]
+
+[ext_resource type="FontFile" uid="uid://c8qul3alvi37g" path="res://assets/fonts/CarpalTunnel-aEWa.ttf" id="1_vrexo"]
+
+[resource]
+font = ExtResource("1_vrexo")
+font_size = 20
+font_color = Color(0.8324177, 0.12107765, 0.10239028, 1)

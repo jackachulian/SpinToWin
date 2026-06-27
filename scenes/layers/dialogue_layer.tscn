@@ -8,6 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="6_hgao8"]
 [ext_resource type="Script" uid="uid://bldnlsb175s2o" path="res://scripts/ui/dialogue/custom_dialogue_responses_menu.gd" id="7_fitoo"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ieh6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.07199998, 0.8862002, 0.9, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
 [sub_resource type="Animation" id="Animation_nlsx6"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -109,6 +125,16 @@ offset_bottom = 863.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 0.4509804)
+
+[node name="Panel" type="Panel" parent="DialogueUI/TutorialFocusRect" unique_id=290501093]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ieh6")
 
 [node name="DialogueBalloon" type="Control" parent="DialogueUI" unique_id=1660674987]
 layout_mode = 1

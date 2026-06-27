@@ -106,13 +106,13 @@ static func _parse_choice(text: String) -> ArticleChoice:
 			else:
 				push_error("invalid int: ", match_string)
 				
-		var trust_match_string := regex_match.get_string(4)
+		var trust_match_string := regex_match.get_string(5)
 		if not trust_match_string.is_empty() and trust_match_string.is_valid_int():
 			option.public_trust_change = trust_match_string.to_int()
 		else:
 			push_error("invalid int: ", trust_match_string)
 			
-		var is_lie_string := regex_match.get_string(5)
+		var is_lie_string := regex_match.get_string(6)
 		if not is_lie_string.is_empty() and is_lie_string.is_valid_int():
 			option.is_lie = (is_lie_string.to_int() == 1)
 		else:

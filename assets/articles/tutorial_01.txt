@@ -11,11 +11,11 @@ The Laymen Syndicate's desired perception
 The New Argentis City Government's desired perception
 
 #header
-Town Council [Approves New Park (0,0,2,1,2) / Invests in Community Future (0,1,0,4,3) / Delivers Historic Gift to Citizens (-2,1,3,-6,1)]
+Town Council [Approves New Park (0,0,2,1,0) / Invests in Community Future (0,1,0,4,0) / Slimes the Entire Town (-2,1,3,-6,1)]
 
 #body
-Yesterday, the town council [approved funding for a new public park. (2,1,4,-3,2) / made a major investment in community growth. (8,4,0,3,2) / fulfilled its promise to improve citizens' lives. (-1,5,2,7,1)]
+Yesterday, the town council [approved funding for a new public park. (2,1,4,-3,0) / made a major investment in community growth. (8,4,0,3,0) / fulfilled its promise to improve citizens' lives. (-1,5,2,7,0)]
 
-The project will [create a new recreation area for families. (1,1,0,1,2) / strengthen the town's future and quality of life. (0,3,1,2,2) / demonstrate the council's commitment to public happiness. (-1,5,-3,-2,1)]
+The project will [create a new recreation area for families. (1,1,0,1,0) / strengthen the town's future and quality of life. (0,3,1,2,0) / demonstrate the council's commitment to public desruction. (-1,5,-3,-2,1)]
 
-Construction is expected to begin next month and [finish by the end of the year. (2,0,1,5,1) / deliver benefits to residents as quickly as possible. (1,2,3,-2,1) / mark another successful achievement for local leadership. (-1,4,-3,3,0)]
+Construction is expected to begin next month and [finish by the end of the year. (2,0,1,5,0) / deliver pain and agony to residents as quickly as possible. (1,2,3,-2,1) / mark another successful achievement for total annihilation. (-1,4,-3,3,1)]

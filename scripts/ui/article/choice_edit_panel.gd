@@ -35,6 +35,8 @@ extends Control
 	set(value): normal_label_settings = value; update_ui_elements()
 @export var focused_label_settings: LabelSettings:
 	set(value): focused_label_settings = value; update_ui_elements()
+@export var lie_focused_label_settings: LabelSettings:
+	set(value): lie_focused_label_settings = value; update_ui_elements()
 	
 @export var left_arrow: Node2D:
 	set(value): left_arrow = value; update_ui_elements()
@@ -167,10 +169,14 @@ func update_ui_elements() -> void:
 		max_width = maxf(max_width, item.size.x)
 		max_height = maxf(max_height, item.size.y)
 		
-		if index == item_index:
-			item.label.label_settings = focused_label_settings
-		else:
-			item.label.label_settings = normal_label_settings
+		if item.choice:
+			var option: ArticleChoiceOption = item.choice.options[item.index]
+			if index == item_index:
+				item.label.label_settings = lie_focused_label_settings if option.is_lie else focused_label_settings
+				item.lie_control.visible = option.is_lie
+			else:
+				item.label.label_settings = normal_label_settings
+				item.lie_control.visible = false
 		
 	if left_arrow:	
 		left_arrow.position = Vector2(-arrow_offset.x, arrow_offset.y - max_height)
