@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bpjsd875iasxq"
+path="res://.godot/imported/voss_death.dialogue-b2479c41f76041a03da489452cf37b46.tres"
+
+[deps]
+
+source_file="res://assets/dialogue/voss_death.dialogue"
+dest_files=["res://.godot/imported/voss_death.dialogue-b2479c41f76041a03da489452cf37b46.tres"]
+
+[params]
+
+defaults=true

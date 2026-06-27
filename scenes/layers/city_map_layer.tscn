@@ -68,6 +68,7 @@ duration = 1
 guaranteed = true
 exclusive = true
 auto_start = true
+start_dialogue_path = "uid://bpjsd875iasxq"
 article_file_path = "res://assets/articles/voss_death.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
