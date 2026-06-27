@@ -27,6 +27,8 @@ func open() -> void:
 ## Open the given layer. Once that layer is closed,
 ## re-open this layer.
 func open_nested(trans_layer: TransitionableLayer) -> void:
+	var active := (MainGame.instance.active_layer == self)
+	
 	while animating:
 		print("waiting for ",name," to finish animating")
 		await animating_finished
@@ -34,10 +36,18 @@ func open_nested(trans_layer: TransitionableLayer) -> void:
 	while trans_layer.animating:
 		print("waiting for ",trans_layer.name," to finish animating")
 		await trans_layer.animating_finished
-	trans_layer.open()
+		
+	if active:
+		trans_layer.open_active()
+	else:
+		trans_layer.open()
 	
 	await trans_layer.closed
-	open()
+	
+	if active:
+		open_active()
+	else:
+		open()
 	
 ## Open this as the active layer on the MainGame instance.
 ## Will close any previous active layer
