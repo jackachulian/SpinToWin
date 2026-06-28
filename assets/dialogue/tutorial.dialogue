@@ -1,4 +1,5 @@
 ~ start
+do player_data.disable_submit_button()
 Mr. Kraus: This is your ArticleSpinner workstation.[wait] Trademarked, obviously.
 Mr. Kraus: You may notice a few things here and there, but for now, try clicking on an underlined text in the article itself.
 
@@ -20,3 +21,4 @@ Mr. Kraus: But once you start on this stack of files, you'll have more than just
 Mr. Kraus: This is all you'll need to [color=firebrick]spin[/color] an article, but you might have to investiate a [color=springgreen]lead[/color] on the map before you can [color=firebrick]spin[/color] it.
 Mr. Kraus: And you may even have to talk with someone afterwards too. All depends on the particular article.
 Mr. Kraus: Alright, let me see your best work here. Finish this article while I watch, then just click the Submit button in the bottom right.
+do player_data.enable_submit_button()

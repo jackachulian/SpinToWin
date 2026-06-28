@@ -127,7 +127,14 @@ func advance_game_phase() -> void:
 			
 	# after start dialogue, go to city map
 	elif game_phase == GamePhase.ACT_START_DIALOGUE:
-		game_phase = GamePhase.CITY_MAP
+		if act == 1:
+			if MainGame.instance.active_layer:
+				MainGame.instance.active_layer.close()
+			await MainGame.instance.hud_ui.act_title_card_ui.animate_title_card("TO BE CONTINUED", "")
+			game_phase = GamePhase.GAME_ENDED
+			advance_game_phase()
+		else:
+			game_phase = GamePhase.CITY_MAP
 	
 	# If in the city map phase,
 	# moves time forward and open the appropriate layer
@@ -278,3 +285,9 @@ func wait_for_article_choice_confirm() -> void:
 	
 func wait_for_desired_perception_click() -> void:
 	MainGame.instance.article_ui.wait_for_desired_perception_click()
+	
+func disable_submit_button() -> void:
+	MainGame.instance.article_ui.disable_submit_button()
+	
+func enable_submit_button() -> void:
+	MainGame.instance.article_ui.enable_submit_button()

@@ -132,17 +132,20 @@ func try_schedule_event(schedule: Array[EventData], event_data: EventData) -> bo
 		for time in times:
 			var valid_time: bool = true
 			for other_event_data in schedule:
-				var at_same_time: bool = (time <= other_event_data.start_time + other_event_data.duration-1
-				and time + event_data.duration-1 <= other_event_data.start_time)
+				#print("checking %s against %s" % [event_data.name, other_event_data.name])
+				var at_same_time: bool = (time == other_event_data.start_time
+				and act == other_event_data.act)
 				
 				# An event cannot be at the same time and at the same place as another event
 				if at_same_time and event_data.location_id == other_event_data.location_id:
 					valid_time = false
+					print("%s at same time and place as %s" % [event_data.event_name, other_event_data.event_name])
 					break
 				# Cannot be at the same time as another exclusive event,
 				# no matter where it is taking place
 				if at_same_time and other_event_data.exclusive:
 					valid_time = false
+					print("%s at same time as exclusive event %s" % [event_data.event_name, other_event_data.event_name])
 					break
 					
 			if not valid_time:
@@ -151,11 +154,11 @@ func try_schedule_event(schedule: Array[EventData], event_data: EventData) -> bo
 			event_data.act = act
 			event_data.start_time = time
 			schedule.append(event_data)
-			print("event %s scheduled for: act %d, time=%d" % [event_data, act, time])
+			print("event %s scheduled for: act %d, time=%d" % [event_data.event_name, act, time])
 			return true
 
 	if event_data.guaranteed or event_data.exclusive:
-		push_error("Failed to schedule guaranteed/exclusive event: ", event_data)
+		printerr("Failed to schedule guaranteed/exclusive event: ", event_data.event_name)
 	else:
 		print("Skipped scheduling optional event: ", event_data)
 	return false

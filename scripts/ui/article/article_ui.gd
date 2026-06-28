@@ -18,6 +18,8 @@ extends AnimatableControl
 @export var desired_perception_ui: DesiredPerceptionUI
 @export var choice_edit_panel: ChoiceEditPanel
 
+@onready var submit_button: Button = $SubmitArticle/MarginContainer/SubmitButton
+
 @onready var input_blocker: Control = $InputBlocker
 
 enum TutorialState {
@@ -59,6 +61,12 @@ func wait_for_desired_perception_click() -> void:
 	tutorial_state = TutorialState.CLICK_DESIRED_PERCEPTIONS
 	MainGame.instance.dialogue_ui.show_tutorial_focus_global_rect(desired_perception_ui.get_global_rect())
 	set_dialogue_blocks_inputs(false)
+	
+func disable_submit_button() -> void:
+	submit_button.disabled = true
+	
+func enable_submit_button() -> void:
+	submit_button.disabled = false
 
 func setup(article: ArticleLevel) -> void:
 	input_blocker.hide()
@@ -75,10 +83,13 @@ func setup(article: ArticleLevel) -> void:
 		input_blocker.show()
 		MainGame.instance.dialogue_layer.open()
 		DialogueLoader.run_dialogue(article_dialogue)
+		set_dialogue_blocks_inputs(true)
+		disable_submit_button()
 		
-		while not MainGame.instance.dialogue_layer.is_open:
+		while MainGame.instance.dialogue_layer.animating:
 			await MainGame.instance.dialogue_layer.animating_finished
 		input_blocker.hide()
+
 	
 	
 func _on_choice_clicked(choice: ArticleChoice, global_pos: Vector2, sentence_start: String) -> void:

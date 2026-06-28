@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bb7al8ko4q3nb" path="res://scripts/core/transitionable_layer.gd" id="1_icfvy"]
 [ext_resource type="FontFile" uid="uid://k2mdld8xovp0" path="res://assets/fonts/BillionaireMediumGrunge.ttf" id="2_icfvy"]
 [ext_resource type="Script" uid="uid://dvjff1baxk1eu" path="res://scripts/ui/main_menu/main_menu_ui.gd" id="3_gbj6b"]
+[ext_resource type="Texture2D" uid="uid://bp1jrr5qso3r" path="res://assets/ClosedEyes_Title.png" id="4_yht25"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ruko1"]
 font_size = 128
@@ -16,6 +17,11 @@ stacked_outline_0/color = Color(1, 0.7058824, 0.26666668, 1)
 stacked_outline_1/size = 32
 stacked_outline_2/size = 16
 stacked_outline_2/color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ieh6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_color = Color(0.0468, 0.08712, 0.09, 0.74509805)
+shadow_size = 32
 
 [node name="TitleMenuLayer" type="CanvasLayer" unique_id=1946908040 node_paths=PackedStringArray("animatable_control")]
 script = ExtResource("1_icfvy")
@@ -39,6 +45,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 204.0
+offset_top = 198.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 80
@@ -51,6 +59,7 @@ layout_mode = 2
 theme_override_constants/separation = 40
 
 [node name="GameTitleLabel" type="Label" parent="TitleMenuUI/MarginContainer/VBoxContainer" unique_id=1028209631]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_icfvy")
 text = "CLOSED EYES"
@@ -61,32 +70,60 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 32
 
+[node name="Panel" type="Panel" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=2106370456]
+custom_minimum_size = Vector2(649, 84)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ieh6")
+
+[node name="TextureRect" type="TextureRect" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer/Panel" unique_id=1508635214]
+modulate = Color(0.9919134, 0.95970935, 0.742794, 1)
+layout_mode = 0
+offset_left = -173.0
+offset_top = -220.0
+offset_right = 819.0
+offset_bottom = 328.0
+texture = ExtResource("4_yht25")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1467331616]
+layout_mode = 2
+
 [node name="NewButton" type="Button" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=536367206]
+visible = false
 custom_minimum_size = Vector2(300, 30)
+custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "New Game"
 
 [node name="ContinueButton" type="Button" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=869077511]
+visible = false
 custom_minimum_size = Vector2(300, 30)
+custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Continue"
 
 [node name="OptionsButton" type="Button" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1104993219]
+visible = false
 custom_minimum_size = Vector2(300, 30)
+custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Options"
 
 [node name="CreditsButton" type="Button" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=439786898]
+visible = false
 custom_minimum_size = Vector2(300, 30)
+custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=637154430]
+visible = false
 custom_minimum_size = Vector2(300, 30)
+custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit Game"
