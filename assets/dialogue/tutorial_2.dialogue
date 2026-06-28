@@ -1,3 +1,23 @@
 ~ start
-Reagan: This is the tutorial for [color=firebrick]lying[/color].
+do player_data.disable_submit_button()
+Mr. Kraus: First off, [color=firebrick]lying[/color] is not just [color=firebrick]lying[/color]. It's a skill to develop.
+Mr. Kraus: Not every [color=firebrick]lie[/color] is worth telling, and sometimes the truth is better.
+Mr. Kraus: It all depends on what faction you're trying to appeal to.
+
+do player_data.wait_for_article_choice_click()
+Mr. Kraus: For now, click on one of these choices, just like I taught you the other week.
+Mr. Kraus: Good.
+Mr. Kraus: Now, you may not notice anything different about this choice yet.
+Mr. Kraus: If a choice has a [color=firebrick]lying[/color] option, it'll be labeled as such when you scroll over it.
+
+do player_data.wait_for_article_choice_confirm()
+Mr. Kraus: Try selecting a lie with your scroll wheel and left click.
+Mr. Kraus: Good job, kid.
+Mr. Kraus: Now if you look at a choice, and it shows up in red, that means that one's a [color=firebrick]lie[/color].
+Mr. Kraus: Just[speed=0.35]...[speed=1] Be careful with the [color=firebrick]lies[/color].
+Mr. Kraus: [color=firebrick]Lies[/color] can be a good tool, but too many of them can dig you into a hole you can't get out of easily.
+Mr. Kraus: Finish this article up, then click submit like usual.
+Mr. Kraus: And don't worry, it's all for testing, so no bunnies are getting smuggled.
+[color=bd9964]Mr. Kraus[/color] chuckles and pats my shoulder before I turn back to the page.
+do player_data.enable_submit_button()
 => END

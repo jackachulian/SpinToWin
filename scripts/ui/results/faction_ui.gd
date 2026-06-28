@@ -6,6 +6,7 @@ extends Control
 @export var reputation_bar: ProgressBar
 
 @export var rep_up_arrow: Polygon2D
+@export var rep_unchanged: Polygon2D
 @export var rep_down_arrow: Polygon2D
 
 ## The ID of the faction this is displaying (see FACTION array on PlayerData).
@@ -33,6 +34,7 @@ func setup(faction: int, old_reputation: float, new_reputation: float) -> void:
 	fill_stylebox.bg_color = color
 	
 	rep_up_arrow.hide()
+	rep_unchanged.hide()
 	rep_down_arrow.hide()
 	
 
@@ -55,13 +57,16 @@ func animate_rep_change() -> void:
 	var value_change := new_reputation - old_reputation
 	
 	rep_up_arrow.hide()
+	rep_unchanged.hide()
 	rep_down_arrow.hide()
 	
 	var anim_arrow: Node2D
 	if value_change > 0:
 		anim_arrow = rep_up_arrow
-	else:
+	elif value_change < 0:
 		anim_arrow = rep_down_arrow
+	else:
+		anim_arrow = rep_unchanged
 		
 	anim_arrow.show()
 	anim_arrow.modulate = Color(1,1,1,0)

@@ -127,7 +127,7 @@ func advance_game_phase() -> void:
 			
 	# after start dialogue, go to city map
 	elif game_phase == GamePhase.ACT_START_DIALOGUE:
-		if act == 1:
+		if act == 2:
 			if MainGame.instance.active_layer:
 				MainGame.instance.active_layer.close()
 			await MainGame.instance.hud_ui.act_title_card_ui.animate_title_card("TO BE CONTINUED", "")

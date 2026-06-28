@@ -1,0 +1,21 @@
+#real-event
+Silver sickness in The Grift is at an all-time high. Is there a reason why?
+
+#desired-perception-1
+This is all an effect of a bygone era. Trival nonsense with no one to blame.
+#desired-perception-2
+Does this sickness really just rise from The Depths? It's clearly the Metal Barons.
+#desired-perception-3
+Ah, this reminds me to reduce patrol routes through The Grift. The city refuses to comment on this matter.
+
+#header
+[Silver Sickness on the Rise in the Grift! (2,4,-2,0,0) / Silver Fog Rising from The Depths? (8,-12,1,0,1)]
+
+#body
+Silver sickness, [the disease affecting over half of residents of The Grift (1,2,1,0,0) / the disease disproportionately infecting the lower class (-4,6,1,0,0) / the disease that plagues us all (5,-4,-2,0,1)], has had [steadily increasing (1,-2,-2,0,0) / mostly even (3,-5,-4,0,1)] reported cases over the past three years.
+
+Mei Tanakura, a resident of the upper levels of The Grift, says "[the Silver fog gets more and more visible every day (-1,4,-2,0,0) / when I go out in the mornings, the neighbors all wear masks (1,4,-5,0,0)]".
+
+After getting an expert on site, the measured levels of metallic particles in the air is [a dangerous 12 (-7,9,-6,0,0) / an above average 6 (-1,0,0,0,1) / a standard 2 (6,-10,4,0,1)] micrograms per cubic meter.
+
+The Silver levels were [bad enough that it left our reporter with a coppery taste in their mouth (-6,9,-2,0,0) / only worse the lower one gets in verticality (3,-2,2,0,0) / not the worst The Grift has ever seen (6,-6,8,0,1)].

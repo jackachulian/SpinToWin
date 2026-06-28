@@ -45,8 +45,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 204.0
-offset_top = 198.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 80
@@ -89,7 +87,6 @@ expand_mode = 1
 layout_mode = 2
 
 [node name="NewButton" type="Button" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=536367206]
-visible = false
 custom_minimum_size = Vector2(300, 30)
 custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
@@ -97,7 +94,6 @@ theme_override_font_sizes/font_size = 32
 text = "New Game"
 
 [node name="ContinueButton" type="Button" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=869077511]
-visible = false
 custom_minimum_size = Vector2(300, 30)
 custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
@@ -105,7 +101,6 @@ theme_override_font_sizes/font_size = 32
 text = "Continue"
 
 [node name="OptionsButton" type="Button" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=1104993219]
-visible = false
 custom_minimum_size = Vector2(300, 30)
 custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
@@ -113,7 +108,6 @@ theme_override_font_sizes/font_size = 32
 text = "Options"
 
 [node name="CreditsButton" type="Button" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=439786898]
-visible = false
 custom_minimum_size = Vector2(300, 30)
 custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
@@ -121,7 +115,6 @@ theme_override_font_sizes/font_size = 32
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="TitleMenuUI/MarginContainer/VBoxContainer/ChoicesContainer" unique_id=637154430]
-visible = false
 custom_minimum_size = Vector2(300, 30)
 custom_maximum_size = Vector2(300, -1)
 layout_mode = 2

@@ -36,6 +36,22 @@ metadata/_custom_type_script = "uid://cb8n3evhugaer"
 [sub_resource type="Resource" id="Resource_oc4xn"]
 resource_local_to_scene = true
 script = ExtResource("7_nm77f")
+event_name = "Tutorial 2"
+event_description = "Another super real article not made by your boss"
+min_act = 1
+max_act = 1
+duration = 1
+guaranteed = true
+exclusive = true
+auto_start = true
+article_file_path = "res://assets/articles/tutorial_02.txt"
+article_dialogue_path = "uid://cory71rcobsur"
+end_dialogue_path = "uid://bvs7tbbyvfa6f"
+metadata/_custom_type_script = "uid://cb8n3evhugaer"
+
+[sub_resource type="Resource" id="Resource_g82fp"]
+resource_local_to_scene = true
+script = ExtResource("7_nm77f")
 event_name = "Foundry Eleven Fire"
 event_description = "Looks like Foundry Eleven over in Old Saint's District caught fire, I made a compiled report of all of the leads talking about it."
 min_start_time = 1
@@ -46,7 +62,7 @@ exclusive = true
 article_file_path = "res://assets/articles/act1_02.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
-[sub_resource type="Resource" id="Resource_g82fp"]
+[sub_resource type="Resource" id="Resource_mxyj7"]
 resource_local_to_scene = true
 script = ExtResource("7_nm77f")
 event_name = "Tourism Pickpocketing Report"
@@ -60,7 +76,37 @@ exclusive = true
 article_file_path = "res://assets/articles/act1_01.txt"
 metadata/_custom_type_script = "uid://cb8n3evhugaer"
 
-[sub_resource type="Resource" id="Resource_mxyj7"]
+[sub_resource type="Resource" id="Resource_ouewp"]
+resource_local_to_scene = true
+script = ExtResource("7_nm77f")
+event_name = "Silver Sickness in The Grift"
+event_description = "Data just came in about Silver levels in The Grift, seems really important to the Syndicate I get this right..."
+min_act = 1
+max_act = 1
+min_start_time = 1
+max_start_time = 1
+duration = 1
+guaranteed = true
+exclusive = true
+article_file_path = "res://assets/articles/act2_01.txt"
+metadata/_custom_type_script = "uid://cb8n3evhugaer"
+
+[sub_resource type="Resource" id="Resource_a27a3"]
+resource_local_to_scene = true
+script = ExtResource("7_nm77f")
+event_name = "Protest Turned Violent"
+event_description = "While I was busy earlier today, there was a protest that turned sour fast. I think the city will care about this one a lot..."
+min_act = 1
+max_act = 1
+min_start_time = 2
+max_start_time = 2
+duration = 1
+guaranteed = true
+exclusive = true
+article_file_path = "res://assets/articles/act2_02.txt"
+metadata/_custom_type_script = "uid://cb8n3evhugaer"
+
+[sub_resource type="Resource" id="Resource_iidtw"]
 resource_local_to_scene = true
 script = ExtResource("7_nm77f")
 event_name = "Death of Director Voss"
@@ -79,7 +125,7 @@ metadata/_custom_type_script = "uid://cb8n3evhugaer"
 [sub_resource type="LabelSettings" id="LabelSettings_4ieh6"]
 font_size = 18
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iidtw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouewp"]
 resource_local_to_scene = true
 bg_color = Color(0.37254903, 0.6392157, 0.3647059, 1)
 border_width_left = 2
@@ -92,7 +138,7 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouewp"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a27a3"]
 resource_local_to_scene = true
 bg_color = Color(0.37254903, 0.6392157, 0.3647059, 1)
 border_width_left = 2
@@ -175,13 +221,21 @@ offset_right = 538.0
 offset_bottom = -79.0
 event_data = SubResource("Resource_nm77f")
 
-[node name="FoundryFire" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=234452478 instance=ExtResource("6_e3gvu")]
+[node name="Tutorial2" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=234452478 instance=ExtResource("6_e3gvu")]
+layout_mode = 0
+offset_left = 468.0
+offset_top = -167.0
+offset_right = 538.0
+offset_bottom = -79.0
+event_data = SubResource("Resource_oc4xn")
+
+[node name="FoundryFire" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=2085926167 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
 offset_left = 168.814
 offset_top = 73.455
 offset_right = 238.81421
 offset_bottom = 161.45508
-event_data = SubResource("Resource_oc4xn")
+event_data = SubResource("Resource_g82fp")
 
 [node name="TourismTroubles" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=1832251012 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
@@ -189,7 +243,29 @@ offset_left = 539.79
 offset_top = 231.64
 offset_right = 609.79004
 offset_bottom = 319.64005
-event_data = SubResource("Resource_g82fp")
+event_data = SubResource("Resource_mxyj7")
+
+[node name="SilverSickness" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=534147421 instance=ExtResource("6_e3gvu")]
+layout_mode = 0
+offset_left = 737.315
+offset_top = 79.025
+offset_right = 807.31506
+offset_bottom = 167.025
+event_data = SubResource("Resource_ouewp")
+
+[node name="Polygon2D" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap/SilverSickness/IconControl" parent_id_path=PackedInt32Array(534147421, 1941426756) index="0" unique_id=1553996210]
+color = Color(0.72, 0.65520006, 0.3312, 0.7372549)
+
+[node name="ViolentProtest" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=694426206 instance=ExtResource("6_e3gvu")]
+layout_mode = 0
+offset_left = 467.3
+offset_top = 168.425
+offset_right = 537.3003
+offset_bottom = 256.42523
+event_data = SubResource("Resource_a27a3")
+
+[node name="Polygon2D" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap/ViolentProtest/IconControl" parent_id_path=PackedInt32Array(694426206, 1941426756) index="0" unique_id=1553996210]
+color = Color(0.72, 0.65520006, 0.3312, 0.7372549)
 
 [node name="VossDeath" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap" unique_id=900413591 instance=ExtResource("6_e3gvu")]
 layout_mode = 0
@@ -197,7 +273,7 @@ offset_left = 468.0
 offset_top = -167.0
 offset_right = 538.0
 offset_bottom = -79.0
-event_data = SubResource("Resource_mxyj7")
+event_data = SubResource("Resource_iidtw")
 
 [node name="InfoContainer" type="MarginContainer" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer" unique_id=1651421061]
 layout_mode = 1
@@ -240,7 +316,7 @@ faction_id = 2
 text = "[font_size=36][color=limegreen]S"
 
 [node name="ProgressBar" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer/CityMapFactionPreview2/HoverPanel/VBoxContainer/BaseContainer/HBoxContainer" parent_id_path=PackedInt32Array(1910342403, 1293129886) index="2" unique_id=1121838017]
-theme_override_styles/fill = SubResource("StyleBoxFlat_iidtw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ouewp")
 
 [node name="CityMapFactionPreview3" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer" unique_id=1203858224 instance=ExtResource("5_ue58t")]
 layout_mode = 2
@@ -251,7 +327,7 @@ faction_id = 3
 text = "[font_size=36][color=dodgerblue]A"
 
 [node name="ProgressBar" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer/CityMapFactionPreview3/HoverPanel/VBoxContainer/BaseContainer/HBoxContainer" parent_id_path=PackedInt32Array(1203858224, 1293129886) index="2" unique_id=1121838017]
-theme_override_styles/fill = SubResource("StyleBoxFlat_ouewp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a27a3")
 
 [node name="MarginContainer" type="MarginContainer" parent="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer" unique_id=1761353466]
 layout_mode = 1
@@ -268,5 +344,7 @@ theme_override_constants/margin_right = 15
 layout_mode = 2
 mouse_filter = 2
 
+[editable path="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap/SilverSickness"]
+[editable path="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/EventMapContainer/EventMap/ViolentProtest"]
 [editable path="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer/CityMapFactionPreview2"]
 [editable path="CityMapUI/MarginContainer/PanelContainer/Control/VBoxContainer/InfoContainer/HBoxContainer/CityMapFactionPreview3"]

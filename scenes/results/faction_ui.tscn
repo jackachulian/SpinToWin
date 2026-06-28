@@ -33,7 +33,7 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="FactionUI" type="Control" unique_id=1678427921 node_paths=PackedStringArray("texture_rect", "faction_name_label", "reputation_bar", "rep_up_arrow", "rep_down_arrow")]
+[node name="FactionUI" type="Control" unique_id=1678427921 node_paths=PackedStringArray("texture_rect", "faction_name_label", "reputation_bar", "rep_up_arrow", "rep_unchanged", "rep_down_arrow")]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 3
 anchors_preset = 0
@@ -46,6 +46,7 @@ texture_rect = NodePath("TextureRect")
 faction_name_label = NodePath("LabelContainer/Label")
 reputation_bar = NodePath("ProgressBar")
 rep_up_arrow = NodePath("TextureRect/RepUpArrow")
+rep_unchanged = NodePath("TextureRect/RepUnchanged")
 rep_down_arrow = NodePath("TextureRect/RepDownArrow")
 
 [node name="IconLabel" type="RichTextLabel" parent="." unique_id=983526652]
@@ -89,6 +90,12 @@ visible = false
 position = Vector2(123, 49)
 color = Color(0.37254903, 0.6392157, 0.3647059, 1)
 polygon = PackedVector2Array(0, -15, -15, 15, 15, 15)
+
+[node name="RepUnchanged" type="Polygon2D" parent="TextureRect" unique_id=1697052398]
+visible = false
+position = Vector2(123, 49)
+color = Color(0.78, 0.61776, 0.17160001, 1)
+polygon = PackedVector2Array(-15, -3, -15, 3, 15, 3, 15, -3)
 
 [node name="RepDownArrow" type="Polygon2D" parent="TextureRect" unique_id=1782889583]
 visible = false

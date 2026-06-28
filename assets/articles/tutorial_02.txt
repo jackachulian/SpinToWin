@@ -1,0 +1,15 @@
+#real-event
+Another super real article not made by your boss for explaining purposes.
+
+#desired-perception-boss
+You can figure this out! The job isn't too hard, right?
+
+#header
+Trade Customs in Blackwater [Prevent Bunny Smuggling (1,-2,2,0,0) / Lead to Bunny Shortages (2,2,-2,0,1)]
+
+#body
+The silver bunny is [one of New Argentis' most prestigious pets to own (4,2,1,0,0) / only valuable in New Argentis for its pelt (-1,3,-1,0,1)].
+
+After the miraculous restoration efforts a few weeks back, the bunny population has skyrocketed in the greater New Argentis area, [almost as common as the street cat (-2,2,0,0,0) / much to the detriment of the Bunny Extermination Group (1,1,1,0,1)].
+
+Dock quartmasters and the New Argentis Trade Customs Office say that this has "[caused lots of high value smuggling operations for silver rabbits (1,2,1,0,0) / not been seen as much in smuggling rings as predicted by researchers (-2,2,-1,0,1)]".

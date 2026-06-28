@@ -1,0 +1,21 @@
+#real-event
+A peaceful protest of the Mayor's recent tariff on power cells from Greater Nellworia turned violent.
+
+#desired-perception-1
+Power cells are not only one of our largest sellers already, but demand for them has skyrocketed!
+#desired-perception-2
+Mixed feelings about this one, says the boss. Drag the city's name through the dirt.
+#desired-perception-3
+The protesters attacked our police force and we responded appropriately.
+
+#header
+Protests in Center Row [end in Riot! (2,2,2,0,0) / Devolve Into Rioting! Protesters to Blame? (-1,-2,7,0,1)]
+
+#body
+Today, a protest started in the streets of Center Row.
+
+City officials call it [the largest protest in New Argentis history (3,4,-2,0,0) / the worst terrorist act to date (-5,-3,7,0,1)].
+
+The protest itself was organized by a group, [ known to have supported The Consortium (-5,3,1,0,0) / with ties to The Laymen's Syndicate (3,-6,1,0,1)], that [ attempted to establish the peace even as police antagonized protesters (5,5,-9,0,0) / lead a violent attack masked as a protest (-4,-2,2,0,1)].
+
+After becoming a violent [massacre on behalf of the protesters (2,4,-3,0,0) / riot between police and protesters alike (-4,-5,6,0,1)], there were [a total of 12 confirmed casualties, all innocent protesters (4,7,-5,0,0) / thankfully zero casualties, thanks to police efforts (-4,-7,5,0,1)].
